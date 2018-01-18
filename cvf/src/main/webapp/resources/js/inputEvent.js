@@ -15,6 +15,7 @@ $(function(){
 	loadFile();
 	createFile();
 	initFile('bobo',0,'bobo');
+	$(".ui-widget-content img").draggable({'revert': true, 'helper': "clone",'start':dragStart,'drag':drag,'stop':dragStop});
 })
 
 function initFile(userid,level,parentid){
@@ -25,8 +26,8 @@ function initFile(userid,level,parentid){
         	var fileDiv = "";
 			$(data['list']).each(function(index,e){
 				fileDiv += "<div class='filecontainer'>"+
-					"<div class='fileDiv' file='' fileid='' onclick=initFile('"+e['userid']+"','"+e['level']+"','"+e['id']+"')></div>"+
-					"<input type='text' value='"+e['filename']+"' name='"+e['filename']+"' class='fileinput'/>"+
+					"<div class='fileDiv ui-widget-content' file='' fileid='' ondblclick=initFile('"+e['userid']+"','"+e['level']+"','"+e['id']+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+					"<input title='"+e['filename']+"' type='text' value='"+e['filename']+"' name='"+e['filename']+"' class='fileinput'/>"+
 					"</div>";
 			});
 			$(".portlet-body").append(fileDiv);
@@ -57,8 +58,8 @@ fileNames.on("mousedown",function(e){
         	var fileDiv = "";
 			$(data['list']).each(function(index,e){
 				fileDiv += "<div class='filecontainer'>"+
-					"<div class='fileDiv' file='' fileid='' onclick=initFile('"+e['userid']+"','"+e['level']+"','"+e['id']+"')></div>"+
-					"<input type='text' value='"+e['filename']+"' name='"+e['filename']+"' class='fileinput'/>"+
+					"<div class='fileDiv ui-widget-content' file='' fileid='' ondblclick=initFile('"+e['userid']+"','"+e['level']+"','"+e['id']+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+					"<input title='"+e['filename']+"' type='text' value='"+e['filename']+"' name='"+e['filename']+"' class='fileinput'/>"+
 					"</div>";
 			});
 			$(".portlet-body").append(fileDiv);
@@ -67,10 +68,6 @@ fileNames.on("mousedown",function(e){
         }
      });
 	
-})
-//mousedown 右击事件
-fileNames.on("ondblclick",function(e){
-	//删除文件夹
 })
 
 //创建文件夹
@@ -105,8 +102,8 @@ function editHandle(){
 	var fileIndex = 1;
 	var files = $(".filecontainer");
 	var fileDiv = "<div index='"+fileIndex+"' class='filecontainer'>"+
-	"<div class='fileDiv' file='' fileid='' onclick=initFile('"+userid+"','"+level+"','"+uuid+"')></div>"+
-	"<input type='text' value='新建文件夹' name='新建文件夹' class='fileinput'/>"+
+	"<div class='fileDiv ui-widget-content' file='' fileid='' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+	"<input type='text' title='新建文件夹' value='新建文件夹' name='新建文件夹' class='fileinput'/>"+
 	"</div>";
 	if(typeof(files)=='undefined'&&files.length==0){
 		//直接进行保存
@@ -127,8 +124,8 @@ function editHandle(){
 				if(len-1==0){
 					 var name = '新建文件夹1';
 					 fileDiv = "<div class='filecontainer'>"+
-						"<div class='fileDiv' file='' fileid='' ></div>"+
-						"<input type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
+						"<div class='fileDiv ui-widget-content' file='' fileid='' ><img src='resources/images/file.gif'  alt='' /></div>"+
+						"<input title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
 						"</div>";
 				}else{
 					var pre = same[temp];
@@ -136,8 +133,8 @@ function editHandle(){
 					if(typeof(lst)=='undefined'){
 						 var name = '新建文件夹'+(len);
 						 fileDiv = "<div class='filecontainer'>"+
-							"<div class='fileDiv' file='' fileid='' onclick=initFile('"+userid+"','"+level+"','"+uuid+"')></div>"+
-							"<input type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
+							"<div class='fileDiv ui-widget-content' file='' fileid='' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+							"<input title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
 							"</div>";
 							break;
 					}else{
@@ -146,8 +143,8 @@ function editHandle(){
 						if((parseInt(n2)-parseInt(n1))!=1){
 							 var name = '新建文件夹'+(parseInt(n1)+1);
 							 fileDiv = "<div class='filecontainer'>"+
-								"<div class='fileDiv' file='' fileid='' onclick=initFile('"+userid+"','"+level+"','"+uuid+"')></div>"+
-								"<input type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
+								"<div class='fileDiv ui-widget-content' file='' fileid='' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+								"<input title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
 								"</div>";
 						}
 					}
@@ -174,6 +171,38 @@ function editHandle(){
         }
      });
 }
+
+/*
+ * 拖拽事件监控
+ * */
+function dragStart(){
+	var element = event.target||event.srcElement;
+	var left = element.offsetLeft;
+	var height = element.offsetHeight;
+	var top = element.offsetTop;
+	var width = element.offsetWidth;
+	
+	console.log("dragStart==="+left+"=="+height+"=="+top+"=="+width);
+}
+var topMent;
+function drag(){
+	var element = event.target||event.srcElement;
+	var left = element.offsetLeft;
+	var height = element.offsetHeight;
+	var top = element.offsetTop;
+	var width = element.offsetWidth;
+	console.log("drag==="+left+"=="+height+"=="+top+"=="+width);
+}
+function dragStop(){
+	var element = event.target||event.srcElement;
+	topMent = element;
+//	var left = element.offsetLeft;
+//	var height = element.offsetHeight;
+//	var top = element.offsetTop;
+//	var width = element.offsetWidth;
+//	console.log("dragStop==="+left+"=="+height+"=="+top+"=="+width);
+}
+
 var sNodes = [];
 function editFileName(){
 	

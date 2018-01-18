@@ -15,6 +15,9 @@
 <link rel="stylesheet" type="text/css" href="${CONTEXTPATH }/resources/lib/easyui/themes/icon.css" /> 
 <!-- ztree样式 -->
 <link rel="stylesheet" type="text/css" href="${CONTEXTPATH }/resources/lib/ztree/css/zTreeStyle/zTreeStyle.css" />
+<!-- jquery-ui样式 -->
+<link rel="stylesheet" href="${CONTEXTPATH }/resources/lib/jquery-ui/jquery-ui.css">
+
 <style type="text/css">
 .filecontainer{
 	width: 80px;
@@ -28,7 +31,7 @@
 .fileDiv{
 	width: 80px;
 	height: 80px;
-	background: url("${CONTEXTPATH }/resources/images/85061.gif") no-repeat;
+	/* background: url("${CONTEXTPATH }/resources/images/file.gif") no-repeat; */
 	background-size:100% 100%;
 	cursor: pointer;
 }
@@ -38,6 +41,13 @@
 	text-align: center;
 	margin-top	: -8px;
 	border: 0px;
+}
+div.fileDiv img{
+	width: 100%;
+	height: 100%;
+	max-height: 80px;
+	max-width: 80px;
+	background: clear;
 }
 #hand{
 	float:right;
@@ -117,6 +127,8 @@ var CONTEXTPATH = '${CONTEXTPATH}';
 </body>
 <!-- 引入Jquery -->  
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/easyui/jquery.min.js" charset="utf-8"></script>  
+<!-- jquery-ui -->
+<script type="text/javascript" src="${CONTEXTPATH }/resources/lib/jquery-ui/jquery-ui.js" charset="utf-8"></script>
 <!-- 引入Jquery_easyui -->  
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/easyui/jquery.easyui.min.js" charset="utf-8"></script>
 <!-- 引入easyUi国际化--中文 -->  

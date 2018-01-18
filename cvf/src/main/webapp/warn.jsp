@@ -4,7 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>警告</title>
+<style type="text/css">
+body{
+	background: url("resources/images/6.png") top center no-repeat;
+	background-size: cover;
+	overflow:hidden;
+	width:100%;
+	height:100%;
+	margin:0px;
+}
+</style>
 </head>
 <body>
 
