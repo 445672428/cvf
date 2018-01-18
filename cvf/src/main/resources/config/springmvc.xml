@@ -1,0 +1,126 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.1.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.1.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd
+		 ">
+	<!-- springMVC扫描驱动 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<!-- 定义Controller的扫描包 -->
+	<context:component-scan base-package="com.frame.web" />
+	
+	<!-- 添加注解驱动 -->
+    <mvc:annotation-driven enable-matrix-variables="true" />
+    
+    <!-- 将无法mapping到Controller的path交给default servlet handler处理 -->
+    <mvc:default-servlet-handler />
+    
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+	
+	<!-- springmvc资源文件位置 -->
+	<mvc:resources mapping="/resources/**" location="/resources/**" />
+	<mvc:resources mapping="/static/**" location="/static/**" />
+			
+	<!-- 用于解决SpringMVC乱码 -->
+	<mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <!-- 配置springmvc 视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 配置文件上传解析器 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 总文件大小 -->
+		<property name="maxUploadSize" value="50000000"></property>
+		<!-- 文件存放地方 -->
+		<!-- <property name="uploadTempDir" value="fileUpload/temp"></property> -->
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+	<!-- 配置异常类的错误页面 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		 <property name="exceptionMappings">
+		 	<props>
+		 		<!-- 配置异常页面 -->
+		 		<!-- 遇到上传错误时候 自动跳到错误页面 -->
+		 		<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error.jsp</prop>
+		 		<!-- 配置session超时自动跳到登录页面 -->
+		 	</props>
+		 </property>
+	</bean>
+	
+	<!-- 集成websocket 功能 -->
+<!-- 	<bean id="websocket" class="com.push.WebsocketEndPoint"/>  
+	<websocket:handlers allowed-origins="*">  
+	    <websocket:mapping path="/websocket" handler="websocket"/>  
+	    <websocket:handshake-interceptors>  
+	    	<bean class="com.push.HandshakeInterceptor"/>  
+	    </websocket:handshake-interceptors>
+	    <websocket:sockjs />
+	</websocket:handlers>   -->
+	
+
+	<!-- 配置权限拦截器 -->
+<!-- 	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/manager/**"/>
+			<bean class="com.frame.web.LoginInterceptor">
+				<property name="allowSessionUrl">
+					<list>
+						<value>/index.do</value>
+					</list>
+				</property>
+				<property name="allowAuthorityUrl">
+					<list>
+			          <value>/manager/updateAdminPassword.do</value>
+			        </list>
+				</property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+	
+	<!-- 查询资源拦截-->
+<!-- 	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/search/**" />
+			<bean class="com.frame.web.WebSourceRequestInterceptor">
+		    </bean>
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+	
+		<!-- url站点控制拦截器 -->
+<!-- 	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.frame.web.UrlRequestInterceptor">
+				<property name="allowSessionUrl">
+					<list>
+						<value>/index.do</value>
+					</list>
+				</property>
+		    </bean>
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+</beans>

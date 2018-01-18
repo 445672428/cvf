@@ -1,0 +1,12 @@
+
+body{
+	font-family: Arial, Helvetica, Sans-Serif;
+	background-color: #E1E6F6;
+	overflow: hidden;
+}
+a{
+	cursor: pointer;
+}
+input {
+	box-sizing: border-box;
+}

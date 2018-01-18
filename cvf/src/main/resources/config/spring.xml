@@ -1,0 +1,58 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"  
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+		http://www.springframework.org/schema/websocket
+		http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<!-- 允许JVM参数覆盖 -->
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"></property>
+		<!-- 忽略没有找到的资源文件 -->
+		<property name="ignoreResourceNotFound" value="true"></property>
+		<!-- 配置资源文件 -->
+		<property name="locations">
+			<list>
+				<value>classpath:config/log4j.properties</value>
+				<value>classpath:config/jdbc-mysql.properties</value>
+				<value>classpath:config/jdbc-sybase.properties</value>
+				<value>classpath:config/jdbc-multil-db.properties</value>
+				<value>classpath:config/redis.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 配置spring的包扫描 -->
+	<context:component-scan base-package="com.frame.*"></context:component-scan>
+	<context:component-scan base-package="com.push.*"></context:component-scan>
+	<context:component-scan base-package="com.hibernate.*"></context:component-scan>
+	<context:component-scan base-package="com.mybatis.*"></context:component-scan>
+	<import resource="spring-dataSource-mysql.xml"/>
+	<import resource="spring-dataSource-sybase.xml"/>
+	<import resource="spring-cxf.xml"/>
+  	<import resource="spring-mutildataSource.xml"/>
+	<import resource="spring-redis.xml"/> 
+	<import resource="spring-mybatis.xml"/>
+	<import resource="spring-hibernate.xml"/> 
+	<import resource="application-scheduler.xml"/>
+	<import resource="spring-activity.xml"/>
+	<!--websocket 配置-->
+<!--     <bean id="myHandler" class="com.push.WebsocketEndPoint"/>
+    <websocket:handlers  allowed-origins="*">
+        <websocket:mapping path="/myHandler" handler="myHandler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.push.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers> -->
+  	
+<!--     <bean id='socketConfig' class="com.push.SocketConfig"></bean> -->
+</beans>

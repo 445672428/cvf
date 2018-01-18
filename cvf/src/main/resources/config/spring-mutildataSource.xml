@@ -1,0 +1,114 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd ">
+	<!-- 配置连接池 -->
+	<bean id="masterDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="driverClassName">    
+            <value>${master.driverClassName}</value>    
+        </property>    
+        <property name="url">    
+            <value>${master.url}</value>    
+        </property>    
+        <property name="username">    
+            <value>${master.username}</value>    
+        </property>    
+        <property name="password">
+            <value>${master.password}</value>    
+        </property>
+	</bean>
+	
+	<!-- 配置连接池 -->
+	<bean id="slave01DataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="driverClassName">    
+            <value>${slave.driverClassName}</value>    
+        </property>    
+        <property name="url">    
+            <value>${slave.url}</value>    
+        </property>    
+        <property name="username">    
+            <value>${slave.username}</value>    
+        </property>    
+        <property name="password">
+            <value>${slave.password}</value>    
+        </property>
+	</bean>
+	
+	<!-- 定义数据源，使用自己实现的数据源 -->
+	<!-- 配置mysql 数据源切面 -->
+	<bean id="mutildataSource" class="com.multil.datasource.DynamicDataSource">
+		<!-- 设置多个数据源 -->
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<!-- 这个key需要和程序中的key一致 -->
+				<entry key="master" value-ref="masterDataSource"/>
+				<entry key="slave" value-ref="slave01DataSource"/>
+			</map>
+		</property>
+		<!-- 设置默认的数据源，这里默认走写库 -->
+		<property name="defaultTargetDataSource" ref="masterDataSource"/>
+	</bean>
+	
+	<!-- 定义事务管理器 -->
+	<bean id="mutiltransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="mutildataSource" />
+	</bean>
+
+	<!-- 配置jdbc模板 -->
+	<bean id="multilJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="mutildataSource" />
+	</bean>
+	<!-- <aop:aspectj-autoproxy/> -->
+	<!-- 定义事务策略 -->
+	<tx:advice id="txAdvice" transaction-manager="mutiltransactionManager">
+		<tx:attributes>
+			<!--所有以query开头的方法都是只读的 -->
+			<tx:method name="query*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+            <tx:method name="find*" read-only="true" />
+            <tx:method name="load*" read-only="true" />
+            
+			<!--其他方法使用默认事务策略 -->
+			<tx:method name="*" />
+			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="edit*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="save*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="add*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="new*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="set*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="remove*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="change*" propagation="REQUIRED" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 定义AOP切面处理器 -->
+	<bean id="dataSourceAspect" class="com.multil.datasource.DataSourceAspect" /> 
+	<aop:config>
+		<!--pointcut元素定义一个切入点，execution中的第一个星号 用以匹配方法的返回类型，
+			这里星号表明匹配所有返回类型。 com.abc.dao.*.*(..)表明匹配 包下的所有类的所有 
+			方法 -->
+		<aop:pointcut id="myPointcut" expression="execution(* com.frame.multil.service..*.*(..))" />
+		<!--将定义好的事务处理策略应用到上述的切入点 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" /> 
+		
+		<!-- 将切面应用到自定义的切面处理器上，-9999保证该切面优先级最高执行 -->
+		<aop:aspect ref="dataSourceAspect" order="-9999">
+			<aop:before method="before" pointcut-ref="myPointcut" />
+			<aop:after method="before" pointcut-ref="myPointcut"/>
+			<aop:after-throwing method="before" pointcut-ref="myPointcut" />
+		</aop:aspect>
+	</aop:config>
+	
+</beans>

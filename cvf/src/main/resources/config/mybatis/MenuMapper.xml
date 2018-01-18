@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mybatis.service.mapper.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.mybatis.service.pojo.Menu" >
+    <id column="mn_id" property="mnId" jdbcType="VARCHAR" />
+    <result column="btn_id" property="btnId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="menu_status" property="menuStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mn_id, btn_id, name, menu_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from b_menu
+    where mn_id = #{mnId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from b_menu
+    where mn_id = #{mnId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mybatis.service.pojo.Menu" >
+    insert into b_menu (mn_id, btn_id, name, 
+      menu_status)
+    values (#{mnId,jdbcType=VARCHAR}, #{btnId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{menuStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mybatis.service.pojo.Menu" >
+    insert into b_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mnId != null" >
+        mn_id,
+      </if>
+      <if test="btnId != null" >
+        btn_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="menuStatus != null" >
+        menu_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mnId != null" >
+        #{mnId,jdbcType=VARCHAR},
+      </if>
+      <if test="btnId != null" >
+        #{btnId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="menuStatus != null" >
+        #{menuStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mybatis.service.pojo.Menu" >
+    update b_menu
+    <set >
+      <if test="btnId != null" >
+        btn_id = #{btnId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="menuStatus != null" >
+        menu_status = #{menuStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where mn_id = #{mnId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mybatis.service.pojo.Menu" >
+    update b_menu
+    set btn_id = #{btnId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      menu_status = #{menuStatus,jdbcType=INTEGER}
+    where mn_id = #{mnId,jdbcType=VARCHAR}
+  </update>
+</mapper>

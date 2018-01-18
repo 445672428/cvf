@@ -1,0 +1,40 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+		http://www.springframework.org/schema/websocket 
+		http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+    
+		<!-- 定义分片式连接池 -->
+		<bean class="redis.clients.jedis.ShardedJedisPool">
+			<constructor-arg index="0">
+				<bean class="redis.clients.jedis.JedisPoolConfig">
+					<property name="maxTotal" value="${redis.maxActive}"></property>  
+			        <property name="maxIdle" value="${redis.maxIdle}"></property>  
+			        <property name="maxWaitMillis" value="${redis.maxWait}"></property>  
+			        <property name="testOnBorrow" value="${redis.testOnBorrow}"></property>  
+				</bean>
+			</constructor-arg>
+			<constructor-arg index="1">
+				<list>
+					<bean class="redis.clients.jedis.JedisShardInfo">
+						<constructor-arg index="0" value="${redis.ip}"/>
+						<constructor-arg index="1" value="${redis.port}"/>
+					</bean>
+				</list>
+			</constructor-arg>
+		</bean>
+</beans>

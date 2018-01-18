@@ -1,0 +1,80 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+		http://www.springframework.org/schema/websocket 
+		http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+
+    <bean id="hernateDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="driverClassName">    
+            <value>${jdbc.mysql.driverClassName}</value>    
+        </property>    
+        <property name="url">    
+            <value>${jdbc.mysql.url}</value>    
+        </property>    
+        <property name="username">    
+            <value>${jdbc.mysql.username}</value>    
+        </property>    
+        <property name="password">
+            <value>${jdbc.mysql.password}</value>    
+        </property>
+	</bean>
+<!-- 	<bean id="hernateDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.mysql.driverClassName}" />
+		<property name="url" value="${jdbc.mysql.url}" />
+		<property name="username" value="${jdbc.mysql.username}" />
+		<property name="password" value="${jdbc.mysqlpassword}" />
+		配置初始化大小、最小、最大
+		<property name="initialSize" value="${initialSize}" />
+		<property name="minIdle" value="${minIdle}" />
+		<property name="maxActive" value="${maxActive}" />
+		配置获取连接等待超时的时间
+		<property name="maxWait" value="${maxWait}" />
+	</bean> -->
+	
+	<bean id="hernateSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="hernateDataSource" ></property>
+		<property name="mappingLocations" value="classpath:config/hibernate/*.xml"></property>
+		<property name="hibernateProperties">
+			<props>
+				<!-- 设置数据库方言 -->
+				<!-- mysql5.5需要如下设置数据库方言 -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>  
+				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop> -->
+				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop> -->
+				<prop key="hibernate.show_sql">true</prop>  
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop> 
+			</props>
+		</property>
+	</bean>
+	
+	
+	<!-- 配置Spring声明式事务 -->
+    <bean id="hernateTransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="hernateSessionFactory"></property>
+    </bean> 
+    <!-- 配置事务事务属性 -->
+    <tx:advice id="hbtxAdvice" transaction-manager="hernateTransactionManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+    <!-- 配置事务切点，并把切点和事务属性关联起来 -->
+    <aop:config>
+        <aop:pointcut id="txPointcut" expression="execution(* com.hibernate.service.*.*(..))" />
+        <aop:advisor advice-ref="hbtxAdvice" pointcut-ref="txPointcut"/>
+    </aop:config>
+</beans>

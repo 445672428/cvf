@@ -1,0 +1,476 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+ul.fr.btnBox {
+    margin-right: 20px;
+}
+ul.fl li {
+    margin-left: 10px;
+}
+#tableContent .grid #tbody tr td a{
+   color: blue !important; 
+}
+html,
+body {
+    width: 100%;/* 
+    overflow-x: hidden;
+    overflow-y: hidden; */
+    height: 100%;
+    *border: none;
+}
+
+input:focus {
+    border: 1px solid #d1d1d1;
+}
+
+.container {
+    width: 100%;
+    color: #222;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+    *border: none;
+}
+
+input {
+    border: none;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.container .header {
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #e7e7e7;
+    background-color: #fcfcfc;
+}
+
+.container .header ul {
+    margin-top: 8px;
+}
+
+.container .header li {
+    float: left;
+    position: relative;
+}
+
+.arrow {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    background: url("../images/arrow.png") no-repeat;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.date {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    background: url("../images/date.png") no-repeat;
+    top: 10px;
+    right: 205px;
+    *right: 210px;
+    cursor: pointer;
+}
+
+.date2 {
+    right: 10px;
+}
+
+input {
+    height: 32px;
+    border: 1px solid #d1d1d1;
+    line-height: 32px;
+}
+
+.colorGray {
+    color: #525252;
+    line-height: 36px;
+    vertical-align: middle
+}
+
+.a1 {
+    margin-left: 14px;
+}
+
+.a2 {
+    margin: 0 12px;
+}
+
+.a3 {
+    margin-left: 20px;
+    line-height: 36px;
+    position: relative;
+    *margin-top: 6px;
+}
+
+.a1,
+.a2,
+.a3,
+.a4 {
+    line-height: 34px;
+    display: inline-block;
+    vertical-align: top
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    background-color: #fff;
+    border: none;
+    vertical-align: middle;
+    margin-top: 10px;
+    *margin-top: 6px;
+}
+
+.container .header li a {
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    background-color: #226de1;
+    height: 34px;
+    line-height: 34px;
+    border: 1px solid #236bc4;
+    margin: 0 2px;
+    padding: 0 25px;
+    position: relative;
+}
+
+.container .header li a i {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    position: absolute;
+    top: 9px;
+    left: 4px;
+}
+
+.tj {
+    background: url("../images/1.png") no-repeat;
+}
+
+.dy {
+    background: url("../images/2.png") no-repeat;
+}
+
+.excle {
+    background: url("../images/3.png") no-repeat;
+}
+
+.zc {
+    background: url("../images/4.png") no-repeat;
+}
+
+.fh {
+    background: url("../images/fh.gif") no-repeat;
+}
+
+.ts {
+    background: url("../images/ts.gif") no-repeat;
+}
+
+.container .header li a:hover {
+    background-color: #0e5ed9;
+}
+
+.container .table {
+    text-align: center;
+    width: 100%;
+}
+
+.container .table h2 {
+    font-size: 24px;
+    color: #222;
+    margin-top: 20px;
+}
+
+.container .table p {
+    margin-top: 20px;
+}
+
+.colorBlue {
+    color: #226de1;
+    margin-right: 20px;
+}
+
+.colorR {
+    color: #666666;
+    margin-left: 8px;
+}
+
+
+/*表格*/
+
+.tableBox {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.table ul a {
+    display: inline-block;
+}
+
+.table ul i {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.table-wrap {
+    width: 100%;
+    outline: none;
+    position: relative;
+    font-size: 14px;
+    color: #444;
+    margin-top: 20px;
+}
+
+.table-head {
+    background-color: #FAFAFA;
+    
+    border-left: 1px #d1d1d1 solid;
+    border-top: 1px #d1d1d1 solid;
+}
+
+.table-head-wrap {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.grid {
+    margin: 0px;
+    table-layout: fixed;
+    width: 100%;
+    outline: 0px none;
+    border-collapse: collapse;
+}
+
+.tab-link {
+    display: block;
+    min-height: 18px;
+    line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.table-content {
+    box-sizing: border-box;
+    border-left: 1px #d1d1d1 solid;
+    white-space: normal;
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 0;
+    height: auto;
+}
+
+td,
+th {
+    padding: 0 10px;
+    height: 36px;
+    color: #222222;
+    font-weight: normal;
+    position: relative;
+    border-bottom: 1px solid #dcdcdc;
+    border-right: 1px solid #dcdcdc;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 36px;
+    cursor: pointer;
+}
+
+td i {
+    cursor: pointer;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+tbody>tr:hover {
+    background-color: #FFEFAE !important;
+}
+
+.color1 {
+    background-color: #fafafa;
+}
+
+.even {
+    background-color: #f8f8f8;
+}
+
+.odd {
+    background-color: #ffffff;
+}
+
+.layui-layer-setwin {
+    right: 0 !important;
+    top: 16px !important;
+}
+
+.layui-layer-title,
+.layui-layer-resize,
+.layui-layer-move {
+    display: none !important;
+}
+
+.layui-layer-page .layui-layer-content {
+    overflow: hidden !important;
+}
+
+.hide {
+    display: none;
+}
+.asce {
+    /*升序图标*/
+    background: url("../images/up.png") no-repeat
+}
+
+.desc {
+    /*降序图标*/
+    background: url("../images/down.png") no-repeat
+}
+.fd_table_caption th{
+    background-position: 50% 70%;
+    background-repeat: no-repeat;
+}
+.sort {
+    /*默认排序图标*/
+    /* background-image: url("../images/sort.png") ; */
+   
+}
+#sort5{
+    background-position: 50% 90%; 
+}
+#sort8,#sort14,#sort15,#sort11{
+    background-position: 50% 80%; 
+}
+#sort9,#sort10,#sort12{
+    background-position: right center; 
+}
+.up {
+    background: url("../images/jt1.png") no-repeat;
+}
+
+.down {
+    background: url("../images/jt.png") no-repeat;
+}
+
+.layui-layer-ico.layui-layer-close.layui-layer-close1 {
+    background: url("../images/close.png") no-repeat;
+    top: 0;
+}
+
+.jt {
+    background: url("../images/icon-table-sort.png") no-repeat right center;
+}
+
+.sortedDESC {
+    background-image: url("../images/icon-table-sort-desc.png");
+}
+
+.sortedASC {
+    background-image: url("../images/icon-table-sort-asc.png");
+}
+/* select 样式修改 */
+.inputSel{
+    display: none;
+}
+.select_box {
+    position: relative;
+    width: 100px !important;
+    display: inline-block;
+    background: url(../images/arrow.png) no-repeat center right;
+}
+
+.select_showbox {
+    display:inline-block;
+    height: 30px;
+    line-height: 30px;
+    /* width: 100px; */
+    word-break: break-all;
+    overflow: hidden;
+    width: 100%;
+    border: 1px solid #d1d1d1;
+    background: none;
+    cursor: pointer;
+}
+
+.select_option {
+    z-index: 2;
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #d8e1ee;
+    display: none;
+    overflow: auto;
+}
+
+.select_option li {
+    height: 24px;
+    line-height: 24px;
+    padding: 0 5px;
+    overflow: hidden;
+}
+
+.select_option li.selected {
+    background-color: #e3e3e3;
+    color: #000;
+}
+
+.multiple .select_option li.selected {
+    background: none;
+    color: #333;
+    background-image: url(../images/sala/selected.png);
+    background-position: center right;
+    background-repeat: no-repeat;
+}
+
+.select_option li.hover,
+.multiple .select_option li.hover {
+    background-color: #3b8cff;
+    color: #fff;
+}

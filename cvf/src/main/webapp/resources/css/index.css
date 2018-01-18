@@ -1,0 +1,42 @@
+@CHARSET "utf-8";
+body,h1,h2,h3,h4,h5,h6,p,dl,dd,ul,ol,pre,form,input,textarea,th,td,select{margin:0;padding:0;}
+em{font-style:normal}
+li{list-style:none}
+a{text-decoration:none;}
+img{border:none; vertical-align:top;}
+table{border-collapse:collapse;}
+textarea{ resize:none;overflow:auto;}
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.mianContainer{
+	margin:0px;
+	padding:0px;
+	border:0px;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	background: red;
+}
+.leftDiv{
+	position:absolute;
+	width: 23%;
+	left:0px;
+	height: 100%;
+	background: #111111;
+}
+.splitDiv{
+	position:absolute;
+	left:23%;
+	width: 0.5%;
+	height: 100%;
+	background: #aaaaaa;
+}
+.centerDiv{
+	position:absolute;
+	left:23.5%;
+	width: 76.5%;
+	height: 100%;
+	background: #111111;
+}

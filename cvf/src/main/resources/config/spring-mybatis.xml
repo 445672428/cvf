@@ -1,0 +1,77 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+		http://www.springframework.org/schema/websocket 
+		http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+    
+    <bean id="mybatisDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="driverClassName">    
+            <value>${master.driverClassName}</value>    
+        </property>    
+        <property name="url">    
+            <value>${master.url}</value>    
+        </property>    
+        <property name="username">    
+            <value>${master.username}</value>    
+        </property>    
+        <property name="password">
+            <value>${master.password}</value>    
+        </property>
+	</bean>
+    
+<!--     <bean id="mybatisDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.mysql.driverClassName}" />
+		<property name="url" value="${jdbc.mysql.url}" />
+		<property name="username" value="${jdbc.mysql.username}" />
+		<property name="password" value="${jdbc.mysql.password}" />
+		配置初始化大小、最小、最大
+		<property name="initialSize" value="${initialSize}" />
+		<property name="minIdle" value="${minIdle}" />
+		<property name="maxActive" value="${maxActive}" />
+		配置获取连接等待超时的时间
+		<property name="maxWait" value="${maxWait}" />
+	</bean> -->
+	
+	<bean id="mybatisSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="mybatisDataSource"></property>
+		<property name="configLocation" value="classpath:config/mybatis-config.xml"></property>
+		<property name="mapperLocations" value="classpath:config/mybatis/*.xml"></property>
+	</bean>
+	
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  
+    <bean id="mybatisTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="mybatisDataSource"/>  
+    </bean>  
+     <tx:advice id="mytxAdvice" transaction-manager="mybatisTransactionManager">  
+        <tx:attributes>  
+            <tx:method name="delete*" propagation="REQUIRED" read-only="false"  
+                       rollback-for="java.lang.Exception" no-rollback-for="java.lang.RuntimeException"/>  
+            <tx:method name="insert*" propagation="REQUIRED" read-only="false"  
+                       rollback-for="java.lang.RuntimeException" />  
+            <tx:method name="update*" propagation="REQUIRED" read-only="false"  
+                       rollback-for="java.lang.Exception" />  
+            <tx:method name="find*" propagation="SUPPORTS"/>  
+            <tx:method name="get*" propagation="SUPPORTS"/>  
+            <tx:method name="select*" propagation="SUPPORTS"/>  
+        </tx:attributes>  
+    </tx:advice>
+    
+    <aop:config>  
+        <aop:pointcut id="myadvisor" expression="execution(* com.mybatis.service.*.*(..))" />
+        <aop:advisor advice-ref="mytxAdvice" pointcut-ref="myadvisor" />  
+    </aop:config>  
+</beans>
