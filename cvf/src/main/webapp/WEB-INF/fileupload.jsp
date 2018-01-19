@@ -90,11 +90,17 @@ var CONTEXTPATH = '${CONTEXTPATH}';
 <body class="easyui-layout">
 	<div data-options="region:'center'">
 		<div class="easyui-panel" style="height:10%;width: 100%;">
-			<ul id="hand"><li class="save"></li><li class="edit"></li><li class="del"></li><li class="filedel"></li><li class="printfile"></li></ul>
+			<ul id="hand">
+				<li class="save"></li>
+				<li class="edit"></li>
+				<li class="del"></li>
+				<li class="filedel"></li>
+				<li class="printfile"></li>
+			</ul>
 		</div>
 		<div id="hotleinfo" class="easyui-panel" style="height:90%;padding:10px;width: 100%;">
 			<div class="portlet-body">
-			 	<ul id="tree" class="ztree" style="margin-top:0px;width:210px;height:100%;padding:0px;"></ul>
+			 	
  			</div>
 		</div>
 	</div>
@@ -119,6 +125,7 @@ var CONTEXTPATH = '${CONTEXTPATH}';
 			</div>
 		</div>
 		<div data-options="iconCls:'icon-save'">全部保存</div>
+		<ul id="tree" class="ztree" style="margin-top:0px;width:210px;height:100%;padding:0px;"></ul>
 		<div>修改文件</div>
 		<div data-options="iconCls:'icon-print',disabled:true">打印</div>
 		<div class="menu-sep"></div>

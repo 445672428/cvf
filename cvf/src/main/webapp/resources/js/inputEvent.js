@@ -15,7 +15,8 @@ $(function(){
 	loadFile();
 	createFile();
 	initFile('bobo',0,'bobo');
-	$(".ui-widget-content img").draggable({'revert': true, 'helper': "clone",'start':dragStart,'drag':drag,'stop':dragStop});
+	//$(".fileDiv,.ui-widget-content").on('onmousedown',rightClick);
+	//$(".ui-widget-content img").draggable({'revert': true, 'helper': "clone",'start':dragStart,'drag':drag,'stop':dragStop});
 })
 
 function initFile(userid,level,parentid){
@@ -102,7 +103,7 @@ function editHandle(){
 	var fileIndex = 1;
 	var files = $(".filecontainer");
 	var fileDiv = "<div index='"+fileIndex+"' class='filecontainer'>"+
-	"<div class='fileDiv ui-widget-content' file='' fileid='' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+	"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
 	"<input type='text' title='新建文件夹' value='新建文件夹' name='新建文件夹' class='fileinput'/>"+
 	"</div>";
 	if(typeof(files)=='undefined'&&files.length==0){
@@ -124,7 +125,7 @@ function editHandle(){
 				if(len-1==0){
 					 var name = '新建文件夹1';
 					 fileDiv = "<div class='filecontainer'>"+
-						"<div class='fileDiv ui-widget-content' file='' fileid='' ><img src='resources/images/file.gif'  alt='' /></div>"+
+						"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
 						"<input title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
 						"</div>";
 				}else{
@@ -133,7 +134,7 @@ function editHandle(){
 					if(typeof(lst)=='undefined'){
 						 var name = '新建文件夹'+(len);
 						 fileDiv = "<div class='filecontainer'>"+
-							"<div class='fileDiv ui-widget-content' file='' fileid='' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+							"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
 							"<input title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
 							"</div>";
 							break;
@@ -143,7 +144,7 @@ function editHandle(){
 						if((parseInt(n2)-parseInt(n1))!=1){
 							 var name = '新建文件夹'+(parseInt(n1)+1);
 							 fileDiv = "<div class='filecontainer'>"+
-								"<div class='fileDiv ui-widget-content' file='' fileid='' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+								"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
 								"<input title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
 								"</div>";
 						}
@@ -201,6 +202,9 @@ function dragStop(){
 //	var top = element.offsetTop;
 //	var width = element.offsetWidth;
 //	console.log("dragStop==="+left+"=="+height+"=="+top+"=="+width);
+}
+function rightClick(){
+	var element = event.target||event.srcElement;
 }
 
 var sNodes = [];
