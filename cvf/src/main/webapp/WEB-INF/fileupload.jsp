@@ -62,6 +62,17 @@ div.fileDiv img{
 	width: 60px;
 	height: 70%;
 }
+.gzv8Pv{
+	width: 16px;
+	height: 16px;
+	margin: 0px;
+	padding: 0px;
+	display: compact;
+	position:absolute;
+	visibility:hidden;
+	cursor:pointer;
+	background: url("${CONTEXTPATH }/resources/lib/easyui/themes/icons/delete3.png") no-repeat;
+}
 .save{
 	background: url("${CONTEXTPATH }/resources/images/save1.gif") no-repeat;
 	background-size:100% 100%;

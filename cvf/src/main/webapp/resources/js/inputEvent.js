@@ -16,10 +16,17 @@ $(function(){
 	createFile();
 	initFile('bobo',0,'bobo');
 	//$(".fileDiv,.ui-widget-content").on('onmousedown',rightClick);
+	$(".fileDiv,.ui-widget-content").on('mouseover',showDel);
+	$(".fileDiv,.ui-widget-content").on('mouseout',hideDel);
+	$("span.gzv8Pv").on('click',delThisFile);
 	//$(".ui-widget-content img").draggable({'revert': true, 'helper': "clone",'start':dragStart,'drag':drag,'stop':dragStop});
 })
 
 function initFile(userid,level,parentid){
+	var element = event.target||event.srcElement;
+	if(element.localName=='span'&&element.className=='gzv8Pv'){
+		return;
+	}
 	$.ajax({type: "POST",url: CONTEXTPATH+"/queryfiles.do",data: {'parentid':parentid,'userid':userid,'level':level},cache: false,async : false,dataType: "json",
         success: function (data ,textStatus, jqXHR)
         {	
@@ -27,7 +34,8 @@ function initFile(userid,level,parentid){
         	var fileDiv = "";
 			$(data['list']).each(function(index,e){
 				fileDiv += "<div class='filecontainer'>"+
-					"<div class='fileDiv ui-widget-content' file='' fileid='' ondblclick=initFile('"+e['userid']+"','"+e['level']+"','"+e['id']+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+					"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+e['userid']+"','"+e['level']+"','"+e['id']+"')>" +
+					"<span class='gzv8Pv'></span><img src='resources/images/file.gif'/></div>"+
 					"<input title='"+e['filename']+"' type='text' value='"+e['filename']+"' name='"+e['filename']+"' class='fileinput'/>"+
 					"</div>";
 			});
@@ -53,24 +61,59 @@ fileNames.on("mousedown",function(e){
 	var userid = $(this).attr('userid');
 	var parentid = $(this).attr('parentid');
 	var level = $(this).attr('level');
-		$.ajax({type: "POST",url: CONTEXTPATH+"/queryfiles.do",data: {'userid':userid,'parentid':uuid,'level':level},cache: false,async : false,dataType: "json",
-        success: function (data ,textStatus, jqXHR)
-        {	
-        	var fileDiv = "";
+	$.ajax({type: "POST",url: CONTEXTPATH+"/queryfiles.do",data: {'userid':userid,'parentid':uuid,'level':level},cache: false,async : false,dataType: "json",
+	    success: function (data ,textStatus, jqXHR)
+	    {	
+	    	var fileDiv = "";
 			$(data['list']).each(function(index,e){
 				fileDiv += "<div class='filecontainer'>"+
-					"<div class='fileDiv ui-widget-content' file='' fileid='' ondblclick=initFile('"+e['userid']+"','"+e['level']+"','"+e['id']+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+					"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+e['userid']+"','"+e['level']+"','"+e['id']+"')>" +
+					"<span class='gzv8Pv'></span><img src='resources/images/file.gif' /></div>"+
 					"<input title='"+e['filename']+"' type='text' value='"+e['filename']+"' name='"+e['filename']+"' class='fileinput'/>"+
 					"</div>";
 			});
 			$(".portlet-body").append(fileDiv);
-        },
-        error:function (XMLHttpRequest, textStatus, errorThrown) {      
-        }
-     });
-	
+	    },
+	    error:function (XMLHttpRequest, textStatus, errorThrown) {      
+	    }
+ 	});
 })
-
+function showDel(){
+	$(this).find("span.gzv8Pv").css("visibility","visible");
+}
+function hideDel(){
+	$(this).find("span.gzv8Pv").css("visibility","hidden");
+}
+/*
+ * 删除文件
+ */
+function delThisFile(){
+	var parent = $(this).parent();
+	var _func = parent.attr('ondblclick');
+	//进行正则参数匹配
+	//var reg = new RegExp('/\(([^)]*)\)/','g');
+	//    /\((.+)\)/g
+	//var params = reg.test(_func);
+	var param = _func.match(/\(([^)]*)\)/);
+	if(param){
+		$(this).parent().parent().remove();
+		var relDo = _func.replace('initFile','delFile');
+		eval(relDo);
+	}
+}
+/*
+ * 后台删除文件
+ */
+function delFile(userid,level,parentid){
+	$.ajax({type: "POST",url: CONTEXTPATH+"/delfiles.do",data: {'parentid':parentid,'userid':userid,'level':level},cache: false,async : false,dataType: "json",
+		 success: function (data ,textStatus, jqXHR)
+		 {	    
+		 	
+		 },
+	    error:function (XMLHttpRequest, textStatus, errorThrown) {      
+	    }
+ 	});
+}
 //创建文件夹
 function createFile(){
 	$("#hotleinfo").bind('contextmenu',function(e){
@@ -103,7 +146,8 @@ function editHandle(){
 	var fileIndex = 1;
 	var files = $(".filecontainer");
 	var fileDiv = "<div index='"+fileIndex+"' class='filecontainer'>"+
-	"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+	"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')>" +
+	"<span class='gzv8Pv'></span><img src='resources/images/file.gif'/></div>"+
 	"<input type='text' title='新建文件夹' value='新建文件夹' name='新建文件夹' class='fileinput'/>"+
 	"</div>";
 	if(typeof(files)=='undefined'&&files.length==0){
@@ -125,7 +169,8 @@ function editHandle(){
 				if(len-1==0){
 					 var name = '新建文件夹1';
 					 fileDiv = "<div class='filecontainer'>"+
-						"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+						"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')>" +
+						"<span class='gzv8Pv'></span><img src='resources/images/file.gif' /></div>"+
 						"<input title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
 						"</div>";
 				}else{
@@ -134,7 +179,8 @@ function editHandle(){
 					if(typeof(lst)=='undefined'){
 						 var name = '新建文件夹'+(len);
 						 fileDiv = "<div class='filecontainer'>"+
-							"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+							"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')>" +
+							"<span class='gzv8Pv'></span><img src='resources/images/file.gif'/></div>"+
 							"<input title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
 							"</div>";
 							break;
@@ -144,7 +190,8 @@ function editHandle(){
 						if((parseInt(n2)-parseInt(n1))!=1){
 							 var name = '新建文件夹'+(parseInt(n1)+1);
 							 fileDiv = "<div class='filecontainer'>"+
-								"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')><img src='resources/images/file.gif'  alt='' /></div>"+
+								"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')>" +
+								"<span class='gzv8Pv'></span><img src='resources/images/file.gif' /></div>"+
 								"<input title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
 								"</div>";
 						}

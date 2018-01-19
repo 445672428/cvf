@@ -123,7 +123,22 @@ public class LoginController {
 		JSONObject	object = loginService.queryFileByUUid(userid, parentid, level);
 		return object.toString();
 	}
-
+	
+	/**
+	 * 查询当前用户的文件夹 和文件
+	 * @param userid
+	 * @param filename
+	 * @param parentid
+	 * @param level
+	 * @param uuid
+	 * @return
+	 */
+	@RequestMapping(value="delfiles.do",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String delCurrentFile(String userid,String parentid,Integer level) {
+		JSONObject	object = loginService.deleteFileByUUid(userid, parentid, level);
+		return object.toString();
+	}
 	
 	@RequestMapping(value="data.do",method=RequestMethod.POST)
 	public void upData(String param) {

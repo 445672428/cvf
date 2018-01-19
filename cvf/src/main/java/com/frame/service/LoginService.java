@@ -126,4 +126,14 @@ public class LoginService extends BaseService{
 		user.setId(StringUtils.trim(map.get("id")));
 		return user;
 	}
+	/**
+	 * 删除当前文件
+	 * @param userid
+	 * @param parentid
+	 * @param level
+	 * @return
+	 */
+	public JSONObject deleteFileByUUid(String userid, String parentid,Integer level) {
+		return null;
+	}
 }
