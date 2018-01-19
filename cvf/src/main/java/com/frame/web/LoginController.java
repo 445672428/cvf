@@ -140,6 +140,36 @@ public class LoginController {
 		return object.toString();
 	}
 	
+	/**
+	 * 查询当前用户的文件夹 和文件
+	 * @param userid
+	 * @param filename
+	 * @param parentid
+	 * @param level
+	 * @param uuid
+	 * @return
+	 */
+	@RequestMapping(value="savename.do",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String updateFolderName(String id,String name) {
+		boolean flag = true;
+		try {
+			int	count = loginService.updateFileNameById(id, name);
+			if (count == 0) {
+				flag = false;
+			}
+		} catch (Exception e) {
+			flag = false;
+		}
+		JSONObject object = new JSONObject();
+		if (flag) {
+			object.put("succ", flag);
+		}else{
+			object.put("succ", flag);
+		}
+		return object.toString();
+	}
+	
 	@RequestMapping(value="data.do",method=RequestMethod.POST)
 	public void upData(String param) {
 		JSONArray array = JSON.parseArray(param);

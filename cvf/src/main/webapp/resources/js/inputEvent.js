@@ -8,13 +8,14 @@ var userid = 'bobo';
 var inputValue = "";
 var username = document.getElementById("username");
 var result = [];
-var fileNames = $("#username");
 var fileInfo = {};
+var _UUID = 'bobo';
+var _LEVEL = 0;
 $(function(){
 	//$("div[data-options='west']").css("overflow","hidden");
 	loadFile();
 	createFile();
-	initFile('bobo',0,'bobo');
+	initFile(userid,_LEVEL,_UUID);
 	//$(".fileDiv,.ui-widget-content").on('onmousedown',rightClick);
 	$(".fileDiv,.ui-widget-content").on('mouseover',showDel);
 	$(".fileDiv,.ui-widget-content").on('mouseout',hideDel);
@@ -27,57 +28,49 @@ function initFile(userid,level,parentid){
 	if(element.localName=='span'&&element.className=='gzv8Pv'){
 		return;
 	}
+	_UUID = parentid;
+	_LEVEL = level;
 	$.ajax({type: "POST",url: CONTEXTPATH+"/queryfiles.do",data: {'parentid':parentid,'userid':userid,'level':level},cache: false,async : false,dataType: "json",
         success: function (data ,textStatus, jqXHR)
         {	
-        	$(".portlet-body").html("");	
-        	var fileDiv = "";
-			$(data['list']).each(function(index,e){
-				fileDiv += "<div class='filecontainer'>"+
-					"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+e['userid']+"','"+e['level']+"','"+e['id']+"')>" +
-					"<span class='gzv8Pv'></span><img src='resources/images/file.gif'/></div>"+
-					"<input title='"+e['filename']+"' type='text' value='"+e['filename']+"' name='"+e['filename']+"' class='fileinput'/>"+
-					"</div>";
-			});
-			$(".portlet-body").append(fileDiv);
+        	if(data||data.length>0){
+        		$(".portlet-body").html("");	
+	        	var fileDiv = "";
+				$(data['list']).each(function(index,e){
+					fileDiv += "<div class='filecontainer'>"+
+						"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+e['userid']+"','"+(e['level']+1)+"','"+e['id']+"')>" +
+						"<span class='gzv8Pv'></span><img src='resources/images/file.gif'/></div>"+
+						"<input uuid='"+e['id']+"' title='"+e['filename']+"' type='text' value='"+e['filename']+"' name='"+e['filename']+"' class='fileinput'/>"+
+						"</div>";
+				});
+				$(".portlet-body").append(fileDiv);
+				bindEvent();
+        	}
         },
         error:function (XMLHttpRequest, textStatus, errorThrown) {      
         }
      });
 }
 
-fileNames.on("focus",function(e){
-	inputValue = $(this).val();
-})
-fileNames.on("blur",function(e){
-	if(inputValue!==$(this).val()){
-		//编辑文件名保存		
-		editFileName();
-	}
-})
-//ondblclick 添加双击事件
-fileNames.on("mousedown",function(e){
-	var uuid = $(this).attr('uuid');
-	var userid = $(this).attr('userid');
-	var parentid = $(this).attr('parentid');
-	var level = $(this).attr('level');
-	$.ajax({type: "POST",url: CONTEXTPATH+"/queryfiles.do",data: {'userid':userid,'parentid':uuid,'level':level},cache: false,async : false,dataType: "json",
-	    success: function (data ,textStatus, jqXHR)
-	    {	
-	    	var fileDiv = "";
-			$(data['list']).each(function(index,e){
-				fileDiv += "<div class='filecontainer'>"+
-					"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+e['userid']+"','"+e['level']+"','"+e['id']+"')>" +
-					"<span class='gzv8Pv'></span><img src='resources/images/file.gif' /></div>"+
-					"<input title='"+e['filename']+"' type='text' value='"+e['filename']+"' name='"+e['filename']+"' class='fileinput'/>"+
-					"</div>";
-			});
-			$(".portlet-body").append(fileDiv);
-	    },
-	    error:function (XMLHttpRequest, textStatus, errorThrown) {      
-	    }
- 	});
-})
+/**
+ * 绑定事件
+ */
+function bindEvent(){
+	$(".fileDiv,.ui-widget-content").on('mouseover',showDel);
+	$(".fileDiv,.ui-widget-content").on('mouseout',hideDel);
+	$('.fileinput').on("focus",function(e){
+		//debugger
+		inputValue = $(this).val();
+	});
+	$('.fileinput').on("blur",function(e){
+		if(inputValue!==$(this).val()){
+			//编辑文件名保存
+			editFileName();
+			editSave($(this).attr('uuid'),$(this).val());
+		}
+	});
+}
+
 function showDel(){
 	$(this).find("span.gzv8Pv").css("visibility","visible");
 }
@@ -107,7 +100,7 @@ function delThisFile(){
 function delFile(userid,level,parentid){
 	$.ajax({type: "POST",url: CONTEXTPATH+"/delfiles.do",data: {'parentid':parentid,'userid':userid,'level':level},cache: false,async : false,dataType: "json",
 		 success: function (data ,textStatus, jqXHR)
-		 {	    
+		 {   
 		 	
 		 },
 	    error:function (XMLHttpRequest, textStatus, errorThrown) {      
@@ -135,20 +128,17 @@ function createFile(){
 	description 文件描述
 	subName 拼接上层文件夹名称
 */
-//创建文件夹
 function editHandle(){
 	var uuid = getUuid();
 	uuid = uuid.replace(/-/g,"");
-	var userid = 'bobo';
-	var parentid = userid;
-	var level = 0;
-	
+	var parentid = _UUID;
+	var level = _LEVEL;
 	var fileIndex = 1;
 	var files = $(".filecontainer");
 	var fileDiv = "<div index='"+fileIndex+"' class='filecontainer'>"+
 	"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')>" +
 	"<span class='gzv8Pv'></span><img src='resources/images/file.gif'/></div>"+
-	"<input type='text' title='新建文件夹' value='新建文件夹' name='新建文件夹' class='fileinput'/>"+
+	"<input uuid='"+uuid+"' type='text' title='新建文件夹' value='新建文件夹' name='新建文件夹' class='fileinput'/>"+
 	"</div>";
 	if(typeof(files)=='undefined'&&files.length==0){
 		//直接进行保存
@@ -171,7 +161,7 @@ function editHandle(){
 					 fileDiv = "<div class='filecontainer'>"+
 						"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')>" +
 						"<span class='gzv8Pv'></span><img src='resources/images/file.gif' /></div>"+
-						"<input title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
+						"<input uuid='"+uuid+"' title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
 						"</div>";
 				}else{
 					var pre = same[temp];
@@ -181,7 +171,7 @@ function editHandle(){
 						 fileDiv = "<div class='filecontainer'>"+
 							"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')>" +
 							"<span class='gzv8Pv'></span><img src='resources/images/file.gif'/></div>"+
-							"<input title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
+							"<input uuid='"+uuid+"' title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
 							"</div>";
 							break;
 					}else{
@@ -192,7 +182,7 @@ function editHandle(){
 							 fileDiv = "<div class='filecontainer'>"+
 								"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+userid+"','"+level+"','"+uuid+"')>" +
 								"<span class='gzv8Pv'></span><img src='resources/images/file.gif' /></div>"+
-								"<input title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
+								"<input uuid='"+uuid+"' title='"+name+"' type='text' value='"+name+"' name='"+name+"' class='fileinput'/>"+
 								"</div>";
 						}
 					}
@@ -209,17 +199,39 @@ function editHandle(){
 	$currentFile.attr('userid',userid);
 	$currentFile.attr('parentid',parentid);
 	$currentFile.attr('level',level);
-	fileInfo.uuid = uuid;fileInfo.filename = filename;fileInfo.userid = userid;fileInfo.parentid = parentid;fileInfo.level = level;
-	$.ajax({type: "POST",url: CONTEXTPATH+"/filecreate.do",data: {'uuid':uuid,'userid':userid,'filename':filename,'parentid':userid,'level':level},cache: false,async : false,dataType: "json",
+	fileInfo.uuid = uuid;
+	fileInfo.filename = filename;
+	fileInfo.userid = userid;
+	fileInfo.parentid = parentid;
+	fileInfo.level = level;
+	$.ajax({type: "POST",url: CONTEXTPATH+"/filecreate.do",data: {'uuid':uuid,'userid':userid,'filename':filename,'parentid':parentid,'level':level},cache: false,async : false,dataType: "json",
         success: function (data ,textStatus, jqXHR)
         {	
-			
+			bindEvent();
         },
         error:function (XMLHttpRequest, textStatus, errorThrown) {      
         }
      });
 }
-
+//文件名修改 保存
+function editSave(id,name){
+	if($('.fileinput').length>0){
+		for(var ind = 0; ind < $('.fileinput').length;ind ++){
+			if($($('.fileinput')[ind]).val() == name){
+				$($('.fileinput')[ind]).val(inputValue);
+				return;
+			}
+		}
+	}
+	$.ajax({type: "POST",url: CONTEXTPATH+"/savename.do",data: {'id':id,'name':name},cache:false,async:false,dataType:"json",
+		 success: function (data,textStatus,jqXHR)
+		 {   
+		 	
+		 },
+	    error:function (XMLHttpRequest,textStatus,errorThrown) {      
+	    }
+ 	});
+}
 /*
  * 拖拽事件监控
  * */

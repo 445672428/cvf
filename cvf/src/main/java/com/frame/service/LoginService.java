@@ -1,5 +1,6 @@
 package com.frame.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -133,7 +134,40 @@ public class LoginService extends BaseService{
 	 * @param level
 	 * @return
 	 */
+	@Transactional
 	public JSONObject deleteFileByUUid(String userid, String parentid,Integer level) {
-		return null;
+		String sql = "SELECT id,userid,filename,level,ishidden,parentid FROM filetable where id='"+parentid+"'";
+		List<String> list = new ArrayList<String>();
+		List<String> results = queryForChilds(parentid,list);
+		System.out.println(results.size());
+		JSONObject object = new JSONObject();
+		object.put("succ", list);
+		return object;
 	}
+	public List<String> queryForChilds(String id,List<String> list) {
+		String sql = "SELECT id,userid,filename,level,ishidden,parentid FROM filetable where parentid='"+id+"'";
+		List<Map<String, Object>> result = mysqlJdbcTemplate.queryForList(sql);
+		if (result!=null&&result.size()>0) {
+			for (Map<String, Object> map : result) {
+				String _id = StringUtils.trim(map.get("id"));
+				String _userid = StringUtils.trim(map.get("userid"));
+				String _name = StringUtils.trim(map.get("filename"));
+				int _level = (Integer)map.get("level");
+				Boolean _is = (Boolean)map.get("ishidden");
+				String _parentid = StringUtils.trim(map.get("parentid"));
+				if (!_is) {
+					list.add(_id);
+					queryForChilds(_id,list);
+				}
+			}
+		}
+		return list;
+	}
+	@Transactional
+	public int updateFileNameById(String id, String name) {
+		String sql = "update filetable set filename = '"+name+"' where id = '"+id+"'";
+		int count = mysqlJdbcTemplate.update(sql);
+		return count;
+	}
+	
 }
