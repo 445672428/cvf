@@ -1,5 +1,29 @@
 # cvf
 cvf
+编辑下面配置文件
+
+vim /etc/sysconfig/network-scripts/ifcfg-eth0
+
+
+
+
+DEVICE="eth0"
+#BOOTPROTO="dhcp"
+BOOTPROTO="static"
+IPADDR="192.168.121.100"
+NETMASK="255.255.255.0"
+GATEWAY="192.168.121.2"
+DNS1="192.168.121.2"
+HWADDR="00:0C:29:A4:40:24"
+IPV6INIT="no"
+NM_CONTROLLED="yes"
+ONBOOT="yes"
+TYPE="Ethernet"
+UUID="4d9f1c60-fdaa-411b-a916-c0ef989ea443"
+
+
+重启网络服务
+service network restart
 
 centos -> centos1 master1  hosts ip 
 centos -> centos2 master2  hosts ip

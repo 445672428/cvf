@@ -1,5 +1,6 @@
 package com.data;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,19 +22,17 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 
-import javax.xml.ws.Service;
-
-import org.bytedeco.javacpp.presets.opencv_core.Str;
-import org.junit.Test;
+import javax.imageio.ImageIO;
 
 import com.theadRun.ImageDownThead;
 
 public class ImageDataUtils {
 	static public volatile int index = 0;
 	public static void main(String[] args) throws SQLException {
-		imageTxtSql();
+		ImageDataUtils imageDataUtils = new ImageDataUtils();
+		imageDataUtils.insertImageInfo();
+		//imageTxtSql();
 	}
     //--------------------------------------------------------------------------------------------------------------------------------------------------//
     
@@ -342,6 +341,98 @@ public class ImageDataUtils {
         }
     }
     
+    public void insertImageInfo() {
+    	Connection connection = MysqlDBUtils.getConnection();
+    	PreparedStatement statement = null;
+    	ResultSet resultSet = null;
+		String path = "D:\\bobo\\nginx-1.6.3\\search\\cvf\\search\\";
+		List<File> list = getFileList(path);
+		System.out.println(list.size());
+		String abString = "search/";
+		int index = 1;
+		String outPath = "D://search//";
+    	String sql = "INSERT INTO images (id,name,url,code,tag,appname,flag,createtime,updatetime,oldurl,width,height,uindex) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		for(File file : list){
+			String name = file.getName();
+			int width = 0;
+			int height = 0;
+			try {
+				BufferedImage image = ImageIO.read(file);
+				if (image==null) {
+					continue;
+				}
+				width = image.getWidth();
+				height = image.getHeight();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			String id = UUID.randomUUID().toString().replaceAll("-", "");
+			String url = abString+id+".jpg";//文件路径
+			int code = 1;
+			int tag = 8;
+			String appname = "webapp";
+			int flag = 0;
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String time = dateFormat.format(new Date());
+			Timestamp createtime = Timestamp.valueOf(time);
+			Timestamp updatetime = createtime;
+			int uindex = index;
+			index ++;
+			writeToNewFile(file,outPath+id+".jpg");
+			try {
+				statement = connection.prepareStatement(sql);
+				statement.setString(1,id);
+				statement.setString(2, name);
+				statement.setString(3, url);
+				statement.setInt(4, code);
+				statement.setInt(5, tag);
+				statement.setString(6, appname);
+				statement.setInt(7, flag);
+				statement.setTimestamp(8, createtime);
+				statement.setTimestamp(9, updatetime);
+				statement.setString(10, "");
+				statement.setInt(11, width);
+				statement.setInt(12, height);
+				statement.setInt(13, uindex);
+				int is = statement.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		MysqlDBUtils.closeConnection(connection, statement, resultSet);
+	}
+    
+    public void writeToNewFile(File file,String path) {
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+		byte[] b = new byte[1024];
+		int flag = 0;
+		try {
+			inputStream = new FileInputStream(file);
+			outputStream = new FileOutputStream(path);//输出的新路径
+			while((flag=inputStream.read(b))!=-1){
+				outputStream.write(b,0,flag);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			if (outputStream!=null) {
+				try {
+					outputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			if (inputStream!=null) {
+				try {
+					inputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+    
     /*--------------------------------------------------------------------------------------------------------------------------------------------
      * 
      * 
@@ -365,7 +456,8 @@ public class ImageDataUtils {
                     System.out.println("---" + strFileName);
                     filelist.add(files[i]);
                 } else {
-                    continue;
+                	 String strFileName = files[i].getAbsolutePath();
+                     filelist.add(files[i]);
                 }
             }
 
