@@ -1,8 +1,217 @@
+Ext.Loader.setConfig({enabled: true});
+
 Ext.onReady(function () {
-	init();
+	init3();
 });
+
+function init3(){
+	 var searchAction = Ext.create('Ext.Button', {
+        text: '查询',
+        height:44,
+        width:50,
+        layout:{ 
+             type:"column", 
+             columns:1 
+        }, 
+        style:'margin-left:68.2%;margin-top:-44px;',
+        name: 'QueryBtn',
+        handler: function () {
+            // 设置搜索条件
+        }
+    });
+    
+	var shipMgrToolBarPanel = Ext.create('Ext.form.Panel',{
+		width: '100%',
+	    renderTo: Ext.getBody(),
+	    height: window.innerHeight,
+	    bodyBorder: false,
+	    border: false,
+	    region:'center',
+	    layout:{ 
+             type:"vbox",
+             pack:"center",   //控制子组件如何被打包在一起，start：左边（默认）；center：居中；end：右边 
+             align:"center"   //对齐方式 center、left、right：居中、左对齐、右对齐；stretch：延伸；stretchmax：以最大的元素为标准延伸 
+         }, 
+	    items: [{
+		    width: window.innerWidth,
+		    height: window.innerHeight,
+		    items:[
+		    	{	
+		    		 width: '36%',
+		    		 height: 44,
+		    		 flex:1, 
+		    		 region:'center',
+		    		 style:'margin:0 auto;background:#000000;margin-top:12%;',
+		    		 xtype:'textfield', 
+		    		 enableKeyEvents: true,
+			         listeners: {
+			            keyup: function (thisControl, e, eOpts) {
+			                if (e.button == 12) {  // 若敲的键为回车，就执行【查询】搜索
+			                	//调用 按钮方法
+			                    shipMgrToolBarPanel.down('[name=QueryBtn]').handler();
+			                }
+			            }
+			         },
+        			 name:'search'
+		    	},searchAction
+		    ]
+		}]
+	});
+	Ext.on('resize', function (width, height)
+	{	
+	    shipMgrToolBarPanel.setWidth(width);
+	    shipMgrToolBarPanel.setHeight(height);
+	});
+	
+
+}
+
+function init2(){
+	shipMgrToolBarPanel = Ext.create('Ext.panel.Panel', {
+	    width: '100%',
+	    renderTo: Ext.getBody(),
+	    height: window.innerHeight,
+	    bodyBorder: false,
+	    border: false,
+	    region:'center',
+	    layout:'border',
+	    tbar: [
+	        Ext.create('Ext.form.field.Text', {
+	            name: 'SearchTxt',
+	            emptyText: '',
+	            width: 546,
+	            height:36,
+	            enableKeyEvents: true,
+	            listeners: {
+	                keyup: function (thisControl, e, eOpts) {
+	                    if (e.button == 12) {  // 若敲的键为回车，就执行【查询】搜索
+	                        shipMgrToolBarPanel.down('[name=QueryBtn]').handler();
+	                    }
+	                }
+	            }
+	        }),
+	        Ext.create('Ext.Action', {
+	            text: '查询',
+	            height:36,
+	            width:50,
+	            name: 'QueryBtn',
+	            handler: function () {
+	                // 设置搜索条件
+	                searchConditionObj.SearchTxt = shipMgrToolBarPanel.down('[name=SearchTxt]').value;
+	                shipMgrStore.loadPage(1);
+	            }
+	        })
+	    ]
+	});
+	
+}
+
+function init1(){
+	var resultsPanel = Ext.create('Ext.panel.Panel', {
+	    title: 'Results',
+	    width: 600,
+	    height: 400,
+	    renderTo: Ext.getBody(),
+	    layout: {
+	        type: 'vbox',       // Arrange child items vertically
+	        align: 'stretch',    // Each takes up full width
+	        padding: 5
+	    },
+	    items: [{               // Results grid specified as a config object with an xtype of 'grid'
+	        xtype: 'grid',
+	        columns: [{header: 'Column One'}],            // One header just for show. There's no data,
+	        store: Ext.create('Ext.data.ArrayStore', {}), // A dummy empty data store
+	        flex: 1                                       // Use 1/3 of Container's height (hint to Box layout)
+	    }, {
+	        xtype: 'splitter'   // A splitter between the two child items
+	    }, {                    // Details Panel specified as a config object (no xtype defaults to 'panel').
+	        title: 'Details',
+	        bodyPadding: 5,
+	        items: [{
+	            fieldLabel: 'Data item',
+	            xtype: 'textfield'
+	        }], // An array of form fields
+	        flex: 2             // Use 2/3 of Container's height (hint to Box layout)
+	    }]
+	});
+	var filterPanel = Ext.create('Ext.panel.Panel', {
+    	bodyPadding: 5,  // Don't want content to crunch against the borders
+	    width: 300,
+	    title: 'Filters',
+	    items: [{
+	        xtype: 'datefield',
+	        fieldLabel: 'Start date'
+	    }, {
+	        xtype: 'datefield',
+	        fieldLabel: 'End date'
+	    }],
+	    renderTo: Ext.getBody()
+	});
+    var grid = Ext.create('Ext.form.Panel',{
+    	renderTo: Ext.getBody(),
+    	title: '点击一下，了解更多',
+        width: 800,
+        height:1000,
+        layout: {
+		    type: 'vbox',
+		    align: 'left'
+		},
+        bodyPadding: 10,
+        pageSize: 10,
+        region: 'north',
+        tar:[
+        	 Ext.create('Ext.form.field.Text', {
+	            name: 'SearchTxt',
+	            emptyText: '请输入船舶名称',
+	            width: 200,
+	            enableKeyEvents: true,
+	            listeners: {
+	                keyup: function (thisControl, e, eOpts) {
+	                    if (e.button == 12) {  // 若敲的键为回车，就执行【查询】搜索
+	                        shipMgrToolBarPanel.down('[name=QueryBtn]').handler();
+	                    }
+	                }
+	            }
+	        }),
+	        Ext.create('Ext.Action', {
+	            icon: 'Resources/icon/find.png',
+	            text: '查询',
+	            name: 'QueryBtn',
+	            handler: function () {
+	                // 设置搜索条件
+	                searchConditionObj.SearchTxt = shipMgrToolBarPanel.down('[name=SearchTxt]').value;
+	                shipMgrStore.loadPage(1);
+	            }
+	        })
+        ],
+		items:[{
+			xtype: 'combo',
+			height:80,
+			displayField: 'title',
+            typeAhead: false,
+            hideLabel: true,
+            hideTrigger:true,
+            anchor: '100%',
+			listConfig: {
+				emptyText: 'No matching posts found.',
+				loadingText: 'searching...',
+				getInnerTpl: function() {
+                    return '<a class="search-item" href="http://www.sencha.com/forum/showthread.php?t={topicId}&p={id}">' +
+                        '<h3><span>{[Ext.Date.format(values.lastPost, "M j, Y")]}<br />by {author}</span>{title}</h3>' +
+                        '{excerpt}' +
+                    '</a>';
+                }
+			}
+		},{
+            xtype: 'button',
+            style: 'margin:10px',
+            html: 'search'
+        }]
+    });
+	
+}
+
 function init() {
- 	Ext.MessageBox.alert("ExtJS", "Hello ExtJS");
  	Ext.create('Ext.form.Panel', {
 	    title: 'Simple Form',
 	    bodyPadding: 5,

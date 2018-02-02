@@ -2,14 +2,9 @@ package com.frame.multil.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field.Store;
@@ -17,12 +12,10 @@ import org.apache.lucene.document.IntField;
 import org.apache.lucene.document.LongField;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
-import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.index.TrackingIndexWriter;
 import org.apache.lucene.search.ControlledRealTimeReopenThread;
@@ -47,68 +40,13 @@ public class SearchService {
 	@Autowired
 	private DynamicDataSource mutildataSource;
 
-	public void index() throws SQLException, ClassNotFoundException,
-			IOException {
-		String sql = "select * from post";
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		connection = mutildataSource.getConnection();
-		preparedStatement = connection.prepareStatement(sql,
-				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-		preparedStatement.setFetchSize(1000);
-		preparedStatement.setFetchDirection(ResultSet.FETCH_REVERSE);
-		resultSet = preparedStatement.getResultSet();
-
-		IndexWriter writer = null;
-		try {
-			directory = FSDirectory.open(new File("D:/temp/index"));
-			Analyzer analyzer = new StandardAnalyzer();
-			IndexWriterConfig conf = new IndexWriterConfig(
-					Version.LUCENE_4_10_4, analyzer);
-			conf.setOpenMode(OpenMode.CREATE_OR_APPEND);
-			conf.setMaxBufferedDocs(100);
-			writer = new IndexWriter(directory, conf);
-			long count = 1;
-			ResultSet result = preparedStatement.executeQuery(sql);
-			while (result.next()) {
-				Document document = new Document();
-				document.add(new StringField("id", result.getString("id"),
-						Store.YES));
-				document.add(new StringField("postNumber", result.getString("postNumber"),
-						Store.YES));
-				document.add(new StringField("province", result.getString("province"),
-						Store.YES));
-				writer.addDocument(document);
-				count++;
-			}
-
-			System.out.println("Total record : " + count);
-			writer.close();
-			resultSet.close();
-			preparedStatement.close();
-			connection.close();
-		} finally {
-			try {
-				if (writer != null) {
-					writer.close();
-				}
-			} catch (CorruptIndexException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
 	public IndexSearcher getSearcher() throws IOException {
 		IndexReader reader = DirectoryReader.open(directory);
 		IndexSearcher searcher = new IndexSearcher(reader);
 		return searcher;
 	}
 
-	public void searchByTerm(String field, String name, int num)
-			throws IOException {
+	public void searchByTerm(String field, String name, int num)throws IOException {
 		IndexSearcher searcher = getSearcher();
 		// WildcardQuery 模糊查找
 		// TermQuery 精确查找
@@ -162,7 +100,7 @@ public class SearchService {
 	public void loadSearchService() {
 		setDates();
 		try {
-			directory = FSDirectory.open(new File("D:\\temp\\lucene"));
+			directory = FSDirectory.open(new File("D:\\temp\\lucene\\"));
 			writer = new IndexWriter(directory, new IndexWriterConfig(
 					Lucene_Version, new StandardAnalyzer()));
 
@@ -223,7 +161,6 @@ public class SearchService {
 	/*** 查询 **/
 	public void query() {
 		IndexSearcher is = getSearcher2();
-
 		try {
 			// 通过reader可以有效的获取到文档的数量
 			System.out.println("numDocs:" + is.getIndexReader().numDocs());
@@ -278,7 +215,6 @@ public class SearchService {
 			if (is == null) {
 				reMgr.maybeRefresh();// 刷新reMgr,获取最新的IndexSearcher
 				is = reMgr.acquire();
-
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -317,7 +253,6 @@ public class SearchService {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	/**

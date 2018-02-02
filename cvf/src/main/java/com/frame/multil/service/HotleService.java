@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.base.BaseService;
+import com.entities.FileInfo;
 import com.entities.PageBean;
 import com.frame.service.RedisService;
 import com.multil.datasource.DynamicDataSource;
@@ -16,7 +17,7 @@ import com.multil.datasource.DynamicDataSource;
 import contant.Contant;
 
 @Service
-public class HotleService extends BaseService {
+public class HotleService {
 	@Qualifier("multilJdbcTemplate")
 	@Autowired
 	private JdbcTemplate multilJdbcTemplate;
@@ -40,7 +41,6 @@ public class HotleService extends BaseService {
 		pageBean.setPageSize(pageSize);
 		pageBean.setTotalCount(total);
 		String sql = "select name,birthday,gender,Address,mobile,nation,education,company,id from hotle limit "+pageBean.getStart()+","+pageBean.getPageSize()+"";
-		logger.info(sql);
 		List<Map<String, Object>> list = multilJdbcTemplate.queryForList(sql);
 		pageBean.setList(list);
 		return pageBean;

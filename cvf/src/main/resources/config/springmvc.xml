@@ -15,23 +15,26 @@
 		http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
 		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd
 		 ">
-	<!-- springMVC扫描驱动 -->
-	<mvc:annotation-driven></mvc:annotation-driven>
+	<!-- springMVC扫描驱动 添加注解驱动 -->
+    <mvc:annotation-driven enable-matrix-variables="true" />
 	<!-- 定义Controller的扫描包 -->
 	<context:component-scan base-package="com.frame.web" />
-	
-	<!-- 添加注解驱动 -->
-    <mvc:annotation-driven enable-matrix-variables="true" />
     
     <!-- 将无法mapping到Controller的path交给default servlet handler处理 -->
     <mvc:default-servlet-handler />
     
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
-	
+	<!-- 加载文件上传路径配置文件 解决@controller 中无法注入配置文件中的属性 -->
+<!-- 	<context:property-placeholder location="classpath*:config/env.properties"/> -->
 	<!-- springmvc资源文件位置 -->
 	<mvc:resources mapping="/resources/**" location="/resources/**" />
 	<mvc:resources mapping="/static/**" location="/static/**" />
-			
+	<!-- 解决spring和springmvc父子容器问题 -->
+<!-- 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="detectHandlerMethodsInAncestorContexts">
+            <value>true</value>
+        </property>
+	</bean>	 -->
 	<!-- 用于解决SpringMVC乱码 -->
 	<mvc:annotation-driven>
         <mvc:message-converters>

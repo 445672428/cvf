@@ -39,9 +39,9 @@ import com.data.MysqlDBUtils;
 
 public class LuceneDemo {
 	public static void main(String[] args) throws Exception {
-		 //test2();
+		 test2();
 		//searchByTerm("name", "李");
-		test3();
+		//test3();
 	}
 
 	public static void test3() throws ParseException {
@@ -166,14 +166,15 @@ public class LuceneDemo {
 		ResultSet resultSet = null;
 		IndexWriter indexWriter = null;
 		String sql = "select name,Address,mobile,tel,company from hotle";
-		File file = new File("D:\\temp\\post\\");
+		File file = new File("D:\\temp\\postbobo\\");
+		if (!file.exists()) {
+			file.mkdirs();
+		}
 		Directory directory = null;
 		int count = 0;
 		try {
 			connection = MysqlDBUtils.getConnection();
-			preparedStatement = (PreparedStatement) connection
-					.prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY,
-							ResultSet.CONCUR_READ_ONLY);
+			preparedStatement = (PreparedStatement) connection.prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
 			preparedStatement.setFetchSize(Integer.MIN_VALUE);
 			preparedStatement.setFetchDirection(ResultSet.FETCH_REVERSE);
 			resultSet = preparedStatement.executeQuery();
@@ -181,23 +182,17 @@ public class LuceneDemo {
 			directory = FSDirectory.open(file);// 创建一个文档
 			Version Lucene_Version = Version.LUCENE_4_10_4;
 			Analyzer analyzer = new StandardAnalyzer();
-			IndexWriterConfig config = new IndexWriterConfig(Lucene_Version,
-					analyzer);
+			IndexWriterConfig config = new IndexWriterConfig(Lucene_Version,analyzer);
 			config.setOpenMode(OpenMode.CREATE_OR_APPEND);
 			config.setMaxBufferedDocs(100);
 			indexWriter = new IndexWriter(directory, config);
 			while (resultSet.next()) {
 				Document document = new Document();
-				document.add(new StringField("name", resultSet
-						.getString("name"), Store.YES));
-				document.add(new StringField("Address", resultSet
-						.getString("Address"), Store.YES));
-				document.add(new StringField("mobile", resultSet
-						.getString("mobile"), Store.YES));
-				document.add(new StringField("tel", resultSet.getString("tel"),
-						Store.YES));
-				document.add(new StringField("company", resultSet
-						.getString("company"), Store.YES));
+				document.add(new StringField("name", resultSet.getString("name"), Store.YES));
+				document.add(new StringField("Address", resultSet.getString("Address"), Store.YES));
+				document.add(new StringField("mobile", resultSet.getString("mobile"), Store.YES));
+				document.add(new StringField("tel", resultSet.getString("tel"),Store.YES));
+				document.add(new StringField("company", resultSet.getString("company"), Store.YES));
 				indexWriter.addDocument(document);
 				count ++;
 			}

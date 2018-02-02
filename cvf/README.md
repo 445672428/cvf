@@ -14,6 +14,7 @@ IPADDR="192.168.121.100"
 NETMASK="255.255.255.0"
 GATEWAY="192.168.121.2"
 DNS1="192.168.121.2"
+DNS2="8.8.8.8"
 HWADDR="00:0C:29:A4:40:24"
 IPV6INIT="no"
 NM_CONTROLLED="yes"
@@ -24,6 +25,9 @@ UUID="4d9f1c60-fdaa-411b-a916-c0ef989ea443"
 
 重启网络服务
 service network restart
+编辑文件 
+vim /etc/resolv.conf 
+
 
 centos -> centos1 master1  hosts ip 
 centos -> centos2 master2  hosts ip

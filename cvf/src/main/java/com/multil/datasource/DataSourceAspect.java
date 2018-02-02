@@ -19,7 +19,8 @@ public class DataSourceAspect {
         String methodName = point.getSignature().getName();
         if (isSlave(methodName)) {
             // 标记为读库
-            DynamicDataSourceHolder.markSlave();
+        	DynamicDataSourceHolder.markMaster();
+            //DynamicDataSourceHolder.markSlave();
         } else {
             // 标记为写库
             DynamicDataSourceHolder.markMaster();

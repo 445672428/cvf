@@ -15,6 +15,18 @@ public class TimeUtils {
 		int currentYear = currCal.get(Calendar.YEAR);
 		return getYearFirst(currentYear);
 	}
+	/*************************************
+	 * 获取今年
+	 * 
+	 * @return
+	 ************************************/
+	public static String getCurrYear() {
+		Calendar currCal = Calendar.getInstance();
+		int currentYear = currCal.get(Calendar.YEAR);
+		return String.valueOf(currentYear);
+	}
+	
+	
 	/**************************************
 	 * 获取指定年的第一天日期
 	 * 

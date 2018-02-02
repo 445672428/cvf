@@ -22,7 +22,6 @@ public class Contant {
 	// 定义允许上传的文件扩展名
 	public static Map<String, String> FileNameMap = new HashMap<String, String>(){
 	private static final long serialVersionUID = -514869036211441097L;
-
 	{
 		put("image", "gif,jpg,jpeg,png,bmp");
 		put("flash", "swf,flv");
@@ -33,4 +32,5 @@ public class Contant {
 		put("zip", "zip,rar");
 		put("pdfFile", "pdf,PDF,doc,docx,xls,xlsx,ppt,htm,html,xml,txt,zip,rar,gz,bz2,apk,ipa");
 	}};
+	
 }

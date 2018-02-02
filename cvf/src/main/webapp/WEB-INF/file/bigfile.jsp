@@ -7,7 +7,7 @@
 <!--支持IE9+ chrome fireFox-->
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/jQuery/jquery2.1.js" charset="utf-8"></script>
 <link href="${CONTEXTPATH }/resources/lib/webuploader/webuploader.css" rel="stylesheet"/>
-<script src="${CONTEXTPATH }/resources/lib/webuploader/webuploader.nolog.min.js"></script>
+<script src="${CONTEXTPATH }/resources/lib/webuploader/webuploader.js"></script>
 <link href="${CONTEXTPATH }/resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 <script src="${CONTEXTPATH }/resources/lib/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
@@ -22,10 +22,10 @@
 
             //swf文件路径
             //swf: BASE_URL + '~/FileUpload/Uploader.swf',
-            swf: '../FileUpload/Uploader.swf',
+            swf: '${CONTEXTPATH }/resources/lib/webuploader/Uploader.swf',
 
             // 文件接收服务端。
-            server: '/BigFileUpload/BigFileUp',
+            server: '${CONTEXTPATH }/file/bigfileup.do',
 
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -82,7 +82,7 @@
                             cache: false,
                             type: "post",
                             //dataType: "json",
-                            url: "/BigFileUpload/IsMD5Exist",//baseUrl +
+                            url: "${CONTEXTPATH }/file/IsMD5Exist.do",//baseUrl +
                             data: {
                                 fileMd5: fileMd5,
                                 fileName: file.name,

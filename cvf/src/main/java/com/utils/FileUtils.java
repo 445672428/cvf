@@ -92,7 +92,7 @@ public class FileUtils {
      * @param file 想要读取的文件对象
      * @return 返回文件内容
      */
-    public static String txt2String(File file){
+    public static String readTextAllContent(File file){
         StringBuilder result = new StringBuilder();
         try{
             BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件

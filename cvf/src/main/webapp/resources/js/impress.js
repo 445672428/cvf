@@ -790,7 +790,7 @@
     }, false);
         
 })(document, window);
-//´úÂëÕûÀí£ºÀÁÈËÖ®¼Ò www.lanrenzhijia.com
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ www.lanrenzhijia.com
 // THAT'S ALL FOLKS!
 //
 // Thanks for reading it all.

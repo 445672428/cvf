@@ -83,7 +83,7 @@
 		load();
 	});
 	function load(){
-		$.ajax({type: "GET",url: "${pageContext.request.contextPath}/images.do",data:{'index':0,'size':100},dataType:"json",
+		$.ajax({type: "GET",url: "${pageContext.request.contextPath}/images.do",data:{'index':0,'size':10000},dataType:"json",
 			 success: function (data ,textStatus, jqXHR)
 			 {  
 				var html = "";
