@@ -43,7 +43,11 @@ export JAVA_HOME JRE_HOME CLASS_PATH PATH
 
 hadoop 文件位置
 	   /usr/environment/hadoop
+文件提交 git push -u origin master
+强制提交 git push -u origin master -f
 	   
+
+
 JAVA_HOME环境配置:/usr/lib/java/jdk1.7.0_75      
 	   
 	   
