@@ -1,0 +1,16 @@
+@CHARSET "utf-8";
+ul,ol,a{margin:0;padding:0;}
+ul li, ol{list-style: none;}
+a{
+	cursor: pointer;
+}
+a:active, a:visited {
+    border: none;
+    outline: none;
+}
+.cus-sel-active{
+	position: relative;
+}
+.isShow{
+	display: none;
+}
