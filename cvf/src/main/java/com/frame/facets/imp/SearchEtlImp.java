@@ -8,9 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -29,26 +31,37 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.index.TrackingIndexWriter;
+import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
+import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.MultiPhraseQuery;
 import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TermQuery;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.store.LockFactory;
 import org.apache.lucene.store.SimpleFSLockFactory;
 import org.apache.lucene.util.Version;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.utils.FileUtils;
 @Service("searchEtlImp")
-public class SearchEtlImp {
-	public static final String DirectoryPath = "D:\\temp\\text\\";
+public class SearchEtlImp extends SearchAbstractImp{
+	public static final String DirectoryPath = "D:\\temp\\hotle\\";
 	@Qualifier("mysqlDataSource")
 	@Autowired
 	private DataSource mysqlDataSource;
-	
+	/**
+	 * 对文本文件进行数据索引
+	 * @return
+	 */
 	public String startCreateDataIndex() {
 		// 搜素开始时间
 		Date beginTime = new Date();
@@ -105,6 +118,13 @@ public class SearchEtlImp {
 		Date endTime = new Date();
 		return endTime.toString()+"-"+beginTime.toString();
 	}
+	/**
+	 * post数据进行索引
+	 * @return
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public String postDataChange() throws SQLException, ClassNotFoundException,IOException {
 		// 搜素开始时间
 		Date beginTime = new Date();
@@ -233,42 +253,6 @@ public class SearchEtlImp {
 		return endTime.toString() +"-"+beginTime.toString();
 	}
 	
-	/**
-	 * 使用Lucene的搜索引
-	 * 
-	 * @param searchType
-	 *            要搜索的Filed 表示要搜索的是文件名还是文件内容
-	 * @param searchKey
-	 *            关键字
-	 */
-	public void indexSearch(String searchType, String searchKey) {
-
-		try {
-			System.out.println("----------------------使用索引方式搜索---------------------");
-			// 根据索引位置建立IndexSearch
-			Directory directory = FSDirectory.open(new File(DirectoryPath));
-			IndexReader reader = DirectoryReader.open(directory);
-			IndexSearcher searcher = new IndexSearcher(reader);
-			// 建立搜索单元,searchType代表要搜索的Filed,searchType代表关键字
-			Term term = new Term(searchType, searchKey);
-
-			// 由Term生成一个Query
-			Query query = new TermQuery(term);
-
-			// 搜素开始时间
-			Date beginTime = new Date();
-
-			// 搜索完成时间
-			Date endTime = new Date();
-
-			// 搜索耗费时间
-			long timeOfSearch = endTime.getTime() - beginTime.getTime();
-
-			System.out.println("使用索引方式搜索总耗时:" + timeOfSearch + "ms");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	public void StringSearch(String keyword, String searchPath) {
 		System.out.println("----------------------使用字符串匹配方式搜索---------------------");
@@ -335,6 +319,45 @@ public class SearchEtlImp {
 		long timeOfSearch = endTime.getTime() - beginTime.getTime();
 
 		System.out.println("使用字符串匹配方式总耗时" + timeOfSearch + "ms");
+	}
+	@Override
+	public void doSearch(IndexSearcher indexSearcher) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public Document abstractUpdate(TrackingIndexWriter trackingIndexWriter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public List<JSONObject> queryMatchSuitValue(String search) {
+		List<JSONObject> list = new ArrayList<JSONObject>();
+		try {
+			// 根据索引位置建立IndexSearch
+			Directory directory = FSDirectory.open(new File(DirectoryPath));
+			IndexReader reader = DirectoryReader.open(directory);
+			IndexSearcher indexSearcher = new IndexSearcher(reader);
+			
+			// 建立搜索单元,searchType代表要搜索的Filed,searchType代表关键字
+			String fields[] = {"name","Address"};
+			Analyzer analyzer = new StandardAnalyzer();
+			QueryParser queryParser  = new MultiFieldQueryParser(fields, analyzer); 
+			//定义查询表达式
+			Query query = queryParser.parse(search);
+			//Query query = queryParser.parse("name:"+search+"");
+			TopDocs topDocs = indexSearcher.search(query, 100);
+			for (ScoreDoc sd : topDocs.scoreDocs) {
+				Document doc = indexSearcher.doc(sd.doc);
+				JSONObject object = new JSONObject();
+				object.put("name", doc.get("name"));
+				object.put("Address", doc.get("Address"));
+				list.add(object);
+			}
+			System.out.println("查询条数:"+topDocs.totalHits);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 

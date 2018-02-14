@@ -1,12 +1,23 @@
-
-body{
-	font-family: Arial, Helvetica, Sans-Serif;
-	background-color: #E1E6F6;
-	overflow: hidden;
-}
+@CHARSET "utf-8";
 a{
 	cursor: pointer;
+	text-decoration: none;
+    color: #2c76c0;
+    outline: none;
+    transition: color .2s;
+}
+a:active, a:visited {
+    border: none;
+    outline: none;
 }
 input {
 	box-sizing: border-box;
+}
+table{
+	border-collapse: collapse;
+	border-spacing: 0;
+	display: table;
+}
+select:not(:-internal-list-box) {
+    overflow: visible !important;
 }
