@@ -11,9 +11,21 @@ var result = [];
 var fileInfo = {};
 var _UUID = 'bobo';
 var _LEVEL = 0;
+
+var topMent;
+//TODO 当前显示层级的ID
+var currentId;
+var sNodes = [];
+var reduceFlag = true;//减少遍历次数
+var returnNodes = [];
+function file(){
+	return {'key':'','datas':[],'level':0,'name':'','userid':''};
+}
+
+
 $(function(){
+	$('#searchWindow').window('close')
 	//$("div[data-options='west']").css("overflow","hidden");
-	loadFile();
 	createFile();
 	initFile(userid,_LEVEL,_UUID);
 	//$(".fileDiv,.ui-widget-content").on('onmousedown',rightClick);
@@ -30,6 +42,7 @@ function initFile(userid,level,parentid){
 	}
 	_UUID = parentid;
 	_LEVEL = level;
+	//var cacheData = findCacheData(sNodes,parentid);
 	$.ajax({type: "POST",url: CONTEXTPATH+"/queryfiles.do",data: {'parentid':parentid,'userid':userid,'level':level},cache: false,async : false,dataType: "json",
         success: function (data ,textStatus, jqXHR)
         {	
@@ -44,6 +57,7 @@ function initFile(userid,level,parentid){
 						"</div>";
 				});
 				$(".portlet-body").append(fileDiv);
+				loadFile(data['list'],parentid,level);
 				bindEvent();
         	}
         },
@@ -65,7 +79,6 @@ function bindEvent(){
 	$('.fileinput').on("blur",function(e){
 		if(inputValue!==$(this).val()){
 			//编辑文件名保存
-			editFileName();
 			editSave($(this).attr('uuid'),$(this).val());
 		}
 	});
@@ -244,7 +257,7 @@ function dragStart(){
 	
 	console.log("dragStart==="+left+"=="+height+"=="+top+"=="+width);
 }
-var topMent;
+
 function drag(){
 	var element = event.target||event.srcElement;
 	var left = element.offsetLeft;
@@ -266,71 +279,111 @@ function rightClick(){
 	var element = event.target||event.srcElement;
 }
 
-var sNodes = [];
-function editFileName(){
-	
-	for(var i = 1; i < 100; i++){
+
+function transformToFormat(array){
+	var datas = [];
+	for(var index = 0; index < array.length; index++){
 		var f = file();
-		f['key'] = i;
-		f['arr'] = [];
-		sNodes.push(f);
+		f['key'] = array[index]['id'];
+		f['datas'] = [];
+		f['level'] = array[index]['level'];
+		f['name'] = array[index]['filename'];
+		f['userid'] = array[index]['userid'];
+		datas.push(f);
 	}
+	return datas;
 }
-function file(){
-	return {'key':'','arr':[],'level':0,'name':''};
-}
-/**
- * 永远会有返回值
- */
-function nodeRecursion(sNodes){
-	for(var i = 0; i < sNodes.length; i++){
-		if(sNodes[i]['arr'].length>=index){
-			if(i==index){
-				if(sNodes[index]['level']==level){
-					return sNodes[i]['arr'];
-				}
-			}
-		}else{
-			res(sNodes[i]['arr']);
-		}
+//保持显示数据是当前层数? level 方便查找
+function loadFile(array,id,level){
+	currentId = id
+	if(!array) return [];
+	try{
+		if(array.length==0) return [];
+	}catch(err){
+		return [];
 	}
+	array = transformToFormat(array);
+	if(level == 0){
+		sNodes.push.apply(sNodes,array);
+		return sNodes;
+	}
+	findSureNode(sNodes,level,id,array);
 }
 
-function loadFile(array,index){
-	if(array&&Array.isArray(array)&&array.length>0){
-		if(sNodes&&sNodes.length>0){
-			var level = sNodes[index]['level'];
-			var currentNode = nodeRecursion(sNodes);
-			if(currentNode[index]['key']==array[0]['id']){
-				for(var index = 0; index < array.length; index++){
-					var f = file();
-					f['key'] = array[index]['id'];
-					f['arr'] = [];
-					f['level'] = array[index]['level'];
-					f['name'] = array[index]['name'];
-					var arr = currentNode['arr'];
-					arr.push(f);
-				}
+function findSureNode(tmpNodes,level,id,array){
+	for(var index = 0; index < tmpNodes.length; index++){
+		var f = tmpNodes[index];
+		if(level == (f['level'] + 1) ){
+			if(f['key'] == id){
+				f['datas'].push.apply(f['datas'],array);
+				break;
 			}
 		}else{
-			if(array&&array.length>0){
-				for(var index = 0; index < array.length; index ++){
-					var ele = array[index];
-					var f = file();
-					f['key'] = ele['id'];
-					f['arr'] = [];
-					f['level'] = 0;
-					f['name'] = ele['name'];
-					sNodes.push(f);
-				}
+			var nextDatas = f['datas'];
+			if(tmpNodes.length > 0 ){
+				findSureNode(nextDatas,level,id,array);
 			}
 		}
 	}
 }
-
-function deleteFile(){
-	
+function backHigher(){
+	var files = $(".portlet-body div.filecontainer input.fileinput");
+	var data = backHigherLevel(sNodes,currentId,currentId);
+	$(".portlet-body").html("");	
+	var fileDiv = "";
+	$(data).each(function(index,e){
+		fileDiv += "<div class='filecontainer'>"+
+			"<div class='fileDiv ui-widget-content' ondblclick=initFile('"+e['userid']+"','"+(e['level']+1)+"','"+e['key']+"')>" +
+			"<span class='gzv8Pv'></span><img src='resources/images/file.gif'/></div>"+
+			"<input uuid='"+e['key']+"' title='"+e['name']+"' type='text' value='"+e['name']+"' name='"+e['name']+"' class='fileinput'/>"+
+			"</div>";
+	});
+	$(".portlet-body").append(fileDiv);
+	bindEvent();
 }
+
+function backHigherLevel(tmpNodes,curId,cId){
+	for(var index = 0; index < tmpNodes.length; index++){
+		var f = tmpNodes[index];
+		if(f['key'] == currentId){
+			currentId = cId;
+			returnNodes = tmpNodes;
+			reduceFlag = false;
+			return returnNodes;
+		}
+		if(reduceFlag){
+			var datas = f['datas'];
+			var key = f['key'];
+			//深度优先  查找需要 优化 
+			backHigherLevel(datas,curId,key);
+		}
+	}
+	return returnNodes;
+}
+
+function findCacheData(tmpNodes,curId){
+	for(var index = 0; index < tmpNodes.length; index++){
+		var f = tmpNodes[index];
+		var nodes = f['datas'];
+		if(nodes.length > 0){
+			if(f['key'] == curId){
+				return nodes;
+			}
+			findCacheData(nodes,curId);
+		}
+	}
+}
+
+function deletePageALLFile(){
+	//删除当前页面所有文件夹或者文件
+}
+
+//弹出一个新页面
+function showSearchWindow(){
+	$('#searchWindow').window('open');
+}
+//下载当前页面所有文件
+function exportAll(){}
 
 //
 //username.addEventListener("focus", function(event) {

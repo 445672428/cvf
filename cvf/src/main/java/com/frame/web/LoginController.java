@@ -1,5 +1,8 @@
 package com.frame.web;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.entities.Friends;
 import com.entities.User;
 import com.frame.multil.service.HotleService;
 import com.frame.multil.service.SearchService;
@@ -46,7 +50,7 @@ public class LoginController {
 		String password = request.getParameter("password"); 
 		User user = loginService.findCurUser(username,password);
 		if (user==null) {
-			return "redirect:loginmain.jsp";
+			return "redirect:login.jsp";
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute(Contant.USER_KEY, user);
@@ -168,6 +172,13 @@ public class LoginController {
 			object.put("succ", flag);
 		}
 		return object.toString();
+	}
+	
+	@RequestMapping(value="chat/chatfriends.do",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public @ResponseBody Map<String,List<Friends>> getMyAllFriends(HttpServletRequest request,HttpServletResponse response){
+		User user = (User)request.getSession().getAttribute(Contant.USER_KEY);
+		Map<String,List<Friends>> list = loginService.findMyAllFriends(user);
+		return list;
 	}
 	
 	@RequestMapping(value="data.do",method=RequestMethod.POST)

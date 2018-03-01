@@ -17,7 +17,7 @@
     var websocket = null;
     //判断当前浏览器是否支持WebSocket
     if ('WebSocket' in window) {
-        websocket = new WebSocket("ws://localhost:8081/cvf/websocket/bobo");
+        websocket = new WebSocket("ws://localhost:8082/cvf/websocket/bobo");
     }
     else {
         alert('当前浏览器 Not support websocket')

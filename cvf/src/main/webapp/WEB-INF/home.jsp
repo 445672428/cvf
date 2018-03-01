@@ -62,7 +62,7 @@ ul{
 	                     <li data-link='${CONTEXTPATH }/page.do?page=index'><span class="icon-search"></span>角色管理</li>
 	                     <li data-link='${CONTEXTPATH }/page.do?page=views/personaledit'><span class="icon-search"></span>权限管理</li>
 	                     <li data-link='${CONTEXTPATH }/page.do?page=views/personaledit'><span class="icon-search"></span>个人信息查看</li>
-	                     <li data-link='${CONTEXTPATH }/page.do?page=fileupload'><span class="icon-search"></span>文件查看</li>
+	                     <li data-link='${CONTEXTPATH }/page.do?page=fileshow'><span class="icon-search"></span>文件查看</li>
 	                 </ul>
                  </div>
 			</div>

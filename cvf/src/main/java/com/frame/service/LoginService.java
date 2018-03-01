@@ -1,6 +1,7 @@
 package com.frame.service;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import redis.clients.jedis.JedisPool;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.base.BaseService;
+import com.entities.Friends;
 import com.entities.User;
 import com.redis.RedisHandler;
 import com.utils.ComUtils;
@@ -136,14 +138,22 @@ public class LoginService extends BaseService{
 	 */
 	@Transactional
 	public JSONObject deleteFileByUUid(String userid, String parentid,Integer level) {
-		String sql = "SELECT id,userid,filename,level,ishidden,parentid FROM filetable where id='"+parentid+"'";
+		String sql = "delete from filetable where ";
+		String condition = "";
 		List<String> list = new ArrayList<String>();
-		List<String> results = queryForChilds(parentid,list);
-		System.out.println(results.size());
+		list = queryForChilds(parentid,list);
+		list.add(parentid);
+		System.out.println(list.toString());
+		condition = createOrCondition(list,"id");
+		sql = sql + condition;
+		mysqlJdbcTemplate.execute(sql);
 		JSONObject object = new JSONObject();
 		object.put("succ", list);
 		return object;
 	}
+	
+	
+	
 	public List<String> queryForChilds(String id,List<String> list) {
 		String sql = "SELECT id,userid,filename,level,ishidden,parentid FROM filetable where parentid='"+id+"'";
 		List<Map<String, Object>> result = mysqlJdbcTemplate.queryForList(sql);
@@ -168,6 +178,33 @@ public class LoginService extends BaseService{
 		String sql = "update filetable set filename = '"+name+"' where id = '"+id+"'";
 		int count = mysqlJdbcTemplate.update(sql);
 		return count;
+	}
+	
+	/**
+	 * 查询对应的好友表
+	 * @param user
+	 * @return
+	 */
+	public Map<String, List<Friends>> findMyAllFriends(User user) {
+		String sql = "select id,group_name from t_person_friends_group where user_id = 1 ";
+		List<Map<String, Object>> list = mysqlJdbcTemplate.queryForList(sql);
+		Map<String, List<Friends>> dataMap = new LinkedHashMap<String, List<Friends>>();
+		for(Map<String, Object> map : list){
+			String groupName = (String)map.get("group_name");
+			Integer id = (Integer)map.get("id");
+			List<Friends> friends = null;
+			if (dataMap.get(groupName)!=null) {
+				friends = dataMap.get(groupName);
+				Friends friend = new Friends();
+				friends.add(friend);
+			}else{
+				friends = new ArrayList<Friends>();
+				Friends friend = new Friends();
+				friends.add(friend);
+			}
+			dataMap.put(groupName, friends);
+		}
+		return dataMap;
 	}
 	
 }

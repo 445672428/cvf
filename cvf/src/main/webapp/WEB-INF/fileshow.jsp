@@ -73,11 +73,12 @@ div.fileDiv img{
 	cursor:pointer;
 	background: url("${CONTEXTPATH }/resources/lib/easyui/themes/icons/delete3.png") no-repeat;
 }
+
 .save{
 	background: url("${CONTEXTPATH }/resources/images/save1.gif") no-repeat;
 	background-size:100% 100%;
 }
-.edit{
+.search{
 	background: url("${CONTEXTPATH }/resources/images/search.gif") no-repeat;
 	background-size:100% 100%;
 }
@@ -93,6 +94,11 @@ div.fileDiv img{
 	background: url("${CONTEXTPATH }/resources/images/print.gif") no-repeat;
 	background-size:100% 100%;
 }
+.back{
+	background: url("${CONTEXTPATH }/resources/netlib/images/refress.png") no-repeat;
+	background-size:100% 100%;
+}
+
 </style>
 <script type="text/javascript">
 var CONTEXTPATH = '${CONTEXTPATH}';
@@ -102,24 +108,22 @@ var CONTEXTPATH = '${CONTEXTPATH}';
 	<div data-options="region:'center'">
 		<div class="easyui-panel" style="height:10%;width: 100%;">
 			<ul id="hand">
-				<li class="save"></li>
-				<li class="edit"></li>
-				<li class="del"></li>
-				<li class="filedel"></li>
-				<li class="printfile"></li>
+				<li onclick="backHigher();" class="back"></li>
+				<li onclick="showSearchWindow();" class="search"></li>
+				<li onclick="deletePageALLFile();" class="del"></li>
+				<li onclick="exportAll();" class="printfile"></li>
 			</ul>
 		</div>
 		<div id="hotleinfo" class="easyui-panel" style="height:90%;padding:10px;width: 100%;">
 			<div class="portlet-body">
-			 	
  			</div>
 		</div>
 	</div>
 	
 	<div id="createPanle" class="easyui-menu" style="width:120px;">
 		<div onclick="javascript:editHandle()">创建文件夹</div>
-		<div onclick="javascript:editHandle()">创建文件</div>
-		<div>
+		<div onclick="javascript:editHandle()">创建文本文件</div>
+<!-- 		<div>
 			<span>打开文件方式</span>
 			<div style="width:150px;">
 				<div><b>Word</b></div>
@@ -134,14 +138,17 @@ var CONTEXTPATH = '${CONTEXTPATH}';
 					</div>
 				</div>
 			</div>
-		</div>
-		<div data-options="iconCls:'icon-save'">全部保存</div>
-		<ul id="tree" class="ztree" style="margin-top:0px;width:210px;height:100%;padding:0px;"></ul>
-		<div>修改文件</div>
-		<div data-options="iconCls:'icon-print',disabled:true">打印</div>
-		<div class="menu-sep"></div>
-		<div>Exit</div>
+		</div> -->
+		<!-- <div data-options="iconCls:'icon-save'">全部下载</div> -->
+		<!-- <ul id="tree" class="ztree" style="margin-top:0px;width:210px;height:100%;padding:0px;"></ul> -->
+		<div data-options="iconCls:'icon-print'">打印</div>
+		<!-- <div class="menu-sep"></div> -->
+		<div>取消</div>
 	</div>
+<!-- 	<div id="searchWindow" class="easyui-window" title="Basic Window" data-options="iconCls:'icon-save'" style="width:70%;height:80%;padding:10px;">--> 
+    <div id="searchWindow" class="easyui-window" title="Modal Window" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:70%;height:80%;padding:10px;">
+        searchWindow
+    </div>
 </body>
 <!-- 引入Jquery -->  
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/easyui/jquery.min.js" charset="utf-8"></script>  

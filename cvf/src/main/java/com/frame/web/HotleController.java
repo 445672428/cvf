@@ -2,13 +2,11 @@ package com.frame.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.lucene.document.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +34,7 @@ public class HotleController {
 		lucene查询
 	 * @throws IOException 
 	 */
-	@RequestMapping(value="search.do",method=RequestMethod.POST)
+	@RequestMapping(value="search.do",method=RequestMethod.GET)
 	public void startLunce(HttpServletRequest request,HttpServletResponse response,String search) throws IOException {
 		search = new String(search.trim().getBytes("ISO-8859-1"),"UTF-8");
 		List<JSONObject> list = searchEtlImp.queryMatchSuitValue(search);

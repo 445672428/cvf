@@ -10,6 +10,8 @@
 <script src="${CONTEXTPATH }/resources/lib/webuploader/webuploader.js"></script>
 <link href="${CONTEXTPATH }/resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 <script src="${CONTEXTPATH }/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="${CONTEXTPATH }/resources/lib/tesseract/tesseract.js"></script>
+<script src="${CONTEXTPATH }/resources/lib/tesseract/worker.js"></script>
 <script type="text/javascript">
     $(function () {
         $list = $('#fileList');
@@ -159,4 +161,27 @@
 </div>
 
 </body>
+<script type="text/javascript">
+var localName = window.location.hostname +":"+ window.location.port;
+window.Tesseract = Tesseract.create({
+    workerPath: 'http://'+localName+'/${CONTEXTPATH }/resources/lib/tesseract/worker.js',
+    langPath: 'https://cdn.rawgit.com/naptha/tessdata/gh-pages/3.02/',
+    corePath: 'https://cdn.rawgit.com/naptha/tesseract.js-core/0.1.0/index.js',
+})
+Tesseract.recognize("${CONTEXTPATH }/static/image/timg.jpg", {
+    lang: "chi_sim",
+    classify_bln_numeric_mode: 1
+})
+.progress(function(packet){
+    //progressUpdate(packet)
+    })
+.then(function(data){
+	console.log(data.text);
+    //progressUpdate({ status: 'done', data: data })
+});
+/* Tesseract.recognize("${CONTEXTPATH }/static/image/timg.jpg")
+.then(function(result){
+    console.log(result)
+}) */
+</script>
 </html>

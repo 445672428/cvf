@@ -58,6 +58,7 @@ public class WebServer {
 		//群发消息
 		for(WebServer item: webSocketSet){
 			try {
+				System.out.println(message);
 				item.sendMessage(message);
 			} catch (IOException e) {
 				e.printStackTrace();

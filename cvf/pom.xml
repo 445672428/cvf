@@ -44,6 +44,7 @@
 		<quartz.version>2.3.0</quartz.version>
 		<lucene.version>4.10.4</lucene.version>
 		<cxf.version>3.1.8</cxf.version>
+		<elasticsearch.version>5.0.1</elasticsearch.version>
 		
 		<jstl.version>1.2</jstl.version>
 		<servlet-api.version>2.5</servlet-api.version>
@@ -720,7 +721,13 @@
 			<version>${pinyin4j.version}</version>
 		</dependency>
 		<!-- 配置lucene end -->
-		
+		<!-- elasticsearch -->
+<!--         <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>transport</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency> -->
+		<!-- elasticsearch -->
 		<!-- 字符解码 -->
 		<dependency>
 			<groupId>org.bytedeco</groupId>

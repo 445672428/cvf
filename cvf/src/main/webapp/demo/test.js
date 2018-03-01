@@ -4,6 +4,64 @@ Ext.onReady(function () {
 	init3();
 });
 
+function init4(){
+	 Ext.create('Ext.container.Viewport', {
+		 layout: {
+	            type: 'border',
+	            padding: '5'
+	        },
+	     items:[{
+	            region: 'center',
+	            stateful: true,
+	            stateId: 'stateGridExample',
+	            xtype: 'grid',
+	            store:teststore,
+	            columns: [{
+	                text: 'First Name',
+	                dataIndex: 'first'
+	            }, {
+	                text: 'Last Name',
+	                dataIndex: 'last'
+	            }, {
+	                text: 'Age',
+	                dataIndex: 'age'
+	            }, {
+	                flex: 1,
+	                text: 'Review',
+	                dataIndex: 'review'
+	            }]
+	     		}]
+	 });
+	var teststore = Ext.create('Ext.data.Store', {
+        data: [{
+            first: 'John',
+            last: 'Smith',
+            age: 32,
+            review: 'Solid performance, needs to comment code more!'
+        }, {
+            first: 'Jane',
+            last: 'Brown',
+            age: 56,
+            review: 'Excellent worker, has written over 100000 lines of code in 3 months. Deserves promotion.'
+        }, {
+            first: 'Kevin',
+            last: 'Jones',
+            age: 25,
+            review: 'Insists on using one letter variable names for everything, lots of bugs introduced.'
+        }, {
+            first: 'Will',
+            last: 'Zhang',
+            age: 41,
+            review: 'Average. Works at the pace of a snail but always produces reliable results.'
+        }, {
+            first: 'Sarah',
+            last: 'Carter',
+            age: 23,
+            review: 'Only a junior, but showing a lot of promise. Coded a Javascript parser in Assembler, very neat.'
+        }]
+    });
+}
+
 function init3(){
 	 var searchAction = Ext.create('Ext.Button', {
         text: '查询',
@@ -54,7 +112,14 @@ function init3(){
 			            }
 			         },
         			 name:'search'
-		    	},searchAction,resultPanel
+		    	},searchAction,mypanel,{
+		    		width:'100%',
+		    		style:"margin-top:20px;overflow-y:auto;",
+		    		height:400,
+		    		flex:1,
+		    		border:0,
+		    		html:'bobobob'
+		    	}
 		    ]
 		}]
 	});
@@ -63,6 +128,115 @@ function init3(){
 	    shipMgrToolBarPanel.setWidth(width);
 	    shipMgrToolBarPanel.setHeight(height);
 	});
+	var mypanel = Ext.create('Ext.grid.Panel',{  
+        title:'Job Enquiry',  
+        width:'100%',  
+        layout:"auto",  
+        style:"margin-left:auto;margin-right:auto;",  
+        renderTo:Ext.getBody(),  
+        columns:[{  
+                header:'Id',  
+                flex: 1,align:"center",   
+                dataIndex:'id',  
+                sortable:true  
+            },{  
+                header : "First Name",    
+                flex: 1, align:"center",   
+                dataIndex : 'firstName',    
+                sortable : true    
+            }, {    
+                header : "Last Name",    
+                flex: 1,  align:"center",  
+                dataIndex : 'lastName',    
+                sortable : true    
+            }, {    
+                header : "Login Name",    
+                flex: 1,   
+                align:"center",  
+                dataIndex : 'loginName',    
+                sortable : true    
+            }, {    
+                header : "Telephone",    
+                flex: 1,align:"center",  
+                hideable: false,  
+                dataIndex : 'telephone',    
+                sortable : true    
+            }, {    
+                header : "brithday",    
+                flex: 1, align:"center",   
+                dataIndex : 'brithday',  
+                sortable : true    
+            }, {    
+                header : "Sex Id",    
+                flex: 1, align:"center",   
+                dataIndex : 'sexId',    
+                sortable : true    
+            }, {    
+                header : "Dep Id",    
+                flex: 1,  align:"center",   
+                dataIndex : 'depId',    
+                sortable : true    
+            }],  
+        store:store,  
+        pageSize: itemsPerPage,  
+        dockedItems: [{    
+            dock: 'top',   /**在顶部显示*/  
+            xtype: 'toolbar', /**以工具栏形式展示*/    
+            items: {     
+                width: "25%",  
+                fieldLabel: 'Login Name:',  
+                labelWidth:100,  
+                xtype: 'searchfield',/**searchfield 是ExtJs的扩展组件  
+                                    引用路径为Ext.Loader.setPath('Ext.ux', rootPath+'/ux/') 
+                                    其中rootPath就是Ext类跟路径：比如http://localhost:8080/demo/Ext */  
+                store: store /**对应的数据集*/    
+           }    
+        },{  
+            xtype: 'pagingtoolbar',  
+            store: store,  
+            dock: 'bottom',  
+            displayInfo: true  
+        }]  
+    });  
+	
+    store.load({params:{start:0,limit:itemsPerPage}});  
+    var startTime;  
+    var endTime;  
+    function checkDate(){  
+        startTime = Ext.getCmp("startTime");  
+        endTime = Ext.getCmp("endTime");  
+        if(startTime != null && endTime != null && startTime.getValue() > endTime.getValue()){  
+            alert("Start time must be smaller than the end time!");  
+            return false;  
+        }  
+        return true;  
+    }  
+    function query(){  
+        //check date   
+        if(!checkDate()){  
+            return ;  
+        }  
+        params = {  
+            'conEnquiryTicketVo.startTime':startTime.getValue(),  
+            'conEnquiryTicketVo.endTime':endTime.getValue(),  
+            start:0,  
+            limit:itemsPerPage  
+        };  
+        store.load({params:params});  
+    }  
+	var mycolumns = [{ text: 'First Name',dataIndex: 'first'}, {
+        text: 'Last Name',
+        dataIndex: 'last'
+    }, {
+        text: 'Age',
+        dataIndex: 'age'
+    }, {
+        flex: 1,
+        text: 'Review',
+        dataIndex: 'review'
+    }];
+	
+	
 	var myStore = new Ext.create('Ext.data.Store',{
 		 proxy: {
 	     type: 'ajax',
@@ -99,18 +273,18 @@ function init3(){
             method:'GET',    
             waitMsg:'数据加载中，请稍后....',    
             success:function(response,opts){  
-            	var store = Ext.create('Ext.data.Store',{ 
+/*            	var store = Ext.create('Ext.data.Store',{ 
             		fields : json.fieldsNames,//把json的fieldsNames赋给fields    
            			data : json.data          //把json的data赋给data    
             	});
             	Ext.getCmp("configGrid").reconfigure(store, json.columModle);  //定义grid的store和column    
-           		Ext.getCmp("configGrid").render();
+           		Ext.getCmp("configGrid").render();*/
             },    
             failure:function(response,opts){    
             }  
 		});
 	};
-	//查询返回列表
+/*	//查询返回列表
    resultPanel = Ext.create("Ext.grid.Panel",{    
        id : 'configGrid',    
        name : 'configGrid',    
@@ -127,7 +301,7 @@ function init3(){
 			 {header:'内容',dataIndex:'content',width:100,hidden:true},
 			 {header:'内容',dataIndex:'content',width:100,hidden:true},
 			 {header:'内容',dataIndex:'content',width:100,hidden:true},
-			 {header:'内容',dataIndex:'content',width:100,hidden:true}];
+			 {header:'内容',dataIndex:'content',width:100,hidden:true}];*/
 }
 
 
