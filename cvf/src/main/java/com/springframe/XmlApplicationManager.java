@@ -9,6 +9,7 @@ public class XmlApplicationManager extends XmlBeanFactory{
 	public XmlApplicationManager(Resource resource) throws BeansException {
 		super(resource);
 		// TODO Auto-generated constructor stub
+		System.out.println("XmlApplicationManager XmlApplicationManager");
 	}
 
 }

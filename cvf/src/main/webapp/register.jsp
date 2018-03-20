@@ -6,7 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>注册</title>
 <link rel="stylesheet" type="text/css" href="${CONTEXTPATH }/resources/css/register.css" />
-<script type="text/javascript" src="${CONTEXTPATH }/resources/js/register.js" charset="utf-8"></script>
+<%--  <script type="text/javascript" src="${CONTEXTPATH }/resources/js/register.js" charset="utf-8"></script>  --%>
+<script type="text/javascript" src="${CONTEXTPATH }/resources/lib/jQuery/jquery-1.7.1.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="${CONTEXTPATH }/resources/lib/jquery-validation/1.11.1/jquery.validate.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="${CONTEXTPATH }/resources/lib/jquery-validation/1.11.1/additional-methods.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="${CONTEXTPATH }/resources/lib/require.js" charset="utf-8"></script>
 <script type="text/javascript">
 var CONTEXTPATH = '${CONTEXTPATH}';
 </script>
@@ -112,6 +116,12 @@ var CONTEXTPATH = '${CONTEXTPATH}';
     </div>
 </body>
 <script>
+require(["${CONTEXTPATH }/resources/lib/jQuery/jquery2.1.js",
+         "${CONTEXTPATH }/resources/lib/jquery-validation/1.11.1/additional-methods.min.js",
+         "${CONTEXTPATH }/resources/lib/jquery-validation/1.11.1/jquery.validate.min.js",
+         "${CONTEXTPATH }/resources/js/register.js"], function() { 
+	 
+});
     var canvas=document.getElementById("logo");
     var ctx=canvas.getContext("2d");
     var gradient=ctx.createLinearGradient(0,0,canvas.width,0);

@@ -111,7 +111,7 @@ public class FileUploadServlet extends HttpServlet{
             if (tmp==last_Id&&LOCKList.size()==last_Id) {
             	FileUtils.mergeFile(realName,REALUUID);
             	LOCKList.clear();
-            	FileUtils.deleteAllFilesOfDir(new File(Contant.TMP_DIR+REALUUID));
+            	FileUtils.deleteFile(new File(Contant.TMP_DIR+REALUUID));
 			}
         } catch (Exception e) {
             e.printStackTrace();

@@ -16,6 +16,10 @@
     <listener>
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
+    <listener>
+    	<listener-class>com.springframe.WebContextInit</listener-class>
+    </listener>
+    
 	<!-- 编码过滤器，以UTF8编码 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -78,8 +82,16 @@
     	<servlet-name>cxfService</servlet-name>
     	<url-pattern>/webservice/*</url-pattern>
   	</servlet-mapping>
-    
-
+    <!-- 备用  https请求 -->
+<!-- 	<security-constraint>
+        <web-resource-collection>
+            <web-resource-name>SSL</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint> -->
 
     <welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

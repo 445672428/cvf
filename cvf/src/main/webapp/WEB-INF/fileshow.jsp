@@ -147,7 +147,20 @@ var CONTEXTPATH = '${CONTEXTPATH}';
 	</div>
 <!-- 	<div id="searchWindow" class="easyui-window" title="Basic Window" data-options="iconCls:'icon-save'" style="width:70%;height:80%;padding:10px;">--> 
     <div id="searchWindow" class="easyui-window" title="Modal Window" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:70%;height:80%;padding:10px;">
-        searchWindow
+         <input class="easyui-searchbox" data-options="prompt:'Please Input Value',searcher:doSearch" style="width:100%">
+         <table id="tt" class="easyui-datagrid" style="width:700px;height:250px" url="datagrid8_getdata.php" title="Load Data" iconCls="icon-save"
+            sortName="itemid" sortOrder="asc" rownumbers="true" pagination="true">
+	        <thead>
+	            <tr>
+	                <th field="itemid" width="80" sortable="true">Item ID</th>
+	                <th field="productid" width="100" sortable="true">Product ID</th>
+	                <th field="listprice" width="80" align="right" sortable="true">List Price</th>
+	                <th field="unitcost" width="80" align="right" sortable="true">Unit Cost</th>
+	                <th field="attr1" width="220">Attribute</th>
+	                <th field="status" width="60" align="center">Stauts</th>
+	            </tr>
+	        </thead>
+    	</table>
     </div>
 </body>
 <!-- 引入Jquery -->  

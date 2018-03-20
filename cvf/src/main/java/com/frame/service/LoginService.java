@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.commons.codec.digest.Md5Crypt;
 import org.apache.commons.lang.SerializationUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,12 +19,13 @@ import redis.clients.jedis.JedisPool;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.annotation.SysLogColumn;
 import com.base.BaseService;
+import com.ctc.wstx.util.StringUtil;
 import com.entities.Friends;
-import com.entities.User;
+import com.entities.TUser;
 import com.redis.RedisHandler;
 import com.utils.ComUtils;
-import com.utils.StringUtils;
 
 import contant.Contant;
 @Service
@@ -31,14 +33,14 @@ public class LoginService extends BaseService{
 	@Autowired
 	@Qualifier("mysqlJdbcTemplate")
 	private JdbcTemplate mysqlJdbcTemplate;
-	public User findUser(String name,String password){
+	public TUser findUser(String name,String password){
 		String sql = "SELECT USERNAME,PASSWORD FROM USER WHERE NAME = '"+name+"' AND PASSWORD = '"+Md5Crypt.apr1Crypt(password)+"'";
 		List<Map<String, Object>> list = mysqlJdbcTemplate.queryForList(sql);
-		User user = new User();
+		TUser user = new TUser();
 		if (list!=null&&list.size()>0) {
 			Map<String, Object> map = list.get(0);
-			user.setPassWord(StringUtils.trim(map.get("PASSWORD")));
-			user.setUserName(StringUtils.trim(map.get("USERNAME")));
+			user.setPassWord(StringUtils.trim((String)map.get("PASSWORD")));
+			user.setUserName(StringUtils.trim((String)map.get("USERNAME")));
 			RedisHandler redisHandler = new RedisHandler();
 			JedisPool jedisPool = redisHandler.getInstance();
 			Jedis jedis = jedisPool.getResource();
@@ -48,7 +50,8 @@ public class LoginService extends BaseService{
 		return null;
 	}
 	@Transactional
-	public void saveNewUser(User user) {
+	@SysLogColumn(operationName="保存用户")
+	public void saveNewUser(TUser user) {
 		String sql = "insert into t_admin (admin_name,password,email,telephone) values ('"+user.getUserName()+"','"+user.getPassWord()+"','"+user.getEmail()+"','"+user.getMobile()+"')";
 		mysqlJdbcTemplate.execute(sql);
 	}
@@ -117,17 +120,19 @@ public class LoginService extends BaseService{
 		object.put("list", list);
 		return object;
 	}
-	public User findCurUser(String username,String password) {
+	public TUser findCurUser(String username,String password) {
 		String sql = "select admin_name,id from t_admin where admin_name='"+username+"' and password = '"+password+"'";
 		List<Map<String, Object>> list = mysqlJdbcTemplate.queryForList(sql);
 		if (list==null||list.size()==0) {
 			return null;
 		}
 		Map<String, Object> map = list.get(0);
-		User user = new User();
-		user.setUserName(StringUtils.trim(map.get("admin_name")));
-		user.setId(StringUtils.trim(map.get("id")));
-		return user;
+		TUser tUser = new TUser();
+		tUser.setUserName((String)map.get("admin_name"));
+		tUser.setPassWord(password);
+		tUser.setMobile("13554502745");
+		tUser.setId((Long)map.get("id"));
+		return tUser;
 	}
 	/**
 	 * 删除当前文件
@@ -159,12 +164,12 @@ public class LoginService extends BaseService{
 		List<Map<String, Object>> result = mysqlJdbcTemplate.queryForList(sql);
 		if (result!=null&&result.size()>0) {
 			for (Map<String, Object> map : result) {
-				String _id = StringUtils.trim(map.get("id"));
-				String _userid = StringUtils.trim(map.get("userid"));
-				String _name = StringUtils.trim(map.get("filename"));
+				String _id = StringUtils.trim((String)map.get("id"));
+				String _userid = StringUtils.trim((String)map.get("userid"));
+				String _name = StringUtils.trim((String)map.get("filename"));
 				int _level = (Integer)map.get("level");
 				Boolean _is = (Boolean)map.get("ishidden");
-				String _parentid = StringUtils.trim(map.get("parentid"));
+				String _parentid = StringUtils.trim((String)map.get("parentid"));
 				if (!_is) {
 					list.add(_id);
 					queryForChilds(_id,list);
@@ -185,7 +190,7 @@ public class LoginService extends BaseService{
 	 * @param user
 	 * @return
 	 */
-	public Map<String, List<Friends>> findMyAllFriends(User user) {
+	public Map<String, List<Friends>> findMyAllFriends(TUser user) {
 		String sql = "select id,group_name from t_person_friends_group where user_id = 1 ";
 		List<Map<String, Object>> list = mysqlJdbcTemplate.queryForList(sql);
 		Map<String, List<Friends>> dataMap = new LinkedHashMap<String, List<Friends>>();

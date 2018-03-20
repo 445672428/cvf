@@ -1,7 +1,7 @@
 Ext.Loader.setConfig({enabled: true});
 
 Ext.onReady(function () {
-	init3();
+	init4();
 });
 
 function init4(){
@@ -18,47 +18,20 @@ function init4(){
 	            store:teststore,
 	            columns: [{
 	                text: 'First Name',
-	                dataIndex: 'first'
+	                dataIndex: 'firstName'
 	            }, {
 	                text: 'Last Name',
-	                dataIndex: 'last'
-	            }, {
-	                text: 'Age',
-	                dataIndex: 'age'
-	            }, {
-	                flex: 1,
-	                text: 'Review',
-	                dataIndex: 'review'
+	                dataIndex: 'lastName'
 	            }]
-	     		}]
+	     }]
 	 });
 	var teststore = Ext.create('Ext.data.Store', {
-        data: [{
-            first: 'John',
-            last: 'Smith',
-            age: 32,
-            review: 'Solid performance, needs to comment code more!'
-        }, {
-            first: 'Jane',
-            last: 'Brown',
-            age: 56,
-            review: 'Excellent worker, has written over 100000 lines of code in 3 months. Deserves promotion.'
-        }, {
-            first: 'Kevin',
-            last: 'Jones',
-            age: 25,
-            review: 'Insists on using one letter variable names for everything, lots of bugs introduced.'
-        }, {
-            first: 'Will',
-            last: 'Zhang',
-            age: 41,
-            review: 'Average. Works at the pace of a snail but always produces reliable results.'
-        }, {
-            first: 'Sarah',
-            last: 'Carter',
-            age: 23,
-            review: 'Only a junior, but showing a lot of promise. Coded a Javascript parser in Assembler, very neat.'
-        }]
+	     data : [
+	             {firstName: 'Ed',    lastName: 'Spencer'},
+	             {firstName: 'Tommy', lastName: 'Maintz'},
+	             {firstName: 'Aaron', lastName: 'Conran'},
+	             {firstName: 'Jamie', lastName: 'Avins'}
+	         ]
     });
 }
 
@@ -75,11 +48,11 @@ function init3(){
         name: 'QueryBtn',
         handler: function () {
         	search();
-            // 设置搜索条件
         }
     });
 	var shipMgrToolBarPanel = Ext.create('Ext.form.Panel',{
 		width: '100%',
+		id:"mainPanel",
 	    renderTo: Ext.getBody(),
 	    height: window.innerHeight,
 	    bodyBorder: false,
@@ -107,18 +80,21 @@ function init3(){
 			                if (e.button == 12) {  // 若敲的键为回车，就执行【查询】搜索
 			                	//调用 按钮方法
 			                    shipMgrToolBarPanel.down('[name=QueryBtn]').handler();
-			                    search();
 			                }
 			            }
 			         },
         			 name:'search'
-		    	},searchAction,mypanel,{
+		    	},searchAction,myPanelGrid,{
 		    		width:'100%',
 		    		style:"margin-top:20px;overflow-y:auto;",
+		            layout:{ 
+		                type:"anchor"
+		            }, 
 		    		height:400,
 		    		flex:1,
 		    		border:0,
-		    		html:'bobobob'
+		    		items:[searchAction]
+		    		//html:'bobobob'
 		    	}
 		    ]
 		}]
@@ -128,180 +104,91 @@ function init3(){
 	    shipMgrToolBarPanel.setWidth(width);
 	    shipMgrToolBarPanel.setHeight(height);
 	});
-	var mypanel = Ext.create('Ext.grid.Panel',{  
-        title:'Job Enquiry',  
-        width:'100%',  
-        layout:"auto",  
-        style:"margin-left:auto;margin-right:auto;",  
-        renderTo:Ext.getBody(),  
-        columns:[{  
-                header:'Id',  
-                flex: 1,align:"center",   
-                dataIndex:'id',  
-                sortable:true  
-            },{  
-                header : "First Name",    
-                flex: 1, align:"center",   
-                dataIndex : 'firstName',    
-                sortable : true    
-            }, {    
-                header : "Last Name",    
-                flex: 1,  align:"center",  
-                dataIndex : 'lastName',    
-                sortable : true    
-            }, {    
-                header : "Login Name",    
-                flex: 1,   
-                align:"center",  
-                dataIndex : 'loginName',    
-                sortable : true    
-            }, {    
-                header : "Telephone",    
-                flex: 1,align:"center",  
-                hideable: false,  
-                dataIndex : 'telephone',    
-                sortable : true    
-            }, {    
-                header : "brithday",    
-                flex: 1, align:"center",   
-                dataIndex : 'brithday',  
-                sortable : true    
-            }, {    
-                header : "Sex Id",    
-                flex: 1, align:"center",   
-                dataIndex : 'sexId',    
-                sortable : true    
-            }, {    
-                header : "Dep Id",    
-                flex: 1,  align:"center",   
-                dataIndex : 'depId',    
-                sortable : true    
-            }],  
-        store:store,  
-        pageSize: itemsPerPage,  
-        dockedItems: [{    
-            dock: 'top',   /**在顶部显示*/  
-            xtype: 'toolbar', /**以工具栏形式展示*/    
-            items: {     
-                width: "25%",  
-                fieldLabel: 'Login Name:',  
-                labelWidth:100,  
-                xtype: 'searchfield',/**searchfield 是ExtJs的扩展组件  
-                                    引用路径为Ext.Loader.setPath('Ext.ux', rootPath+'/ux/') 
-                                    其中rootPath就是Ext类跟路径：比如http://localhost:8080/demo/Ext */  
-                store: store /**对应的数据集*/    
-           }    
-        },{  
-            xtype: 'pagingtoolbar',  
-            store: store,  
-            dock: 'bottom',  
-            displayInfo: true  
-        }]  
-    });  
 	
-    store.load({params:{start:0,limit:itemsPerPage}});  
-    var startTime;  
-    var endTime;  
-    function checkDate(){  
-        startTime = Ext.getCmp("startTime");  
-        endTime = Ext.getCmp("endTime");  
-        if(startTime != null && endTime != null && startTime.getValue() > endTime.getValue()){  
-            alert("Start time must be smaller than the end time!");  
-            return false;  
-        }  
-        return true;  
-    }  
-    function query(){  
-        //check date   
-        if(!checkDate()){  
-            return ;  
-        }  
-        params = {  
-            'conEnquiryTicketVo.startTime':startTime.getValue(),  
-            'conEnquiryTicketVo.endTime':endTime.getValue(),  
-            start:0,  
-            limit:itemsPerPage  
-        };  
-        store.load({params:params});  
-    }  
-	var mycolumns = [{ text: 'First Name',dataIndex: 'first'}, {
-        text: 'Last Name',
-        dataIndex: 'last'
-    }, {
-        text: 'Age',
-        dataIndex: 'age'
-    }, {
-        flex: 1,
-        text: 'Review',
-        dataIndex: 'review'
-    }];
-	
-	
-	var myStore = new Ext.create('Ext.data.Store',{
-		 proxy: {
-	     type: 'ajax',
-	     url: '/users.json',
-	     reader: {
-	         	type: 'json',
-	         	root: 'users'
-		     }
-		 },
-     	autoLoad: false
+	var myPanelGrid = Ext.define('KitchenSink.view.grid.GroupedHeaderGrid', {
+	    extend: 'Ext.grid.Panel',
+	    xtype: 'grouped-header-grid',
+	    store: 'Companies',
+	    columnLines: true,
+	    height: 350,
+	    title: 'Grouped Header Grid',
+	    viewConfig: {
+	        stripeRows: true
+	    },
+
+	    initComponent: function () {
+	        this.width = 675;
+	        this.columns = [{
+	                text     : 'Company',
+	                flex     : 1,
+	                sortable : false,
+	                dataIndex: 'company'
+	            }, {
+	                text: 'Stock Price',
+	                columns: [{
+	                    text     : 'Price',
+	                    width    : 75,
+	                    sortable : true,
+	                    renderer : 'usMoney',
+	                    dataIndex: 'price'
+	                }, {
+	                    text     : 'Change',
+	                    width    : 80,
+	                    sortable : true,
+	                    renderer :  function(val) {
+	                        if (val > 0) {
+	                            return '<span style="color:green;">' + val + '</span>';
+	                        } else if (val < 0) {
+	                            return '<span style="color:red;">' + val + '</span>';
+	                        }
+	                        return val;
+	                    },
+	                    dataIndex: 'change'
+	                }, {
+	                    text     : '% Change',
+	                    width    : 100,
+	                    sortable : true,
+	                    renderer : function(val) {
+	                        if (val > 0) {
+	                            return '<span style="color:green;">' + val + '</span>';
+	                        } else if (val < 0) {
+	                            return '<span style="color:red;">' + val + '</span>';
+	                        }
+	                        return val;
+	                    },
+	                    dataIndex: 'pctChange'
+	                }]
+	            }, {
+	                text     : 'Last Updated',
+	                width    : 115,
+	                sortable : true,
+	                renderer : Ext.util.Format.dateRenderer('m/d/Y'),
+	                dataIndex: 'lastChange'
+	            }];
+
+	        this.callParent();
+	    }
 	});
+	
+
 	//数据查询
 	function search(){
 		var params = shipMgrToolBarPanel.getForm().getValues();
-//		shipMgrToolBarPanel.getForm().load({
-//			params: params,  
-//	        url: CONTEXTPATH+"/search.do",  
-//	        method: "GET",  
-//	        waitMsg:"加载中，请稍后……",  
-//	        success: function (form, action)  
-//	        {  
-//	            //加载成功的处理  
-//	            Ext.MessageBox.alert("提示", "产品简介加载成功");  
-//	        },  
-//	        failure: function (form, action)  
-//	        {  
-//	            //加载失败的处理  
-//	            Ext.MessageBox.alert("提示", "产品简介加载失败<br/>原因是:" + action.result.info);  
-//	        }
-//		});
 		Ext.Ajax.request({   
             url:CONTEXTPATH+"/search.do",
             params: params,
             method:'GET',    
             waitMsg:'数据加载中，请稍后....',    
             success:function(response,opts){  
-/*            	var store = Ext.create('Ext.data.Store',{ 
-            		fields : json.fieldsNames,//把json的fieldsNames赋给fields    
-           			data : json.data          //把json的data赋给data    
-            	});
-            	Ext.getCmp("configGrid").reconfigure(store, json.columModle);  //定义grid的store和column    
-           		Ext.getCmp("configGrid").render();*/
+            	var mainPanel = Ext.getCmp("mainPanel");
+            	mainPanel.doLayout();
+            	debugger
             },    
             failure:function(response,opts){    
             }  
 		});
 	};
-/*	//查询返回列表
-   resultPanel = Ext.create("Ext.grid.Panel",{    
-       id : 'configGrid',    
-       name : 'configGrid',    
-       columns : [],    
-       displayInfo : true,    
-       emptyMsg : "没有数据显示",    
-       items : [],    
-       renderTo:'grid'    
-    });    
-	var sm = new Ext.grid.CheckboxSelectionModel();
-	var cm = [new Ext.grid.RowNumberer(),sm,{header:'内容',dataIndex:'content',width:100,hidden:true},
-			 {header:'内容',dataIndex:'content',width:100,hidden:true},
-			 {header:'内容',dataIndex:'content',width:100,hidden:true},
-			 {header:'内容',dataIndex:'content',width:100,hidden:true},
-			 {header:'内容',dataIndex:'content',width:100,hidden:true},
-			 {header:'内容',dataIndex:'content',width:100,hidden:true},
-			 {header:'内容',dataIndex:'content',width:100,hidden:true}];*/
+
 }
 
 

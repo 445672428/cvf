@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,7 +24,6 @@ import com.lowagie.text.Paragraph;
 import com.lowagie.text.Table;
 import com.lowagie.text.rtf.RtfWriter2;
 import com.lowagie.text.rtf.style.RtfParagraphStyle;
-import com.utils.StringUtils;
 
 public class SybaseTables {
 
@@ -57,8 +57,8 @@ public class SybaseTables {
         for(Map<String, Object> map : keyList) {
             int indid = map.get("indid") == null ? 0 : (Integer)map.get("indid");
             int keycnt = map.get("keycnt") == null ? 0 : (Integer)map.get("keycnt");
-            String keyName = StringUtils.trim(map.get("name"));// 主键名称
-            String tableName = StringUtils.trim(map.get("tabname"));// 表名称
+            String keyName = StringUtils.trim((String)map.get("name"));// 主键名称
+            String tableName = StringUtils.trim((String)map.get("tabname"));// 表名称
             for(int index = 1; index <= keycnt; index++) {
                 String pkSql =
                         "SELECT index_col('" + tableName + "',2," + index
@@ -67,7 +67,7 @@ public class SybaseTables {
                 List<Map<String, Object>> pkList = jdbcTemplate.queryForList(pkSql);
                 if(pkList != null && pkList.size() > 0) {
                     Map<String, Object> kyM = pkList.get(0);
-                    String pkName = StringUtils.trim(kyM.get("pkname"));
+                    String pkName = StringUtils.trim((String)kyM.get("pkname"));
                     if(allPkMap.get(tableName) == null) {
                         Map<String, String> mm = new HashMap<String, String>();
                         mm.put(pkName, "Y");
@@ -84,7 +84,7 @@ public class SybaseTables {
         List<String> taleNames = new ArrayList<String>();
         for(int i = 0; i < list.size(); i++) {
             Map<String, Object> map = list.get(i);
-            String name = StringUtils.trim(map.get("name"));
+            String name = StringUtils.trim((String)map.get("name"));
             char first = name.charAt(0);
             if(Character.isLowerCase(first)) {
                 continue;
@@ -165,10 +165,10 @@ public class SybaseTables {
                 int len = infoList.size();
                 for(Map<String, Object> tmpMap : infoList) {
                     Map<String, String> tMap = aliaName();
-                    String tName = StringUtils.trim(tmpMap.get("tablename"));
-                    String cName = StringUtils.trim(tmpMap.get("colname"));
-                    String cLen = StringUtils.trim(tmpMap.get("colLength"));
-                    String cType = StringUtils.trim(tmpMap.get("colType"));
+                    String tName = StringUtils.trim((String)tmpMap.get("tablename"));
+                    String cName = StringUtils.trim((String)tmpMap.get("colname"));
+                    String cLen = StringUtils.trim((String)tmpMap.get("colLength"));
+                    String cType = StringUtils.trim((String)tmpMap.get("colType"));
                     String mc = "";
                     int mapSize = 0;
                     for(String key : tMap.keySet()) {

@@ -20,32 +20,38 @@ public class ApplicationContextManager implements ApplicationContext{
 
 	public Environment getEnvironment() {
 		// TODO Auto-generated method stub
+		System.out.println("ApplicationContextManager getEnvironment");
 		return null;
 	}
 
 	public boolean containsBeanDefinition(String beanName) {
 		// TODO Auto-generated method stub
+		System.out.println("ApplicationContextManager containsBeanDefinition");
 		return false;
 	}
 
 	public int getBeanDefinitionCount() {
 		// TODO Auto-generated method stub
+		System.out.println("ApplicationContextManager getBeanDefinitionCount");
 		return 0;
 	}
 
 	public String[] getBeanDefinitionNames() {
 		// TODO Auto-generated method stub
+		System.out.println("ApplicationContextManager getEnvironment");
 		return null;
 	}
 
 	public String[] getBeanNamesForType(Class<?> type) {
 		// TODO Auto-generated method stub
+		System.out.println("ApplicationContextManager getBeanNamesForType");
 		return null;
 	}
 
 	public String[] getBeanNamesForType(Class<?> type,
 			boolean includeNonSingletons, boolean allowEagerInit) {
 		// TODO Auto-generated method stub
+		System.out.println("ApplicationContextManager getBeanNamesForType");
 		return null;
 	}
 

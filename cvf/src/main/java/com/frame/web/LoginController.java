@@ -19,7 +19,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.entities.Friends;
-import com.entities.User;
+import com.entities.TUser;
 import com.frame.multil.service.HotleService;
 import com.frame.multil.service.SearchService;
 import com.frame.service.LoginService;
@@ -48,12 +48,12 @@ public class LoginController {
 	public String login(HttpServletRequest request){
 		String username = request.getParameter("username");
 		String password = request.getParameter("password"); 
-		User user = loginService.findCurUser(username,password);
-		if (user==null) {
+		TUser tUser =  loginService.findCurUser(username,password);
+		if (null == tUser) {
 			return "redirect:login.jsp";
 		}
 		HttpSession session = request.getSession();
-		session.setAttribute(Contant.USER_KEY, user);
+		session.setAttribute(Contant.USER_KEY, tUser);
 		return "home";
 	}
 	
@@ -66,7 +66,7 @@ public class LoginController {
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 		String mobile = request.getParameter("mobile");
-		User user = new User();
+		TUser user = new TUser();
 		user.setPassWord(password);
 		user.setUserName(userName);
 		user.setEmail(email);
@@ -176,7 +176,7 @@ public class LoginController {
 	
 	@RequestMapping(value="chat/chatfriends.do",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	public @ResponseBody Map<String,List<Friends>> getMyAllFriends(HttpServletRequest request,HttpServletResponse response){
-		User user = (User)request.getSession().getAttribute(Contant.USER_KEY);
+		TUser user = (TUser)request.getSession().getAttribute(Contant.USER_KEY);
 		Map<String,List<Friends>> list = loginService.findMyAllFriends(user);
 		return list;
 	}
