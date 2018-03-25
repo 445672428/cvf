@@ -18,7 +18,10 @@
 	<!-- springMVC扫描驱动 添加注解驱动 -->
     <mvc:annotation-driven enable-matrix-variables="true" />
 	<!-- 定义Controller的扫描包 -->
-	<context:component-scan base-package="com.frame.web" />
+	<!-- 解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解 -->
+	<context:component-scan base-package="com.frame.web" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
     
     <!-- 将无法mapping到Controller的path交给default servlet handler处理 -->
     <mvc:default-servlet-handler />
@@ -48,6 +51,54 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+    
+<!--     
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+            
+            使用XML格式输出数据
+            <bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+		        <constructor-arg>
+		        	<bean class="org.springframework.oxm.xstream.XStreamMarshaller">
+				        <property name="streamDriver">
+				            <bean class="com.thoughtworks.xstream.io.xml.StaxDriver"/>
+				        </property>
+				        <property name="annotatedClasses">
+				            <list>
+				                <value>com.iwc.shop.common.persistence.BaseEntity</value>
+				                <value>com.iwc.shop.common.supcan.treelist.TreeList</value>
+				                <value>com.iwc.shop.common.supcan.treelist.cols.Col</value>
+				                <value>com.iwc.shop.common.supcan.treelist.cols.Group</value>
+				            </list>
+				        </property>
+				    </bean>
+		        </constructor-arg>
+		        <property name="supportedMediaTypes" value="application/xml"></property>
+			</bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven> -->
+    
+    <!-- REST中根据URL后缀自动判定Content-Type及相应的View -->
+<!--     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+	    <property name="mediaTypes" >
+	        <map> 
+                <entry key="xml" value="application/xml"/> 
+                <entry key="json" value="application/json"/> 
+            </map>
+	    </property>
+        <property name="ignoreAcceptHeader" value="true"/>
+        <property name="favorPathExtension" value="true"/>
+	</bean> -->
+    
+    
     <!-- 配置springmvc 视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/"></property>

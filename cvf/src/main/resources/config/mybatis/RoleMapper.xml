@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mybatis.service.mapper.RoleMapper" >
-  <resultMap id="BaseResultMap" type="com.mybatis.service.pojo.Role" >
+<mapper namespace="com.mybatis.mapper.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.mybatis.pojo.Role" >
     <id column="r_id" property="rId" jdbcType="VARCHAR" />
     <result column="role_name" property="roleName" jdbcType="VARCHAR" />
   </resultMap>
@@ -18,11 +18,11 @@
     delete from b_role
     where r_id = #{rId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.mybatis.service.pojo.Role" >
+  <insert id="insert" parameterType="com.mybatis.pojo.Role" >
     insert into b_role (r_id, role_name)
     values (#{rId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.mybatis.service.pojo.Role" >
+  <insert id="insertSelective" parameterType="com.mybatis.pojo.Role" >
     insert into b_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="rId != null" >
@@ -41,7 +41,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mybatis.service.pojo.Role" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mybatis.pojo.Role" >
     update b_role
     <set >
       <if test="roleName != null" >
@@ -50,7 +50,7 @@
     </set>
     where r_id = #{rId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mybatis.service.pojo.Role" >
+  <update id="updateByPrimaryKey" parameterType="com.mybatis.pojo.Role" >
     update b_role
     set role_name = #{roleName,jdbcType=VARCHAR}
     where r_id = #{rId,jdbcType=VARCHAR}

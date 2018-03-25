@@ -9,15 +9,27 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import redis.clients.jedis.Jedis;
 
 public class SpringTest {
 	public static void main(String[] args) {
+		 ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("classpath:config/spring.xml");  
+//		 DriverManagerDataSource managerDataSource = (DriverManagerDataSource)classPathXmlApplicationContext.getBean("mybatisDataSource");
+		 
+		 
+		 HibernateTemplate managerData = (HibernateTemplate)classPathXmlApplicationContext.getBean("hibernateTemplate");
+		 System.out.println(managerData);
+//		 System.out.println(managerDataSource);
+//		 SqlSessionTemplate sessionTemplate = (SqlSessionTemplate)classPathXmlApplicationContext.getBean("sqlSession");
+//		 System.out.println(sessionTemplate);
+	}
+	
+	public static void jedis(){
 //		 ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("classpath:config/spring.xml");  
 //		 DriverManagerDataSource sqlSessionFactory = (DriverManagerDataSource) classPathXmlApplicationContext.getBean("mysqlDataSource");  
 //		 System.out.println(sqlSessionFactory);
@@ -25,7 +37,6 @@ public class SpringTest {
 		jedis.set("BOBO", "BOBO");
 		System.out.println(jedis.get("BOBO"));
 	}
-	
 	//监听器有属性监听器 上下文监听器  session监听器 对象请求初始化和销毁监听器
 		private static Lock lock = new ReentrantLock();
 

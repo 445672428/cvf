@@ -46,7 +46,6 @@ public class PageUtils {
 			CloseableHttpResponse response = client.execute(request);
 			HttpEntity entity = response.getEntity();
 			content = EntityUtils.toString(entity);
-			logger.info("当前线程id:{},页面下载成功,url:{},消耗时间：{}",Thread.currentThread().getId(),url,System.currentTimeMillis()-start_time);
 		} catch(HttpHostConnectException e){
 			logger.error("代理ip失效，ip:{},port:{}",proxy_ip,proxy_port);
 		}catch (Exception e) {

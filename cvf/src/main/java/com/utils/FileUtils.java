@@ -1,6 +1,9 @@
 package com.utils;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
@@ -21,7 +23,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
+import javax.imageio.ImageIO;
 
 import contant.Contant;
 
@@ -177,11 +179,13 @@ public class FileUtils {
 		}
 	}
 
-
 	/**
 	 * 创建文件
-	 * @param fileName  文件名称
-	 * @param filecontent 文件内容
+	 * 
+	 * @param fileName
+	 *            文件名称
+	 * @param filecontent
+	 *            文件内容
 	 * @return 是否创建成功，成功则返回true
 	 */
 	public static boolean createFile(String fileName, String filecontent) {
@@ -211,7 +215,8 @@ public class FileUtils {
 	 * @return
 	 * @throws IOException
 	 */
-	public static boolean writeFileContent(String filepath, String newstr) throws IOException {
+	public static boolean writeFileContent(String filepath, String newstr)
+			throws IOException {
 		Boolean bool = false;
 		String filein = newstr + "\r\n";// 新写入的行，换行
 		String temp = "";
@@ -265,16 +270,19 @@ public class FileUtils {
 
 	/**
 	 * 以字符为单位读取文件，常用于读文本，数字等类型的文件
-	 * @param fileName 文件名
+	 * 
+	 * @param fileName
+	 *            文件名
 	 */
-	public static String readFileByChars(String fileName,String result) {
+	public static String readFileByChars(String fileName, String result) {
 		Reader reader = null;
 		try {
 			char[] tempchars = new char[30];
 			int charread = 0;
 			reader = new InputStreamReader(new FileInputStream(fileName));
 			while ((charread = reader.read(tempchars)) != -1) {
-				if ((charread == tempchars.length)&& (tempchars[tempchars.length - 1] != 'r')) {
+				if ((charread == tempchars.length)
+						&& (tempchars[tempchars.length - 1] != 'r')) {
 					System.out.print(tempchars);
 				} else {
 					for (int i = 0; i < charread; i++) {
@@ -299,10 +307,11 @@ public class FileUtils {
 		return result;
 	}
 
-
 	/**
 	 * 随机读取文件内容
-	 * @param fileName 文件名
+	 * 
+	 * @param fileName
+	 *            文件名
 	 */
 	public static void readFileByRandomAccess(String fileName) {
 		RandomAccessFile randomFile = null;
@@ -545,10 +554,34 @@ public class FileUtils {
 		}
 	}
 
+	/**
+	 * 图片转为二进制
+	 * 
+	 * @throws IOException
+	 */
+	public byte[] imageToBinary(String fileName) throws IOException {
+		File file = new File(fileName);
+		BufferedImage bf = ImageIO.read(file);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ImageIO.write(bf, "jpg", baos); // 经测试转换的图片是格式这里就什么格式，否则会失真
+		byte[] bytes = baos.toByteArray();
+		return bytes;
+	}
+	/**
+	 * 图片转为二进制
+	 * 
+	 * @throws IOException
+	 */
+	public void imageToBinary(byte[] bytes,String path) throws IOException {
+         ByteArrayInputStream bais = new ByteArrayInputStream(bytes);  
+         BufferedImage bi1 = ImageIO.read(bais);  
+         File w2 = new File(path);// 可以是jpg,png,gif格式  
+         ImageIO.write(bi1, "jpg", w2);// 不管输出什么格式图片，此处不需改动  
+	}
 	// ********************************************************** File的所有操作
 	// ***************************************************************************//
 
 	public static void main(String[] args) {
-		
+
 	}
 }

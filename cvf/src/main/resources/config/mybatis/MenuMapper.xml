@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mybatis.service.mapper.MenuMapper" >
-  <resultMap id="BaseResultMap" type="com.mybatis.service.pojo.Menu" >
+<mapper namespace="com.mybatis.mapper.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.mybatis.pojo.Menu" >
     <id column="mn_id" property="mnId" jdbcType="VARCHAR" />
     <result column="btn_id" property="btnId" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -20,13 +20,13 @@
     delete from b_menu
     where mn_id = #{mnId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.mybatis.service.pojo.Menu" >
+  <insert id="insert" parameterType="com.mybatis.pojo.Menu" >
     insert into b_menu (mn_id, btn_id, name, 
       menu_status)
     values (#{mnId,jdbcType=VARCHAR}, #{btnId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{menuStatus,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.mybatis.service.pojo.Menu" >
+  <insert id="insertSelective" parameterType="com.mybatis.pojo.Menu" >
     insert into b_menu
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="mnId != null" >
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mybatis.service.pojo.Menu" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mybatis.pojo.Menu" >
     update b_menu
     <set >
       <if test="btnId != null" >
@@ -72,7 +72,7 @@
     </set>
     where mn_id = #{mnId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mybatis.service.pojo.Menu" >
+  <update id="updateByPrimaryKey" parameterType="com.mybatis.pojo.Menu" >
     update b_menu
     set btn_id = #{btnId,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},

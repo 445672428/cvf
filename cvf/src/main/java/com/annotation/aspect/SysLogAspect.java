@@ -83,9 +83,10 @@ public class SysLogAspect {
 			if (m.getName().equals(methodName)) {
 				Class[] tmpCs = m.getParameterTypes();
 				if (tmpCs.length == arguments.length) {
-					SysLogColumn methodCache = m
-							.getAnnotation(SysLogColumn.class);
-					methode = methodCache.operationName();
+					SysLogColumn methodCache = m.getAnnotation(SysLogColumn.class);
+					if(null != methodCache){
+						methode = methodCache.operationName();
+					}
 					break;
 				}
 			}

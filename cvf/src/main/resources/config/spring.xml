@@ -37,17 +37,18 @@
 	</bean>
 	
 	<!-- 配置spring的包扫描 -->
-	<context:component-scan base-package="com.frame.*"></context:component-scan>
-	<context:component-scan base-package="com.push.*"></context:component-scan>
-	<context:component-scan base-package="com.hibernate.*"></context:component-scan>
-	<context:component-scan base-package="com.mybatis.*"></context:component-scan>
+	<!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
+	<context:component-scan base-package="com.frame.*,com.hibernate.service,com.mybatis.service,com.push">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
 	<import resource="spring-dataSource-mysql.xml"/>
 	<import resource="spring-dataSource-sybase.xml"/>
 	<import resource="spring-cxf.xml"/>
   	<import resource="spring-mutildataSource.xml"/>
 	<import resource="spring-redis.xml"/> 
-	<import resource="spring-mybatis.xml"/>
-	<import resource="spring-hibernate.xml"/> 
+ 	<import resource="spring-mybatis.xml"/>
+	<import resource="spring-hibernate.xml"/>
 	<import resource="application-scheduler.xml"/>
 	<import resource="spring-activity.xml"/>
 	

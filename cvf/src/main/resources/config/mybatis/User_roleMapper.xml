@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mybatis.service.mapper.User_roleMapper" >
-  <resultMap id="BaseResultMap" type="com.mybatis.service.pojo.User_role" >
+<mapper namespace="com.mybatis.mapper.User_roleMapper" >
+  <resultMap id="BaseResultMap" type="com.mybatis.pojo.User_role" >
     <id column="b_user_index" property="bUserIndex" jdbcType="VARCHAR" />
     <id column="b_role_index" property="bRoleIndex" jdbcType="VARCHAR" />
     <result column="u_name" property="uName" jdbcType="VARCHAR" />
@@ -10,25 +10,25 @@
   <sql id="Base_Column_List" >
     b_user_index, b_role_index, u_name, r_id
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.mybatis.service.pojo.User_roleKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.mybatis.pojo.User_roleKey" >
     select 
     <include refid="Base_Column_List" />
     from b_user_role
     where b_user_index = #{bUserIndex,jdbcType=VARCHAR}
       and b_role_index = #{bRoleIndex,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.mybatis.service.pojo.User_roleKey" >
+  <delete id="deleteByPrimaryKey" parameterType="com.mybatis.pojo.User_roleKey" >
     delete from b_user_role
     where b_user_index = #{bUserIndex,jdbcType=VARCHAR}
       and b_role_index = #{bRoleIndex,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.mybatis.service.pojo.User_role" >
+  <insert id="insert" parameterType="com.mybatis.pojo.User_role" >
     insert into b_user_role (b_user_index, b_role_index, u_name, 
       r_id)
     values (#{bUserIndex,jdbcType=VARCHAR}, #{bRoleIndex,jdbcType=VARCHAR}, #{uName,jdbcType=VARCHAR}, 
       #{rId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.mybatis.service.pojo.User_role" >
+  <insert id="insertSelective" parameterType="com.mybatis.pojo.User_role" >
     insert into b_user_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="bUserIndex != null" >
@@ -59,7 +59,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mybatis.service.pojo.User_role" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mybatis.pojo.User_role" >
     update b_user_role
     <set >
       <if test="uName != null" >
@@ -72,7 +72,7 @@
     where b_user_index = #{bUserIndex,jdbcType=VARCHAR}
       and b_role_index = #{bRoleIndex,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mybatis.service.pojo.User_role" >
+  <update id="updateByPrimaryKey" parameterType="com.mybatis.pojo.User_role" >
     update b_user_role
     set u_name = #{uName,jdbcType=VARCHAR},
       r_id = #{rId,jdbcType=VARCHAR}

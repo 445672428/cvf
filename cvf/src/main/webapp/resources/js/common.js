@@ -13,6 +13,35 @@
  * @param format {date} 传入要格式化的日期类型
  * @returns {2015-01-31 16:30:00}
  */
+Function.prototype.overwrite = function(f) {
+    var result = f;
+    if (!result.original) {
+        result.original = this;
+    }
+    return result;
+}
+Date.prototype.toString = Date.prototype.toString.overwrite(
+	function(format){
+		var result = new String();
+		if(typeof(format) == 'string'){
+			result = format;
+			result = result.replace(/yyyy|YYYY/, this.getFullYear());
+	        result = result.replace(/yy|YY/, this.getFullYear().toString().substr(2, 2));
+	        result = result.replace(/MM/, this.getMonth() >= 9 ? this.getMonth() + 1 : "0" + (this.getMonth() + 1));
+	        result = result.replace(/M/, this.getMonth());
+	        result = result.replace(/dd|DD/, this.getDate() > 9 ? this.getDate() : "0" + this.getDate());
+	        result = result.replace(/d|D/, this.getDate());
+	        result = result.replace(/hh|HH/, this.getHours() > 9 ? this.getHours() : "0" + this.getHours());
+	        result = result.replace(/h|H/, this.getHours());
+	        result = result.replace(/mm/, this.getMinutes() > 9 ? this.getMinutes() : "0" + this.getMinutes());
+	        result = result.replace(/m/, this.getMinutes());
+	        result = result.replace(/ss|SS/, this.getSeconds() > 9 ? this.getSeconds() : "0" + this.getSeconds());
+	        result = result.replace(/s|S/, this.getSeconds());
+		}
+		return result;
+	}
+);
+	
 Date.prototype.dateFormat = function (format){
     var o = {
         "M+" : this.getMonth()+1, //month

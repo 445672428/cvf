@@ -3,6 +3,8 @@ package com.entities;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.criterion.DetachedCriteria;
+
 public class PageBean {
 	private static final int DEFAULT_PAGE_SIZE = 100;
 
@@ -13,7 +15,7 @@ public class PageBean {
 	private int page = 1; // 当前页
 
 	private int totalPage = 0; // 总计有多少页
-
+	private DetachedCriteria criteria;
 	private int totalCount = 0; // 总记录数
 	private List<Map<String, Object>> list;//封装数据集
 	public PageBean() {
@@ -102,5 +104,11 @@ public class PageBean {
 	 */
 	public boolean hasLastPage() {
 		return page > 1;
+	}
+	public void setCriteria(DetachedCriteria criteria) {
+		this.criteria = criteria;
+	}
+	public DetachedCriteria getCriteria() {
+		return criteria;
 	}
 }

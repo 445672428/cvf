@@ -22,10 +22,12 @@
 		<spring-rabbit.version>1.4.5.RELEASE</spring-rabbit.version>
         <mybatis.version>3.4.1</mybatis.version>
         <spring-mybatis.version>1.3.0</spring-mybatis.version>
-        <hibernate.version>4.1.7.Final</hibernate.version>
+        <!-- <hibernate.version>4.1.7.Final</hibernate.version> -->
+        <hibernate.version>3.6.10.Final</hibernate.version>
         <aspectjweaver.version>1.8.9</aspectjweaver.version>
 
 		<junit.version>4.7</junit.version>
+		<xstream.version>1.4.7</xstream.version>
         <cglib.version>3.2.4</cglib.version>
         <log4j.version>1.2.17</log4j.version>
         <camel-ftp.version>2.13.2</camel-ftp.version>
@@ -153,7 +155,11 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 		<dependency>
 	        <groupId>org.springframework.amqp</groupId>
 	        <artifactId>spring-rabbit</artifactId>
@@ -172,6 +178,11 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
+<!-- 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency> -->
 		<!-- end -->
 
 		<!-- Mybatis -->
@@ -335,7 +346,12 @@
 			<artifactId>xml-apis</artifactId>
 			<version>${xml-apis.version}</version>
 		</dependency>
-
+		<!-- xstream xml -->
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>${xstream.version}</version>
+		</dependency>
 		<!-- 配置xml 文件解析器 -->
 		<dependency>
 			<groupId>sax</groupId>
@@ -355,11 +371,17 @@
 			<version>${fastjson.version}</version>
 		</dependency>
 		<!-- jackson-databind -->
-		<dependency>
+<!-- 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.8.9</version>
-		</dependency>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+		    	</exclusion>
+		    </exclusions>
+		</dependency> -->
 
 		<!-- cxf的jar包 -->
 		<dependency>

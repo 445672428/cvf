@@ -19,7 +19,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.entities.PageBean;
 import com.frame.facets.imp.SearchEtlImp;
 import com.frame.multil.service.HotleService;
-import com.hibernate.service.SysService;
+import com.frame.service.SysService;
+import com.hibernate.service.SysLogService;
 
 @Controller
 public class HotleController {
@@ -29,7 +30,17 @@ public class HotleController {
 	private HotleService hotleService;
 	@Autowired
 	private SysService sysService;
-	
+	@Autowired
+	private SysLogService sysLogService;
+	/**
+		lucene查询
+	 * @throws IOException 
+	 */
+	@RequestMapping(value="t.do",method=RequestMethod.GET)
+	public void dasds(HttpServletRequest request,HttpServletResponse response,String search) throws IOException {
+		sysService.name();
+		sysLogService.insertmysave();
+	}
 	/**
 		lucene查询
 	 * @throws IOException 
@@ -54,7 +65,7 @@ public class HotleController {
 	@RequestMapping(value="guessinfo.do",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String queryHotlePage(int pagesize,int start) {
-		sysService.groupAdd();
+		//sysService.groupAdd();
 		PageBean pageBean = hotleService.queryHotleMsg(pagesize,start);
 		return JSON.toJSONString(pageBean);
 	}
