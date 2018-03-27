@@ -30,7 +30,7 @@
     }
     
     function onMessage(evt) {
-        alert(evt.data);
+       // alert(evt.data);
     }
     function onError() {}
     function onClose() {}

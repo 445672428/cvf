@@ -40,6 +40,7 @@ public class WebsocketEndPoint extends TextWebSocketHandler{
         System.out.println("用户"+username+"已退出！");
         users.remove(session);
         System.out.println("剩余在线用户"+users.size());
+        session.close();
     }
 
     /**
@@ -54,6 +55,7 @@ public class WebsocketEndPoint extends TextWebSocketHandler{
         if(session.isOpen()){session.close();}
         logger.debug("websocket connection closed......");
         users.remove(session);
+        session.close();
     }
 
     public boolean supportsPartialMessages() {
