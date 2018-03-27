@@ -39,7 +39,7 @@
         </property>
 	</bean>	 -->
 	<!-- 用于解决SpringMVC乱码 -->
-	<mvc:annotation-driven>
+ 	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name="supportedMediaTypes">
@@ -52,8 +52,8 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
     
-<!--     
-    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
+     
+<!--    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name="supportedMediaTypes">
@@ -63,8 +63,6 @@
                     </list>
                 </property>
             </bean>
-            
-            使用XML格式输出数据
             <bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
 		        <constructor-arg>
 		        	<bean class="org.springframework.oxm.xstream.XStreamMarshaller">
@@ -73,10 +71,7 @@
 				        </property>
 				        <property name="annotatedClasses">
 				            <list>
-				                <value>com.iwc.shop.common.persistence.BaseEntity</value>
-				                <value>com.iwc.shop.common.supcan.treelist.TreeList</value>
-				                <value>com.iwc.shop.common.supcan.treelist.cols.Col</value>
-				                <value>com.iwc.shop.common.supcan.treelist.cols.Group</value>
+				                <value>com.frame.persistence.BaseEntity</value>
 				            </list>
 				        </property>
 				    </bean>
@@ -87,7 +82,7 @@
     </mvc:annotation-driven> -->
     
     <!-- REST中根据URL后缀自动判定Content-Type及相应的View -->
-<!--     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 	    <property name="mediaTypes" >
 	        <map> 
                 <entry key="xml" value="application/xml"/> 
@@ -96,7 +91,7 @@
 	    </property>
         <property name="ignoreAcceptHeader" value="true"/>
         <property name="favorPathExtension" value="true"/>
-	</bean> -->
+	</bean>
     
     
     <!-- 配置springmvc 视图解析器 -->
@@ -104,7 +99,8 @@
 		<property name="prefix" value="/WEB-INF/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	
+	<!-- 定义无Controller的path<->view直接映射 -->
+	<!-- <mvc:view-controller path="/" view-name="redirect:${web.view.index}"/> -->
 	<!-- 配置文件上传解析器 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 总文件大小 -->

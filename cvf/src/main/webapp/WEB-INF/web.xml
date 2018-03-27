@@ -47,6 +47,37 @@
 		<servlet-name>framemvc</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+<!-- 	<servlet-mapping>
+		<servlet-name>framemvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping> -->
+	
+	<!-- 解决网站跨域访问 -->
+	<filter>  
+	    <filter-name>corsFilter</filter-name>  
+	    <filter-class>com.frame.intercept.CorsFilter</filter-class>  
+	    <init-param>  
+	        <param-name>allowOrigin</param-name>  
+	        <param-value>http://localhost:8082/cvf</param-value>  
+	    </init-param>  
+	    <init-param>  
+	        <param-name>allowMethods</param-name>  
+	        <param-value>GET,POST,PUT,DELETE,OPTIONS</param-value>  
+	    </init-param>  
+	    <init-param>  
+	        <param-name>allowCredentials</param-name>  
+	        <param-value>true</param-value>  
+	    </init-param>  
+	    <init-param>  
+	        <param-name>allowHeaders</param-name>  
+	        <param-value>Content-Type</param-value>  
+	    </init-param>  
+	</filter>  
+	<filter-mapping>  
+	    <filter-name>corsFilter</filter-name>  
+	    <url-pattern>/*</url-pattern>  
+	</filter-mapping>  
+
 	<!-- 配置日志监听器 -->
 	<context-param>  
 	    <param-name>logbackConfigLocation</param-name>  

@@ -53,7 +53,7 @@
 	<import resource="spring-activity.xml"/>
 	
 	<!--websocket 配置-->
-<!--     <bean id="myHandler" class="com.push.WebsocketEndPoint"/>
+  <!--   <bean id="myHandler" class="com.push.WebsocketEndPoint"/>
     <websocket:handlers  allowed-origins="*">
         <websocket:mapping path="/myHandler" handler="myHandler"/>
         <websocket:handshake-interceptors>
@@ -61,8 +61,8 @@
         </websocket:handshake-interceptors>
     </websocket:handlers> -->
   	
-	<!--     <bean id='socketConfig' class="com.push.SocketConfig"></bean> -->
-	<!--   <bean id="logInterceptor" class="com.annotation.aspect.LogAnnotationInterceptor"/>-->
+	<!-- <bean id='socketConfig' class="com.push.SocketConfig"></bean> -->
+	<!-- <bean id="logInterceptor" class="com.annotation.aspect.LogAnnotationInterceptor"/>-->
 	<!-- <aop:aspectj-autoproxy proxy-target-class="true"/>  -->
 
 	<!-- 配置一个切面点 -->

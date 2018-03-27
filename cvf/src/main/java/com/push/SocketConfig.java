@@ -9,30 +9,26 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
-
 @Configuration
 @EnableWebMvc
 @EnableWebSocket
-public class SocketConfig extends WebMvcConfigurerAdapter implements WebSocketConfigurer {
+public class SocketConfig extends WebMvcConfigurerAdapter implements
+		WebSocketConfigurer {
 
+	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 
-        public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+		// 前台 可以使用websocket环境
+		registry.addHandler(myWebSocketHandler(), "/websocket/socketServer.do").addInterceptors(new HandshakeInterceptor());
 
-            //前台 可以使用websocket环境
-            registry.addHandler(myWebSocketHandler(),"/webbobo").addInterceptors(new HandshakeInterceptor());
+		// 前台 不可以使用websocket环境，则使用sockjs进行模拟连接
+		registry.addHandler(myWebSocketHandler(), "/sockjs/socketServer.do").addInterceptors(new HandshakeInterceptor()).withSockJS();
 
+	}
 
-          //前台 不可以使用websocket环境，则使用sockjs进行模拟连接
-            registry.addHandler(myWebSocketHandler(), "/sockjs/webbobo").addInterceptors(new HandshakeInterceptor())
-                    .withSockJS();
-        }
-
-
-        // websocket 处理类
-        @Bean
-        public WebSocketHandler myWebSocketHandler(){
-            return new WebsocketEndPoint();
-        }
-
+	// websocket 处理类
+	@Bean
+	public WebSocketHandler myWebSocketHandler() {
+		return new WebsocketEndPoint();
+	}
 
 }
