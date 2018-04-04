@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import pojo.ProgressInfo;
+import com.entities.Progress;
+
 import contant.Contant;
 
 public class BigMultiHandlerAction {
@@ -19,7 +20,7 @@ public class BigMultiHandlerAction {
 	   if (request.getSession().getAttribute(Contant.SESSION_KEY_UPLOAD_PROGRESS_INFO) == null) {  
 	        return "";  
 	    }
-	   ProgressInfo ps = (ProgressInfo) request.getSession().getAttribute(Contant.SESSION_KEY_UPLOAD_PROGRESS_INFO);
+	   Progress ps = (Progress) request.getSession().getAttribute(Contant.SESSION_KEY_UPLOAD_PROGRESS_INFO);
 	   Double percent = 0d;  
 	    if (ps.getContentLength() != 0L) {  
 	        percent = (double) ps.getBytesRead() / (double) ps.getContentLength() * 1.0d;  

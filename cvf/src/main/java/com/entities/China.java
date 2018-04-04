@@ -1,8 +1,11 @@
 package com.entities;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 
-public class China implements Serializable{
+import com.base.DataEntity;
+
+public class China extends DataEntity<China> implements Serializable{
 	
 	/**
 	 * 
@@ -11,7 +14,7 @@ public class China implements Serializable{
 	private String name;
 	private String code;
 	private String parentcode;
-	//private List<China> chinas;
+
 	public China(String name,String code,String parentcode) {
 		this.name = name;
 		this.code = code;
@@ -39,16 +42,10 @@ public class China implements Serializable{
 	public void setParentcode(String parentcode) {
 		this.parentcode = parentcode;
 	}
-//	public void setChinas(List<China> chinas) {
-//		this.chinas = chinas;
-//	}
-//	public List<China> getChinas() {
-//		return chinas;
-//	}
+
 	@Override
 	public String toString() {
 		return "China [name=" + name + ", code=" + code + ", parentcode="
 				+ parentcode + "]";
 	}
-	
 }

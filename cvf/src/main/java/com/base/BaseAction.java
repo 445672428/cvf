@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,20 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
+import com.entities.China;
 import com.frame.service.ConfigService;
 
 public class BaseAction {
 	protected static final Logger logger = LoggerFactory.getLogger(BaseAction.class);
 	@Autowired
 	protected ConfigService configService;
-
-
+	@Test
+	public void nannn(){
+		China china = new China("波波", "123", "2");
+		china.getCreate();
+		System.out.println(china);
+	}
+	
 	/**
 	 * @param list
 	 * @param clz
