@@ -2,6 +2,8 @@ package com.cxf.ws;
 
 import java.util.List;
 
+import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 
 import com.cxf.ws.model.Player;
@@ -10,16 +12,16 @@ import com.cxf.ws.model.Player;
  * 
  *
  */
-//@WebService
+@WebService
 public interface MerAccountResource 
 {	
-	List<Player> getTeam();
+	@WebResult public List<Player> getTeam();
 	
-	List<Player> getPlayers(int... numbers);
+	public List<Player> getPlayers(@WebParam(name="numbers",targetNamespace = "http://service.server.cxf.webservice.biz.mip.com/") int numbers);
 	
-	boolean updatePlayerByNumber(int number, Player player);
+	public boolean updatePlayerByNumber(@WebParam int number,@WebParam Player player);
 	
-	boolean deletePlayer(int number);
+	public boolean deletePlayer(@WebParam int number);
 	
-	void foo();
+	public void foo();
 }

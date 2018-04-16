@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -19,10 +18,6 @@ import java.util.Random;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-
-import org.bytedeco.javacpp.RealSense.intrinsics;
-import org.bytedeco.javacpp.presets.opencv_core.Str;
-import org.junit.Test;
 
 public class SortUtils {
 	public static void main(String[] args) {

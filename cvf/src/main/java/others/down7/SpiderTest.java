@@ -1,10 +1,8 @@
 package others.down7;
 
-import org.junit.Test;
 
 
 public class SpiderTest {
-	@Test
 	public void testName() throws Exception {
 		Spider spider = new Spider();
 		String url = "http://list.jd.com/list.html?cat=9987,653,655";

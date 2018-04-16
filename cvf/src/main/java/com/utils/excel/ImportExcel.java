@@ -1,6 +1,3 @@
-/**
- * Copyright &copy; 2012-2014 <a href="http://www.iwantclick.com">iWantClick</a>iwc.shop All rights reserved.
- */
 package com.utils.excel;
 
 import java.io.File;
@@ -14,8 +11,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-import com.utils.Reflections;
-import com.annotation.ExcelField;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -29,11 +24,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.annotation.ExcelField;
 import com.google.common.collect.Lists;
+import com.utils.Reflections;
 
 /**
  * 导入Excel文件（支持“XLS”和“XLSX”格式）
- * @author Tony Wong
  * @version 2013-03-10
  */
 public class ImportExcel {

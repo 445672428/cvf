@@ -48,8 +48,9 @@ public class LoginController {
 	public String login(HttpServletRequest request){
 		String username = request.getParameter("username");
 		String password = request.getParameter("password"); 
+		boolean isSure = ValidateCodeServlet.validate(request, request.getParameter("checkcode"));
 		TUser tUser =  loginService.findCurUser(username,password);
-		if (null == tUser) {
+		if (null == tUser || !isSure) {
 			return "redirect:login.jsp";
 		}
 		HttpSession session = request.getSession();

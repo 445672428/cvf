@@ -5,18 +5,19 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
-import javax.jws.WebMethod;
+import javax.annotation.Resource;
 import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
-import javax.jws.soap.SOAPBinding.Style;
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.servlet.http.HttpServletRequest;
+import javax.xml.ws.WebServiceContext;
+import javax.xml.ws.handler.MessageContext;
 
+import org.apache.cxf.message.Message;
+import org.apache.cxf.phase.PhaseInterceptorChain;
+import org.apache.cxf.transport.http.AbstractHTTPDestination;
 import org.apache.log4j.Logger;
 
 import com.cxf.ws.model.Player;
-//@WebService(endpointInterface = "com.cxf.ws.MerAccountResource")
+@WebService(endpointInterface="com.cxf.ws.MerAccountResource",name="MerAccountResource",targetNamespace="http://services.web.txx.cn.com/")
 public class MerAccountResourceImpl implements MerAccountResource 
 {
 	
@@ -24,8 +25,8 @@ public class MerAccountResourceImpl implements MerAccountResource
 	 
 	private List<Player> team = null;	
 	
-	//@Resource
-    //WebServiceContext wsContext;
+	@Resource
+    WebServiceContext wsContext;
 
 	public MerAccountResourceImpl() 
 	{        
@@ -43,30 +44,21 @@ public class MerAccountResourceImpl implements MerAccountResource
 	public List<Player> getTeam() 
 	{
 		logger.info("team requested");
+		
+		MessageContext ctx = wsContext.getMessageContext();  
+        HttpServletRequest request = (HttpServletRequest)ctx.get(AbstractHTTPDestination.HTTP_REQUEST); 
+        
+        System.out.println(request.getRemoteAddr());
+        
+        Message message = PhaseInterceptorChain.getCurrentMessage();  
+        HttpServletRequest httprequest = (HttpServletRequest)message.get(AbstractHTTPDestination.HTTP_REQUEST);  
+        System.out.println(httprequest.getRemoteAddr());
+        
 		return team;
 	}
 
 	
-	public List<Player> getPlayers(int...numbers) 
-	{
-		List<Player> result = new LinkedList<Player>();
-		
-		if (numbers != null)
-		{
-			Player player = null;
-			for (int i =0; i< numbers.length;i++)
-			{
-				player = findById(numbers[i]);
-				if (player != null)
-				{
-					result.add(player);
-				}
-			}
-		}
-		logger.info("returning " + result.size() + " players");
-		
-		return result;
-	}
+
 
 	
 	public boolean updatePlayerByNumber(int number, Player player)
@@ -136,6 +128,28 @@ public class MerAccountResourceImpl implements MerAccountResource
 		}
 		
 		return player;
+	}
+
+	@Override
+	public List<Player> getPlayers(int numbers) 
+	{
+		List<Player> result = new LinkedList<Player>();
+		
+//		if (numbers != null)
+//		{
+//			Player player = null;
+//			for (int i =0; i< numbers.length;i++)
+//			{
+//				player = findById(numbers[i]);
+//				if (player != null)
+//				{
+//					result.add(player);
+//				}
+//			}
+//		}
+		logger.info("returning " + result.size() + " players");
+		
+		return result;
 	}
 
 }

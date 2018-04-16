@@ -36,6 +36,9 @@
 				<label>
 					<input type="password" name="password" id="userpwd" class="txt_input" value="">
 				</label>
+				<label>
+					验证码:<input style="width: 100px;"  type="text" name="checkcode" id="checkcode" class="txt_input" value=""><img alt="" src="${CONTEXTPATH }/servlet/validateCodeServlet">
+				</label>
 				<p class="forgot"><a href="${CONTEXTPATH }/register.jsp">注册账号&nbsp;&nbsp;</a><a href="javascript:void(0);">忘记密码?</a></p>
 				<div class="rem_sub">
 					<div class="rem_sub_l">
@@ -57,6 +60,7 @@
 <!-- 引入Jquery -->  
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/jQuery/jquery-1.7.1.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/jquery.qrcode.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="${CONTEXTPATH }/resources/lib/security.js" charset="utf-8" defer="defer"></script>
 <script>
     var canvas=document.getElementById("logo");
     var ctx=canvas.getContext("2d");

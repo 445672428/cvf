@@ -421,5 +421,8 @@ public class ExportExcel {
 		wb.dispose();
 		return this;
 	}
-	
+	public static void main(String[] args) {
+		//@ExcelField(title="邮箱", align=1, sort=50)
+		//new ExportExcel("用户数据", User.class).setDataList(page.getList()).write(response, fileName).dispose();
+	}
 }

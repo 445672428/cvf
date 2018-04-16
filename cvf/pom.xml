@@ -939,6 +939,36 @@
 			<scope>system</scope>
 			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
 		</dependency>
+		
+		
+		
+		<dependency>  
+		    <groupId>fr.opensagres.xdocreport</groupId>  
+		    <artifactId>fr.opensagres.xdocreport.document</artifactId>  
+		    <version>1.0.5</version>  
+		</dependency>  
+		<dependency>    
+		    <groupId>fr.opensagres.xdocreport</groupId>    
+		    <artifactId>org.apache.poi.xwpf.converter.xhtml</artifactId>    
+		    <version>1.0.5</version>    
+		</dependency>  
+		    <dependency>  
+		    <groupId>org.apache.poi</groupId>  
+		    <artifactId>poi</artifactId>  
+		    <version>3.12</version>  
+		</dependency>  
+		<dependency>  
+		    <groupId>org.apache.poi</groupId>  
+		    <artifactId>poi-scratchpad</artifactId>  
+		    <version>3.12</version>  
+		</dependency> 
+		<!-- https://mvnrepository.com/artifact/net.arnx/wmf2svg -->
+		<dependency>
+		    <groupId>net.arnx</groupId>
+		    <artifactId>wmf2svg</artifactId>
+		    <version>0.9.8</version>
+		</dependency>
+		 
 	</dependencies>
 	<build>
 		<plugins>

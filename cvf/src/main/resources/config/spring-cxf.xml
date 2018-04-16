@@ -16,9 +16,9 @@
 	<!-- <jaxws:endpoint implementor="com.cxf.ws.MerAccountResourceImpl" address="/webservice" /> -->
 	
  	<jaxws:endpoint id="testCxfImp" implementor="com.cxf.ws.TestCxfImp" address="/demo"></jaxws:endpoint>
-	<jaxws:client id="testCxf" serviceClass="com.cxf.ws.TestCxf" address="http://localhost:8081/cvf/webservice/demo?wsdl"></jaxws:client>
+	<jaxws:client id="testCxf" serviceClass="com.cxf.ws.TestCxf" address="http://localhost:8082/cvf/webservice/demo?wsdl"></jaxws:client>
 
-	<!-- <jaxws:endpoint id="MerAccountResourceImpl" implementor="com.cxf.ws.MerAccountResourceImpl" address="/demo1"></jaxws:endpoint>
-	<jaxws:client id="MerAccountResource" serviceClass="com.cxf.ws.MerAccountResource" address="http://localhost:8081/cvf/webservice/demo1?wsdl"></jaxws:client>
- -->
+	<jaxws:endpoint id="MerAccountResourceImpl" implementor="com.cxf.ws.MerAccountResourceImpl" address="/demo1"></jaxws:endpoint>
+	<jaxws:client id="MerAccountResource" serviceClass="com.cxf.ws.MerAccountResource" address="http://localhost:8082/cvf/webservice/demo1?wsdl"></jaxws:client>
+
 </beans>

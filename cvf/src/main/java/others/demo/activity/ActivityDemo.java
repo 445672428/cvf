@@ -17,10 +17,8 @@ import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.activiti.engine.task.TaskQuery;
-import org.junit.Test;
 
 public class ActivityDemo {
-	@Test
 	public void test1() {
 		ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 	}
@@ -194,7 +192,6 @@ public class ActivityDemo {
 		/**
 		 * 部署流程定义
 		 */
-		@Test
 		public void test20() {
 			DeploymentBuilder deploymentBuilder = processEngine
 					.getRepositoryService().createDeployment();
@@ -233,7 +230,6 @@ public class ActivityDemo {
 		/**
 		 * 启动流程实例时设置流程变量
 		 */
-		@Test
 		public void test24() {
 			String processDefinitionKey = "qjlc";// 流程定义key
 			Map<String, Object> variables = new HashMap<String, Object>();
@@ -246,7 +242,6 @@ public class ActivityDemo {
 		/**
 		 * 办理任务时设置流程变量
 		 */
-		@Test
 		public void test25() {
 			String taskId = "2405";//任务id
 			Map<String, Object> variables = new HashMap<String, Object>();
