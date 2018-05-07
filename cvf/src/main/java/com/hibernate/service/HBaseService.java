@@ -11,6 +11,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 public class HBaseService<T> extends HibernateDaoSupport{
@@ -18,6 +19,7 @@ public class HBaseService<T> extends HibernateDaoSupport{
 	private Class<T> entityClass;
 
 	// 使用注解方式进行依赖注入
+	@Qualifier("hernateSessionFactory")
 	@Resource
 	public void setMySessionFactory(SessionFactory sessionFactory) {
 		super.setSessionFactory(sessionFactory);

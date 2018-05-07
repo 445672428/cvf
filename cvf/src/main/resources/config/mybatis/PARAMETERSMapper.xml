@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mybatis.mapper.PARAMETERSMapper" >
+  <resultMap id="BaseResultMap" type="com.mybatis.pojo.PARAMETERS" >
+    <result column="SPECIFIC_CATALOG" property="specificCatalog" jdbcType="VARCHAR" />
+    <result column="SPECIFIC_SCHEMA" property="specificSchema" jdbcType="VARCHAR" />
+    <result column="SPECIFIC_NAME" property="specificName" jdbcType="VARCHAR" />
+    <result column="ORDINAL_POSITION" property="ordinalPosition" jdbcType="INTEGER" />
+    <result column="PARAMETER_MODE" property="parameterMode" jdbcType="VARCHAR" />
+    <result column="PARAMETER_NAME" property="parameterName" jdbcType="VARCHAR" />
+    <result column="DATA_TYPE" property="dataType" jdbcType="VARCHAR" />
+    <result column="CHARACTER_MAXIMUM_LENGTH" property="characterMaximumLength" jdbcType="INTEGER" />
+    <result column="CHARACTER_OCTET_LENGTH" property="characterOctetLength" jdbcType="INTEGER" />
+    <result column="NUMERIC_PRECISION" property="numericPrecision" jdbcType="INTEGER" />
+    <result column="NUMERIC_SCALE" property="numericScale" jdbcType="INTEGER" />
+    <result column="CHARACTER_SET_NAME" property="characterSetName" jdbcType="VARCHAR" />
+    <result column="COLLATION_NAME" property="collationName" jdbcType="VARCHAR" />
+    <result column="ROUTINE_TYPE" property="routineType" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mybatis.pojo.PARAMETERS" extends="BaseResultMap" >
+    <result column="DTD_IDENTIFIER" property="dtdIdentifier" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SPECIFIC_CATALOG, SPECIFIC_SCHEMA, SPECIFIC_NAME, ORDINAL_POSITION, PARAMETER_MODE, 
+    PARAMETER_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, CHARACTER_OCTET_LENGTH, NUMERIC_PRECISION, 
+    NUMERIC_SCALE, CHARACTER_SET_NAME, COLLATION_NAME, ROUTINE_TYPE
+  </sql>
+  <sql id="Blob_Column_List" >
+    DTD_IDENTIFIER
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mybatis.pojo.PARAMETERSExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from PARAMETERS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mybatis.pojo.PARAMETERSExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PARAMETERS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mybatis.pojo.PARAMETERSExample" >
+    delete from PARAMETERS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mybatis.pojo.PARAMETERS" >
+    insert into PARAMETERS (SPECIFIC_CATALOG, SPECIFIC_SCHEMA, 
+      SPECIFIC_NAME, ORDINAL_POSITION, PARAMETER_MODE, 
+      PARAMETER_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, 
+      CHARACTER_OCTET_LENGTH, NUMERIC_PRECISION, 
+      NUMERIC_SCALE, CHARACTER_SET_NAME, COLLATION_NAME, 
+      ROUTINE_TYPE, DTD_IDENTIFIER)
+    values (#{specificCatalog,jdbcType=VARCHAR}, #{specificSchema,jdbcType=VARCHAR}, 
+      #{specificName,jdbcType=VARCHAR}, #{ordinalPosition,jdbcType=INTEGER}, #{parameterMode,jdbcType=VARCHAR}, 
+      #{parameterName,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR}, #{characterMaximumLength,jdbcType=INTEGER}, 
+      #{characterOctetLength,jdbcType=INTEGER}, #{numericPrecision,jdbcType=INTEGER}, 
+      #{numericScale,jdbcType=INTEGER}, #{characterSetName,jdbcType=VARCHAR}, #{collationName,jdbcType=VARCHAR}, 
+      #{routineType,jdbcType=VARCHAR}, #{dtdIdentifier,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mybatis.pojo.PARAMETERS" >
+    insert into PARAMETERS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="specificCatalog != null" >
+        SPECIFIC_CATALOG,
+      </if>
+      <if test="specificSchema != null" >
+        SPECIFIC_SCHEMA,
+      </if>
+      <if test="specificName != null" >
+        SPECIFIC_NAME,
+      </if>
+      <if test="ordinalPosition != null" >
+        ORDINAL_POSITION,
+      </if>
+      <if test="parameterMode != null" >
+        PARAMETER_MODE,
+      </if>
+      <if test="parameterName != null" >
+        PARAMETER_NAME,
+      </if>
+      <if test="dataType != null" >
+        DATA_TYPE,
+      </if>
+      <if test="characterMaximumLength != null" >
+        CHARACTER_MAXIMUM_LENGTH,
+      </if>
+      <if test="characterOctetLength != null" >
+        CHARACTER_OCTET_LENGTH,
+      </if>
+      <if test="numericPrecision != null" >
+        NUMERIC_PRECISION,
+      </if>
+      <if test="numericScale != null" >
+        NUMERIC_SCALE,
+      </if>
+      <if test="characterSetName != null" >
+        CHARACTER_SET_NAME,
+      </if>
+      <if test="collationName != null" >
+        COLLATION_NAME,
+      </if>
+      <if test="routineType != null" >
+        ROUTINE_TYPE,
+      </if>
+      <if test="dtdIdentifier != null" >
+        DTD_IDENTIFIER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="specificCatalog != null" >
+        #{specificCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="specificSchema != null" >
+        #{specificSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="specificName != null" >
+        #{specificName,jdbcType=VARCHAR},
+      </if>
+      <if test="ordinalPosition != null" >
+        #{ordinalPosition,jdbcType=INTEGER},
+      </if>
+      <if test="parameterMode != null" >
+        #{parameterMode,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterName != null" >
+        #{parameterName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="characterMaximumLength != null" >
+        #{characterMaximumLength,jdbcType=INTEGER},
+      </if>
+      <if test="characterOctetLength != null" >
+        #{characterOctetLength,jdbcType=INTEGER},
+      </if>
+      <if test="numericPrecision != null" >
+        #{numericPrecision,jdbcType=INTEGER},
+      </if>
+      <if test="numericScale != null" >
+        #{numericScale,jdbcType=INTEGER},
+      </if>
+      <if test="characterSetName != null" >
+        #{characterSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="collationName != null" >
+        #{collationName,jdbcType=VARCHAR},
+      </if>
+      <if test="routineType != null" >
+        #{routineType,jdbcType=VARCHAR},
+      </if>
+      <if test="dtdIdentifier != null" >
+        #{dtdIdentifier,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mybatis.pojo.PARAMETERSExample" resultType="java.lang.Integer" >
+    select count(*) from PARAMETERS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PARAMETERS
+    <set >
+      <if test="record.specificCatalog != null" >
+        SPECIFIC_CATALOG = #{record.specificCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specificSchema != null" >
+        SPECIFIC_SCHEMA = #{record.specificSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specificName != null" >
+        SPECIFIC_NAME = #{record.specificName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordinalPosition != null" >
+        ORDINAL_POSITION = #{record.ordinalPosition,jdbcType=INTEGER},
+      </if>
+      <if test="record.parameterMode != null" >
+        PARAMETER_MODE = #{record.parameterMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parameterName != null" >
+        PARAMETER_NAME = #{record.parameterName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataType != null" >
+        DATA_TYPE = #{record.dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.characterMaximumLength != null" >
+        CHARACTER_MAXIMUM_LENGTH = #{record.characterMaximumLength,jdbcType=INTEGER},
+      </if>
+      <if test="record.characterOctetLength != null" >
+        CHARACTER_OCTET_LENGTH = #{record.characterOctetLength,jdbcType=INTEGER},
+      </if>
+      <if test="record.numericPrecision != null" >
+        NUMERIC_PRECISION = #{record.numericPrecision,jdbcType=INTEGER},
+      </if>
+      <if test="record.numericScale != null" >
+        NUMERIC_SCALE = #{record.numericScale,jdbcType=INTEGER},
+      </if>
+      <if test="record.characterSetName != null" >
+        CHARACTER_SET_NAME = #{record.characterSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collationName != null" >
+        COLLATION_NAME = #{record.collationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.routineType != null" >
+        ROUTINE_TYPE = #{record.routineType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dtdIdentifier != null" >
+        DTD_IDENTIFIER = #{record.dtdIdentifier,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update PARAMETERS
+    set SPECIFIC_CATALOG = #{record.specificCatalog,jdbcType=VARCHAR},
+      SPECIFIC_SCHEMA = #{record.specificSchema,jdbcType=VARCHAR},
+      SPECIFIC_NAME = #{record.specificName,jdbcType=VARCHAR},
+      ORDINAL_POSITION = #{record.ordinalPosition,jdbcType=INTEGER},
+      PARAMETER_MODE = #{record.parameterMode,jdbcType=VARCHAR},
+      PARAMETER_NAME = #{record.parameterName,jdbcType=VARCHAR},
+      DATA_TYPE = #{record.dataType,jdbcType=VARCHAR},
+      CHARACTER_MAXIMUM_LENGTH = #{record.characterMaximumLength,jdbcType=INTEGER},
+      CHARACTER_OCTET_LENGTH = #{record.characterOctetLength,jdbcType=INTEGER},
+      NUMERIC_PRECISION = #{record.numericPrecision,jdbcType=INTEGER},
+      NUMERIC_SCALE = #{record.numericScale,jdbcType=INTEGER},
+      CHARACTER_SET_NAME = #{record.characterSetName,jdbcType=VARCHAR},
+      COLLATION_NAME = #{record.collationName,jdbcType=VARCHAR},
+      ROUTINE_TYPE = #{record.routineType,jdbcType=VARCHAR},
+      DTD_IDENTIFIER = #{record.dtdIdentifier,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PARAMETERS
+    set SPECIFIC_CATALOG = #{record.specificCatalog,jdbcType=VARCHAR},
+      SPECIFIC_SCHEMA = #{record.specificSchema,jdbcType=VARCHAR},
+      SPECIFIC_NAME = #{record.specificName,jdbcType=VARCHAR},
+      ORDINAL_POSITION = #{record.ordinalPosition,jdbcType=INTEGER},
+      PARAMETER_MODE = #{record.parameterMode,jdbcType=VARCHAR},
+      PARAMETER_NAME = #{record.parameterName,jdbcType=VARCHAR},
+      DATA_TYPE = #{record.dataType,jdbcType=VARCHAR},
+      CHARACTER_MAXIMUM_LENGTH = #{record.characterMaximumLength,jdbcType=INTEGER},
+      CHARACTER_OCTET_LENGTH = #{record.characterOctetLength,jdbcType=INTEGER},
+      NUMERIC_PRECISION = #{record.numericPrecision,jdbcType=INTEGER},
+      NUMERIC_SCALE = #{record.numericScale,jdbcType=INTEGER},
+      CHARACTER_SET_NAME = #{record.characterSetName,jdbcType=VARCHAR},
+      COLLATION_NAME = #{record.collationName,jdbcType=VARCHAR},
+      ROUTINE_TYPE = #{record.routineType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

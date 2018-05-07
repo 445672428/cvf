@@ -17,7 +17,7 @@ public interface MerAccountResource
 {	
 	@WebResult public List<Player> getTeam();
 	
-	public List<Player> getPlayers(@WebParam(name="numbers",targetNamespace = "http://service.server.cxf.webservice.biz.mip.com/") int numbers);
+	public String getPlayers(@WebParam(name="numbers") Integer numbers);
 	
 	public boolean updatePlayerByNumber(@WebParam int number,@WebParam Player player);
 	

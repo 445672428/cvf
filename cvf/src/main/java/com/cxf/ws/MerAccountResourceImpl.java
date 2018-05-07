@@ -31,6 +31,7 @@ public class MerAccountResourceImpl implements MerAccountResource
 	public MerAccountResourceImpl() 
 	{        
 	    team = new LinkedList<Player>();
+	    team.add(new Player(0, "David De Cheng", 22));
 	    team.add(new Player(1, "David De Gea", 22));
 	    team.add(new Player(2, "Rafael", 22));
 	    team.add(new Player(3, "Patrice Evra", 31));
@@ -131,10 +132,16 @@ public class MerAccountResourceImpl implements MerAccountResource
 	}
 
 	@Override
-	public List<Player> getPlayers(int numbers) 
+	public String getPlayers(Integer numbers) 
 	{
-		List<Player> result = new LinkedList<Player>();
-		
+		System.out.println(numbers);
+//		List<Player> result = new LinkedList<Player>();
+//		Player player = null;
+//		player = findById(numbers);
+//		if (player != null)
+//		{
+//			result.add(player);
+//		}
 //		if (numbers != null)
 //		{
 //			Player player = null;
@@ -147,9 +154,9 @@ public class MerAccountResourceImpl implements MerAccountResource
 //				}
 //			}
 //		}
-		logger.info("returning " + result.size() + " players");
+		//logger.info("returning " + result.size() + " players");
 		
-		return result;
+		return numbers.toString();
 	}
 
 }

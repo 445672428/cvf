@@ -1,12 +1,18 @@
 package com.cxf.ws.model;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author danielme.com
  *
  */
-public class Player 
-{
+public class Player implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3211699956570197726L;
+
 	private String name;
 	
 	private int age;

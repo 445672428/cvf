@@ -33,7 +33,7 @@ textarea{ resize:none;overflow:auto;}
 .mod-banner {
     float: right;
     padding-top: 15px;
-    color: #999;
+    padding-right:80px;
     position: relative;
     z-index: 1;
 }

@@ -218,7 +218,6 @@ public class FileUtils {
 	public static boolean writeFileContent(String filepath, String newstr)
 			throws IOException {
 		Boolean bool = false;
-		String filein = newstr + "\r\n";// 新写入的行，换行
 		String temp = "";
 
 		FileInputStream fis = null;
@@ -239,7 +238,7 @@ public class FileUtils {
 				// 行与行之间的分隔符 相当于“\n”
 				buffer = buffer.append(System.getProperty("line.separator"));
 			}
-			buffer.append(filein);
+			buffer.append(newstr);
 
 			fos = new FileOutputStream(file);
 			pw = new PrintWriter(fos);

@@ -1,6 +1,7 @@
 package com.base;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.entities.China;
 import com.frame.service.ConfigService;
+import com.mybatis.pojo.INNODB_CMP_RESET;
 
 public class BaseAction {
 	protected static final Logger logger = LoggerFactory.getLogger(BaseAction.class);
@@ -73,6 +75,14 @@ public class BaseAction {
         }
         return map;
     }
+	public <T> List<Map<String, Object>> arrayObjectToList(List<T> t) {
+		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+		for(Object o : t){
+			list.add(objectToMap(o));
+		}
+		return list;
+	}
+	
 	/**
 	 * 将对象转为json字符串
 	 * @param obj

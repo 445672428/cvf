@@ -1,19 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <configuration>  
+	<Encoding>UTF-8</Encoding>  
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->  
+    <property name="log.lever" value="debug" />
+    <property name="log.maxHistory" value="365" />
     <property name="LOG_HOME" value="d:/logs" />  
-  
-    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">  
+  	<property name="log.pattern" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">  
         <encoder>  
-            <pattern>HERE %d{HH:mm:ss.SSS} [%thread] %-5level %C{36} %L - %msg%n</pattern>   
+            <pattern>BOBO %d{HH:mm:ss.SSS} [%thread] %-5level %C{36} %L - %msg%n</pattern>   
         </encoder>  
     </appender>  
-  
-  
-    <Encoding>UTF-8</Encoding>  
-  
+  <!-- DEBUG -->  
+    <appender name="debugAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <!-- 文件路径 -->  
+        <file>d:/logs/debug.log</file>  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+            <!-- 文件名称 -->  
+            <fileNamePattern>d:/logs/debug/debug.%d{yyyy-MM-dd}.log.gz  
+            </fileNamePattern>  
+            <!-- 文件最大保存历史数量 -->  
+            <MaxHistory>10000000</MaxHistory>  
+        </rollingPolicy>  
+        <encoder>  
+            <pattern>BOBO</pattern>  
+        </encoder>  
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+            <level>DEBUG</level>  
+            <onMatch>ACCEPT</onMatch>    
+            <onMismatch>DENY</onMismatch>    
+        </filter>  
+    </appender>  
+      
+      
+    <!-- ERROR -->  
+    <appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <!-- 文件路径 -->  
+        <file>d:/logs/error.log</file>  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+            <!-- 文件名称 -->  
+            <fileNamePattern>d:/logs/error/error.%d{yyyy-MM-dd}.log.gz  
+            </fileNamePattern>  
+            <!-- 文件最大保存历史数量 -->  
+            <MaxHistory>10000000</MaxHistory>  
+        </rollingPolicy>  
+        <encoder>  
+            <pattern>BOBO</pattern>  
+        </encoder>  
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">  
+            <level>ERROR</level>  
+            <onMatch>ACCEPT</onMatch>    
+            <onMismatch>DENY</onMismatch>    
+        </filter>  
+    </appender>  
+    <!-- 生产环境用info -->  
+    <logger name="io.renren" level="ERROR">  
+        <appender-ref ref="debugAppender" />  
+        <appender-ref ref="infoAppender" />  
+        <appender-ref ref="errorAppender" />  
+    </logger>  
     <!-- 日志输出级别 -->  
-    <root level="info">  
-        <appender-ref ref="stdout" />       
+    <root level="ERROR">  
+        <appender-ref ref="consoleAppender" />       
     </root>  
 </configuration>  

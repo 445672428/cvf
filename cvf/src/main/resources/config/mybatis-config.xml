@@ -19,11 +19,82 @@
     </settings>
 
     <typeAliases>
-        <typeAlias alias="order" type="com.mybatis.pojo.Button"/>
+        <typeAlias alias="CHARACTER_SETS" type="com.mybatis.pojo.CHARACTER_SETS"/>
+        <typeAlias alias="COLLATION_CHARACTER_SET_APPLICABILITY" type="com.mybatis.pojo.COLLATION_CHARACTER_SET_APPLICABILITY"/>
+        <typeAlias alias="COLLATIONS" type="com.mybatis.pojo.COLLATIONS"/>
+        <typeAlias alias="COLUMN_PRIVILEGES" type="com.mybatis.pojo.COLUMN_PRIVILEGES"/>
+        <typeAlias alias="COLUMNS" type="com.mybatis.pojo.COLUMNS"/>
+        <typeAlias alias="ENGINES" type="com.mybatis.pojo.ENGINES"/>
+        <typeAlias alias="EVENTS" type="com.mybatis.pojo.EVENTS"/>
+        <typeAlias alias="FILES" type="com.mybatis.pojo.FILES"/>
+        <typeAlias alias="GLOBAL_STATUS" type="com.mybatis.pojo.GLOBAL_STATUS"/>
+        <typeAlias alias="GLOBAL_VARIABLES" type="com.mybatis.pojo.GLOBAL_VARIABLES"/>
+        <typeAlias alias="INNODB_CMP_RESET" type="com.mybatis.pojo.INNODB_CMP_RESET"/>
+        <typeAlias alias="INNODB_CMP" type="com.mybatis.pojo.INNODB_CMP"/>
+        <typeAlias alias="INNODB_CMPMEM_RESET" type="com.mybatis.pojo.INNODB_CMPMEM_RESET"/>
+        <typeAlias alias="INNODB_CMPMEM" type="com.mybatis.pojo.INNODB_CMPMEM"/>
+        <typeAlias alias="INNODB_LOCK_WAITS" type="com.mybatis.pojo.INNODB_LOCK_WAITS"/>
+        <typeAlias alias="INNODB_LOCKS" type="com.mybatis.pojo.INNODB_LOCKS"/>
+        <typeAlias alias="INNODB_TRX" type="com.mybatis.pojo.INNODB_TRX"/>
+        <typeAlias alias="KEY_COLUMN_USAGE" type="com.mybatis.pojo.KEY_COLUMN_USAGE"/>
+        <typeAlias alias="PARAMETERS" type="com.mybatis.pojo.PARAMETERS"/>
+        <typeAlias alias="PLUGINS" type="com.mybatis.pojo.PLUGINS"/>
+        <typeAlias alias="PROCESSLIST" type="com.mybatis.pojo.PROCESSLIST"/>
+        <typeAlias alias="PROFILING" type="com.mybatis.pojo.PROFILING"/>
+        <typeAlias alias="REFERENTIAL_CONSTRAINTS" type="com.mybatis.pojo.REFERENTIAL_CONSTRAINTS"/>
+        <typeAlias alias="ROUTINES" type="com.mybatis.pojo.ROUTINES"/>
+        <typeAlias alias="SCHEMA_PRIVILEGES" type="com.mybatis.pojo.SCHEMA_PRIVILEGES"/>
+        <typeAlias alias="SCHEMATA" type="com.mybatis.pojo.SCHEMATA"/>
+        <typeAlias alias="SESSION_STATUS" type="com.mybatis.pojo.SESSION_STATUS"/>
+        <typeAlias alias="SESSION_VARIABLES" type="com.mybatis.pojo.SESSION_VARIABLES"/>
+        <typeAlias alias="STATISTICS" type="com.mybatis.pojo.STATISTICS"/>
+        <typeAlias alias="TABLE_CONSTRAINTS" type="com.mybatis.pojo.TABLE_CONSTRAINTS"/>
+        <typeAlias alias="TABLE_PRIVILEGES" type="com.mybatis.pojo.TABLE_PRIVILEGES"/>
+        <typeAlias alias="TABLES" type="com.mybatis.pojo.TABLES"/>
+        <typeAlias alias="TABLESPACES" type="com.mybatis.pojo.TABLESPACES"/>
+        <typeAlias alias="TRIGGERS" type="com.mybatis.pojo.TRIGGERS"/>
+        <typeAlias alias="USER_PRIVILEGES" type="com.mybatis.pojo.USER_PRIVILEGES"/>
+        <typeAlias alias="VIEWS" type="com.mybatis.pojo.VIEWS"/>
+        
     </typeAliases>
 
     <mappers>
-        <mapper resource="config/mybatis/ButtonMapper.xml"/>
+        <mapper resource="config/mybatis/CHARACTER_SETSMapper.xml"/>
+        <mapper resource="config/mybatis/COLLATION_CHARACTER_SET_APPLICABILITYMapper.xml"/>
+        <mapper resource="config/mybatis/COLLATIONSMapper.xml"/>
+        <mapper resource="config/mybatis/COLUMN_PRIVILEGESMapper.xml"/>
+        <mapper resource="config/mybatis/COLUMNSMapper.xml"/>
+        <mapper resource="config/mybatis/ENGINESMapper.xml"/>
+        <mapper resource="config/mybatis/EVENTSMapper.xml"/>
+        <mapper resource="config/mybatis/FILESMapper.xml"/>
+        <mapper resource="config/mybatis/GLOBAL_STATUSMapper.xml"/>
+        <mapper resource="config/mybatis/GLOBAL_VARIABLESMapper.xml"/>
+        <mapper resource="config/mybatis/INNODB_CMP_RESETMapper.xml"/>
+        <mapper resource="config/mybatis/INNODB_CMPMapper.xml"/>
+        <mapper resource="config/mybatis/INNODB_CMPMEM_RESETMapper.xml"/>
+        <mapper resource="config/mybatis/INNODB_CMPMEMMapper.xml"/>
+        <mapper resource="config/mybatis/INNODB_LOCK_WAITSMapper.xml"/>
+        <mapper resource="config/mybatis/INNODB_LOCKSMapper.xml"/>
+        <mapper resource="config/mybatis/INNODB_TRXMapper.xml"/>
+        <mapper resource="config/mybatis/KEY_COLUMN_USAGEMapper.xml"/>
+        <mapper resource="config/mybatis/PARAMETERSMapper.xml"/>
+        <mapper resource="config/mybatis/PLUGINSMapper.xml"/>
+        <mapper resource="config/mybatis/PROCESSLISTMapper.xml"/>
+        <mapper resource="config/mybatis/PROFILINGMapper.xml"/>
+        <mapper resource="config/mybatis/REFERENTIAL_CONSTRAINTSMapper.xml"/>
+        <mapper resource="config/mybatis/ROUTINESMapper.xml"/>
+        <mapper resource="config/mybatis/SCHEMA_PRIVILEGESMapper.xml"/>
+        <mapper resource="config/mybatis/SCHEMATAMapper.xml"/>
+        <mapper resource="config/mybatis/SESSION_STATUSMapper.xml"/>
+        <mapper resource="config/mybatis/SESSION_VARIABLESMapper.xml"/>
+        <mapper resource="config/mybatis/STATISTICSMapper.xml"/>
+        <mapper resource="config/mybatis/TABLE_CONSTRAINTSMapper.xml"/>
+        <mapper resource="config/mybatis/TABLE_PRIVILEGESMapper.xml"/>
+        <mapper resource="config/mybatis/TABLESMapper.xml"/>
+        <mapper resource="config/mybatis/TABLESPACESMapper.xml"/>
+        <mapper resource="config/mybatis/TRIGGERSMapper.xml"/>
+        <mapper resource="config/mybatis/USER_PRIVILEGESMapper.xml"/>
+        <mapper resource="config/mybatis/VIEWSMapper.xml"/>
     </mappers>
 
 </configuration>

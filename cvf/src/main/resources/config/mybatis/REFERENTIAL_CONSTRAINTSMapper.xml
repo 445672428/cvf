@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mybatis.mapper.REFERENTIAL_CONSTRAINTSMapper" >
+  <resultMap id="BaseResultMap" type="com.mybatis.pojo.REFERENTIAL_CONSTRAINTS" >
+    <result column="CONSTRAINT_CATALOG" property="constraintCatalog" jdbcType="VARCHAR" />
+    <result column="CONSTRAINT_SCHEMA" property="constraintSchema" jdbcType="VARCHAR" />
+    <result column="CONSTRAINT_NAME" property="constraintName" jdbcType="VARCHAR" />
+    <result column="UNIQUE_CONSTRAINT_CATALOG" property="uniqueConstraintCatalog" jdbcType="VARCHAR" />
+    <result column="UNIQUE_CONSTRAINT_SCHEMA" property="uniqueConstraintSchema" jdbcType="VARCHAR" />
+    <result column="UNIQUE_CONSTRAINT_NAME" property="uniqueConstraintName" jdbcType="VARCHAR" />
+    <result column="MATCH_OPTION" property="matchOption" jdbcType="VARCHAR" />
+    <result column="UPDATE_RULE" property="updateRule" jdbcType="VARCHAR" />
+    <result column="DELETE_RULE" property="deleteRule" jdbcType="VARCHAR" />
+    <result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+    <result column="REFERENCED_TABLE_NAME" property="referencedTableName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CONSTRAINT_CATALOG, CONSTRAINT_SCHEMA, CONSTRAINT_NAME, UNIQUE_CONSTRAINT_CATALOG, 
+    UNIQUE_CONSTRAINT_SCHEMA, UNIQUE_CONSTRAINT_NAME, MATCH_OPTION, UPDATE_RULE, DELETE_RULE, 
+    TABLE_NAME, REFERENCED_TABLE_NAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mybatis.pojo.REFERENTIAL_CONSTRAINTSExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from REFERENTIAL_CONSTRAINTS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mybatis.pojo.REFERENTIAL_CONSTRAINTSExample" >
+    delete from REFERENTIAL_CONSTRAINTS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mybatis.pojo.REFERENTIAL_CONSTRAINTS" >
+    insert into REFERENTIAL_CONSTRAINTS (CONSTRAINT_CATALOG, CONSTRAINT_SCHEMA, 
+      CONSTRAINT_NAME, UNIQUE_CONSTRAINT_CATALOG, 
+      UNIQUE_CONSTRAINT_SCHEMA, UNIQUE_CONSTRAINT_NAME, 
+      MATCH_OPTION, UPDATE_RULE, DELETE_RULE, 
+      TABLE_NAME, REFERENCED_TABLE_NAME)
+    values (#{constraintCatalog,jdbcType=VARCHAR}, #{constraintSchema,jdbcType=VARCHAR}, 
+      #{constraintName,jdbcType=VARCHAR}, #{uniqueConstraintCatalog,jdbcType=VARCHAR}, 
+      #{uniqueConstraintSchema,jdbcType=VARCHAR}, #{uniqueConstraintName,jdbcType=VARCHAR}, 
+      #{matchOption,jdbcType=VARCHAR}, #{updateRule,jdbcType=VARCHAR}, #{deleteRule,jdbcType=VARCHAR}, 
+      #{tableName,jdbcType=VARCHAR}, #{referencedTableName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mybatis.pojo.REFERENTIAL_CONSTRAINTS" >
+    insert into REFERENTIAL_CONSTRAINTS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="constraintCatalog != null" >
+        CONSTRAINT_CATALOG,
+      </if>
+      <if test="constraintSchema != null" >
+        CONSTRAINT_SCHEMA,
+      </if>
+      <if test="constraintName != null" >
+        CONSTRAINT_NAME,
+      </if>
+      <if test="uniqueConstraintCatalog != null" >
+        UNIQUE_CONSTRAINT_CATALOG,
+      </if>
+      <if test="uniqueConstraintSchema != null" >
+        UNIQUE_CONSTRAINT_SCHEMA,
+      </if>
+      <if test="uniqueConstraintName != null" >
+        UNIQUE_CONSTRAINT_NAME,
+      </if>
+      <if test="matchOption != null" >
+        MATCH_OPTION,
+      </if>
+      <if test="updateRule != null" >
+        UPDATE_RULE,
+      </if>
+      <if test="deleteRule != null" >
+        DELETE_RULE,
+      </if>
+      <if test="tableName != null" >
+        TABLE_NAME,
+      </if>
+      <if test="referencedTableName != null" >
+        REFERENCED_TABLE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="constraintCatalog != null" >
+        #{constraintCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="constraintSchema != null" >
+        #{constraintSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="constraintName != null" >
+        #{constraintName,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueConstraintCatalog != null" >
+        #{uniqueConstraintCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueConstraintSchema != null" >
+        #{uniqueConstraintSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueConstraintName != null" >
+        #{uniqueConstraintName,jdbcType=VARCHAR},
+      </if>
+      <if test="matchOption != null" >
+        #{matchOption,jdbcType=VARCHAR},
+      </if>
+      <if test="updateRule != null" >
+        #{updateRule,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteRule != null" >
+        #{deleteRule,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="referencedTableName != null" >
+        #{referencedTableName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mybatis.pojo.REFERENTIAL_CONSTRAINTSExample" resultType="java.lang.Integer" >
+    select count(*) from REFERENTIAL_CONSTRAINTS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update REFERENTIAL_CONSTRAINTS
+    <set >
+      <if test="record.constraintCatalog != null" >
+        CONSTRAINT_CATALOG = #{record.constraintCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="record.constraintSchema != null" >
+        CONSTRAINT_SCHEMA = #{record.constraintSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="record.constraintName != null" >
+        CONSTRAINT_NAME = #{record.constraintName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uniqueConstraintCatalog != null" >
+        UNIQUE_CONSTRAINT_CATALOG = #{record.uniqueConstraintCatalog,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uniqueConstraintSchema != null" >
+        UNIQUE_CONSTRAINT_SCHEMA = #{record.uniqueConstraintSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uniqueConstraintName != null" >
+        UNIQUE_CONSTRAINT_NAME = #{record.uniqueConstraintName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.matchOption != null" >
+        MATCH_OPTION = #{record.matchOption,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateRule != null" >
+        UPDATE_RULE = #{record.updateRule,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleteRule != null" >
+        DELETE_RULE = #{record.deleteRule,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tableName != null" >
+        TABLE_NAME = #{record.tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referencedTableName != null" >
+        REFERENCED_TABLE_NAME = #{record.referencedTableName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update REFERENTIAL_CONSTRAINTS
+    set CONSTRAINT_CATALOG = #{record.constraintCatalog,jdbcType=VARCHAR},
+      CONSTRAINT_SCHEMA = #{record.constraintSchema,jdbcType=VARCHAR},
+      CONSTRAINT_NAME = #{record.constraintName,jdbcType=VARCHAR},
+      UNIQUE_CONSTRAINT_CATALOG = #{record.uniqueConstraintCatalog,jdbcType=VARCHAR},
+      UNIQUE_CONSTRAINT_SCHEMA = #{record.uniqueConstraintSchema,jdbcType=VARCHAR},
+      UNIQUE_CONSTRAINT_NAME = #{record.uniqueConstraintName,jdbcType=VARCHAR},
+      MATCH_OPTION = #{record.matchOption,jdbcType=VARCHAR},
+      UPDATE_RULE = #{record.updateRule,jdbcType=VARCHAR},
+      DELETE_RULE = #{record.deleteRule,jdbcType=VARCHAR},
+      TABLE_NAME = #{record.tableName,jdbcType=VARCHAR},
+      REFERENCED_TABLE_NAME = #{record.referencedTableName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

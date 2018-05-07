@@ -16,9 +16,9 @@
     <listener>
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
-    <listener>
+<!--     <listener>
     	<listener-class>com.springframe.WebContextInit</listener-class>
-    </listener>
+    </listener> -->
     
 	<!-- 编码过滤器，以UTF8编码 -->
 	<filter>
@@ -172,7 +172,7 @@
 		<url-pattern>/resources/lib/ckfinder/core/connector/java/connector.java</url-pattern>
 	</filter-mapping>
 	<!-- /CKFinder -->
-		<!-- Validate code -->
+	<!-- Validate code -->
 	<servlet>
 		<servlet-name>ValidateCodeServlet</servlet-name>
 		<servlet-class>com.frame.web.ValidateCodeServlet</servlet-class>
@@ -183,12 +183,45 @@
 	</servlet-mapping>
 	
 	
+    <servlet>
+        <servlet-name>QQlogin</servlet-name>
+        <servlet-class>com.frame.web.threeparty.IndexServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>QQlogin</servlet-name>
+        <url-pattern>/QQlogin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>QQafterlogin</servlet-name>
+        <servlet-class>com.frame.web.threeparty.AfterLoginRedirectServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>QQafterlogin</servlet-name>
+        <url-pattern>/QQafterlogin</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>QQshuoshuo</servlet-name>
+        <servlet-class>com.frame.web.threeparty.ShuoShuoServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>QQshuoshuo</servlet-name>
+        <url-pattern>/QQshuoshuo</url-pattern>
+    </servlet-mapping>	
+	
 	<servlet-mapping>
 	    <servlet-name>default</servlet-name>
 	    <url-pattern>*.png</url-pattern>
 	    <url-pattern>*.js</url-pattern>
 	    <url-pattern>*.gif</url-pattern>
 	    <url-pattern>*.css</url-pattern>
+	    <url-pattern>*.woff</url-pattern>
+	    <url-pattern>*.woff2</url-pattern>
 	</servlet-mapping>
 	
     <welcome-file-list>

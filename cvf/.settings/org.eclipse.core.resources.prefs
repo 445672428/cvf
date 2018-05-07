@@ -1,11 +1,9 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
+encoding//src/main/resources/config/db.properties=UTF-8
 encoding//src/main/resources/config/env.properties=UTF-8
 encoding//src/main/resources/config/flogger.properties=UTF-8
-encoding//src/main/resources/config/jdbc-multil-db.properties=UTF-8
-encoding//src/main/resources/config/rabbitmq.properties=UTF-8
-encoding//src/main/resources/config/redis.properties=UTF-8
 encoding//src/main/webapp/resource.jsp=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/resources=UTF-8

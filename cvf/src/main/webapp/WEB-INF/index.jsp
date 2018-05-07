@@ -138,21 +138,20 @@
 <input type="submit" value="登录">
 </form> --%>
 <script type="text/javascript">
-var CONTEXTPATH = '${CONTEXTPATH}';
-var url = CONTEXTPATH+"/login.do";
 $(function(){
-	loadData();
+	var parms = {
+	        host : '1',db:'1',user:'1'
+	    };
+	     $.ajax({type: "POST",url: '${CONTEXTPATH }/auth/add2.do',data:JSON.stringify(parms),dataType:'json',
+	         contentType:'application/json',success: function(data){
+
+	        },
+	        error : function(data){
+	        
+	        }
+	    });
 })
-function loadData(){
-	$.ajax({type: "post",url: url,data: {"username":"1111","password":"222"},cache: false,async : false,dataType: "json",
-        success: function (data ,textStatus, jqXHR)
-        {
-        	console.log('success');
-        },
-        error:function (XMLHttpRequest, textStatus, errorThrown) {      
-        }
-     });
-}
+
 </script>
 </body>
 </html>

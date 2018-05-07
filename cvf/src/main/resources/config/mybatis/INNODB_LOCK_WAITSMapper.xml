@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mybatis.mapper.INNODB_LOCK_WAITSMapper" >
+  <resultMap id="BaseResultMap" type="com.mybatis.pojo.INNODB_LOCK_WAITS" >
+    <result column="requesting_trx_id" property="requestingTrxId" jdbcType="VARCHAR" />
+    <result column="requested_lock_id" property="requestedLockId" jdbcType="VARCHAR" />
+    <result column="blocking_trx_id" property="blockingTrxId" jdbcType="VARCHAR" />
+    <result column="blocking_lock_id" property="blockingLockId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    requesting_trx_id, requested_lock_id, blocking_trx_id, blocking_lock_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mybatis.pojo.INNODB_LOCK_WAITSExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from INNODB_LOCK_WAITS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mybatis.pojo.INNODB_LOCK_WAITSExample" >
+    delete from INNODB_LOCK_WAITS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mybatis.pojo.INNODB_LOCK_WAITS" >
+    insert into INNODB_LOCK_WAITS (requesting_trx_id, requested_lock_id, 
+      blocking_trx_id, blocking_lock_id)
+    values (#{requestingTrxId,jdbcType=VARCHAR}, #{requestedLockId,jdbcType=VARCHAR}, 
+      #{blockingTrxId,jdbcType=VARCHAR}, #{blockingLockId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mybatis.pojo.INNODB_LOCK_WAITS" >
+    insert into INNODB_LOCK_WAITS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="requestingTrxId != null" >
+        requesting_trx_id,
+      </if>
+      <if test="requestedLockId != null" >
+        requested_lock_id,
+      </if>
+      <if test="blockingTrxId != null" >
+        blocking_trx_id,
+      </if>
+      <if test="blockingLockId != null" >
+        blocking_lock_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="requestingTrxId != null" >
+        #{requestingTrxId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestedLockId != null" >
+        #{requestedLockId,jdbcType=VARCHAR},
+      </if>
+      <if test="blockingTrxId != null" >
+        #{blockingTrxId,jdbcType=VARCHAR},
+      </if>
+      <if test="blockingLockId != null" >
+        #{blockingLockId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mybatis.pojo.INNODB_LOCK_WAITSExample" resultType="java.lang.Integer" >
+    select count(*) from INNODB_LOCK_WAITS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update INNODB_LOCK_WAITS
+    <set >
+      <if test="record.requestingTrxId != null" >
+        requesting_trx_id = #{record.requestingTrxId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestedLockId != null" >
+        requested_lock_id = #{record.requestedLockId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blockingTrxId != null" >
+        blocking_trx_id = #{record.blockingTrxId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blockingLockId != null" >
+        blocking_lock_id = #{record.blockingLockId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update INNODB_LOCK_WAITS
+    set requesting_trx_id = #{record.requestingTrxId,jdbcType=VARCHAR},
+      requested_lock_id = #{record.requestedLockId,jdbcType=VARCHAR},
+      blocking_trx_id = #{record.blockingTrxId,jdbcType=VARCHAR},
+      blocking_lock_id = #{record.blockingLockId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

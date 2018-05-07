@@ -40,6 +40,9 @@
         <property name="createtime" type="java.sql.Timestamp">
             <column name="CREATETIME" length="11" />
         </property>
+        <property name="birth" type="java.sql.Date">
+            <column name="BIRTH" length="11" />
+        </property>
         <property name="sex" type="java.lang.String">
             <column name="SEX" length="4" />
         </property>

@@ -31,7 +31,7 @@
 	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="jobDetail" />
 		<!-- 每一分钟执行一次 -->
-		<property name="cronExpression" value="0 0/30 * * * ?" />
+		<property name="cronExpression" value="0 0/1 * * * ?" />
 	</bean>
 	
 	<bean id="schtest1" class="com.scheduling.SchTest"></bean>
@@ -55,13 +55,13 @@
 	
 	<!-- 定义调度器 -->
 	<!-- 启动任务 -->
-<!-- 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+ 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 	    <property name="triggers">
 	        <list>
 	            <ref bean="cronTrigger" />
 	            <ref bean="cronPrepareDataSjbd"/>
 	        </list>
 	    </property>
-	</bean> -->
+	</bean>
 	
 </beans>

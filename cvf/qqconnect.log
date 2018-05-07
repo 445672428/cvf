@@ -1,0 +1,685 @@
+14890886 DEBUG [2018-05-06 21:14:21]  http-outgoing-44741 << Connection: keep-alive
+14890886 DEBUG [2018-05-06 21:14:21]  http-outgoing-44741 << X-Dscp-Value: 0
+14890886 DEBUG [2018-05-06 21:14:21]  http-outgoing-44741 << X-Cdn-Src-Port: 30934
+14890887 DEBUG [2018-05-06 21:14:21]  http-outgoing-44741 << Cache-Control: no-cache, no-store
+14890887 DEBUG [2018-05-06 21:14:21]  Connection can be kept alive indefinitely
+14890887 DEBUG [2018-05-06 21:14:21]  http-outgoing-44741 << "{"data":{"flag":"1","map":{},"result":[]},"httpstatus":200,"messages":"","status":true}"
+14890887 DEBUG [2018-05-06 21:14:21]  Connection [id: 44741][route: {s}->https://kyfw.12306.cn:443] can be kept alive indefinitely
+14890887 DEBUG [2018-05-06 21:14:21]  Connection released: [id: 44741][route: {s}->https://kyfw.12306.cn:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+14890892 DEBUG [2018-05-06 21:14:21]  CookieSpec selected: default
+14890892 DEBUG [2018-05-06 21:14:21]  Auth cache not set in the context
+14890892 DEBUG [2018-05-06 21:14:21]  Connection request: [route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+14890892 DEBUG [2018-05-06 21:14:21]  Connection leased: [id: 44742][route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+14890892 DEBUG [2018-05-06 21:14:21]  Opening connection {s}->https://kyfw.12306.cn:443
+14890892 DEBUG [2018-05-06 21:14:21]  Connecting to kyfw.12306.cn/111.47.220.214:443
+14890892 DEBUG [2018-05-06 21:14:21]  Connecting socket to kyfw.12306.cn/111.47.220.214:443 with timeout 0
+14890916 DEBUG [2018-05-06 21:14:21]  Enabled protocols: [TLSv1]
+14890916 DEBUG [2018-05-06 21:14:21]  Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+14890916 DEBUG [2018-05-06 21:14:21]  Starting handshake
+14890976 DEBUG [2018-05-06 21:14:21]  Secure session established
+14890976 DEBUG [2018-05-06 21:14:21]   negotiated protocol: TLSv1
+14890976 DEBUG [2018-05-06 21:14:21]   negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+14890976 DEBUG [2018-05-06 21:14:21]   peer principal: CN=*.12306.cn, OU=IT, O=CHINA RAILWAY, L=Beijing, C=CN
+14890976 DEBUG [2018-05-06 21:14:21]   peer alternative names: [*.12306.cn]
+14890976 DEBUG [2018-05-06 21:14:21]   issuer principal: CN=DigiCert SHA2 Secure Server CA, O=DigiCert Inc, C=US
+14890976 DEBUG [2018-05-06 21:14:21]  Connection established 192.168.1.102:52325<->111.47.220.214:443
+14890976 DEBUG [2018-05-06 21:14:21]  Executing request GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HWN&purpose_codes=ADULT HTTP/1.1
+14890976 DEBUG [2018-05-06 21:14:21]  Target auth state: UNCHALLENGED
+14890976 DEBUG [2018-05-06 21:14:21]  Proxy auth state: UNCHALLENGED
+14890976 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 >> GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HWN&purpose_codes=ADULT HTTP/1.1
+14890976 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 >> Host: kyfw.12306.cn
+14890976 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 >> Connection: Keep-Alive
+14890976 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)
+14890976 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 >> Accept-Encoding: gzip,deflate
+14890976 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 >> "GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HWN&purpose_codes=ADULT HTTP/1.1[\r][\n]"
+14890976 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 >> "Host: kyfw.12306.cn[\r][\n]"
+14890977 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 >> "Connection: Keep-Alive[\r][\n]"
+14890977 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)[\r][\n]"
+14890977 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+14890977 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 >> "[\r][\n]"
+14891044 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << "HTTP/1.1 200 OK[\r][\n]"
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << "Date: Sun, 06 May 2018 13:14:21 GMT[\r][\n]"
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << "Content-Length: 87[\r][\n]"
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << "center: s[\r][\n]"
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << "X-Via: 1.1 yangyidong48:2 (Cdn Cache Server V2.0)[\r][\n]"
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << "Connection: keep-alive[\r][\n]"
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << "X-Dscp-Value: 0[\r][\n]"
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << "X-Cdn-Src-Port: 48323[\r][\n]"
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << "Cache-Control: no-cache, no-store[\r][\n]"
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << "[\r][\n]"
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << "{"data":{"flag":"1","map":{},"result":[]},"httpstatus":200,"messages":"","status":true}"
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << HTTP/1.1 200 OK
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << Date: Sun, 06 May 2018 13:14:21 GMT
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << Content-Type: application/json;charset=UTF-8
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << Content-Length: 87
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << center: s
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << X-Via: 1.1 yangyidong48:2 (Cdn Cache Server V2.0)
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << Connection: keep-alive
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << X-Dscp-Value: 0
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << X-Cdn-Src-Port: 48323
+14891045 DEBUG [2018-05-06 21:14:21]  http-outgoing-44742 << Cache-Control: no-cache, no-store
+14891045 DEBUG [2018-05-06 21:14:21]  Connection can be kept alive indefinitely
+14891045 DEBUG [2018-05-06 21:14:21]  Connection [id: 44742][route: {s}->https://kyfw.12306.cn:443] can be kept alive indefinitely
+14891045 DEBUG [2018-05-06 21:14:21]  Connection released: [id: 44742][route: {s}->https://kyfw.12306.cn:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+14891049 DEBUG [2018-05-06 21:14:21]  CookieSpec selected: default
+14891049 DEBUG [2018-05-06 21:14:21]  Auth cache not set in the context
+14891049 DEBUG [2018-05-06 21:14:21]  Connection request: [route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+14891049 DEBUG [2018-05-06 21:14:21]  Connection leased: [id: 44743][route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+14891049 DEBUG [2018-05-06 21:14:21]  Opening connection {s}->https://kyfw.12306.cn:443
+14891050 DEBUG [2018-05-06 21:14:21]  Connecting to kyfw.12306.cn/111.47.220.214:443
+14891050 DEBUG [2018-05-06 21:14:21]  Connecting socket to kyfw.12306.cn/111.47.220.214:443 with timeout 0
+14891071 DEBUG [2018-05-06 21:14:21]  Enabled protocols: [TLSv1]
+14891071 DEBUG [2018-05-06 21:14:21]  Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+14891071 DEBUG [2018-05-06 21:14:21]  Starting handshake
+14891131 DEBUG [2018-05-06 21:14:21]  Secure session established
+14891131 DEBUG [2018-05-06 21:14:21]   negotiated protocol: TLSv1
+14891131 DEBUG [2018-05-06 21:14:21]   negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+14891131 DEBUG [2018-05-06 21:14:21]   peer principal: CN=*.12306.cn, OU=IT, O=CHINA RAILWAY, L=Beijing, C=CN
+14891131 DEBUG [2018-05-06 21:14:21]   peer alternative names: [*.12306.cn]
+14891131 DEBUG [2018-05-06 21:14:21]   issuer principal: CN=DigiCert SHA2 Secure Server CA, O=DigiCert Inc, C=US
+14891131 DEBUG [2018-05-06 21:14:21]  Connection established 192.168.1.102:52326<->111.47.220.214:443
+14891131 DEBUG [2018-05-06 21:14:21]  Executing request GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HIH&purpose_codes=ADULT HTTP/1.1
+14891131 DEBUG [2018-05-06 21:14:21]  Target auth state: UNCHALLENGED
+14891131 DEBUG [2018-05-06 21:14:21]  Proxy auth state: UNCHALLENGED
+14891132 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 >> GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HIH&purpose_codes=ADULT HTTP/1.1
+14891132 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 >> Host: kyfw.12306.cn
+14891132 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 >> Connection: Keep-Alive
+14891132 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)
+14891132 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 >> Accept-Encoding: gzip,deflate
+14891132 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 >> "GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HIH&purpose_codes=ADULT HTTP/1.1[\r][\n]"
+14891132 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 >> "Host: kyfw.12306.cn[\r][\n]"
+14891132 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 >> "Connection: Keep-Alive[\r][\n]"
+14891132 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)[\r][\n]"
+14891132 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+14891132 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 >> "[\r][\n]"
+14891265 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << "HTTP/1.1 200 OK[\r][\n]"
+14891265 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << "Date: Sun, 06 May 2018 13:14:21 GMT[\r][\n]"
+14891265 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+14891265 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << "Content-Length: 87[\r][\n]"
+14891265 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << "center: s[\r][\n]"
+14891265 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << "X-Via: 1.1 yangyidong57:0 (Cdn Cache Server V2.0)[\r][\n]"
+14891265 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << "Connection: keep-alive[\r][\n]"
+14891265 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << "X-Dscp-Value: 0[\r][\n]"
+14891265 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << "X-Cdn-Src-Port: 25630[\r][\n]"
+14891265 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << "Cache-Control: no-cache, no-store[\r][\n]"
+14891265 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << "[\r][\n]"
+14891265 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << "{"data":{"flag":"1","map":{},"result":[]},"httpstatus":200,"messages":"","status":true}"
+14891265 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << HTTP/1.1 200 OK
+14891266 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << Date: Sun, 06 May 2018 13:14:21 GMT
+14891266 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << Content-Type: application/json;charset=UTF-8
+14891266 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << Content-Length: 87
+14891266 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << center: s
+14891266 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << X-Via: 1.1 yangyidong57:0 (Cdn Cache Server V2.0)
+14891266 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << Connection: keep-alive
+14891266 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << X-Dscp-Value: 0
+14891266 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << X-Cdn-Src-Port: 25630
+14891266 DEBUG [2018-05-06 21:14:21]  http-outgoing-44743 << Cache-Control: no-cache, no-store
+14891266 DEBUG [2018-05-06 21:14:21]  Connection can be kept alive indefinitely
+14891266 DEBUG [2018-05-06 21:14:21]  Connection [id: 44743][route: {s}->https://kyfw.12306.cn:443] can be kept alive indefinitely
+14891266 DEBUG [2018-05-06 21:14:21]  Connection released: [id: 44743][route: {s}->https://kyfw.12306.cn:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+14891271 DEBUG [2018-05-06 21:14:21]  CookieSpec selected: default
+14891271 DEBUG [2018-05-06 21:14:21]  Auth cache not set in the context
+14891271 DEBUG [2018-05-06 21:14:21]  Connection request: [route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+14891271 DEBUG [2018-05-06 21:14:21]  Connection leased: [id: 44744][route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+14891271 DEBUG [2018-05-06 21:14:21]  Opening connection {s}->https://kyfw.12306.cn:443
+14891272 DEBUG [2018-05-06 21:14:21]  Connecting to kyfw.12306.cn/111.47.220.214:443
+14891272 DEBUG [2018-05-06 21:14:21]  Connecting socket to kyfw.12306.cn/111.47.220.214:443 with timeout 0
+14891293 DEBUG [2018-05-06 21:14:21]  Enabled protocols: [TLSv1]
+14891293 DEBUG [2018-05-06 21:14:21]  Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+14891293 DEBUG [2018-05-06 21:14:21]  Starting handshake
+14891344 DEBUG [2018-05-06 21:14:21]  Secure session established
+14891344 DEBUG [2018-05-06 21:14:21]   negotiated protocol: TLSv1
+14891344 DEBUG [2018-05-06 21:14:21]   negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+14891344 DEBUG [2018-05-06 21:14:21]   peer principal: CN=*.12306.cn, OU=IT, O=CHINA RAILWAY, L=Beijing, C=CN
+14891344 DEBUG [2018-05-06 21:14:21]   peer alternative names: [*.12306.cn]
+14891344 DEBUG [2018-05-06 21:14:21]   issuer principal: CN=DigiCert SHA2 Secure Server CA, O=DigiCert Inc, C=US
+14891345 DEBUG [2018-05-06 21:14:21]  Connection established 192.168.1.102:52327<->111.47.220.214:443
+14891345 DEBUG [2018-05-06 21:14:21]  Executing request GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=VXN&purpose_codes=ADULT HTTP/1.1
+14891345 DEBUG [2018-05-06 21:14:21]  Target auth state: UNCHALLENGED
+14891345 DEBUG [2018-05-06 21:14:21]  Proxy auth state: UNCHALLENGED
+14891345 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 >> GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=VXN&purpose_codes=ADULT HTTP/1.1
+14891345 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 >> Host: kyfw.12306.cn
+14891345 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 >> Connection: Keep-Alive
+14891345 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)
+14891345 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 >> Accept-Encoding: gzip,deflate
+14891345 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 >> "GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=VXN&purpose_codes=ADULT HTTP/1.1[\r][\n]"
+14891345 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 >> "Host: kyfw.12306.cn[\r][\n]"
+14891345 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 >> "Connection: Keep-Alive[\r][\n]"
+14891345 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)[\r][\n]"
+14891345 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+14891345 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 >> "[\r][\n]"
+14891485 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << "HTTP/1.1 200 OK[\r][\n]"
+14891485 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << "Date: Sun, 06 May 2018 13:14:21 GMT[\r][\n]"
+14891485 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+14891485 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << "Content-Length: 87[\r][\n]"
+14891485 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << "center: s[\r][\n]"
+14891485 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << "X-Via: 1.1 yangyidong52:5 (Cdn Cache Server V2.0)[\r][\n]"
+14891485 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << "Connection: keep-alive[\r][\n]"
+14891485 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << "X-Dscp-Value: 0[\r][\n]"
+14891485 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << "X-Cdn-Src-Port: 42242[\r][\n]"
+14891485 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << "Cache-Control: no-cache, no-store[\r][\n]"
+14891485 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << "[\r][\n]"
+14891486 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << "{"data":{"flag":"1","map":{},"result":[]},"httpstatus":200,"messages":"","status":true}"
+14891486 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << HTTP/1.1 200 OK
+14891486 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << Date: Sun, 06 May 2018 13:14:21 GMT
+14891486 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << Content-Type: application/json;charset=UTF-8
+14891486 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << Content-Length: 87
+14891486 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << center: s
+14891486 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << X-Via: 1.1 yangyidong52:5 (Cdn Cache Server V2.0)
+14891486 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << Connection: keep-alive
+14891486 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << X-Dscp-Value: 0
+14891486 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << X-Cdn-Src-Port: 42242
+14891486 DEBUG [2018-05-06 21:14:21]  http-outgoing-44744 << Cache-Control: no-cache, no-store
+14891486 DEBUG [2018-05-06 21:14:21]  Connection can be kept alive indefinitely
+14891487 DEBUG [2018-05-06 21:14:21]  Connection [id: 44744][route: {s}->https://kyfw.12306.cn:443] can be kept alive indefinitely
+14891487 DEBUG [2018-05-06 21:14:21]  Connection released: [id: 44744][route: {s}->https://kyfw.12306.cn:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+14891500 DEBUG [2018-05-06 21:14:21]  CookieSpec selected: default
+14891501 DEBUG [2018-05-06 21:14:21]  Auth cache not set in the context
+14891501 DEBUG [2018-05-06 21:14:21]  Connection request: [route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+14891501 DEBUG [2018-05-06 21:14:21]  Connection leased: [id: 44745][route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+14891501 DEBUG [2018-05-06 21:14:21]  Opening connection {s}->https://kyfw.12306.cn:443
+14891501 DEBUG [2018-05-06 21:14:21]  Connecting to kyfw.12306.cn/111.47.220.214:443
+14891501 DEBUG [2018-05-06 21:14:21]  Connecting socket to kyfw.12306.cn/111.47.220.214:443 with timeout 0
+14891525 DEBUG [2018-05-06 21:14:21]  Enabled protocols: [TLSv1]
+14891525 DEBUG [2018-05-06 21:14:21]  Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+14891525 DEBUG [2018-05-06 21:14:21]  Starting handshake
+14891585 DEBUG [2018-05-06 21:14:21]  Secure session established
+14891585 DEBUG [2018-05-06 21:14:21]   negotiated protocol: TLSv1
+14891585 DEBUG [2018-05-06 21:14:21]   negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+14891585 DEBUG [2018-05-06 21:14:21]   peer principal: CN=*.12306.cn, OU=IT, O=CHINA RAILWAY, L=Beijing, C=CN
+14891585 DEBUG [2018-05-06 21:14:21]   peer alternative names: [*.12306.cn]
+14891585 DEBUG [2018-05-06 21:14:21]   issuer principal: CN=DigiCert SHA2 Secure Server CA, O=DigiCert Inc, C=US
+14891585 DEBUG [2018-05-06 21:14:21]  Connection established 192.168.1.102:52328<->111.47.220.214:443
+14891586 DEBUG [2018-05-06 21:14:21]  Executing request GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HBL&purpose_codes=ADULT HTTP/1.1
+14891586 DEBUG [2018-05-06 21:14:21]  Target auth state: UNCHALLENGED
+14891586 DEBUG [2018-05-06 21:14:21]  Proxy auth state: UNCHALLENGED
+14891586 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 >> GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HBL&purpose_codes=ADULT HTTP/1.1
+14891586 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 >> Host: kyfw.12306.cn
+14891586 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 >> Connection: Keep-Alive
+14891586 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)
+14891586 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 >> Accept-Encoding: gzip,deflate
+14891586 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 >> "GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HBL&purpose_codes=ADULT HTTP/1.1[\r][\n]"
+14891586 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 >> "Host: kyfw.12306.cn[\r][\n]"
+14891586 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 >> "Connection: Keep-Alive[\r][\n]"
+14891586 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)[\r][\n]"
+14891586 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+14891586 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 >> "[\r][\n]"
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << "HTTP/1.1 200 OK[\r][\n]"
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << "Date: Sun, 06 May 2018 13:14:21 GMT[\r][\n]"
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << "Content-Length: 87[\r][\n]"
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << "center: s[\r][\n]"
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << "X-Via: 1.1 yangyidong50:9 (Cdn Cache Server V2.0)[\r][\n]"
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << "Connection: keep-alive[\r][\n]"
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << "X-Dscp-Value: 0[\r][\n]"
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << "X-Cdn-Src-Port: 59249[\r][\n]"
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << "Cache-Control: no-cache, no-store[\r][\n]"
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << "[\r][\n]"
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << HTTP/1.1 200 OK
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << Date: Sun, 06 May 2018 13:14:21 GMT
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << Content-Type: application/json;charset=UTF-8
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << Content-Length: 87
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << center: s
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << X-Via: 1.1 yangyidong50:9 (Cdn Cache Server V2.0)
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << Connection: keep-alive
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << X-Dscp-Value: 0
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << X-Cdn-Src-Port: 59249
+14891662 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << Cache-Control: no-cache, no-store
+14891663 DEBUG [2018-05-06 21:14:21]  Connection can be kept alive indefinitely
+14891666 DEBUG [2018-05-06 21:14:21]  http-outgoing-44745 << "{"data":{"flag":"1","map":{},"result":[]},"httpstatus":200,"messages":"","status":true}"
+14891666 DEBUG [2018-05-06 21:14:21]  Connection [id: 44745][route: {s}->https://kyfw.12306.cn:443] can be kept alive indefinitely
+14891666 DEBUG [2018-05-06 21:14:21]  Connection released: [id: 44745][route: {s}->https://kyfw.12306.cn:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+14891675 DEBUG [2018-05-06 21:14:21]  CookieSpec selected: default
+14891675 DEBUG [2018-05-06 21:14:21]  Auth cache not set in the context
+14891675 DEBUG [2018-05-06 21:14:21]  Connection request: [route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+14891676 DEBUG [2018-05-06 21:14:21]  Connection leased: [id: 44746][route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+14891676 DEBUG [2018-05-06 21:14:21]  Opening connection {s}->https://kyfw.12306.cn:443
+14891677 DEBUG [2018-05-06 21:14:21]  Connecting to kyfw.12306.cn/111.47.220.214:443
+14891677 DEBUG [2018-05-06 21:14:21]  Connecting socket to kyfw.12306.cn/111.47.220.214:443 with timeout 0
+14891696 DEBUG [2018-05-06 21:14:21]  Enabled protocols: [TLSv1]
+14891696 DEBUG [2018-05-06 21:14:21]  Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+14891696 DEBUG [2018-05-06 21:14:21]  Starting handshake
+14891745 DEBUG [2018-05-06 21:14:21]  Secure session established
+14891745 DEBUG [2018-05-06 21:14:21]   negotiated protocol: TLSv1
+14891745 DEBUG [2018-05-06 21:14:21]   negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+14891745 DEBUG [2018-05-06 21:14:21]   peer principal: CN=*.12306.cn, OU=IT, O=CHINA RAILWAY, L=Beijing, C=CN
+14891745 DEBUG [2018-05-06 21:14:21]   peer alternative names: [*.12306.cn]
+14891745 DEBUG [2018-05-06 21:14:21]   issuer principal: CN=DigiCert SHA2 Secure Server CA, O=DigiCert Inc, C=US
+14891745 DEBUG [2018-05-06 21:14:21]  Connection established 192.168.1.102:52329<->111.47.220.214:443
+14891745 DEBUG [2018-05-06 21:14:21]  Executing request GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HEB&purpose_codes=ADULT HTTP/1.1
+14891745 DEBUG [2018-05-06 21:14:21]  Target auth state: UNCHALLENGED
+14891745 DEBUG [2018-05-06 21:14:21]  Proxy auth state: UNCHALLENGED
+14891745 DEBUG [2018-05-06 21:14:21]  http-outgoing-44746 >> GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HEB&purpose_codes=ADULT HTTP/1.1
+14891745 DEBUG [2018-05-06 21:14:21]  http-outgoing-44746 >> Host: kyfw.12306.cn
+14891745 DEBUG [2018-05-06 21:14:21]  http-outgoing-44746 >> Connection: Keep-Alive
+14891745 DEBUG [2018-05-06 21:14:21]  http-outgoing-44746 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)
+14891745 DEBUG [2018-05-06 21:14:21]  http-outgoing-44746 >> Accept-Encoding: gzip,deflate
+14891745 DEBUG [2018-05-06 21:14:21]  http-outgoing-44746 >> "GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HEB&purpose_codes=ADULT HTTP/1.1[\r][\n]"
+14891745 DEBUG [2018-05-06 21:14:21]  http-outgoing-44746 >> "Host: kyfw.12306.cn[\r][\n]"
+14891745 DEBUG [2018-05-06 21:14:21]  http-outgoing-44746 >> "Connection: Keep-Alive[\r][\n]"
+14891745 DEBUG [2018-05-06 21:14:21]  http-outgoing-44746 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)[\r][\n]"
+14891745 DEBUG [2018-05-06 21:14:21]  http-outgoing-44746 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+14891745 DEBUG [2018-05-06 21:14:21]  http-outgoing-44746 >> "[\r][\n]"
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << "HTTP/1.1 200 OK[\r][\n]"
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << "Date: Sun, 06 May 2018 13:14:21 GMT[\r][\n]"
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << "Content-Length: 87[\r][\n]"
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << "center: s[\r][\n]"
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << "X-Via: 1.1 angyidong51:9 (Cdn Cache Server V2.0)[\r][\n]"
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << "Connection: keep-alive[\r][\n]"
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << "X-Dscp-Value: 0[\r][\n]"
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << "X-Cdn-Src-Port: 55383[\r][\n]"
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << "Cache-Control: no-cache, no-store[\r][\n]"
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << "[\r][\n]"
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << "{"data":{"flag":"1","map":{},"result":[]},"httpstatus":200,"messages":"","status":true}"
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << HTTP/1.1 200 OK
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << Date: Sun, 06 May 2018 13:14:21 GMT
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << Content-Type: application/json;charset=UTF-8
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << Content-Length: 87
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << center: s
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << X-Via: 1.1 angyidong51:9 (Cdn Cache Server V2.0)
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << Connection: keep-alive
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << X-Dscp-Value: 0
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << X-Cdn-Src-Port: 55383
+14891898 DEBUG [2018-05-06 21:14:22]  http-outgoing-44746 << Cache-Control: no-cache, no-store
+14891898 DEBUG [2018-05-06 21:14:22]  Connection can be kept alive indefinitely
+14891898 DEBUG [2018-05-06 21:14:22]  Connection [id: 44746][route: {s}->https://kyfw.12306.cn:443] can be kept alive indefinitely
+14891898 DEBUG [2018-05-06 21:14:22]  Connection released: [id: 44746][route: {s}->https://kyfw.12306.cn:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+14891902 DEBUG [2018-05-06 21:14:22]  CookieSpec selected: default
+14891902 DEBUG [2018-05-06 21:14:22]  Auth cache not set in the context
+14891902 DEBUG [2018-05-06 21:14:22]  Connection request: [route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+14891902 DEBUG [2018-05-06 21:14:22]  Connection leased: [id: 44747][route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+14891902 DEBUG [2018-05-06 21:14:22]  Opening connection {s}->https://kyfw.12306.cn:443
+14891902 DEBUG [2018-05-06 21:14:22]  Connecting to kyfw.12306.cn/111.47.220.214:443
+14891902 DEBUG [2018-05-06 21:14:22]  Connecting socket to kyfw.12306.cn/111.47.220.214:443 with timeout 0
+14891922 DEBUG [2018-05-06 21:14:22]  Enabled protocols: [TLSv1]
+14891922 DEBUG [2018-05-06 21:14:22]  Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+14891922 DEBUG [2018-05-06 21:14:22]  Starting handshake
+14891974 DEBUG [2018-05-06 21:14:22]  Secure session established
+14891974 DEBUG [2018-05-06 21:14:22]   negotiated protocol: TLSv1
+14891974 DEBUG [2018-05-06 21:14:22]   negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+14891974 DEBUG [2018-05-06 21:14:22]   peer principal: CN=*.12306.cn, OU=IT, O=CHINA RAILWAY, L=Beijing, C=CN
+14891974 DEBUG [2018-05-06 21:14:22]   peer alternative names: [*.12306.cn]
+14891974 DEBUG [2018-05-06 21:14:22]   issuer principal: CN=DigiCert SHA2 Secure Server CA, O=DigiCert Inc, C=US
+14891974 DEBUG [2018-05-06 21:14:22]  Connection established 192.168.1.102:52330<->111.47.220.214:443
+14891974 DEBUG [2018-05-06 21:14:22]  Executing request GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HAF&purpose_codes=ADULT HTTP/1.1
+14891974 DEBUG [2018-05-06 21:14:22]  Target auth state: UNCHALLENGED
+14891974 DEBUG [2018-05-06 21:14:22]  Proxy auth state: UNCHALLENGED
+14891974 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 >> GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HAF&purpose_codes=ADULT HTTP/1.1
+14891974 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 >> Host: kyfw.12306.cn
+14891974 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 >> Connection: Keep-Alive
+14891974 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)
+14891974 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 >> Accept-Encoding: gzip,deflate
+14891974 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 >> "GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HAF&purpose_codes=ADULT HTTP/1.1[\r][\n]"
+14891974 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 >> "Host: kyfw.12306.cn[\r][\n]"
+14891974 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 >> "Connection: Keep-Alive[\r][\n]"
+14891974 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)[\r][\n]"
+14891974 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+14891974 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 >> "[\r][\n]"
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << "HTTP/1.1 200 OK[\r][\n]"
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << "Date: Sun, 06 May 2018 13:14:21 GMT[\r][\n]"
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << "Content-Length: 87[\r][\n]"
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << "center: s[\r][\n]"
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << "X-Via: 1.1 yangyidong53:7 (Cdn Cache Server V2.0)[\r][\n]"
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << "Connection: keep-alive[\r][\n]"
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << "X-Dscp-Value: 0[\r][\n]"
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << "X-Cdn-Src-Port: 27224[\r][\n]"
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << "Cache-Control: no-cache, no-store[\r][\n]"
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << "[\r][\n]"
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << HTTP/1.1 200 OK
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << Date: Sun, 06 May 2018 13:14:21 GMT
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << Content-Type: application/json;charset=UTF-8
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << Content-Length: 87
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << center: s
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << X-Via: 1.1 yangyidong53:7 (Cdn Cache Server V2.0)
+14892030 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << Connection: keep-alive
+14892031 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << X-Dscp-Value: 0
+14892031 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << X-Cdn-Src-Port: 27224
+14892031 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << Cache-Control: no-cache, no-store
+14892031 DEBUG [2018-05-06 21:14:22]  Connection can be kept alive indefinitely
+14892032 DEBUG [2018-05-06 21:14:22]  http-outgoing-44747 << "{"data":{"flag":"1","map":{},"result":[]},"httpstatus":200,"messages":"","status":true}"
+14892032 DEBUG [2018-05-06 21:14:22]  Connection [id: 44747][route: {s}->https://kyfw.12306.cn:443] can be kept alive indefinitely
+14892033 DEBUG [2018-05-06 21:14:22]  Connection released: [id: 44747][route: {s}->https://kyfw.12306.cn:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+14892037 DEBUG [2018-05-06 21:14:22]  CookieSpec selected: default
+14892037 DEBUG [2018-05-06 21:14:22]  Auth cache not set in the context
+14892037 DEBUG [2018-05-06 21:14:22]  Connection request: [route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+14892037 DEBUG [2018-05-06 21:14:22]  Connection leased: [id: 44748][route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+14892037 DEBUG [2018-05-06 21:14:22]  Opening connection {s}->https://kyfw.12306.cn:443
+14892037 DEBUG [2018-05-06 21:14:22]  Connecting to kyfw.12306.cn/111.47.220.214:443
+14892037 DEBUG [2018-05-06 21:14:22]  Connecting socket to kyfw.12306.cn/111.47.220.214:443 with timeout 0
+14892058 DEBUG [2018-05-06 21:14:22]  Enabled protocols: [TLSv1]
+14892058 DEBUG [2018-05-06 21:14:22]  Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+14892058 DEBUG [2018-05-06 21:14:22]  Starting handshake
+14892115 DEBUG [2018-05-06 21:14:22]  Secure session established
+14892115 DEBUG [2018-05-06 21:14:22]   negotiated protocol: TLSv1
+14892115 DEBUG [2018-05-06 21:14:22]   negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+14892115 DEBUG [2018-05-06 21:14:22]   peer principal: CN=*.12306.cn, OU=IT, O=CHINA RAILWAY, L=Beijing, C=CN
+14892115 DEBUG [2018-05-06 21:14:22]   peer alternative names: [*.12306.cn]
+14892115 DEBUG [2018-05-06 21:14:22]   issuer principal: CN=DigiCert SHA2 Secure Server CA, O=DigiCert Inc, C=US
+14892115 DEBUG [2018-05-06 21:14:22]  Connection established 192.168.1.102:52331<->111.47.220.214:443
+14892115 DEBUG [2018-05-06 21:14:22]  Executing request GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=XEG&purpose_codes=ADULT HTTP/1.1
+14892115 DEBUG [2018-05-06 21:14:22]  Target auth state: UNCHALLENGED
+14892115 DEBUG [2018-05-06 21:14:22]  Proxy auth state: UNCHALLENGED
+14892115 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 >> GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=XEG&purpose_codes=ADULT HTTP/1.1
+14892115 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 >> Host: kyfw.12306.cn
+14892115 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 >> Connection: Keep-Alive
+14892115 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)
+14892115 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 >> Accept-Encoding: gzip,deflate
+14892115 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 >> "GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=XEG&purpose_codes=ADULT HTTP/1.1[\r][\n]"
+14892115 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 >> "Host: kyfw.12306.cn[\r][\n]"
+14892115 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 >> "Connection: Keep-Alive[\r][\n]"
+14892115 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)[\r][\n]"
+14892115 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+14892115 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 >> "[\r][\n]"
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << "HTTP/1.1 200 OK[\r][\n]"
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << "Date: Sun, 06 May 2018 13:14:22 GMT[\r][\n]"
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << "Content-Length: 87[\r][\n]"
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << "center: s[\r][\n]"
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << "X-Via: 1.1 yangyidong54:9 (Cdn Cache Server V2.0)[\r][\n]"
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << "Connection: keep-alive[\r][\n]"
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << "X-Dscp-Value: 0[\r][\n]"
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << "X-Cdn-Src-Port: 35746[\r][\n]"
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << "Cache-Control: no-cache, no-store[\r][\n]"
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << "[\r][\n]"
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << HTTP/1.1 200 OK
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << Date: Sun, 06 May 2018 13:14:22 GMT
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << Content-Type: application/json;charset=UTF-8
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << Content-Length: 87
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << center: s
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << X-Via: 1.1 yangyidong54:9 (Cdn Cache Server V2.0)
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << Connection: keep-alive
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << X-Dscp-Value: 0
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << X-Cdn-Src-Port: 35746
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << Cache-Control: no-cache, no-store
+14892287 DEBUG [2018-05-06 21:14:22]  Connection can be kept alive indefinitely
+14892287 DEBUG [2018-05-06 21:14:22]  http-outgoing-44748 << "{"data":{"flag":"1","map":{},"result":[]},"httpstatus":200,"messages":"","status":true}"
+14892287 DEBUG [2018-05-06 21:14:22]  Connection [id: 44748][route: {s}->https://kyfw.12306.cn:443] can be kept alive indefinitely
+14892288 DEBUG [2018-05-06 21:14:22]  Connection released: [id: 44748][route: {s}->https://kyfw.12306.cn:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+14892309 DEBUG [2018-05-06 21:14:22]  CookieSpec selected: default
+14892310 DEBUG [2018-05-06 21:14:22]  Auth cache not set in the context
+14892310 DEBUG [2018-05-06 21:14:22]  Connection request: [route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+14892310 DEBUG [2018-05-06 21:14:22]  Connection leased: [id: 44749][route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+14892310 DEBUG [2018-05-06 21:14:22]  Opening connection {s}->https://kyfw.12306.cn:443
+14892310 DEBUG [2018-05-06 21:14:22]  Connecting to kyfw.12306.cn/111.47.220.214:443
+14892310 DEBUG [2018-05-06 21:14:22]  Connecting socket to kyfw.12306.cn/111.47.220.214:443 with timeout 0
+14892332 DEBUG [2018-05-06 21:14:22]  Enabled protocols: [TLSv1]
+14892332 DEBUG [2018-05-06 21:14:22]  Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+14892332 DEBUG [2018-05-06 21:14:22]  Starting handshake
+14892382 DEBUG [2018-05-06 21:14:22]  Secure session established
+14892382 DEBUG [2018-05-06 21:14:22]   negotiated protocol: TLSv1
+14892382 DEBUG [2018-05-06 21:14:22]   negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+14892382 DEBUG [2018-05-06 21:14:22]   peer principal: CN=*.12306.cn, OU=IT, O=CHINA RAILWAY, L=Beijing, C=CN
+14892382 DEBUG [2018-05-06 21:14:22]   peer alternative names: [*.12306.cn]
+14892382 DEBUG [2018-05-06 21:14:22]   issuer principal: CN=DigiCert SHA2 Secure Server CA, O=DigiCert Inc, C=US
+14892382 DEBUG [2018-05-06 21:14:22]  Connection established 192.168.1.102:52332<->111.47.220.214:443
+14892382 DEBUG [2018-05-06 21:14:22]  Executing request GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=VCQ&purpose_codes=ADULT HTTP/1.1
+14892382 DEBUG [2018-05-06 21:14:22]  Target auth state: UNCHALLENGED
+14892382 DEBUG [2018-05-06 21:14:22]  Proxy auth state: UNCHALLENGED
+14892382 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 >> GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=VCQ&purpose_codes=ADULT HTTP/1.1
+14892382 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 >> Host: kyfw.12306.cn
+14892382 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 >> Connection: Keep-Alive
+14892382 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)
+14892382 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 >> Accept-Encoding: gzip,deflate
+14892382 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 >> "GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=VCQ&purpose_codes=ADULT HTTP/1.1[\r][\n]"
+14892382 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 >> "Host: kyfw.12306.cn[\r][\n]"
+14892382 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 >> "Connection: Keep-Alive[\r][\n]"
+14892382 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)[\r][\n]"
+14892382 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+14892382 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 >> "[\r][\n]"
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << "HTTP/1.1 200 OK[\r][\n]"
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << "Date: Sun, 06 May 2018 13:14:22 GMT[\r][\n]"
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << "Content-Length: 87[\r][\n]"
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << "center: s[\r][\n]"
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << "X-Via: 1.1 yangyidong52:7 (Cdn Cache Server V2.0)[\r][\n]"
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << "Connection: keep-alive[\r][\n]"
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << "X-Dscp-Value: 0[\r][\n]"
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << "X-Cdn-Src-Port: 37914[\r][\n]"
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << "Cache-Control: no-cache, no-store[\r][\n]"
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << "[\r][\n]"
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << "{"data":{"flag":"1","map":{},"result":[]},"httpstatus":200,"messages":"","status":true}"
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << HTTP/1.1 200 OK
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << Date: Sun, 06 May 2018 13:14:22 GMT
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << Content-Type: application/json;charset=UTF-8
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << Content-Length: 87
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << center: s
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << X-Via: 1.1 yangyidong52:7 (Cdn Cache Server V2.0)
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << Connection: keep-alive
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << X-Dscp-Value: 0
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << X-Cdn-Src-Port: 37914
+14892506 DEBUG [2018-05-06 21:14:22]  http-outgoing-44749 << Cache-Control: no-cache, no-store
+14892506 DEBUG [2018-05-06 21:14:22]  Connection can be kept alive indefinitely
+14892506 DEBUG [2018-05-06 21:14:22]  Connection [id: 44749][route: {s}->https://kyfw.12306.cn:443] can be kept alive indefinitely
+14892506 DEBUG [2018-05-06 21:14:22]  Connection released: [id: 44749][route: {s}->https://kyfw.12306.cn:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+14892512 DEBUG [2018-05-06 21:14:22]  CookieSpec selected: default
+14892512 DEBUG [2018-05-06 21:14:22]  Auth cache not set in the context
+14892512 DEBUG [2018-05-06 21:14:22]  Connection request: [route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+14892512 DEBUG [2018-05-06 21:14:22]  Connection leased: [id: 44750][route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+14892512 DEBUG [2018-05-06 21:14:22]  Opening connection {s}->https://kyfw.12306.cn:443
+14892512 DEBUG [2018-05-06 21:14:22]  Connecting to kyfw.12306.cn/111.47.220.214:443
+14892512 DEBUG [2018-05-06 21:14:22]  Connecting socket to kyfw.12306.cn/111.47.220.214:443 with timeout 0
+14892532 DEBUG [2018-05-06 21:14:22]  Enabled protocols: [TLSv1]
+14892532 DEBUG [2018-05-06 21:14:22]  Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+14892532 DEBUG [2018-05-06 21:14:22]  Starting handshake
+14892582 DEBUG [2018-05-06 21:14:22]  Secure session established
+14892582 DEBUG [2018-05-06 21:14:22]   negotiated protocol: TLSv1
+14892582 DEBUG [2018-05-06 21:14:22]   negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+14892582 DEBUG [2018-05-06 21:14:22]   peer principal: CN=*.12306.cn, OU=IT, O=CHINA RAILWAY, L=Beijing, C=CN
+14892582 DEBUG [2018-05-06 21:14:22]   peer alternative names: [*.12306.cn]
+14892582 DEBUG [2018-05-06 21:14:22]   issuer principal: CN=DigiCert SHA2 Secure Server CA, O=DigiCert Inc, C=US
+14892582 DEBUG [2018-05-06 21:14:22]  Connection established 192.168.1.102:52333<->111.47.220.214:443
+14892582 DEBUG [2018-05-06 21:14:22]  Executing request GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HCZ&purpose_codes=ADULT HTTP/1.1
+14892582 DEBUG [2018-05-06 21:14:22]  Target auth state: UNCHALLENGED
+14892582 DEBUG [2018-05-06 21:14:22]  Proxy auth state: UNCHALLENGED
+14892582 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 >> GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HCZ&purpose_codes=ADULT HTTP/1.1
+14892582 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 >> Host: kyfw.12306.cn
+14892582 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 >> Connection: Keep-Alive
+14892582 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)
+14892582 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 >> Accept-Encoding: gzip,deflate
+14892582 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 >> "GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HCZ&purpose_codes=ADULT HTTP/1.1[\r][\n]"
+14892582 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 >> "Host: kyfw.12306.cn[\r][\n]"
+14892582 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 >> "Connection: Keep-Alive[\r][\n]"
+14892582 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)[\r][\n]"
+14892582 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+14892582 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 >> "[\r][\n]"
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << "HTTP/1.1 200 OK[\r][\n]"
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << "Date: Sun, 06 May 2018 13:14:22 GMT[\r][\n]"
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << "Content-Length: 87[\r][\n]"
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << "center: s[\r][\n]"
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << "X-Via: 1.1 angyidong51:10 (Cdn Cache Server V2.0)[\r][\n]"
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << "Connection: keep-alive[\r][\n]"
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << "X-Dscp-Value: 0[\r][\n]"
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << "X-Cdn-Src-Port: 35406[\r][\n]"
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << "Cache-Control: no-cache, no-store[\r][\n]"
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << "[\r][\n]"
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << "{"data":{"flag":"1","map":{},"result":[]},"httpstatus":200,"messages":"","status":true}"
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << HTTP/1.1 200 OK
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << Date: Sun, 06 May 2018 13:14:22 GMT
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << Content-Type: application/json;charset=UTF-8
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << Content-Length: 87
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << center: s
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << X-Via: 1.1 angyidong51:10 (Cdn Cache Server V2.0)
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << Connection: keep-alive
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << X-Dscp-Value: 0
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << X-Cdn-Src-Port: 35406
+14892731 DEBUG [2018-05-06 21:14:22]  http-outgoing-44750 << Cache-Control: no-cache, no-store
+14892731 DEBUG [2018-05-06 21:14:22]  Connection can be kept alive indefinitely
+14892731 DEBUG [2018-05-06 21:14:22]  Connection [id: 44750][route: {s}->https://kyfw.12306.cn:443] can be kept alive indefinitely
+14892731 DEBUG [2018-05-06 21:14:22]  Connection released: [id: 44750][route: {s}->https://kyfw.12306.cn:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+14892739 DEBUG [2018-05-06 21:14:22]  CookieSpec selected: default
+14892739 DEBUG [2018-05-06 21:14:22]  Auth cache not set in the context
+14892739 DEBUG [2018-05-06 21:14:22]  Connection request: [route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+14892739 DEBUG [2018-05-06 21:14:22]  Connection leased: [id: 44751][route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+14892739 DEBUG [2018-05-06 21:14:22]  Opening connection {s}->https://kyfw.12306.cn:443
+14892739 DEBUG [2018-05-06 21:14:22]  Connecting to kyfw.12306.cn/111.47.220.214:443
+14892739 DEBUG [2018-05-06 21:14:22]  Connecting socket to kyfw.12306.cn/111.47.220.214:443 with timeout 0
+14892762 DEBUG [2018-05-06 21:14:22]  Enabled protocols: [TLSv1]
+14892763 DEBUG [2018-05-06 21:14:22]  Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+14892763 DEBUG [2018-05-06 21:14:22]  Starting handshake
+14892817 DEBUG [2018-05-06 21:14:23]  Secure session established
+14892817 DEBUG [2018-05-06 21:14:23]   negotiated protocol: TLSv1
+14892817 DEBUG [2018-05-06 21:14:23]   negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+14892817 DEBUG [2018-05-06 21:14:23]   peer principal: CN=*.12306.cn, OU=IT, O=CHINA RAILWAY, L=Beijing, C=CN
+14892817 DEBUG [2018-05-06 21:14:23]   peer alternative names: [*.12306.cn]
+14892817 DEBUG [2018-05-06 21:14:23]   issuer principal: CN=DigiCert SHA2 Secure Server CA, O=DigiCert Inc, C=US
+14892817 DEBUG [2018-05-06 21:14:23]  Connection established 192.168.1.102:52334<->111.47.220.214:443
+14892817 DEBUG [2018-05-06 21:14:23]  Executing request GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HCN&purpose_codes=ADULT HTTP/1.1
+14892817 DEBUG [2018-05-06 21:14:23]  Target auth state: UNCHALLENGED
+14892817 DEBUG [2018-05-06 21:14:23]  Proxy auth state: UNCHALLENGED
+14892817 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 >> GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HCN&purpose_codes=ADULT HTTP/1.1
+14892817 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 >> Host: kyfw.12306.cn
+14892817 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 >> Connection: Keep-Alive
+14892817 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)
+14892817 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 >> Accept-Encoding: gzip,deflate
+14892817 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 >> "GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HCN&purpose_codes=ADULT HTTP/1.1[\r][\n]"
+14892817 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 >> "Host: kyfw.12306.cn[\r][\n]"
+14892817 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 >> "Connection: Keep-Alive[\r][\n]"
+14892817 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)[\r][\n]"
+14892817 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+14892817 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 >> "[\r][\n]"
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << "HTTP/1.1 200 OK[\r][\n]"
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << "Date: Sun, 06 May 2018 13:14:22 GMT[\r][\n]"
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << "Content-Length: 87[\r][\n]"
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << "center: s[\r][\n]"
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << "X-Via: 1.1 angyidong56:0 (Cdn Cache Server V2.0)[\r][\n]"
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << "Connection: keep-alive[\r][\n]"
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << "X-Dscp-Value: 0[\r][\n]"
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << "X-Cdn-Src-Port: 53139[\r][\n]"
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << "Cache-Control: no-cache, no-store[\r][\n]"
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << "[\r][\n]"
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << HTTP/1.1 200 OK
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << Date: Sun, 06 May 2018 13:14:22 GMT
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << Content-Type: application/json;charset=UTF-8
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << Content-Length: 87
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << center: s
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << X-Via: 1.1 angyidong56:0 (Cdn Cache Server V2.0)
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << Connection: keep-alive
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << X-Dscp-Value: 0
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << X-Cdn-Src-Port: 53139
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << Cache-Control: no-cache, no-store
+14892879 DEBUG [2018-05-06 21:14:23]  Connection can be kept alive indefinitely
+14892879 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751 << "{"data":{"flag":"1","map":{},"result":[]},"httpstatus":200,"messages":"","status":true}"
+14892879 DEBUG [2018-05-06 21:14:23]  Connection [id: 44751][route: {s}->https://kyfw.12306.cn:443] can be kept alive indefinitely
+14892879 DEBUG [2018-05-06 21:14:23]  Connection released: [id: 44751][route: {s}->https://kyfw.12306.cn:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+14892910 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892911 DEBUG [2018-05-06 21:14:23]  http-outgoing-44739: Close connection
+14892911 DEBUG [2018-05-06 21:14:23]  CookieSpec selected: default
+14892911 DEBUG [2018-05-06 21:14:23]  Auth cache not set in the context
+14892912 DEBUG [2018-05-06 21:14:23]  Connection request: [route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+14892912 DEBUG [2018-05-06 21:14:23]  Connection leased: [id: 44752][route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+14892912 DEBUG [2018-05-06 21:14:23]  Opening connection {s}->https://kyfw.12306.cn:443
+14892912 DEBUG [2018-05-06 21:14:23]  Connecting to kyfw.12306.cn/111.47.220.214:443
+14892912 DEBUG [2018-05-06 21:14:23]  Connecting socket to kyfw.12306.cn/111.47.220.214:443 with timeout 0
+14892912 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892912 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892912 DEBUG [2018-05-06 21:14:23]  http-outgoing-44738: Close connection
+14892912 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892912 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892912 DEBUG [2018-05-06 21:14:23]  http-outgoing-44737: Close connection
+14892912 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892912 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892912 DEBUG [2018-05-06 21:14:23]  http-outgoing-44736: Close connection
+14892912 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892912 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892912 DEBUG [2018-05-06 21:14:23]  http-outgoing-44735: Close connection
+14892912 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892912 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892912 DEBUG [2018-05-06 21:14:23]  http-outgoing-44751: Close connection
+14892912 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892912 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892912 DEBUG [2018-05-06 21:14:23]  http-outgoing-44750: Close connection
+14892912 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892913 DEBUG [2018-05-06 21:14:23]  http-outgoing-44749: Close connection
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892913 DEBUG [2018-05-06 21:14:23]  http-outgoing-44748: Close connection
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892913 DEBUG [2018-05-06 21:14:23]  http-outgoing-44743: Close connection
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892913 DEBUG [2018-05-06 21:14:23]  http-outgoing-44742: Close connection
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892913 DEBUG [2018-05-06 21:14:23]  http-outgoing-44741: Close connection
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892913 DEBUG [2018-05-06 21:14:23]  http-outgoing-44740: Close connection
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892913 DEBUG [2018-05-06 21:14:23]  http-outgoing-44747: Close connection
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892913 DEBUG [2018-05-06 21:14:23]  http-outgoing-44746: Close connection
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892913 DEBUG [2018-05-06 21:14:23]  http-outgoing-44745: Close connection
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager is shutting down
+14892913 DEBUG [2018-05-06 21:14:23]  http-outgoing-44744: Close connection
+14892913 DEBUG [2018-05-06 21:14:23]  Connection manager shut down
+14892934 DEBUG [2018-05-06 21:14:23]  Enabled protocols: [TLSv1]
+14892934 DEBUG [2018-05-06 21:14:23]  Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+14892934 DEBUG [2018-05-06 21:14:23]  Starting handshake
+14892992 DEBUG [2018-05-06 21:14:23]  Secure session established
+14892992 DEBUG [2018-05-06 21:14:23]   negotiated protocol: TLSv1
+14892992 DEBUG [2018-05-06 21:14:23]   negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+14892992 DEBUG [2018-05-06 21:14:23]   peer principal: CN=*.12306.cn, OU=IT, O=CHINA RAILWAY, L=Beijing, C=CN
+14892992 DEBUG [2018-05-06 21:14:23]   peer alternative names: [*.12306.cn]
+14892992 DEBUG [2018-05-06 21:14:23]   issuer principal: CN=DigiCert SHA2 Secure Server CA, O=DigiCert Inc, C=US
+14892993 DEBUG [2018-05-06 21:14:23]  Connection established 192.168.1.102:52335<->111.47.220.214:443
+14892993 DEBUG [2018-05-06 21:14:23]  Executing request GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HCT&purpose_codes=ADULT HTTP/1.1
+14892993 DEBUG [2018-05-06 21:14:23]  Target auth state: UNCHALLENGED
+14892993 DEBUG [2018-05-06 21:14:23]  Proxy auth state: UNCHALLENGED
+14892993 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 >> GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HCT&purpose_codes=ADULT HTTP/1.1
+14892993 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 >> Host: kyfw.12306.cn
+14892993 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 >> Connection: Keep-Alive
+14892993 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)
+14892993 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 >> Accept-Encoding: gzip,deflate
+14892993 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 >> "GET /otn/leftTicket/query?leftTicketDTO.train_date=2018-05-06&leftTicketDTO.from_station=TJP&leftTicketDTO.to_station=HCT&purpose_codes=ADULT HTTP/1.1[\r][\n]"
+14892993 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 >> "Host: kyfw.12306.cn[\r][\n]"
+14892993 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 >> "Connection: Keep-Alive[\r][\n]"
+14892993 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.7.0_51)[\r][\n]"
+14892993 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+14892993 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 >> "[\r][\n]"
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << "HTTP/1.1 200 OK[\r][\n]"
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << "Date: Sun, 06 May 2018 13:14:23 GMT[\r][\n]"
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << "Content-Length: 603[\r][\n]"
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << "center: s[\r][\n]"
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << "X-Via: 1.1 yangyidong48:9 (Cdn Cache Server V2.0)[\r][\n]"
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << "Connection: keep-alive[\r][\n]"
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << "X-Dscp-Value: 0[\r][\n]"
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << "X-Cdn-Src-Port: 25568[\r][\n]"
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << "Cache-Control: no-cache, no-store[\r][\n]"
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << "[\r][\n]"
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << HTTP/1.1 200 OK
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << Date: Sun, 06 May 2018 13:14:23 GMT
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << Content-Type: application/json;charset=UTF-8
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << Content-Length: 603
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << center: s
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << X-Via: 1.1 yangyidong48:9 (Cdn Cache Server V2.0)
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << Connection: keep-alive
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << X-Dscp-Value: 0
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << X-Cdn-Src-Port: 25568
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << Cache-Control: no-cache, no-store
+14893174 DEBUG [2018-05-06 21:14:23]  Connection can be kept alive indefinitely
+14893174 DEBUG [2018-05-06 21:14:23]  http-outgoing-44752 << "{"data":{"flag":"1","map":{"HCT":"[0xe6][0xb5][0xb7][0xe5][0x9f][0x8e]","TJP":"[0xe5][0xa4][0xa9][0xe6][0xb4][0xa5]"},"result":["HluOMyd1X8qsbSrwVcERsexpWQL%2FqFfcSVdHAsM412ZF%2FkxPdUNoyoAefh93sjC4nClyRljz1QGn%0A%2FkimARFNTkAUHEztYLVPRraM9WW1KexfvuYFgrO2UQH8qNTyKEToYFAZHwQNu9s%2B41oKCORbmUvK%0AqBXHSby%2BBN8CcdSidS%2FEIhGOUaSAsO9WijK0KhernZwq23VlmU9aNvmLSE%2B1XGAu3zNHahwIh5Kz%0ADsc8LRfrosslVWVszeyb6UrhPSDl%2FpIaug%3D%3D|[0xe9][0xa2][0x84][0xe8][0xae][0xa2]|5a0000K34846|K345|RZH|SBT|TJP|HCT|22:05|06:15|08:10|Y|MvB9lycsN1aav1V9aFWWWYPJTLKLaaTV79AtcKcBtUQTGsGRMDVjt593%2FYM%3D|20180505|3|H3|34|40|0|0||||[0xe6][0x97][0xa0]|||[0xe6][0x9c][0x89]||[0xe6][0x97][0xa0]|[0xe6][0x97][0xa0]|||||10401030|1413|0"]},"httpstatus":200,"messages":"","status":true}"
+14893174 DEBUG [2018-05-06 21:14:23]  Connection [id: 44752][route: {s}->https://kyfw.12306.cn:443] can be kept alive indefinitely
+14893174 DEBUG [2018-05-06 21:14:23]  Connection released: [id: 44752][route: {s}->https://kyfw.12306.cn:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+14893191 DEBUG [2018-05-06 21:14:23]  CookieSpec selected: default
+14893192 DEBUG [2018-05-06 21:14:23]  Auth cache not set in the context
+14893192 DEBUG [2018-05-06 21:14:23]  Connection request: [route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+14893192 DEBUG [2018-05-06 21:14:23]  Connection leased: [id: 44753][route: {s}->https://kyfw.12306.cn:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+14893192 DEBUG [2018-05-06 21:14:23]  Opening connection {s}->https://kyfw.12306.cn:443
+14893192 DEBUG [2018-05-06 21:14:23]  Connecting to kyfw.12306.cn/111.47.220.214:443
+14893192 DEBUG [2018-05-06 21:14:23]  Connecting socket to kyfw.12306.cn/111.47.220.214:443 with timeout 0
+14893211 DEBUG [2018-05-06 21:14:23]  Enabled protocols: [TLSv1]
+14893211 DEBUG [2018-05-06 21:14:23]  Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_RC4_128_SHA, TLS_ECDHE_RSA_WITH_RC4_128_SHA, SSL_RSA_WITH_RC4_128_SHA, TLS_ECDH_ECDSA_WITH_RC4_128_SHA, TLS_ECDH_RSA_WITH_RC4_128_SHA, TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA, TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA, SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA, SSL_RSA_WITH_RC4_128_MD5, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+14893211 DEBUG [2018-05-06 21:14:23]  Starting handshake

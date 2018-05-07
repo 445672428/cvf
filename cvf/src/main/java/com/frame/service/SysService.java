@@ -9,12 +9,9 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Service;
 
 import com.hibernate.pojo.Syslog;
-import com.mybatis.mapper.ButtonMapper;
 
 @Service
 public class SysService {
-	@Autowired
-	private ButtonMapper buttonMapper;
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
 	

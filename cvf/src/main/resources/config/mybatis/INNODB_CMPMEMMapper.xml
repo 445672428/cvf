@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mybatis.mapper.INNODB_CMPMEMMapper" >
+  <resultMap id="BaseResultMap" type="com.mybatis.pojo.INNODB_CMPMEM" >
+    <result column="page_size" property="pageSize" jdbcType="INTEGER" />
+    <result column="buffer_pool_instance" property="bufferPoolInstance" jdbcType="INTEGER" />
+    <result column="pages_used" property="pagesUsed" jdbcType="INTEGER" />
+    <result column="pages_free" property="pagesFree" jdbcType="INTEGER" />
+    <result column="relocation_ops" property="relocationOps" jdbcType="BIGINT" />
+    <result column="relocation_time" property="relocationTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    page_size, buffer_pool_instance, pages_used, pages_free, relocation_ops, relocation_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mybatis.pojo.INNODB_CMPMEMExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from INNODB_CMPMEM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mybatis.pojo.INNODB_CMPMEMExample" >
+    delete from INNODB_CMPMEM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mybatis.pojo.INNODB_CMPMEM" >
+    insert into INNODB_CMPMEM (page_size, buffer_pool_instance, pages_used, 
+      pages_free, relocation_ops, relocation_time
+      )
+    values (#{pageSize,jdbcType=INTEGER}, #{bufferPoolInstance,jdbcType=INTEGER}, #{pagesUsed,jdbcType=INTEGER}, 
+      #{pagesFree,jdbcType=INTEGER}, #{relocationOps,jdbcType=BIGINT}, #{relocationTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mybatis.pojo.INNODB_CMPMEM" >
+    insert into INNODB_CMPMEM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pageSize != null" >
+        page_size,
+      </if>
+      <if test="bufferPoolInstance != null" >
+        buffer_pool_instance,
+      </if>
+      <if test="pagesUsed != null" >
+        pages_used,
+      </if>
+      <if test="pagesFree != null" >
+        pages_free,
+      </if>
+      <if test="relocationOps != null" >
+        relocation_ops,
+      </if>
+      <if test="relocationTime != null" >
+        relocation_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pageSize != null" >
+        #{pageSize,jdbcType=INTEGER},
+      </if>
+      <if test="bufferPoolInstance != null" >
+        #{bufferPoolInstance,jdbcType=INTEGER},
+      </if>
+      <if test="pagesUsed != null" >
+        #{pagesUsed,jdbcType=INTEGER},
+      </if>
+      <if test="pagesFree != null" >
+        #{pagesFree,jdbcType=INTEGER},
+      </if>
+      <if test="relocationOps != null" >
+        #{relocationOps,jdbcType=BIGINT},
+      </if>
+      <if test="relocationTime != null" >
+        #{relocationTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mybatis.pojo.INNODB_CMPMEMExample" resultType="java.lang.Integer" >
+    select count(*) from INNODB_CMPMEM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update INNODB_CMPMEM
+    <set >
+      <if test="record.pageSize != null" >
+        page_size = #{record.pageSize,jdbcType=INTEGER},
+      </if>
+      <if test="record.bufferPoolInstance != null" >
+        buffer_pool_instance = #{record.bufferPoolInstance,jdbcType=INTEGER},
+      </if>
+      <if test="record.pagesUsed != null" >
+        pages_used = #{record.pagesUsed,jdbcType=INTEGER},
+      </if>
+      <if test="record.pagesFree != null" >
+        pages_free = #{record.pagesFree,jdbcType=INTEGER},
+      </if>
+      <if test="record.relocationOps != null" >
+        relocation_ops = #{record.relocationOps,jdbcType=BIGINT},
+      </if>
+      <if test="record.relocationTime != null" >
+        relocation_time = #{record.relocationTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update INNODB_CMPMEM
+    set page_size = #{record.pageSize,jdbcType=INTEGER},
+      buffer_pool_instance = #{record.bufferPoolInstance,jdbcType=INTEGER},
+      pages_used = #{record.pagesUsed,jdbcType=INTEGER},
+      pages_free = #{record.pagesFree,jdbcType=INTEGER},
+      relocation_ops = #{record.relocationOps,jdbcType=BIGINT},
+      relocation_time = #{record.relocationTime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

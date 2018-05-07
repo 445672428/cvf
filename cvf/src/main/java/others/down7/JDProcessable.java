@@ -7,6 +7,7 @@ import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
 import org.htmlcleaner.XPatherException;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -18,7 +19,12 @@ public class JDProcessable implements Processable {
 		// 相当于htmlcleaner对页面进行处理
 		TagNode rootNode = htmlCleaner.clean(page.getContent());
 		if(page.getUrl().startsWith("http://item.jd.com")){//表示是商品详情页
-			processProduct(page, rootNode);
+			try {
+				processProduct(page, rootNode);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else{//处理页面的url
 			String next_url = HtmlUtils.getAttributeByAttr(rootNode, "//*[@id=\"J_topPage\"]/a[2]", "href");
 			if(!next_url.equals("javascript:;")){
@@ -43,8 +49,9 @@ public class JDProcessable implements Processable {
 	 * 解析商品详细信息
 	 * @param page
 	 * @param rootNode
+	 * @throws JSONException 
 	 */
-	private void processProduct(Page page, TagNode rootNode) {
+	private void processProduct(Page page, TagNode rootNode) throws JSONException {
 		try {
 			// 标题
 			page.addField("title", HtmlUtils.getText(rootNode, "//*[@id=\"name\"]/h1"));

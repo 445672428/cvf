@@ -127,8 +127,14 @@ hadoop 文件位置
 	   
 
 
-JAVA_HOME环境配置:/usr/lib/java/jdk1.7.0_75      
-	   
+JAVA_HOME环境配置:/usr/lib/java/jdk1.7.0_75     
+
+hadoop 安装配置
+/en/hadoop/hadoop
+
+cd hadoop/etc/hadoop/
+vim hadoop-env.sh 
+
 	   
 nginx 文件安装 和启动路径
 	  #启动命令 ./nginx
@@ -425,3 +431,12 @@ redis 文件安装配置
 //    示例：
 //    SELECT DATABASE(),VERSION(),USER();
 //    SELECTBENCHMARK(9999999,LOG(RAND()*PI()));#该例中,MySQL计算LOG(RAND()*PI())表达式9999999次。
+
+JS组件系列——BootstrapTable+KnockoutJS实现增删改查解决方案（一）
+http://www.cnblogs.com/landeanfen/p/5400654.html
+JS组件系列——Bootstrap组件福利篇：几款好用的组件推荐（二）
+https://www.cnblogs.com/landeanfen/p/5603790.html
+JS组件系列——BootstrapTable+KnockoutJS实现增删改查解决方案（三）：两个Viewmodel搞定增删改查
+http://www.cnblogs.com/landeanfen/p/5667022.html
+JS组件系列——BootstrapTable+KnockoutJS实现增删改查解决方案（四）：自定义T4模板快速生成页面
+http://www.cnblogs.com/landeanfen/p/5656307.html

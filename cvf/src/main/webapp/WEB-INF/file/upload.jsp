@@ -26,7 +26,7 @@
             swf: '${CONTEXTPATH }/resources/lib/webuploader/Uploader.swf',
 
             // 文件接收服务端。
-            server: '${CONTEXTPATH }/file/FileUp.do',
+            server: '${CONTEXTPATH }/file/load',
 
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.

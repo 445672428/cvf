@@ -46,6 +46,7 @@
                     <list>
                         <value>text/plain;charset=UTF-8</value>
                         <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
                     </list>
                 </property>
             </bean>
@@ -92,12 +93,49 @@
         <property name="ignoreAcceptHeader" value="true"/>
         <property name="favorPathExtension" value="true"/>
 	</bean>
-    
+	
+	
+	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+    <!-- FreeMarker模板路径 -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="freemarkerSettings">
+        	<props>
+        		<prop key="template_update_delay">1</prop>
+        		<prop key="default_encoding">UTF-8</prop>
+        		<prop key="number_format">0.############</prop>
+        		<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+        		<prop key="classic_compatible">true</prop>
+        		<prop key="template_exception_handler">ignore</prop>
+        	</props>
+        </property>
+        <property name="templateLoaderPath" value="/WEB-INF/templates/"/>
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="xml_escape" value-ref="fmXmlEscape" />
+            </map>
+        </property>
+        <property name="defaultEncoding" value="utf-8"/>
+    </bean>
+
+
+    <!-- 配置freeMarker视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+    	<!-- org.springframework.web.servlet.view.freemarker.FreeMarkerView com.base.FreeMarkerViewUtil-->
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+        <property name="contentType" value="text/html; charset=utf-8" />
+        <property name="prefix" value=""/>  
+        <property name="suffix" value=".ftl" />
+        <property name="order" value="0" />
+        <property name="exposeRequestAttributes" value="true" />
+        <property name="exposeSessionAttributes" value="true" />
+        <property name="exposeSpringMacroHelpers" value="true" />
+    </bean>
     
     <!-- 配置springmvc 视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/"></property>
 		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="2"></property>
 	</bean>
 	<!-- 定义无Controller的path<->view直接映射 -->
 	<!-- <mvc:view-controller path="/" view-name="redirect:${web.view.index}"/> -->
@@ -108,6 +146,12 @@
 		<!-- 文件存放地方 -->
 		<!-- <property name="uploadTempDir" value="fileUpload/temp"></property> -->
 		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+	
+	<bean id="multipartResolver2" class="com.frame.web.fileupload.MultipartResolver">  
+	    <property name="defaultEncoding" value="UTF-8"/>  
+	    <property name="fileSizeMax" value="20971520"/><!-- 20M ： Maximum size of a single uploaded file-->  
+	    <property name="maxUploadSize" value="52428800"/><!-- 50M ： The maximum allowed size of a complete request-->  
 	</bean>
 	<!-- 配置异常类的错误页面 -->
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
@@ -120,7 +164,6 @@
 		 	</props>
 		 </property>
 	</bean>
-	
 	<!-- 集成websocket 功能 -->
 <!-- 	<bean id="websocket" class="com.push.WebsocketEndPoint"/>  
 	<websocket:handlers allowed-origins="*">  

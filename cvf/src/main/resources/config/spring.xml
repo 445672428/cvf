@@ -27,10 +27,7 @@
 		<property name="locations">
 			<list>
 				<value>classpath:config/log4j.properties</value>
-				<value>classpath:config/jdbc-mysql.properties</value>
-				<value>classpath:config/jdbc-sybase.properties</value>
-				<value>classpath:config/jdbc-multil-db.properties</value>
-				<value>classpath:config/redis.properties</value>
+				<value>classpath:config/db.properties</value>
 				<value>classpath:config/env.properties</value>
 			</list>
 		</property>

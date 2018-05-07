@@ -16,7 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-
+/**
+ * 验证码生成
+ * @author bobo
+ *
+ */
 public class ValidateCodeServlet extends HttpServlet {
 	/**
 	 * 

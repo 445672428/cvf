@@ -32,6 +32,8 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/itext-2.1.7.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/alipay-sdk-java20180122110032.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/org.apache.batik.transcoder-1.6.0.v201011041432.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/Sdk4J.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/netpayclient.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>

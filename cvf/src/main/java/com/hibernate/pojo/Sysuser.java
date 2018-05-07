@@ -1,8 +1,11 @@
 package com.hibernate.pojo;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Sysuser entity. @author MyEclipse Persistence Tools
@@ -35,7 +38,8 @@ public class Sysuser implements java.io.Serializable {
 	private String vchar5;
 	private String sysid;
 	private Set userareas = new HashSet(0);
-
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date birth;
 	// Constructors
 
 	/** default constructor */
@@ -269,6 +273,14 @@ public class Sysuser implements java.io.Serializable {
 
 	public void setUserareas(Set userareas) {
 		this.userareas = userareas;
+	}
+
+	public Date getBirth() {
+		return birth;
+	}
+
+	public void setBirth(Date birth) {
+		this.birth = birth;
 	}
 
 }

@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.base.BaseAction;
 import com.entities.ResultMeta;
-
+/**
+ * 异常拦截所以页面通知
+ * @author bobo
+ *
+ */
 @ControllerAdvice  
 @ResponseBody
 public class ExceptionAdvice extends BaseAction{

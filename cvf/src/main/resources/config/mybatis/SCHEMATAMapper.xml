@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mybatis.mapper.SCHEMATAMapper" >
+  <resultMap id="BaseResultMap" type="com.mybatis.pojo.SCHEMATA" >
+    <result column="CATALOG_NAME" property="catalogName" jdbcType="VARCHAR" />
+    <result column="SCHEMA_NAME" property="schemaName" jdbcType="VARCHAR" />
+    <result column="DEFAULT_CHARACTER_SET_NAME" property="defaultCharacterSetName" jdbcType="VARCHAR" />
+    <result column="DEFAULT_COLLATION_NAME" property="defaultCollationName" jdbcType="VARCHAR" />
+    <result column="SQL_PATH" property="sqlPath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CATALOG_NAME, SCHEMA_NAME, DEFAULT_CHARACTER_SET_NAME, DEFAULT_COLLATION_NAME, SQL_PATH
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mybatis.pojo.SCHEMATAExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from SCHEMATA
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.mybatis.pojo.SCHEMATAExample" >
+    delete from SCHEMATA
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mybatis.pojo.SCHEMATA" >
+    insert into SCHEMATA (CATALOG_NAME, SCHEMA_NAME, DEFAULT_CHARACTER_SET_NAME, 
+      DEFAULT_COLLATION_NAME, SQL_PATH)
+    values (#{catalogName,jdbcType=VARCHAR}, #{schemaName,jdbcType=VARCHAR}, #{defaultCharacterSetName,jdbcType=VARCHAR}, 
+      #{defaultCollationName,jdbcType=VARCHAR}, #{sqlPath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mybatis.pojo.SCHEMATA" >
+    insert into SCHEMATA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="catalogName != null" >
+        CATALOG_NAME,
+      </if>
+      <if test="schemaName != null" >
+        SCHEMA_NAME,
+      </if>
+      <if test="defaultCharacterSetName != null" >
+        DEFAULT_CHARACTER_SET_NAME,
+      </if>
+      <if test="defaultCollationName != null" >
+        DEFAULT_COLLATION_NAME,
+      </if>
+      <if test="sqlPath != null" >
+        SQL_PATH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="catalogName != null" >
+        #{catalogName,jdbcType=VARCHAR},
+      </if>
+      <if test="schemaName != null" >
+        #{schemaName,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultCharacterSetName != null" >
+        #{defaultCharacterSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultCollationName != null" >
+        #{defaultCollationName,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlPath != null" >
+        #{sqlPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mybatis.pojo.SCHEMATAExample" resultType="java.lang.Integer" >
+    select count(*) from SCHEMATA
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update SCHEMATA
+    <set >
+      <if test="record.catalogName != null" >
+        CATALOG_NAME = #{record.catalogName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schemaName != null" >
+        SCHEMA_NAME = #{record.schemaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defaultCharacterSetName != null" >
+        DEFAULT_CHARACTER_SET_NAME = #{record.defaultCharacterSetName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defaultCollationName != null" >
+        DEFAULT_COLLATION_NAME = #{record.defaultCollationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sqlPath != null" >
+        SQL_PATH = #{record.sqlPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update SCHEMATA
+    set CATALOG_NAME = #{record.catalogName,jdbcType=VARCHAR},
+      SCHEMA_NAME = #{record.schemaName,jdbcType=VARCHAR},
+      DEFAULT_CHARACTER_SET_NAME = #{record.defaultCharacterSetName,jdbcType=VARCHAR},
+      DEFAULT_COLLATION_NAME = #{record.defaultCollationName,jdbcType=VARCHAR},
+      SQL_PATH = #{record.sqlPath,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
