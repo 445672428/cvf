@@ -6,7 +6,7 @@ public class JedisDemo {
 
     public static void main(String[] args) {
         // 构造jedis对象
-        Jedis jedis = new Jedis("127.0.0.1", 6379);
+        Jedis jedis = new Jedis("47.106.87.178", 6379);
         // 向redis中添加数据
         jedis.set("mytest", "123");
         // 从redis中读取数据

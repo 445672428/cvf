@@ -1,7 +1,7 @@
 var zTree;
 var isFirst = true;
 var setting = {
-	async:{autoParam:["id"],enable:true,type:"GET",url:CONTEXTPATH+"/china.do",dataFilter:filter},
+	async:{autoParam:["id"],enable:true,type:"GET",url:CONTEXTPATH+"/china",dataFilter:filter},
     check : {chkStyle: "radio",enable: false,chkboxType : { "Y" : "s", "N" : "ps" },radioType : "level"}, 
 	view: {dblClickExpand: false,showLine: true,selectedMulti: false},
 	data: {simpleData: {enable:true,idKey: "id",pIdKey: "pId",rootPId: "0"}},

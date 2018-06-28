@@ -12,8 +12,8 @@ import com.hibernate.pojo.Syslog;
 
 @Service
 public class SysService {
-	@Autowired
-	private HibernateTemplate hibernateTemplate;
+//	@Autowired
+//	private HibernateTemplate hibernateTemplate;
 	
 	public void name() {
 		String uuid1 = UUID.randomUUID().toString().replaceAll("-", "");
@@ -27,8 +27,8 @@ public class SysService {
 		bean.setUserid("123456");
 		bean.setUserip("1.1.1.1");
 		bean.setUsername("bobo");
-		Serializable syslog = hibernateTemplate.save(bean);
-		System.err.println(syslog);
+//		Serializable syslog = hibernateTemplate.save(bean);
+//		System.err.println(syslog);
 	}
 	
 	

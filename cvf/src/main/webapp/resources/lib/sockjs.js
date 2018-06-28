@@ -5730,4 +5730,3 @@ module.exports = function lolcation(loc) {
 });
 
 
-//# sourceMappingURL=sockjs.js.map

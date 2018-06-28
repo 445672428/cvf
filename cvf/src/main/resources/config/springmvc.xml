@@ -158,8 +158,10 @@
 		 <property name="exceptionMappings">
 		 	<props>
 		 		<!-- 配置异常页面 -->
+		 		<prop key="java.lang.Exception">error</prop>
+                <prop key="java.lang.Throwable">error</prop>
 		 		<!-- 遇到上传错误时候 自动跳到错误页面 -->
-		 		<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error.jsp</prop>
+		 		<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error</prop>
 		 		<!-- 配置session超时自动跳到登录页面 -->
 		 	</props>
 		 </property>
@@ -176,23 +178,20 @@
 	
 
 	<!-- 配置权限拦截器 -->
-<!-- 	<mvc:interceptors>
+ 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/manager/**"/>
-			<bean class="com.frame.web.LoginInterceptor">
-				<property name="allowSessionUrl">
-					<list>
-						<value>/index.do</value>
-					</list>
-				</property>
-				<property name="allowAuthorityUrl">
-					<list>
-			          <value>/manager/updateAdminPassword.do</value>
-			        </list>
-				</property>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/login"/>
+			<mvc:exclude-mapping path="/dologin"/>
+			<mvc:exclude-mapping path="/register"/>
+			<mvc:exclude-mapping path="/check"/>
+			<mvc:exclude-mapping path="/t"/>
+			<mvc:exclude-mapping path="/quit"/>
+			<mvc:exclude-mapping path="/websocket/bobo"/>
+			<bean class="com.frame.intercept.LoginInterceptor">
 			</bean>
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>
 	
 	<!-- 查询资源拦截-->
 <!-- 	<mvc:interceptors>

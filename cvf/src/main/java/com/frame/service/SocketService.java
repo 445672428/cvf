@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.entities.Friends;
-import com.entities.TUser;
+import com.entities.TAdmin;
 @Service
 public class SocketService {
 	@Autowired
@@ -22,7 +22,7 @@ public class SocketService {
 	 * @param user
 	 * @return
 	 */
-	public Map<String, List<Friends>> findMyAllFriends(TUser user) {
+	public Map<String, List<Friends>> findMyAllFriends(TAdmin user) {
 		String sql = "select id,group_name from t_person_friends_group where user_id = 1 ";
 		List<Map<String, Object>> list = mysqlJdbcTemplate.queryForList(sql);
 		Map<String, List<Friends>> dataMap = new LinkedHashMap<String, List<Friends>>();

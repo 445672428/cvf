@@ -77,7 +77,6 @@
 		<spring-rabbit.version>1.4.5.RELEASE</spring-rabbit.version>
         <mybatis.version>3.4.1</mybatis.version>
         <spring-mybatis.version>1.3.0</spring-mybatis.version>
-        <!-- <hibernate.version>4.1.7.Final</hibernate.version> -->
         <hibernate.version>3.6.10.Final</hibernate.version>
         <aspectjweaver.version>1.8.9</aspectjweaver.version>
 
@@ -108,11 +107,11 @@
 		<jsp-api.version>2.0</jsp-api.version>
 		<javaee-api.version>7.0</javaee-api.version>
 		
-		<commons.lang.version>2.5</commons.lang.version>
+<!-- 		<commons.lang.version>2.5</commons.lang.version> -->
 		<commons-lang3.version>3.3.2</commons-lang3.version>
 		<commons-io.version>2.4</commons-io.version>
 		<commons-collections.version>3.2.1</commons-collections.version>
-		<commons-codec.version>1.9</commons-codec.version>
+		<commons-codec.version>1.10</commons-codec.version>
 		<commons-beanutils.version>1.9.2</commons-beanutils.version>
 		<commons-net.version>1.4.1</commons-net.version>
 		<commons-compress.version>1.6</commons-compress.version>
@@ -234,24 +233,27 @@
 	        <artifactId>spring-rabbit</artifactId>
 	        <version>${spring-rabbit.version}</version>
 	    </dependency>
-		<!-- spring end -->
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>${aspectjweaver.version}</version>
+	   	<!-- 工作流 start -->
+		<dependency>  
+		    <groupId>org.activiti</groupId>  
+		    <artifactId>activiti-spring</artifactId>  
+		    <version>${activiti.version}</version>  
 		</dependency>
+		<!-- 工作流 end -->
+		<!-- spring end -->
 
 		<!-- hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>antlr</artifactId>
+					<groupId>antlr</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-ehcache</artifactId>
-			<version>${hibernate.version}</version>
-		</dependency> -->
 		<!-- end -->
 
 		<!-- Mybatis -->
@@ -284,12 +286,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-<!-- 		<dependency>
-		    <groupId>org.ow2.asm</groupId>
-		    <artifactId>asm</artifactId>
-		    <version>5.0.4</version>
-		</dependency> -->
-		
+		<dependency>
+		   <groupId>axis</groupId>
+		   <artifactId>axis</artifactId>
+		   <version>${axis.version}</version>
+		</dependency> 
 		<!-- end -->
 		<!-- mysql -->
 		<dependency>
@@ -326,11 +327,6 @@
 
 		<!-- commons 工具包 start -->
 		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>${commons.lang.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${commons-lang3.version}</version>
@@ -341,26 +337,11 @@
 			<version>${commons-io.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-			<version>${commons-collections.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>${commons-codec.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
-			<version>${commons-beanutils.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -453,12 +434,7 @@
 			<artifactId>xml-apis</artifactId>
 			<version>${xml-apis.version}</version>
 		</dependency>
-		<!-- xstream xml -->
-		<dependency>
-			<groupId>com.thoughtworks.xstream</groupId>
-			<artifactId>xstream</artifactId>
-			<version>${xstream.version}</version>
-		</dependency>
+
 		<!-- 配置xml 文件解析器 -->
 		<dependency>
 			<groupId>sax</groupId>
@@ -470,90 +446,72 @@
 			<artifactId>dom4j</artifactId>
 			<version>${dom4j.version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/jdom/jdom -->
 		<dependency>
 		    <groupId>jdom</groupId>
 		    <artifactId>jdom</artifactId>
 		    <version>1.0</version>
 		</dependency>
-
-		<!-- json解析器 -->
 		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>${fastjson.version}</version>
+		    <groupId>net.sf.ezmorph</groupId>
+		    <artifactId>ezmorph</artifactId>
+		    <version>1.0.6</version>
 		</dependency>
-		<!--  jackson-->
-		<dependency>  
-		    <groupId>com.fasterxml.jackson.core</groupId>  
-		    <artifactId>jackson-core</artifactId>  
-		    <version>2.5.2</version>  
-		</dependency>  
-		  
+		<!-- json解析器 -->
 		<dependency>  
 		    <groupId>com.fasterxml.jackson.core</groupId>  
 		    <artifactId>jackson-databind</artifactId>  
 		    <version>2.5.2</version>  
 		</dependency>
-		<!-- cxf的jar包 -->
 		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.42</version>
+		</dependency>
+		<!-- cxf的jar包 -->
+	    <dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-core</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+ 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxws</artifactId>
 			<version>${cxf.version}</version>
-<!-- 			<exclusions>
-				<exclusion>
-				  <groupId>org.ow2.asm</groupId>
-				  <artifactId>asm</artifactId>
-				</exclusion>
-			</exclusions> -->
 		</dependency>
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http</artifactId>
 			<version>${cxf.version}</version>
-<!-- 			<exclusions>
-				<exclusion>
-				  <groupId>org.ow2.asm</groupId>
-				  <artifactId>asm</artifactId>
-				</exclusion>
-			</exclusions> -->
 		</dependency>
 		
-		<dependency>
-		   <groupId>axis</groupId>
-		   <artifactId>axis</artifactId>
-		   <version>${axis.version}</version>
-		</dependency>
+
 
 		<!-- 邮件处理包 -->
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>${mail.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.activation</groupId>
+					<artifactId>activation</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-		<!-- Excel解析 -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>${poi.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>${poi.version}</version>
-		</dependency>
-		<!-- freemarker模板 -->
-		<dependency>
-			<groupId>org.freemarker</groupId>
-			<artifactId>freemarker</artifactId>
-			<version>${freemarker.version}</version>
-		</dependency>
+
 		<!-- redis -->
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
 			<version>${jedis.version}</version>
 		</dependency>
+		<dependency>  
+            <groupId>org.springframework.data</groupId>  
+            <artifactId>spring-data-redis</artifactId>  
+            <version>1.7.1.RELEASE</version>
+        </dependency> 
+        
 		<!-- 调度 -->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
@@ -565,28 +523,19 @@
 			<artifactId>quartz-jobs</artifactId>
 			<version>${quartz.version}</version>
 		</dependency>
-		<!-- 队列 -->
-		<dependency>
-			<groupId>com.rabbitmq</groupId>
-			<artifactId>amqp-client</artifactId>
-			<version>${amqp-client.version}</version>
-		</dependency>
-		<!-- http 工具包 -->
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>${httpclient.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>fluent-hc</artifactId>
-			<version>${httpclient.version}</version>
-		</dependency>
+		
+
 		<!-- 爬虫工具包 -->
  		<dependency>
 			<groupId>commons-httpclient</groupId>
 			<artifactId>commons-httpclient</artifactId>
 			<version>${commons-httpclient.version}</version>
+			<exclusions>
+                <exclusion>
+                  <groupId>commons-codec</groupId>
+                  <artifactId>commons-codec</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.jsoup</groupId>
@@ -598,49 +547,7 @@
 			<artifactId>htmlcleaner</artifactId>
 			<version>${htmlcleaner.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>us.codecraft</groupId>
-			<artifactId>webmagic-core</artifactId>
-			<version>${webmagic.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>us.codecraft</groupId>
-			<artifactId>webmagic-extension</artifactId>
-			<version>${webmagic.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-log4j12</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<!-- 工作流 start -->
-		<dependency>  
-		    <groupId>org.activiti</groupId>  
-		    <artifactId>activiti-engine</artifactId>  
-		    <version>${activiti.version}</version>  
-		</dependency>  
-		<dependency>  
-		    <groupId>org.activiti</groupId>  
-		    <artifactId>activiti-bpmn-model</artifactId>  
-		    <version>${activiti.version}</version>  
-		</dependency>  
-		<dependency>  
-		    <groupId>org.activiti</groupId>  
-		    <artifactId>activiti-bpmn-converter</artifactId>  
-		    <version>${activiti.version}</version>  
-		</dependency>  
-		<dependency>  
-		    <groupId>org.activiti</groupId>  
-		    <artifactId>activiti-process-validation</artifactId>  
-		    <version>${activiti.version}</version>  
-		</dependency>  
-		<dependency>  
-		    <groupId>org.activiti</groupId>  
-		    <artifactId>activiti-spring</artifactId>  
-		    <version>${activiti.version}</version>  
-		</dependency>
-		<!-- 工作流 end -->
+
 		
 		<!-- 大数据 -->
 		<!-- hadoop start -->
@@ -671,80 +578,26 @@
 			<artifactId>hbase-client</artifactId>
 			<version>${hbase-client.version}</version>
 			<exclusions>  
+				<exclusion>  
+		            <artifactId>commons-collections</artifactId>  
+		            <groupId>commons-collections</groupId>  
+		        </exclusion> 
 		        <exclusion>  
 				    <groupId>junit</groupId>
 				    <artifactId>junit</artifactId>
-		        </exclusion>  
-		    </exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-mapreduce-client-core</artifactId>
-			<version>${hadoop.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-hdfs</artifactId>
-			<version>${hadoop.version}</version>
-			<exclusions>  
-		        <exclusion>  
-		            <artifactId>servlet-api</artifactId>  
-		            <groupId>javax.servlet</groupId>  
-		        </exclusion>  
+		        </exclusion>
 		        <exclusion>
-				  	<groupId>org.ow2.asm</groupId>
-				  	<artifactId>asm</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jersey</groupId>
-				    <artifactId>jersey-server</artifactId>
-				</exclusion>
+                  <groupId>commons-codec</groupId>
+                  <artifactId>commons-codec</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>com.github.stephenc.findbugs</groupId>
+                  <artifactId>findbugs-annotations</artifactId>
+                </exclusion>
+                
 		    </exclusions>
 		</dependency>
 		
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-yarn-common</artifactId>
-			<version>${hadoop.version}</version>
-			<exclusions>
-				<exclusion>  
-		            <artifactId>*</artifactId>  
-		            <groupId>*</groupId>  
-		        </exclusion>
-			</exclusions>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-common</artifactId>
-			<version>${hadoop.version}</version>
-			<exclusions>  
-		        <exclusion>  
-		            <artifactId>servlet-api</artifactId>  
-		            <groupId>javax.servlet</groupId>  
-		        </exclusion>  
-		        <exclusion>  
-		            <artifactId>jasper-compiler</artifactId>  
-		            <groupId>tomcat</groupId>  
-		        </exclusion>  
-		        <exclusion>  
-		            <artifactId>jasper-runtime</artifactId>  
-		            <groupId>tomcat</groupId>  
-		        </exclusion>  
-		        <exclusion>
-		            <artifactId>jsp-api</artifactId>  
-		            <groupId>javax.servlet.jsp</groupId>  
-		        </exclusion>
-		        <exclusion>  
-		            <artifactId>slf4j-log4j12</artifactId>  
-		            <groupId>org.slf4j</groupId>  
-		        </exclusion>
-		       <exclusion>  
-		            <artifactId>*</artifactId>  
-		            <groupId>*</groupId>  
-		        </exclusion>
-		    </exclusions>
-		</dependency>
 		<!-- hadoop end -->
 
 	
@@ -813,12 +666,6 @@
             	</exclusion>
             </exclusions>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.googlecode.ehcache-spring-annotations/ehcache-spring-annotations -->
-<!-- 		<dependency>
-		    <groupId>com.googlecode.ehcache-spring-annotations</groupId>
-		    <artifactId>ehcache-spring-annotations</artifactId>
-		    <version>1.2.0</version>
-		</dependency> -->
         
 		<!-- 配置websocket -->
 		<dependency>
@@ -885,17 +732,15 @@
             <version>${elasticsearch.version}</version>
         </dependency> -->
 		<!-- elasticsearch -->
-		<!-- 字符解码 -->
+
+		<!-- freemarker模板 -->
 		<dependency>
-			<groupId>org.bytedeco</groupId>
-			<artifactId>javacv</artifactId>
-			<version>${javacv.version}</version>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>${freemarker.version}</version>
 		</dependency>
-<!-- 		<dependency>
-		    <groupId>com.lowagie</groupId>
-		    <artifactId>itext</artifactId>
-		    <version>2.1.7</version>
-		</dependency> -->
+
+
 		<dependency>
 		    <groupId>com.lowagie</groupId>
 		    <artifactId>itext-rtf</artifactId>
@@ -912,51 +757,23 @@
 	     <version>3.0.3</version>
 	     <scope>compile</scope>
 	   </dependency>
-	   <!-- 微信 支护宝API -->
-<!--         <dependency>
-            <groupId>cn.sc.qq</groupId>
-            <artifactId>qq-communication</artifactId>
-            <version>2.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.sc.alipay</groupId>
-            <artifactId>alipay-sdk-java20180104135026</artifactId>
-            <version>20180104135026</version>
-        </dependency> -->
-        <dependency>
-		    <groupId>org.apache.oltu.oauth2</groupId>
-		    <artifactId>org.apache.oltu.oauth2.client</artifactId>
-		    <version>1.0.0</version>
-		</dependency>
-        <!-- https://mvnrepository.com/artifact/net.oauth.core/oauth -->
+	   	<!-- Excel解析 -->
 		<dependency>
-		    <groupId>net.oauth.core</groupId>
-		    <artifactId>oauth</artifactId>
-		    <version>20100527</version>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${poi.version}</version>
+			<exclusions>
+				<exclusion>
+				  <groupId>commons-codec</groupId>
+				  <artifactId>commons-codec</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-        
-        
-        <!-- https://mvnrepository.com/artifact/net.sf.ezmorph/ezmorph -->
 		<dependency>
-		    <groupId>net.sf.ezmorph</groupId>
-		    <artifactId>ezmorph</artifactId>
-		    <version>1.0.6</version>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
 		</dependency>
-        
-		<dependency>
-			<groupId>jdk.tools</groupId>
-			<artifactId>jdk.tools</artifactId>
-			<version>1.7</version>
-			<scope>system</scope>
-			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
-		</dependency>
-		
-		<dependency>
-            <groupId>jfree</groupId>
-            <artifactId>jfreechart</artifactId>
-            <version>${jfreechart.version}</version>
-        </dependency>
 		<!-- POI jar -->
 		<dependency>  
 		    <groupId>fr.opensagres.xdocreport</groupId>  
@@ -972,25 +789,53 @@
 		    <groupId>org.apache.poi</groupId>  
 		    <artifactId>poi</artifactId>  
 		    <version>3.12</version>  
+		    <exclusions>
+                <exclusion>
+                  <groupId>commons-codec</groupId>
+                  <artifactId>commons-codec</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>  
 		<dependency>  
 		    <groupId>org.apache.poi</groupId>  
 		    <artifactId>poi-scratchpad</artifactId>  
 		    <version>3.12</version>  
 		</dependency> 
-		<!-- https://mvnrepository.com/artifact/net.arnx/wmf2svg -->
+		
 		<dependency>
 		    <groupId>net.arnx</groupId>
 		    <artifactId>wmf2svg</artifactId>
 		    <version>0.9.8</version>
 		</dependency>
+		<dependency>
+            <groupId>jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>${jfreechart.version}</version>
+        </dependency>
 		<!-- 新浪微博三方登录jar -->
-		 <!-- https://mvnrepository.com/artifact/com.belerweb/weibo4j-oauth2 -->
+		<dependency>
+		    <groupId>org.apache.oltu.oauth2</groupId>
+		    <artifactId>org.apache.oltu.oauth2.client</artifactId>
+		    <version>1.0.0</version>
+		    <exclusions>
+				<exclusion>
+				  <groupId>commons-codec</groupId>
+				  <artifactId>commons-codec</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	    <dependency>
 	        <groupId>com.belerweb</groupId>
 	        <artifactId>weibo4j-oauth2</artifactId>
 	        <version>2.1.1-beta2-3</version>
 	    </dependency>
+	    <dependency>
+			<groupId>jdk.tools</groupId>
+			<artifactId>jdk.tools</artifactId>
+			<version>1.7</version>
+			<scope>system</scope>
+			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

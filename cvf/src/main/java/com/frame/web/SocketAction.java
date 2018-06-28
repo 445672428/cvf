@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.socket.TextMessage;
 
 import com.entities.Friends;
-import com.entities.TUser;
+import com.entities.TAdmin;
 import com.frame.multil.service.SearchService;
 import com.frame.service.SocketService;
 import com.push.WebsocketEndPoint;
@@ -34,9 +34,9 @@ public class SocketAction {
         return new WebsocketEndPoint();
     }
     
-	@RequestMapping(value="chat/chatfriends.do",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@RequestMapping(value="chat/chatfriends",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	public @ResponseBody Map<String,List<Friends>> getMyAllFriends(HttpServletRequest request,HttpServletResponse response){
-		TUser user = (TUser)request.getSession().getAttribute(Contant.USER_KEY);
+		TAdmin user = (TAdmin)request.getSession().getAttribute(Contant.USER_KEY);
 		Map<String,List<Friends>> list = socketService.findMyAllFriends(user);
 		return list;
 	}
@@ -47,7 +47,7 @@ public class SocketAction {
         System.out.println(username+"登录");
         HttpSession session = request.getSession(false);
         session.setAttribute("SESSION_USERNAME", username);
-        return new ModelAndView("websocket");
+        return new ModelAndView("forward:websocket");
     }
 
     @RequestMapping("/websocket/send")

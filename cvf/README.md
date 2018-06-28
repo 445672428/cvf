@@ -1,3 +1,7 @@
+tomcat授权
+chmod u+x *.sh
+
+
 # cvf
 cvf
 编辑下面配置文件
@@ -137,9 +141,41 @@ vim hadoop-env.sh
 
 	   
 nginx 文件安装 和启动路径
-	  #启动命令 ./nginx
-	  #停止命令 ./nginx -s top
-	  /usr/environment/nginx/sbin
+yum install gcc-c++
+yum install -y pcre pcre-devel
+yum install -y zlib zlib-devel
+yum install -y openssl openssl-devel
+1.使用默认配置
+./configure
+2.自定义配置（不推荐）
+
+./configure \
+--prefix=/usr/local/nginx \
+--conf-path=/usr/local/nginx/conf/nginx.conf \
+--pid-path=/usr/local/nginx/conf/nginx.pid \
+--lock-path=/var/lock/nginx.lock \
+--error-log-path=/var/log/nginx/error.log \
+--http-log-path=/var/log/nginx/access.log \
+--with-http_gzip_static_module \
+--http-client-body-temp-path=/var/temp/nginx/client \
+--http-proxy-temp-path=/var/temp/nginx/proxy \
+--http-fastcgi-temp-path=/var/temp/nginx/fastcgi \
+--http-uwsgi-temp-path=/var/temp/nginx/uwsgi \
+--http-scgi-temp-path=/var/temp/nginx/scgi
+注：将临时文件目录指定为/var/temp/nginx，需要在/var下创建temp及nginx目录
+
+make
+make install
+查找安装路径：/usr/local/nginx
+
+whereis nginx
+查看进程ID
+ps -C nginx -o pid
+netstat -anp | grep :80命令来判断Nginx是否启动。
+lsof -i:80 也可以查到80端口进程是否有进程在运行。
+netstat -ntlp
+#启动命令 ./nginx
+#停止命令 ./nginx -s top
 
 redis 文件安装配置
 	#切换到redis安装目录下面

@@ -42,7 +42,7 @@ public class HotleController extends BaseAction{
 		lucene查询
 	 * @throws IOException 
 	 */
-	@RequestMapping(value="t.do",method=RequestMethod.GET)
+	@RequestMapping(value="lucene",method=RequestMethod.GET)
 	public void dasds(HttpServletRequest request,HttpServletResponse response,String search) throws IOException {
 		sysService.name();
 		sysLogService.insertmysave();
@@ -51,7 +51,7 @@ public class HotleController extends BaseAction{
 		lucene查询
 	 * @throws IOException 
 	 */
-	@RequestMapping(value="search.do",method=RequestMethod.GET)
+	@RequestMapping(value="search",method=RequestMethod.GET)
 	public void startLunce(HttpServletRequest request,HttpServletResponse response,String search) throws IOException {
 		search = new String(search.trim().getBytes("ISO-8859-1"),"UTF-8");
 		List<JSONObject> list = searchEtlImp.queryMatchSuitValue(search);
@@ -69,7 +69,7 @@ public class HotleController extends BaseAction{
 	 * 酒店人员信息
 	 * @return
 	 */
-	@RequestMapping(value="guessinfo.do",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+	@RequestMapping(value="guessinfo",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String queryHotlePage(int pagesize,int start) {
 		//sysService.groupAdd();

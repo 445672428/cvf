@@ -1,32 +1,25 @@
 package com.frame.web;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.InputStream;
 import java.text.DecimalFormat;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.entities.ProgressInfo;
 import com.hibernate.pojo.Sysuser;
@@ -34,12 +27,33 @@ import com.hibernate.service.SysuserService;
 import com.utils.ComUtils;
 
 import contant.Contant;
-
+/**
+ * 个人信息和权限页面
+ * @author bobo
+ *
+ */
 @Controller
 @RequestMapping(value="auth")
 public class AuthorityAction {
 	@Autowired
 	private SysuserService sysuserService; 
+	
+	/**
+	 * 个人信息页面
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="module",method=RequestMethod.POST)
+	public ModelAndView personalInfo(@RequestParam(value = "id", defaultValue = "basic") String id){
+		ModelAndView v = new ModelAndView("/views/personal");
+		v.addObject("id", id);
+		v.addObject("d", "b3bo");
+		v.addObject("e", "b2bo");
+		v.addObject("f", "b1");
+		return v;
+	}
+	
+	
 	/**
 	 * 使用对象接收数据
 	 * @param sysuser

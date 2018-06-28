@@ -10,6 +10,8 @@ import java.security.Provider;
 import java.security.SecureRandom;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.crypto.Cipher;
 
@@ -31,7 +33,7 @@ public class RSA {
     /** 缓存的密钥对。 */
     private static KeyPair oneKeyPair = null;
 
-    private static String radamKey = "";
+    private static String radamKey = "bobo";
 
     static {
         try {
@@ -121,20 +123,34 @@ public class RSA {
         }
         return StringUtils.reverse(text);
     }
-
+    /**
+     * 获取模 和公钥指数
+     * @return
+     */
+    public static Map<String, String> getModuleAndEmpoent() {
+    	 RSAPublicKey publicKey = RSA.getDefaultPublicKey();
+    	 
+    	 String module = new String(Hex.encode(publicKey.getModulus().toByteArray()));//公钥-系数(n) 
+    	 String empoent = new String(Hex.encode(publicKey.getPublicExponent().toByteArray()));//公钥-指数(e1)
+    	 
+    	 Map<String, String> map = new HashMap<String, String>();
+    	 map.put("m", module);
+    	 map.put("e", empoent);
+    	 return map;
+	}
+ 
     public static void main(String[] args) {
-        
         //密码种子，一个密码种子生产一组RSA密码
         RSA.radamKey = "1111";
 
         //获取公钥，分发公钥（e1,n）
         RSAPublicKey publicKey = RSA.getDefaultPublicKey();
 
-        //公钥-系数(n)
+        //公钥-系数(n)   模   需要将模和公钥指数传给前端
         System.out.println("public key modulus:"
                 + new String(Hex.encode(publicKey.getModulus().toByteArray())));
 
-        //公钥-指数(e1)
+        //公钥-指数(e1)	公钥指数
         System.out.println("public key exponent:"
                 + new String(Hex.encode(publicKey.getPublicExponent()
                         .toByteArray())));

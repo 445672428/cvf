@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.entities.TUser;
+import com.entities.TAdmin;
 import com.utils.ThreadLocalContainer;
 
 import contant.Contant;
@@ -20,7 +20,7 @@ public class UrlRequestInterceptor implements HandlerInterceptor{
 
 	@Override
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
-		TUser tUser = (TUser)request.getSession().getAttribute(Contant.USER_KEY);
+		TAdmin tUser = (TAdmin)request.getSession().getAttribute(Contant.USER_KEY);
 		ThreadLocalContainer container = ThreadLocalContainer.getCurrentContext();
 		container.settUser(tUser);
 		//TODO这里判断用户是否存在

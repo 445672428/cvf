@@ -10,7 +10,7 @@ import contant.Contant;
 /**
  * 
  * @author bobo
- *
+ *使用websocket监听器配置
  */
 public class SocketConfigurator extends Configurator {
     @Override

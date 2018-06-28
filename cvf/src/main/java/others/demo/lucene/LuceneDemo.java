@@ -35,7 +35,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
-import com.data.MysqlDBUtils;
+import com.data.DBUtils;
 
 public class LuceneDemo {
 	public static void main(String[] args) throws Exception {
@@ -173,7 +173,7 @@ public class LuceneDemo {
 		Directory directory = null;
 		int count = 0;
 		try {
-			connection = MysqlDBUtils.getConnection();
+			connection = DBUtils.getConnection();
 			preparedStatement = (PreparedStatement) connection.prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
 			preparedStatement.setFetchSize(Integer.MIN_VALUE);
 			preparedStatement.setFetchDirection(ResultSet.FETCH_REVERSE);
@@ -240,7 +240,7 @@ public class LuceneDemo {
 		long count = 0;
 		String sql = "select name,Address,Dirty,mobile,tel,eMail,nation,education,company,family from hotle";
 		try {
-			con = MysqlDBUtils.getConnection();
+			con = DBUtils.getConnection();
 			ps = (PreparedStatement) con.prepareStatement(sql,
 					ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 			ps.setFetchSize(Integer.MIN_VALUE);

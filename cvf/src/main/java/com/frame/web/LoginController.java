@@ -1,8 +1,10 @@
 package com.frame.web;
 
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,90 +17,169 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.entities.Friends;
-import com.entities.TUser;
-import com.frame.multil.service.HotleService;
-import com.frame.multil.service.SearchService;
+import com.base.BaseAction;
+import com.entities.TAdmin;
 import com.frame.service.LoginService;
+import com.utils.HttpUtils;
+import com.utils.TimeUtils;
 
 import contant.Contant;
-
+import encryption.AESUtil;
+import encryption.RSA;
+/**
+ * 登录控制器
+ * @author bobo
+ *
+ */
 @Controller
-public class LoginController {
+public class LoginController extends BaseAction{
 	@Autowired
 	private LoginService loginService;
-	@Autowired
-	private HotleService hotleService;
-	@Autowired
-	private SearchService searchService;
-	
-//	@Autowired
-//	@Qualifier("sybaseJdbcTemplate")
-//	private JdbcTemplate sybaseJdbcTemplate;
+
 	@Qualifier("mysqlJdbcTemplate")
 	@Autowired
 	private JdbcTemplate mysqlJdbcTemplate;
 	/**
 	 * 用户登录
 	 */
-	@RequestMapping(value="login.do",method=RequestMethod.POST)
+	@RequestMapping(value="dologin",method=RequestMethod.POST)
 	public String login(HttpServletRequest request){
+		String ip = HttpUtils.getIpAddress(request);
 		String username = request.getParameter("username");
 		String password = request.getParameter("password"); 
+		Long time = (Long)request.getSession().getAttribute(Contant.TIME);
+		if (time == null || time == 0) {
+			return "redirect:login";
+		}
+		
 		boolean isSure = ValidateCodeServlet.validate(request, request.getParameter("checkcode"));
-		TUser tUser =  loginService.findCurUser(username,password);
+		//进行解密 在这里需要控制在一分钟内 使用时间搓加密
+		password = RSA.decryptStringByJs(password);
+		long n = TimeUtils.getNow();
+		if ((n - time) > 60000) {
+			return "redirect:login";
+		}
+		//对于密码进行对称加密 进行数据匹配
+		password = password.substring(0, password.length()-String.valueOf(time).length());
+		password = AESUtil.encrypt(Contant.SECURITY, password);
+		TAdmin tUser =  loginService.findCurUser(username,password,ip);
 		if (null == tUser || !isSure) {
-			return "redirect:login.jsp";
+			return "redirect:login";
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute(Contant.USER_KEY, tUser);
-		return "home";
+		return "redirect:/home";
+	}
+	
+	
+	/**
+	 * 检测用户名是否可以注册
+	 */
+	@RequestMapping(value="check",method=RequestMethod.GET)
+	public void checkRegisterUserName(HttpServletRequest request,HttpServletResponse response){
+		
+
+		PrintWriter printWriter = null;
+		try {
+			response.setContentType("text/html; charset=UTF-8");
+			response.setHeader("Expires", "-1");  
+	        response.setHeader("Cache-Control", "no-cache");  
+	        response.setHeader("Pragma",  "no-cache"); 
+	        
+			request.setCharacterEncoding("UTF-8");  
+			String name = request.getParameter("name");
+			byte[] bytes = name.getBytes("ISO-8859-1");
+			name = new String(bytes, "UTF-8");
+			logger.info(name);
+			boolean isIn = loginService.checkUserName(name);
+			printWriter = response.getWriter();
+			String msg = "可以注册";
+			if (isIn) {
+				msg = "注册账号已经存在";
+			}else{
+				
+			}
+			printWriter.print(msg);
+			printWriter.flush();
+			printWriter.close();
+		} catch (IOException e) {
+			logger.error("error", e);
+		}
+
 	}
 	
 	/**
 	 * 用户注册
 	 */
-	@RequestMapping(value="register.do",method=RequestMethod.POST)
+	@RequestMapping(value="register",method=RequestMethod.POST)
 	public String register(HttpServletRequest request,HttpServletResponse response){
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 		String mobile = request.getParameter("mobile");
-		TUser user = new TUser();
+		long time = (long)request.getSession().getAttribute(Contant.TIME);
+		if (time == 0) {
+			return "redirect:login";
+		}
+		password = RSA.decryptStringByJs(password);
+		long n = TimeUtils.getNow();
+		if ((n - time) > 60000) {
+			return "redirect:login";
+		}
+		//对于密码进行对称加密 进行数据匹配
+		password = password.substring(0, password.length()-String.valueOf(time).length());
+		password = AESUtil.encrypt(Contant.SECURITY, password);
+		
+		TAdmin user = new TAdmin();
 		user.setPassWord(password);
-		user.setUserName(userName);
+		user.setAdmin_name(userName);
 		user.setEmail(email);
-		user.setMobile(mobile);
+		user.setTelephone(mobile);
 		try {
 			loginService.saveNewUser(user);
-			return "redirect:login.jsp";
+			return "redirect:login";
 		} catch (Exception e) {
-			return "forward:register.jsp";
+			return "redirect:register";
 		}
 	}
-	
-	
-	
-	
-
-	
-	@RequestMapping(value="data.do",method=RequestMethod.POST)
-	public void upData(String param) {
-		JSONArray array = JSON.parseArray(param);
-		if (array!=null) {
-			for(int i = 0; i < array.size(); i++){
-				Object obj = array.get(i);
-				JSONObject jsonObject = (JSONObject)obj;
-				String name = jsonObject.getString("name");
-				String code = jsonObject.getString("code");
-				String parent_code = jsonObject.getString("parent_code")==null?"":jsonObject.getString("parent_code");
-				String sql = "insert into china (name,code,parentcode) values ('"+name+"','"+code+"','"+parent_code+"')";
-				mysqlJdbcTemplate.execute(sql);
-				System.out.println(sql);
-			}
+	/**
+	 * 主要用于反爬虫 后续处理
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="t",method=RequestMethod.GET)
+	@ResponseBody
+	public void getTime(HttpServletRequest request,HttpServletResponse response) {
+		Cookie[] cookie = request.getCookies();
+		Enumeration es = request.getHeaderNames();
+		String type = request.getAuthType();
+		String ip = HttpUtils.getIpAddress(request);
+		Long t = TimeUtils.getNow();
+		request.getSession().setAttribute(Contant.TIME, t);
+		try {
+			response.getWriter().print(t);
+			response.getWriter().flush();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+	}
+	/**
+	 * 用户注销
+	 * @throws IOException 
+	 */
+	@RequestMapping(value="quit",method=RequestMethod.GET)
+	public void doQuit(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		Enumeration<String> em = session.getAttributeNames();
+		while(em.hasMoreElements()){
+			request.getSession().removeAttribute(em.nextElement().toString());
+		}
+		String path = request.getContextPath();
+		path = request.getScheme() +"://"+ request.getServerName()+":"+request.getServerPort()+path+"";
+		 
+		session.removeAttribute(Contant.USER_KEY);
+		session.invalidate();
+		response.sendRedirect(path);
+		//response.sendRedirect(request.getContextPath() + "index");
 	}
 }

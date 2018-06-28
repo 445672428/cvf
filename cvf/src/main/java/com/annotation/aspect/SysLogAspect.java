@@ -1,81 +1,115 @@
 package com.annotation.aspect;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
+
+import javax.websocket.Session;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.JoinPoint.StaticPart;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.reflect.SourceLocation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.annotation.SysLogColumn;
+import com.socket.ListenEvent;
+import com.socket.TomcatLogSocket;
+import com.utils.SysDateFormat;
 
 public class SysLogAspect {
-    public void beforeAdvice(JoinPoint joinpoint) {
-    	String f = joinpoint.getKind();
-    	SourceLocation e = joinpoint.getSourceLocation();
-    	StaticPart d = joinpoint.getStaticPart();
-    	Object c = joinpoint.getTarget();
-    	Object b =joinpoint.getThis();
-    	String a = joinpoint.toLongString();
-    	String methodName = joinpoint.getSignature().getName();
-    	List<Object> args = Arrays.asList(joinpoint.getArgs());
-    	try {
-			getMthodRemark(joinpoint);
+
+	protected static final Logger logger = LoggerFactory.getLogger(SysLogAspect.class);
+	/**
+	 * 前置通知
+	 * @param proceedingJoinPoint
+	 * @return
+	 * @throws Throwable
+	 */
+	public void beforeAdvice(JoinPoint joinpoint) {
+		try {
+			getMthodRemark(joinpoint,null,"前置通知",null);
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-        System.out.println("前置通知执行了");
-    }
+		logger.info("前置通知执行了");
+	}
+	/**
+	 * 后置通知
+	 * @param proceedingJoinPoint
+	 * @return
+	 * @throws Throwable
+	 */
+	public void afterAdvice(JoinPoint joinpoint) {
+		try {
+			getMthodRemark(joinpoint, null,"后置通知",null);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 后置返回值通知
+	 * @param proceedingJoinPoint
+	 * @return
+	 * @throws Throwable
+	 */
+	public void afterReturnAdvice(JoinPoint joinPoint, Object result) {
+		try {
+			getMthodRemark(joinPoint, null,"后置返回值通知",result);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 环绕通知
+	 * @param proceedingJoinPoint
+	 * @return
+	 * @throws Throwable
+	 */
+	public Object aroundAdvice(ProceedingJoinPoint proceedingJoinPoint)
+			throws Throwable {
+		Object result = null;
+		try {
+			getMthodRemark(proceedingJoinPoint, null,"环绕通知",null);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	/**
+	 * 异常通知
+	 * @param proceedingJoinPoint
+	 * @return
+	 * @throws Throwable
+	 */
+	public void throwingAdvice(JoinPoint joinPoint, Exception e) {
+		try {
+			getMthodRemark(joinPoint, null,"异常通知",null);
+		} catch (Throwable t) {
+			t.printStackTrace();
+		}
+	}
 
-    public void afterAdvice(JoinPoint joinpoint) {
-        System.out.println("后置通知执行了");
-    }
-
-    public void afterReturnAdvice(JoinPoint joinPoint,Object result) {
-        System.out.println("返回通知执行了" + "运行业务方法返回的结果为" + result);
-    }
-
-    public Object aroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-    	Object result = null;
-        try {
-            System.out.println("环绕通知开始执行了");
-//            long start = System.currentTimeMillis();
-//            result = (String) proceedingJoinPoint.proceed();
-//            long end = System.currentTimeMillis();
-//            System.out.println("环绕通知执行结束了");
-//            System.out.println("执行业务方法共计：" + (end - start) + "毫秒。");
-        } catch (Throwable e) {
-        	e.printStackTrace();
-        }
-        return result;
-    }
-
-    public void throwingAdvice(JoinPoint joinPoint, Exception e) {
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("异常通知执行了.");
-//        stringBuffer.append("方法:").append(joinPoint.getSignature().getName()).append("出现了异常.");
-//        stringBuffer.append("异常信息为:").append(e.getMessage());
-//        System.out.println(stringBuffer.toString());
-    }
-    
 	// 获取方法的中文备注____用于记录用户的操作日志描述
-	public String getMthodRemark(JoinPoint joinPoint) throws Exception {
+	public String getMthodRemark(JoinPoint joinPoint, Exception e,String msg,Object obj)
+			throws Exception {
 		String targetName = joinPoint.getTarget().getClass().getName();
 		String methodName = joinPoint.getSignature().getName();
-		System.out.println("====调用" + methodName + "方法-开始！");
+		String time = SysDateFormat.getCurrentDateStringAll();
+		msg = time+"------------>调用:" + methodName + "方法!";
 		Object[] arguments = joinPoint.getArgs(); // 获得参数列表
-		System.out.println("打印出方法调用时传入的参数，可以在这里通过添加参数的类型，进行一些简易逻辑处理和判断");
+		msg += "详情:";
 		if (arguments.length <= 0) {
-			System.out.println("=== " + methodName + " 方法没有参数");
+			msg += methodName + " 方法没有参数,";
 		} else {
 			for (int i = 0; i < arguments.length; i++) {
-				System.out.println("==== 参数   " + (i + 1) + " : "
-						+ arguments[i]);
+				if (null == arguments[i]) {
+					continue;
+				}
+				msg += "第"+ (i + 1) +"参数:   " + arguments[i].toString()+"。";
 			}
 		}
+		if (null!=obj) {
+			msg += "返回值:"+obj.toString();
+		}
+		ListenEvent.add(msg);		
 		Class targetClass = Class.forName(targetName);
 		Method[] method = targetClass.getMethods();
 		String methode = "";
@@ -84,8 +118,9 @@ public class SysLogAspect {
 				Class[] tmpCs = m.getParameterTypes();
 				if (tmpCs.length == arguments.length) {
 					SysLogColumn methodCache = m.getAnnotation(SysLogColumn.class);
-					if(null != methodCache){
+					if (null != methodCache) {
 						methode = methodCache.operationName();
+						msg += methode+"!";
 					}
 					break;
 				}

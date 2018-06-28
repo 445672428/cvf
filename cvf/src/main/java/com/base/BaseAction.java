@@ -8,49 +8,21 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
-import com.entities.China;
 import com.frame.service.ConfigService;
-import com.mybatis.pojo.INNODB_CMP_RESET;
 
 public class BaseAction {
 	protected static final Logger logger = LoggerFactory.getLogger(BaseAction.class);
 	@Autowired
 	protected ConfigService configService;
-	@Test
-	public void nannn(){
-		China china = new China("波波", "123", "2");
-		china.getCreate();
-		System.out.println(china);
-	}
 	
-	/**
-	 * @param list
-	 * @param clz
-	 * @return
-	 */
-	public <T> List<T> exchangeJsonToList(List<Map<String, Object>> list,Class<T> clz) {
-		JSONArray array = JSONArray.parseArray(JSON.toJSONString(list));
-		return exchangeJsonToList(array,clz);
-	}
-	/**
-	 * 
-	 * @param array
-	 * @param clz
-	 * @return
-	 */
-	public <T> List<T> exchangeJsonToList(JSONArray array, Class<T> clz) {
-		return array.toJavaList(clz);
-	}
 	/**
 	 * 
 	 * @param object

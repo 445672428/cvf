@@ -2,7 +2,7 @@ package com.utils;
 
 import org.apache.http.HttpRequest;
 
-import com.entities.TUser;
+import com.entities.TAdmin;
 
 public class ThreadLocalContainer {
 	private static final ThreadLocal<Object> contexts = new ThreadLocal<Object>();
@@ -20,11 +20,11 @@ public class ThreadLocalContainer {
     public static void clearContext() {
         contexts.set(null);
     }
-    private TUser tUser;
-    public void settUser(TUser tUser) {
+    private TAdmin tUser;
+    public void settUser(TAdmin tUser) {
 		this.tUser = tUser;
 	}
-    public TUser gettUser() {
+    public TAdmin gettUser() {
 		return tUser;
 	}
     private HttpRequest request;

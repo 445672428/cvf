@@ -19,7 +19,7 @@
     </settings>
 
     <typeAliases>
-        <typeAlias alias="CHARACTER_SETS" type="com.mybatis.pojo.CHARACTER_SETS"/>
+<!--         <typeAlias alias="CHARACTER_SETS" type="com.mybatis.pojo.CHARACTER_SETS"/>
         <typeAlias alias="COLLATION_CHARACTER_SET_APPLICABILITY" type="com.mybatis.pojo.COLLATION_CHARACTER_SET_APPLICABILITY"/>
         <typeAlias alias="COLLATIONS" type="com.mybatis.pojo.COLLATIONS"/>
         <typeAlias alias="COLUMN_PRIVILEGES" type="com.mybatis.pojo.COLUMN_PRIVILEGES"/>
@@ -54,12 +54,57 @@
         <typeAlias alias="TABLESPACES" type="com.mybatis.pojo.TABLESPACES"/>
         <typeAlias alias="TRIGGERS" type="com.mybatis.pojo.TRIGGERS"/>
         <typeAlias alias="USER_PRIVILEGES" type="com.mybatis.pojo.USER_PRIVILEGES"/>
-        <typeAlias alias="VIEWS" type="com.mybatis.pojo.VIEWS"/>
+        <typeAlias alias="VIEWS" type="com.mybatis.pojo.VIEWS"/> -->
         
+        <typeAlias alias="SysArea" type="com.mybatis.pojo.SysArea"/>
+        <typeAlias alias="SysAreaOrigin" type="com.mybatis.pojo.SysAreaOrigin"/>
+        <typeAlias alias="SysConfig" type="com.mybatis.pojo.SysConfig"/>
+        <typeAlias alias="SysDepartment" type="com.mybatis.pojo.SysDepartment"/>
+        <typeAlias alias="SysDictDetail" type="com.mybatis.pojo.SysDictDetail"/>
+        <typeAlias alias="SysDict" type="com.mybatis.pojo.SysDict"/>
+        <typeAlias alias="SysFileUpload" type="com.mybatis.pojo.SysFileUpload"/>
+        <typeAlias alias="SysLog" type="com.mybatis.pojo.SysLog"/>
+        <typeAlias alias="SysMenu" type="com.mybatis.pojo.SysMenu"/>
+        <typeAlias alias="SysOffice" type="com.mybatis.pojo.SysOffice"/>
+        <typeAlias alias="SysOrganize" type="com.mybatis.pojo.SysOrganize"/>
+        <typeAlias alias="SysOrganizeRelation" type="com.mybatis.pojo.SysOrganizeRelation"/>
+        <typeAlias alias="SysRole" type="com.mybatis.pojo.SysRole"/>
+        <typeAlias alias="SysRoleMenu" type="com.mybatis.pojo.SysRoleMenu"/>
+        <typeAlias alias="SysRoleOfficeKey" type="com.mybatis.pojo.SysRoleOfficeKey"/>
+        <typeAlias alias="SysSms" type="com.mybatis.pojo.SysSms"/>
+        <typeAlias alias="SysSocial" type="com.mybatis.pojo.SysSocial"/>
+        <typeAlias alias="SysUser" type="com.mybatis.pojo.SysUser"/>
+        <typeAlias alias="SysUserRole" type="com.mybatis.pojo.SysUserRole"/>
+        <typeAlias alias="SysSource" type="com.mybatis.pojo.SysSource"/>
+        <typeAlias alias="SysApp" type="com.mybatis.pojo.SysApp"/>
+        <typeAlias alias="SysElement" type="com.mybatis.pojo.SysElement"/>
     </typeAliases>
 
     <mappers>
-        <mapper resource="config/mybatis/CHARACTER_SETSMapper.xml"/>
+    	<mapper resource="config/mybatis/SysAreaMapper.xml"/>
+    	<mapper resource="config/mybatis/SysAreaOriginMapper.xml"/>
+    	<mapper resource="config/mybatis/SysConfigMapper.xml"/>
+    	<mapper resource="config/mybatis/SysDepartmentMapper.xml"/>
+    	<mapper resource="config/mybatis/SysDictDetailMapper.xml"/>
+    	<mapper resource="config/mybatis/SysDictMapper.xml"/>
+    	<mapper resource="config/mybatis/SysFileUploadMapper.xml"/>
+    	<mapper resource="config/mybatis/SysLogMapper.xml"/>
+    	<mapper resource="config/mybatis/SysMenuMapper.xml"/>
+    	<mapper resource="config/mybatis/SysOfficeMapper.xml"/>
+    	<mapper resource="config/mybatis/SysOrganizeMapper.xml"/>
+    	<mapper resource="config/mybatis/SysOrganizeRelationMapper.xml"/>
+    	<mapper resource="config/mybatis/SysRoleMapper.xml"/>
+    	<mapper resource="config/mybatis/SysRoleMenuMapper.xml"/>
+    	<mapper resource="config/mybatis/SysRoleOfficeMapper.xml"/>
+    	<mapper resource="config/mybatis/SysSmsMapper.xml"/>
+    	<mapper resource="config/mybatis/SysSocialMapper.xml"/>
+    	<mapper resource="config/mybatis/SysUserMapper.xml"/>
+    	<mapper resource="config/mybatis/SysUserRoleMapper.xml"/>
+    	<mapper resource="config/mybatis/SysSourceMapper.xml"/>
+    	<mapper resource="config/mybatis/SysAppMapper.xml"/>
+    	<mapper resource="config/mybatis/SysElementMapper.xml"/>
+    	
+        <!-- <mapper resource="config/mybatis/CHARACTER_SETSMapper.xml"/>
         <mapper resource="config/mybatis/COLLATION_CHARACTER_SET_APPLICABILITYMapper.xml"/>
         <mapper resource="config/mybatis/COLLATIONSMapper.xml"/>
         <mapper resource="config/mybatis/COLUMN_PRIVILEGESMapper.xml"/>
@@ -94,7 +139,7 @@
         <mapper resource="config/mybatis/TABLESPACESMapper.xml"/>
         <mapper resource="config/mybatis/TRIGGERSMapper.xml"/>
         <mapper resource="config/mybatis/USER_PRIVILEGESMapper.xml"/>
-        <mapper resource="config/mybatis/VIEWSMapper.xml"/>
+        <mapper resource="config/mybatis/VIEWSMapper.xml"/> -->
     </mappers>
 
 </configuration>

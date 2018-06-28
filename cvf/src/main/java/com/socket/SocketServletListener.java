@@ -11,7 +11,7 @@ import contant.Contant;
 /**
  * 
  * @author bobo
- *
+ *servlet的监听
  */
 @WebListener()
 public class SocketServletListener implements ServletRequestListener {

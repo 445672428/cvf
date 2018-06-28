@@ -26,7 +26,7 @@ public class ExcelDataUtils {
 	private String mavenPath = ExcelDataUtils.class.getClassLoader().getResource("start_list").getFile();
 	
 	public static void test() {
-    	Connection connection = MysqlDBUtils.getConnection();
+    	Connection connection = DBUtils.getConnection();
     	PreparedStatement statement = null;
     	ResultSet resultSet = null;
     	PrintStream printStream = null;
@@ -69,7 +69,7 @@ public class ExcelDataUtils {
 		} catch (Exception e) {
 			e.printStackTrace();// 在命令行打印异常信息在程序中出错的位置及原因。
 		}finally{
-			MysqlDBUtils.closeConnection(connection, statement, resultSet);
+			DBUtils.closeConnection(connection, statement, resultSet);
 		}
 	}
 

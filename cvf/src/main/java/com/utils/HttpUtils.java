@@ -3,13 +3,27 @@ package com.utils;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.net.URI;
+import java.net.UnknownHostException;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocket;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpEntity;
@@ -19,15 +33,123 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLContexts;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 public class HttpUtils {
+	/**
+	 * 获取外网IP
+	 * @return
+	 */
+	public static String getLocalAddress(){
+		String ip = "";
+		try {
+			ip = InetAddress.getLocalHost().getHostAddress();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		return ip;
+	}
+    public static String getIpAddress(HttpServletRequest request) {  
+        String ip = request.getHeader("x-forwarded-for");  
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+            ip = request.getHeader("Proxy-Client-IP");  
+        }  
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+            ip = request.getHeader("WL-Proxy-Client-IP");  
+        }  
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+            ip = request.getHeader("HTTP_CLIENT_IP");  
+        }  
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");  
+        }  
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
+            ip = request.getRemoteAddr();  
+        }  
+        return ip;  
+    }
+    /**
+     * https请求
+     * @param url
+     * @return
+     */
+	public static String doGetHttps(String url)  {
+		String result = null;
+		try {
+	        url = "https://www.sojson.com/open/api/weather/json.shtml?city=武汉";
+	        try (CloseableHttpClient httpClient = createHttpClient()) {
+	            HttpGet httpGet = new HttpGet(url);
+	            try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
+	                HttpEntity entity = httpResponse.getEntity();
+	                result = EntityUtils.toString(entity);
+	                EntityUtils.consume(entity);
+	            }
+	        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+    }
+
+
+    private static CloseableHttpClient createHttpClient() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+    	KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());  
+    	FileInputStream instream = null;
+        try {  
+        	instream = new FileInputStream(new File("D:\\key.txt"));
+            // 加载keyStore d:\\tomcat.keystore    
+            trustStore.load(instream, null);  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        } finally {  
+            try {  
+                instream.close();  
+            } catch (Exception ignore) {  
+            }  
+        }  
+        SSLContext sslcontext = SSLContexts.custom()
+                .loadTrustMaterial(trustStore, new TrustSelfSignedStrategy())
+                .build();
+
+        SSLConnectionSocketFactory sslSf = new SSLConnectionSocketFactory(sslcontext, null, null,
+                new X509HostnameVerifier() {
+					
+					@Override
+					public boolean verify(String arg0, SSLSession arg1) {
+						return false;
+					}
+					
+					@Override
+					public void verify(String host, String[] cns, String[] subjectAlts)
+							throws SSLException {
+						
+					}
+					
+					@Override
+					public void verify(String host, X509Certificate cert) throws SSLException {
+						
+					}
+					
+					@Override
+					public void verify(String host, SSLSocket ssl) throws IOException {
+						
+					}
+				});
+
+        return HttpClients.custom().setSSLSocketFactory(sslSf).build();
+    }
 	 /** 
      * get请求 
      * @return 

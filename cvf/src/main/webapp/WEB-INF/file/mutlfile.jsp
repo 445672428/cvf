@@ -208,7 +208,7 @@ var REALIP = '${REALIP}';
 </div>
 </body>
 <script type="text/javascript">
- var sock=null;
+/*  var sock=null;
  if (window['WebSocket']) {
      sock= new WebSocket('ws://' + window.location.host+'/cvf/webbobo');
  }else{
@@ -227,7 +227,7 @@ var REALIP = '${REALIP}';
  function sayHello() {
      console.log('Sending Hello!');
      sock.send("Hello!");
- }
+ } */
 </script>
 <script type="text/javascript">
         var oBody=document.getElementsByTagName("body")[0];

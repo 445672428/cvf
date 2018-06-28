@@ -280,9 +280,8 @@ public class FileUtils {
 			int charread = 0;
 			reader = new InputStreamReader(new FileInputStream(fileName));
 			while ((charread = reader.read(tempchars)) != -1) {
-				if ((charread == tempchars.length)
-						&& (tempchars[tempchars.length - 1] != 'r')) {
-					System.out.print(tempchars);
+				if ((charread == tempchars.length)&& (tempchars[tempchars.length - 1] != 'r')) {
+					
 				} else {
 					for (int i = 0; i < charread; i++) {
 						if (tempchars[i] == 'r') {
@@ -315,7 +314,6 @@ public class FileUtils {
 	public static void readFileByRandomAccess(String fileName) {
 		RandomAccessFile randomFile = null;
 		try {
-			System.out.println("随机读取一段文件内容：");
 			// 打开一个随机访问文件流，按只读方式
 			randomFile = new RandomAccessFile(fileName, "r");
 			// 文件长度，字节数
@@ -351,9 +349,7 @@ public class FileUtils {
 	 * @param content
 	 *            追加的内容
 	 */
-	public static void appendMethodA(String fileName,
-
-	String content) {
+	public static void appendMethodTxt(String fileName,String content) {
 		try {
 			// 打开一个随机访问文件流，按读写方式
 			RandomAccessFile randomFile = new RandomAccessFile(fileName, "rw");
@@ -374,7 +370,7 @@ public class FileUtils {
 	 * @param fileName
 	 * @param content
 	 */
-	public static void appendMethodB(String fileName, String content) {
+	public static void appendFileWriterTxt(String fileName, String content) {
 		try {
 			// 打开一个写文件器，构造函数中的第二个参数true表示以追加形式写文件
 			FileWriter writer = new FileWriter(fileName, true);
@@ -402,9 +398,6 @@ public class FileUtils {
 		rf.writeDouble(47.0001);
 		rf.close();
 		rf = new RandomAccessFile("rtest.dat", "r");
-		for (int i = 0; i < 10; i++) {
-			System.out.println("Value " + i + ": " + rf.readDouble());
-		}
 		rf.close();
 	}
 
@@ -414,16 +407,10 @@ public class FileUtils {
 		// 为了以可读可写的方式打开文件，这里使用RandomAccessFile来创建文件。
 		FileChannel fc = new RandomAccessFile("test.dat", "rw").getChannel();
 		// 注意，文件通道的可读可写要建立在文件流本身可读写的基础之上
-		MappedByteBuffer out = fc
-				.map(FileChannel.MapMode.READ_WRITE, 0, length);
+		MappedByteBuffer out = fc.map(FileChannel.MapMode.READ_WRITE, 0, length);
 		// 写128M的内容
 		for (int i = 0; i < length; i++) {
 			out.put((byte) 'x');
-		}
-		System.out.println("Finished writing");
-		// 读取文件中间6个字节内容
-		for (int i = length / 2; i < length / 2 + 6; i++) {
-			System.out.print((char) out.get(i));
 		}
 		fc.close();
 	}
@@ -444,26 +431,19 @@ public class FileUtils {
 		file.seek(0);// 把文件指针位置设置到文件起始处
 
 		// 以下从file文件中读数据，要注意文件指针的位置
-		System.out.println("——————从file文件指定位置读数据——————");
-		System.out.println(file.readInt());
-		System.out.println(file.readDouble());
-		System.out.println(file.readUTF());
 
 		file.skipBytes(3);// 将文件指针跳过3个字节，本例中即跳过了一个boolean值和short值。
-		System.out.println(file.readLong());
 
 		file.skipBytes(file.readShort()); // 跳过文件中“又是一个UTF字符串”所占字节，注意readShort()方法会移动文件指针，所以不用加2。
-		System.out.println(file.readFloat());
 
 		// 以下演示文件复制操作
-		System.out.println("——————文件复制（从file到fileCopy）——————");
+		//——————文件复制（从file到fileCopy）——————;
 		file.seek(0);
 		RandomAccessFile fileCopy = new RandomAccessFile("fileCopy", "rw");
 		int len = (int) file.length();// 取得文件长度（字节数）
 		byte[] b = new byte[len];
 		file.readFully(b);
 		fileCopy.write(b);
-		System.out.println("复制完成！");
 	}
 
 	/**
@@ -479,7 +459,7 @@ public class FileUtils {
 		try {
 			RandomAccessFile raf = new RandomAccessFile(fileName, "rw");
 			if (skip < 0 || skip > raf.length()) {
-				System.out.println("跳过字节数无效");
+				//"跳过字节数无效;
 				return;
 			}
 			byte[] b = str.getBytes();
@@ -577,10 +557,21 @@ public class FileUtils {
          File w2 = new File(path);// 可以是jpg,png,gif格式  
          ImageIO.write(bi1, "jpg", w2);// 不管输出什么格式图片，此处不需改动  
 	}
+	
+
 	// ********************************************************** File的所有操作
 	// ***************************************************************************//
 
-	public static void main(String[] args) {
-
+	public static void main(String[] args) throws Exception {
+		 File file = new File("D:\\BaiduNetdiskDownload\\2000w.sql");//Text文件
+         BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件
+         String s = null;
+         int count = 0;
+         while((s = br.readLine())!=null){//使用readLine方法，一次读一行
+             System.out.println(s);
+             count++;
+         }
+         br.close();
+         System.out.println("count:"+count);
 	}
 }

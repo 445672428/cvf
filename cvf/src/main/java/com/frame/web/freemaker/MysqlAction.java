@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.base.BaseAction;
@@ -98,78 +97,6 @@ import com.hibernate.service.TimeZoneService;
 import com.hibernate.service.TimeZoneTransitionService;
 import com.hibernate.service.TimeZoneTransitionTypeService;
 import com.hibernate.service.UserService;
-import com.mybatis.mapper.CHARACTER_SETSMapper;
-import com.mybatis.mapper.COLLATIONSMapper;
-import com.mybatis.mapper.COLLATION_CHARACTER_SET_APPLICABILITYMapper;
-import com.mybatis.mapper.COLUMNSMapper;
-import com.mybatis.mapper.COLUMN_PRIVILEGESMapper;
-import com.mybatis.mapper.ENGINESMapper;
-import com.mybatis.mapper.EVENTSMapper;
-import com.mybatis.mapper.FILESMapper;
-import com.mybatis.mapper.GLOBAL_STATUSMapper;
-import com.mybatis.mapper.GLOBAL_VARIABLESMapper;
-import com.mybatis.mapper.INNODB_CMPMEMMapper;
-import com.mybatis.mapper.INNODB_CMPMEM_RESETMapper;
-import com.mybatis.mapper.INNODB_CMPMapper;
-import com.mybatis.mapper.INNODB_CMP_RESETMapper;
-import com.mybatis.mapper.INNODB_LOCKSMapper;
-import com.mybatis.mapper.INNODB_LOCK_WAITSMapper;
-import com.mybatis.mapper.INNODB_TRXMapper;
-import com.mybatis.mapper.KEY_COLUMN_USAGEMapper;
-import com.mybatis.mapper.PARAMETERSMapper;
-import com.mybatis.mapper.PLUGINSMapper;
-import com.mybatis.mapper.PROCESSLISTMapper;
-import com.mybatis.mapper.PROFILINGMapper;
-import com.mybatis.mapper.REFERENTIAL_CONSTRAINTSMapper;
-import com.mybatis.mapper.ROUTINESMapper;
-import com.mybatis.mapper.SCHEMATAMapper;
-import com.mybatis.mapper.SCHEMA_PRIVILEGESMapper;
-import com.mybatis.mapper.SESSION_STATUSMapper;
-import com.mybatis.mapper.SESSION_VARIABLESMapper;
-import com.mybatis.mapper.STATISTICSMapper;
-import com.mybatis.mapper.TABLESMapper;
-import com.mybatis.mapper.TABLESPACESMapper;
-import com.mybatis.mapper.TABLE_CONSTRAINTSMapper;
-import com.mybatis.mapper.TABLE_PRIVILEGESMapper;
-import com.mybatis.mapper.TRIGGERSMapper;
-import com.mybatis.mapper.USER_PRIVILEGESMapper;
-import com.mybatis.mapper.VIEWSMapper;
-import com.mybatis.pojo.CHARACTER_SETS;
-import com.mybatis.pojo.COLLATIONS;
-import com.mybatis.pojo.COLLATION_CHARACTER_SET_APPLICABILITY;
-import com.mybatis.pojo.COLUMNS;
-import com.mybatis.pojo.COLUMN_PRIVILEGES;
-import com.mybatis.pojo.ENGINES;
-import com.mybatis.pojo.EVENTS;
-import com.mybatis.pojo.FILES;
-import com.mybatis.pojo.GLOBAL_STATUS;
-import com.mybatis.pojo.GLOBAL_VARIABLES;
-import com.mybatis.pojo.INNODB_CMP;
-import com.mybatis.pojo.INNODB_CMPMEM;
-import com.mybatis.pojo.INNODB_CMPMEM_RESET;
-import com.mybatis.pojo.INNODB_CMP_RESET;
-import com.mybatis.pojo.INNODB_LOCKS;
-import com.mybatis.pojo.INNODB_LOCK_WAITS;
-import com.mybatis.pojo.INNODB_TRX;
-import com.mybatis.pojo.KEY_COLUMN_USAGE;
-import com.mybatis.pojo.PARAMETERS;
-import com.mybatis.pojo.PLUGINS;
-import com.mybatis.pojo.PROCESSLIST;
-import com.mybatis.pojo.PROFILING;
-import com.mybatis.pojo.REFERENTIAL_CONSTRAINTS;
-import com.mybatis.pojo.ROUTINES;
-import com.mybatis.pojo.SCHEMATA;
-import com.mybatis.pojo.SCHEMA_PRIVILEGES;
-import com.mybatis.pojo.SESSION_STATUS;
-import com.mybatis.pojo.SESSION_VARIABLES;
-import com.mybatis.pojo.STATISTICS;
-import com.mybatis.pojo.TABLES;
-import com.mybatis.pojo.TABLESPACES;
-import com.mybatis.pojo.TABLE_CONSTRAINTS;
-import com.mybatis.pojo.TABLE_PRIVILEGES;
-import com.mybatis.pojo.TRIGGERS;
-import com.mybatis.pojo.USER_PRIVILEGES;
-import com.mybatis.pojo.VIEWS;
 
 @Controller
 @RequestMapping(value="mysql")
@@ -422,150 +349,150 @@ public class MysqlAction extends BaseAction{
 			List<User> list41 = (List<User>) userService.findAll();
 			results = arrayObjectToList(list41);
 			break;
-		case 42:
-			List<CHARACTER_SETS> list42 = cHARACTER_SETSMapper.selectByExample(null);
-			results = arrayObjectToList(list42);
-			break;
-		case 43:
-			List<COLLATION_CHARACTER_SET_APPLICABILITY> list43 = cOLLATION_CHARACTER_SET_APPLICABILITYMapper.selectByExample(null);
-			results = arrayObjectToList(list43);
-			break;
-		case 44:
-			List<COLLATIONS> list44 = cOLLATIONSMapper.selectByExample(null);
-			results = arrayObjectToList(list44);
-			break;
-		case 45:
-			List<COLUMN_PRIVILEGES> list45 = cOLUMN_PRIVILEGESMapper.selectByExample(null);
-			results = arrayObjectToList(list45);
-			break;
-		case 46:
-			List<COLUMNS> list46 = cOLUMNSMapper.selectByExample(null);
-			results = arrayObjectToList(list46);
-			break;
-		case 47:
-			List<ENGINES> list47 = eNGINESMapper.selectByExample(null);
-			results = arrayObjectToList(list47);
-			break;
-		case 48:
-			List<EVENTS> list48 = eVENTSMapper.selectByExample(null);
-			results = arrayObjectToList(list48);
-			break;
-		case 49:
-			List<FILES> list49 = fILESMapper.selectByExample(null);
-			results = arrayObjectToList(list49);
-			break;
-		case 50:
-			List<GLOBAL_STATUS> list50 = gLOBAL_STATUSMapper.selectByExample(null);
-			results = arrayObjectToList(list50);
-			break;
-		case 51:
-			List<GLOBAL_VARIABLES> list51 = gLOBAL_VARIABLESMapper.selectByExample(null);
-			results = arrayObjectToList(list51);
-			break;
-		case 52:
-			List<INNODB_CMP_RESET> list52 = iNNODB_CMP_RESETMapper.selectByExample(null);
-			results = arrayObjectToList(list52);
-			break;
-		case 53:
-			List<INNODB_CMP> list53 = iNNODB_CMPMapper.selectByExample(null);
-			results = arrayObjectToList(list53);
-			break;
-		case 54:
-			List<INNODB_CMPMEM_RESET> list54 = iNNODB_CMPMEM_RESETMapper.selectByExample(null);
-			results = arrayObjectToList(list54);
-			break;
-		case 55:
-			List<INNODB_CMPMEM> list55 = iNNODB_CMPMEMMapper.selectByExample(null);
-			results = arrayObjectToList(list55);
-			break;
-		case 56:
-			List<INNODB_LOCK_WAITS> list56 = iNNODB_LOCK_WAITSMapper.selectByExample(null);
-			results = arrayObjectToList(list56);
-			break;
-		case 57:
-			List<INNODB_LOCKS> list57 = iNNODB_LOCKSMapper.selectByExample(null);
-			results = arrayObjectToList(list57);
-			break;
-		case 58:
-			List<INNODB_TRX> list58 = iNNODB_TRXMapper.selectByExample(null);
-			view.addObject("results", list58);
-			break;
-		case 59:
-			List<KEY_COLUMN_USAGE> list59 = kEY_COLUMN_USAGEMapper.selectByExample(null);
-			results = arrayObjectToList(list59);
-			break;
-		case 60:
-			List<PARAMETERS> list60 = pARAMETERSMapper.selectByExample(null);
-			results = arrayObjectToList(list60);
-			break;
-		case 61:
-			List<PLUGINS> list61 = pLUGINSMapper.selectByExample(null);
-			results = arrayObjectToList(list61);
-			break;
-		case 62:
-			List<PROCESSLIST> list62 = pROCESSLISTMapper.selectByExample(null);
-			results = arrayObjectToList(list62);
-			break;
-		case 63:
-			List<PROFILING> list63 = pROFILINGMapper.selectByExample(null);
-			results = arrayObjectToList(list63);
-			break;
-		case 64:
-			List<REFERENTIAL_CONSTRAINTS> list64 = rEFERENTIAL_CONSTRAINTSMapper.selectByExample(null);
-			results = arrayObjectToList(list64);
-			break;
-		case 65:
-			List<ROUTINES> list65 = rOUTINESMapper.selectByExample(null);
-			results = arrayObjectToList(list65);
-			break;
-		case 66:
-			List<SCHEMA_PRIVILEGES> list66 = sCHEMA_PRIVILEGESMapper.selectByExample(null);
-			results = arrayObjectToList(list66);
-			break;
-		case 67:
-			List<SCHEMATA> list67 = sCHEMATAMapper.selectByExample(null);
-			results = arrayObjectToList(list67);
-			break;
-		case 68:
-			List<SESSION_STATUS> list68 = sESSION_STATUSMapper.selectByExample(null);
-			results = arrayObjectToList(list68);
-			break;
-		case 69:
-			List<SESSION_VARIABLES> list69 = sESSION_VARIABLESMapper.selectByExample(null);
-			results = arrayObjectToList(list69);
-			break;
-		case 70:
-			List<STATISTICS> list70 = sTATISTICSMapper.selectByExample(null);
-			results = arrayObjectToList(list70);
-			break;
-		case 71:
-			List<TABLE_CONSTRAINTS> list71 = tABLE_CONSTRAINTSMapper.selectByExample(null);
-			results = arrayObjectToList(list71);
-			break;
-		case 72:
-			List<TABLE_PRIVILEGES> list72 = tABLE_PRIVILEGESMapper.selectByExample(null);
-			results = arrayObjectToList(list72);
-			break;
-		case 73:
-			List<TABLES> list73 = tABLESMapper.selectByExample(null);
-			results = arrayObjectToList(list73);
-			break;
-		case 74:
-			List<TABLESPACES> list74 = tABLESPACESMapper.selectByExample(null);
-			results = arrayObjectToList(list74);
-			break;
-		case 75:
-			List<TRIGGERS> list75 = tRIGGERSMapper.selectByExample(null);
-			results = arrayObjectToList(list75);
-			break;
-		case 76:
-			List<USER_PRIVILEGES> list76 = uSER_PRIVILEGESMapper.selectByExample(null);
-			results = arrayObjectToList(list76);
-			break;
-		case 77:
-			List<VIEWS> list77 = vIEWSMapper.selectByExample(null);
-			results = arrayObjectToList(list77);
-			break;
+//		case 42:
+//			List<CHARACTER_SETS> list42 = cHARACTER_SETSMapper.selectByExample(null);
+//			results = arrayObjectToList(list42);
+//			break;
+//		case 43:
+//			List<COLLATION_CHARACTER_SET_APPLICABILITY> list43 = cOLLATION_CHARACTER_SET_APPLICABILITYMapper.selectByExample(null);
+//			results = arrayObjectToList(list43);
+//			break;
+//		case 44:
+//			List<COLLATIONS> list44 = cOLLATIONSMapper.selectByExample(null);
+//			results = arrayObjectToList(list44);
+//			break;
+//		case 45:
+//			List<COLUMN_PRIVILEGES> list45 = cOLUMN_PRIVILEGESMapper.selectByExample(null);
+//			results = arrayObjectToList(list45);
+//			break;
+//		case 46:
+//			List<COLUMNS> list46 = cOLUMNSMapper.selectByExample(null);
+//			results = arrayObjectToList(list46);
+//			break;
+//		case 47:
+//			List<ENGINES> list47 = eNGINESMapper.selectByExample(null);
+//			results = arrayObjectToList(list47);
+//			break;
+//		case 48:
+//			List<EVENTS> list48 = eVENTSMapper.selectByExample(null);
+//			results = arrayObjectToList(list48);
+//			break;
+//		case 49:
+//			List<FILES> list49 = fILESMapper.selectByExample(null);
+//			results = arrayObjectToList(list49);
+//			break;
+//		case 50:
+//			List<GLOBAL_STATUS> list50 = gLOBAL_STATUSMapper.selectByExample(null);
+//			results = arrayObjectToList(list50);
+//			break;
+//		case 51:
+//			List<GLOBAL_VARIABLES> list51 = gLOBAL_VARIABLESMapper.selectByExample(null);
+//			results = arrayObjectToList(list51);
+//			break;
+//		case 52:
+//			List<INNODB_CMP_RESET> list52 = iNNODB_CMP_RESETMapper.selectByExample(null);
+//			results = arrayObjectToList(list52);
+//			break;
+//		case 53:
+//			List<INNODB_CMP> list53 = iNNODB_CMPMapper.selectByExample(null);
+//			results = arrayObjectToList(list53);
+//			break;
+//		case 54:
+//			List<INNODB_CMPMEM_RESET> list54 = iNNODB_CMPMEM_RESETMapper.selectByExample(null);
+//			results = arrayObjectToList(list54);
+//			break;
+//		case 55:
+//			List<INNODB_CMPMEM> list55 = iNNODB_CMPMEMMapper.selectByExample(null);
+//			results = arrayObjectToList(list55);
+//			break;
+//		case 56:
+//			List<INNODB_LOCK_WAITS> list56 = iNNODB_LOCK_WAITSMapper.selectByExample(null);
+//			results = arrayObjectToList(list56);
+//			break;
+//		case 57:
+//			List<INNODB_LOCKS> list57 = iNNODB_LOCKSMapper.selectByExample(null);
+//			results = arrayObjectToList(list57);
+//			break;
+//		case 58:
+//			List<INNODB_TRX> list58 = iNNODB_TRXMapper.selectByExample(null);
+//			view.addObject("results", list58);
+//			break;
+//		case 59:
+//			List<KEY_COLUMN_USAGE> list59 = kEY_COLUMN_USAGEMapper.selectByExample(null);
+//			results = arrayObjectToList(list59);
+//			break;
+//		case 60:
+//			List<PARAMETERS> list60 = pARAMETERSMapper.selectByExample(null);
+//			results = arrayObjectToList(list60);
+//			break;
+//		case 61:
+//			List<PLUGINS> list61 = pLUGINSMapper.selectByExample(null);
+//			results = arrayObjectToList(list61);
+//			break;
+//		case 62:
+//			List<PROCESSLIST> list62 = pROCESSLISTMapper.selectByExample(null);
+//			results = arrayObjectToList(list62);
+//			break;
+//		case 63:
+//			List<PROFILING> list63 = pROFILINGMapper.selectByExample(null);
+//			results = arrayObjectToList(list63);
+//			break;
+//		case 64:
+//			List<REFERENTIAL_CONSTRAINTS> list64 = rEFERENTIAL_CONSTRAINTSMapper.selectByExample(null);
+//			results = arrayObjectToList(list64);
+//			break;
+//		case 65:
+//			List<ROUTINES> list65 = rOUTINESMapper.selectByExample(null);
+//			results = arrayObjectToList(list65);
+//			break;
+//		case 66:
+//			List<SCHEMA_PRIVILEGES> list66 = sCHEMA_PRIVILEGESMapper.selectByExample(null);
+//			results = arrayObjectToList(list66);
+//			break;
+//		case 67:
+//			List<SCHEMATA> list67 = sCHEMATAMapper.selectByExample(null);
+//			results = arrayObjectToList(list67);
+//			break;
+//		case 68:
+//			List<SESSION_STATUS> list68 = sESSION_STATUSMapper.selectByExample(null);
+//			results = arrayObjectToList(list68);
+//			break;
+//		case 69:
+//			List<SESSION_VARIABLES> list69 = sESSION_VARIABLESMapper.selectByExample(null);
+//			results = arrayObjectToList(list69);
+//			break;
+//		case 70:
+//			List<STATISTICS> list70 = sTATISTICSMapper.selectByExample(null);
+//			results = arrayObjectToList(list70);
+//			break;
+//		case 71:
+//			List<TABLE_CONSTRAINTS> list71 = tABLE_CONSTRAINTSMapper.selectByExample(null);
+//			results = arrayObjectToList(list71);
+//			break;
+//		case 72:
+//			List<TABLE_PRIVILEGES> list72 = tABLE_PRIVILEGESMapper.selectByExample(null);
+//			results = arrayObjectToList(list72);
+//			break;
+//		case 73:
+//			List<TABLES> list73 = tABLESMapper.selectByExample(null);
+//			results = arrayObjectToList(list73);
+//			break;
+//		case 74:
+//			List<TABLESPACES> list74 = tABLESPACESMapper.selectByExample(null);
+//			results = arrayObjectToList(list74);
+//			break;
+//		case 75:
+//			List<TRIGGERS> list75 = tRIGGERSMapper.selectByExample(null);
+//			results = arrayObjectToList(list75);
+//			break;
+//		case 76:
+//			List<USER_PRIVILEGES> list76 = uSER_PRIVILEGESMapper.selectByExample(null);
+//			results = arrayObjectToList(list76);
+//			break;
+//		case 77:
+//			List<VIEWS> list77 = vIEWSMapper.selectByExample(null);
+//			results = arrayObjectToList(list77);
+//			break;
 		default:
 			break;
 		}
@@ -582,78 +509,78 @@ public class MysqlAction extends BaseAction{
 		view.setViewName("mysql");
 		return view;
 	}
+	/*@Autowired
+	private CharacterSetsMapper cHARACTER_SETSMapper;
 	@Autowired
-	private CHARACTER_SETSMapper cHARACTER_SETSMapper;
+	private CollationCharacterSetApplicabilityMapper cOLLATION_CHARACTER_SET_APPLICABILITYMapper;
 	@Autowired
-	private COLLATION_CHARACTER_SET_APPLICABILITYMapper cOLLATION_CHARACTER_SET_APPLICABILITYMapper;
+	private CollationsMapper cOLLATIONSMapper;
 	@Autowired
-	private COLLATIONSMapper cOLLATIONSMapper;
+	private ColumnPrivilegesMapper cOLUMN_PRIVILEGESMapper;
 	@Autowired
-	private COLUMN_PRIVILEGESMapper cOLUMN_PRIVILEGESMapper;
+	private ColumnsMapper cOLUMNSMapper;
 	@Autowired
-	private COLUMNSMapper cOLUMNSMapper;
+	private EnginesMapper eNGINESMapper;
 	@Autowired
-	private ENGINESMapper eNGINESMapper;
+	private EventsMapper eVENTSMapper;
 	@Autowired
-	private EVENTSMapper eVENTSMapper;
+	private FilesMapper fILESMapper;
 	@Autowired
-	private FILESMapper fILESMapper;
+	private GlobalStatusMapper gLOBAL_STATUSMapper;
 	@Autowired
-	private GLOBAL_STATUSMapper gLOBAL_STATUSMapper;
+	private GlobalVariablesMapper gLOBAL_VARIABLESMapper;
 	@Autowired
-	private GLOBAL_VARIABLESMapper gLOBAL_VARIABLESMapper;
+	private InnodbCmpMapper iNNODB_CMP_RESETMapper;
 	@Autowired
-	private INNODB_CMP_RESETMapper iNNODB_CMP_RESETMapper;
+	private InnodbCmpmemMapper iNNODB_CMPMapper;
 	@Autowired
-	private INNODB_CMPMapper iNNODB_CMPMapper;
+	private InnodbCmpmemResetMapper iNNODB_CMPMEM_RESETMapper;
 	@Autowired
-	private INNODB_CMPMEM_RESETMapper iNNODB_CMPMEM_RESETMapper;
+	private InnodbCmpResetMapper iNNODB_CMPMEMMapper;
 	@Autowired
-	private INNODB_CMPMEMMapper iNNODB_CMPMEMMapper;
+	private InnodbLockWaitsMapper iNNODB_LOCK_WAITSMapper;
 	@Autowired
-	private INNODB_LOCK_WAITSMapper iNNODB_LOCK_WAITSMapper;
+	private InnodbLocksMapper iNNODB_LOCKSMapper;
 	@Autowired
-	private INNODB_LOCKSMapper iNNODB_LOCKSMapper;
+	private InnodbTrxMapper iNNODB_TRXMapper;
 	@Autowired
-	private INNODB_TRXMapper iNNODB_TRXMapper;
+	private KeyColumnUsageMapper kEY_COLUMN_USAGEMapper;
 	@Autowired
-	private KEY_COLUMN_USAGEMapper kEY_COLUMN_USAGEMapper;
+	private ParametersMapper pARAMETERSMapper;
 	@Autowired
-	private PARAMETERSMapper pARAMETERSMapper;
+	private PluginsMapper pLUGINSMapper;
 	@Autowired
-	private PLUGINSMapper pLUGINSMapper;
+	private ProcesslistMapper pROCESSLISTMapper;
 	@Autowired
-	private PROCESSLISTMapper pROCESSLISTMapper;
+	private ProfilingMapper pROFILINGMapper;
 	@Autowired
-	private PROFILINGMapper pROFILINGMapper;
+	private ReferentialConstraintsMapper rEFERENTIAL_CONSTRAINTSMapper;
 	@Autowired
-	private REFERENTIAL_CONSTRAINTSMapper rEFERENTIAL_CONSTRAINTSMapper;
+	private RoutinesMapper rOUTINESMapper;
 	@Autowired
-	private ROUTINESMapper rOUTINESMapper;
+	private SchemaPrivilegesMapper sCHEMA_PRIVILEGESMapper;
 	@Autowired
-	private SCHEMA_PRIVILEGESMapper sCHEMA_PRIVILEGESMapper;
+	private SchemataMapper sCHEMATAMapper;
 	@Autowired
-	private SCHEMATAMapper sCHEMATAMapper;
+	private SessionStatusMapper sESSION_STATUSMapper;
 	@Autowired
-	private SESSION_STATUSMapper sESSION_STATUSMapper;
+	private SessionVariablesMapper sESSION_VARIABLESMapper;
 	@Autowired
-	private SESSION_VARIABLESMapper sESSION_VARIABLESMapper;
+	private StatisticsMapper sTATISTICSMapper;
 	@Autowired
-	private STATISTICSMapper sTATISTICSMapper;
+	private TableConstraintsMapper tABLE_CONSTRAINTSMapper;
 	@Autowired
-	private TABLE_CONSTRAINTSMapper tABLE_CONSTRAINTSMapper;
+	private TablePrivilegesMapper tABLE_PRIVILEGESMapper;
 	@Autowired
-	private TABLE_PRIVILEGESMapper tABLE_PRIVILEGESMapper;
+	private TablesMapper tABLESMapper;
 	@Autowired
-	private TABLESMapper tABLESMapper;
+	private TablespacesMapper tABLESPACESMapper;
 	@Autowired
-	private TABLESPACESMapper tABLESPACESMapper;
+	private TriggersMapper tRIGGERSMapper;
 	@Autowired
-	private TRIGGERSMapper tRIGGERSMapper;
+	private UserPrivilegesMapper uSER_PRIVILEGESMapper;
 	@Autowired
-	private USER_PRIVILEGESMapper uSER_PRIVILEGESMapper;
-	@Autowired
-	private VIEWSMapper vIEWSMapper;
+	private ViewsMapper vIEWSMapper;*/
 	
 	
 	

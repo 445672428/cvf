@@ -169,7 +169,7 @@ public class ImageDataUtils {
 		if (!newFile.exists()) {
     		newFile.mkdir();
 		}
-    	Connection connection = MysqlDBUtils.getConnection();
+    	Connection connection = DBUtils.getConnection();
     	PreparedStatement statement = null;
     	ResultSet resultSet = null;
     	int fileCount = 0,folderCount = 0;
@@ -301,7 +301,7 @@ public class ImageDataUtils {
 	    		}
 	    	}
 		}
-    	MysqlDBUtils.closeConnection(connection, statement, resultSet);
+    	DBUtils.closeConnection(connection, statement, resultSet);
     	System.out.println("文件夹====="+folderCount+"文件数====="+fileCount);
     }
     /*--------------------------------------------------------------------------------------------------------------------------------------------
@@ -342,7 +342,7 @@ public class ImageDataUtils {
     }
     
     public void insertImageInfo() {
-    	Connection connection = MysqlDBUtils.getConnection();
+    	Connection connection = DBUtils.getConnection();
     	PreparedStatement statement = null;
     	ResultSet resultSet = null;
 		String path = "D:\\bobo\\nginx-1.6.3\\search\\cvf\\search\\";
@@ -399,7 +399,7 @@ public class ImageDataUtils {
 				e.printStackTrace();
 			}
 		}
-		MysqlDBUtils.closeConnection(connection, statement, resultSet);
+		DBUtils.closeConnection(connection, statement, resultSet);
 	}
     
     public void writeToNewFile(File file,String path) {

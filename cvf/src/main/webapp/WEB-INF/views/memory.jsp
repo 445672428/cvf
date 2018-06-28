@@ -887,7 +887,6 @@ var changeBackground = function(month){
 };
 
 if(!$.browser.msie){
-	debugger
 	document.addEventListener('impress:stepenter', function(e){
 		var cur = arguments[0].target;
 		var date = $(cur).find(".circle").html();

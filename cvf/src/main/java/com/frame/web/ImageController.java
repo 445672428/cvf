@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +20,7 @@ import com.utils.TimeUtils;
 public class ImageController extends BaseAction{
 	@Autowired
 	private ImageService imageService;
-	@RequestMapping(value="images.do",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+	@RequestMapping(value="images",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody()
 	public String showImages(int index,int size) {
 		List<Map<String, Object>> list = imageService.queryForPageImages(index,size);
@@ -33,7 +32,7 @@ public class ImageController extends BaseAction{
 	/**
 	 * 记忆轴
 	 */
-	@RequestMapping("/memory.do")
+	@RequestMapping("/memory")
 	public ModelAndView yourMemoryPage(String year,String user) {
 		if (null==year) {
 			year = TimeUtils.getCurrYear();
@@ -41,7 +40,6 @@ public class ImageController extends BaseAction{
 		if (null==user) {
 			user = "bobo";
 		}
-		System.out.println(configService.IMG_SRC1);
 		List<Map<String, Object>> list = imageService.queryForYourMemory(year,user);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("views/memory");

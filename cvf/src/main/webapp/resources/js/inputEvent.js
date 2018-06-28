@@ -24,7 +24,7 @@ function file(){
 
 
 $(function(){
-	$('#searchWindow').window('close')
+	$('#searchWindow').window('close');
 	//$("div[data-options='west']").css("overflow","hidden");
 	createFile();
 	initFile(userid,_LEVEL,_UUID);
@@ -57,7 +57,7 @@ function initFile(userid,level,parentid){
 						"</div>";
 				});
 				$(".portlet-body").append(fileDiv);
-				loadFile(data['list'],parentid,level);
+				//loadFile(data['list'],parentid,level);
 				bindEvent();
         	}
         },

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSONObject;
+import com.annotation.SysLogColumn;
 import com.base.BaseService;
 import com.entities.FileInfo;
 import com.utils.ComUtils;
@@ -26,12 +27,14 @@ public class FileService extends BaseService{
 	@Autowired
 	@Qualifier("mysqlJdbcTemplate")
 	private JdbcTemplate mysqlJdbcTemplate;
+    @SysLogColumn(operationName="进行MD5进行文件校验是否存在")
     public boolean isMd5Exist(String md5) {
     	String sql = "select * from fileinfo where md5 = '"+md5+"'";
     	List<Map<String, Object>> result = mysqlJdbcTemplate.queryForList(sql);
         return !result.isEmpty();
     }
     @Transactional
+    @SysLogColumn(operationName="保存上传文件信息")
 	public void save(FileInfo fileInfo) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time = dateFormat.format(new Date());
@@ -43,6 +46,7 @@ public class FileService extends BaseService{
 	}
     
     @Transactional
+    @SysLogColumn(operationName="保存文件信息")
 	public JSONObject saveFileName(String userid, String filename, String parentid,Integer level,String uuid) {
 		String sql = "insert into filetable (id,userid,filename,level,ishidden,parentid,description,subName,createtime) values (?,?,?,?,?,?,?,?,?)";
 		logger.info(sql);
@@ -64,6 +68,7 @@ public class FileService extends BaseService{
 	 * @param level
 	 * @return
 	 */
+	@SysLogColumn(operationName="查询当前 用户目录文件")
 	public JSONObject queryFileByUUid(String userid, String parentid,Integer level) {
 		if (level==null) {
 			level = 0;
@@ -89,6 +94,7 @@ public class FileService extends BaseService{
 	 * @return
 	 */
 	@Transactional
+	@SysLogColumn(operationName="删除当前用户指定的文件或目录")
 	public JSONObject deleteFileByUUid(String userid, String parentid,Integer level) {
 		String sql = "delete from filetable where ";
 		String condition = "";
@@ -105,7 +111,7 @@ public class FileService extends BaseService{
 	}
 	
 	
-	
+	@SysLogColumn(operationName="查询中国所有省市街道")
 	public List<String> queryForChilds(String id,List<String> list) {
 		String sql = "SELECT id,userid,filename,level,ishidden,parentid FROM filetable where parentid='"+id+"'";
 		List<Map<String, Object>> result = mysqlJdbcTemplate.queryForList(sql);
@@ -126,6 +132,7 @@ public class FileService extends BaseService{
 		return list;
 	}
 	@Transactional
+	@SysLogColumn(operationName="更新文件信息")
 	public int updateFileNameById(String id, String name) {
 		String sql = "update filetable set filename = '"+name+"' where id = '"+id+"'";
 		int count = mysqlJdbcTemplate.update(sql);

@@ -15,7 +15,7 @@ import contant.Contant;
 
 public class BigMultiHandlerAction {
 	@ResponseBody  
-	@RequestMapping(value = "common/getProgress.do", method = RequestMethod.GET)  
+	@RequestMapping(value = "common/getProgress", method = RequestMethod.GET)  
 	public String getProgress(HttpServletRequest request, HttpServletResponse response) {
 	   if (request.getSession().getAttribute(Contant.SESSION_KEY_UPLOAD_PROGRESS_INFO) == null) {  
 	        return "";  

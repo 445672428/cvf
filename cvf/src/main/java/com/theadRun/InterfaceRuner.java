@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 
-import com.data.MysqlDBUtils;
+import com.data.DBUtils;
 
 public class InterfaceRuner {
 	String sql = "INSERT INTO images (id,name,url,code,tag,appname,flag,createtime,updatetime) VALUES(?,?,?,?,?,?,?,?,?)";
@@ -53,7 +53,7 @@ public class InterfaceRuner {
 		public DealFile(BlockingQueue<File> files,File file){
 			this.files = files;
 			this.file = file;
-			this.connection = MysqlDBUtils.getConnection();
+			this.connection = DBUtils.getConnection();
 		}
 		@Override
 		public void run() {

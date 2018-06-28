@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.base.BaseAction;
 import com.entities.ResultMeta;
@@ -25,9 +26,10 @@ public class ExceptionAdvice extends BaseAction{
      */  
     @ResponseStatus(HttpStatus.BAD_REQUEST)  
     @ExceptionHandler(HttpMessageNotReadableException.class)  
-    public ResultMeta handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {  
+    public ModelAndView handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {  
+    	ModelAndView v = new ModelAndView("/common/error");
         logger.error("参数解析失败", e);  
-        return new ResultMeta().failure("could_not_read_json");  
+        return v;  
     }  
   
     /** 
@@ -35,9 +37,10 @@ public class ExceptionAdvice extends BaseAction{
      */  
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)  
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)  
-    public ResultMeta handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {  
+    public ModelAndView handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) { 
+    	ModelAndView v = new ModelAndView("/common/error");
         logger.error("不支持当前请求方法", e);  
-        return new ResultMeta().failure("request_method_not_supported");  
+        return v;  
     }  
   
     /** 
@@ -45,9 +48,10 @@ public class ExceptionAdvice extends BaseAction{
      */  
     @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)  
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)  
-    public ResultMeta handleHttpMediaTypeNotSupportedException(Exception e) {  
+    public ModelAndView handleHttpMediaTypeNotSupportedException(Exception e) {  
+    	ModelAndView v = new ModelAndView("/common/error");
         logger.error("不支持当前媒体类型", e);  
-        return new ResultMeta().failure("content_type_not_supported");  
+        return v;  
     }  
   
     /** 
@@ -55,8 +59,9 @@ public class ExceptionAdvice extends BaseAction{
      */  
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)  
     @ExceptionHandler(Exception.class)  
-    public ResultMeta handleException(Exception e) {  
+    public ModelAndView handleException(Exception e) {  
+    	ModelAndView v = new ModelAndView("/common/error");
         logger.error("服务运行异常", e);  
-        return new ResultMeta().failure(e.getMessage());  
+        return v;  
     }  
 }

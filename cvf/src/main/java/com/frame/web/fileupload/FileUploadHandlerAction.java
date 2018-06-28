@@ -39,7 +39,7 @@ public class FileUploadHandlerAction {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value="upload.do",method=RequestMethod.POST,produces=MediaType.TEXT_PLAIN_VALUE)
+	@RequestMapping(value="upload",method=RequestMethod.POST,produces=MediaType.TEXT_PLAIN_VALUE)
 	@ResponseBody
 	public void serverUpload(@RequestParam("file") MultipartFile file,HttpServletRequest request,HttpServletResponse response){
 		FileOutputStream outStream = null;
@@ -133,7 +133,7 @@ public class FileUploadHandlerAction {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping(value="down.do")
+	@RequestMapping(value="down")
 	public void downfileUpload(String[] fileNames,HttpServletRequest request,HttpServletResponse response){
 		for(String fileName : fileNames){
 			try {

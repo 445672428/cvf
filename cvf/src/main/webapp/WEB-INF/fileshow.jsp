@@ -31,7 +31,6 @@
 .fileDiv{
 	width: 80px;
 	height: 80px;
-	/* background: url("${CONTEXTPATH }/resources/images/file.gif") no-repeat; */
 	background-size:100% 100%;
 	cursor: pointer;
 }
@@ -74,10 +73,6 @@ div.fileDiv img{
 	background: url("${CONTEXTPATH }/resources/lib/easyui/themes/icons/delete3.png") no-repeat;
 }
 
-.save{
-	background: url("${CONTEXTPATH }/resources/images/save1.gif") no-repeat;
-	background-size:100% 100%;
-}
 .search{
 	background: url("${CONTEXTPATH }/resources/images/search.gif") no-repeat;
 	background-size:100% 100%;
@@ -94,11 +89,6 @@ div.fileDiv img{
 	background: url("${CONTEXTPATH }/resources/images/print.gif") no-repeat;
 	background-size:100% 100%;
 }
-.back{
-	background: url("${CONTEXTPATH }/resources/netlib/images/refress.png") no-repeat;
-	background-size:100% 100%;
-}
-
 </style>
 <script type="text/javascript">
 var CONTEXTPATH = '${CONTEXTPATH}';
@@ -106,9 +96,8 @@ var CONTEXTPATH = '${CONTEXTPATH}';
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'center'">
-		<div class="easyui-panel" style="height:10%;width: 100%;">
+		<div class="easyui-panel" style="height:10%;width: 100%;overflow-y:hidden;">
 			<ul id="hand">
-				<li onclick="backHigher();" class="back"></li>
 				<li onclick="showSearchWindow();" class="search"></li>
 				<li onclick="deletePageALLFile();" class="del"></li>
 				<li onclick="exportAll();" class="printfile"></li>
@@ -123,45 +112,11 @@ var CONTEXTPATH = '${CONTEXTPATH}';
 	<div id="createPanle" class="easyui-menu" style="width:120px;">
 		<div onclick="javascript:editHandle()">创建文件夹</div>
 		<div onclick="javascript:editHandle()">创建文本文件</div>
-<!-- 		<div>
-			<span>打开文件方式</span>
-			<div style="width:150px;">
-				<div><b>Word</b></div>
-				<div>Excel</div>
-				<div>PowerPoint</div>
-				<div>
-					<span>Window Demos</span>
-					<div style="width:120px;">
-						<div data-options="href:'window.html'">Window</div>
-						<div data-options="href:'dialog.html'">Dialog</div>
-						<div><a href="http://www.jeasyui.com" target="_blank">EasyUI</a></div>
-					</div>
-				</div>
-			</div>
-		</div> -->
-		<!-- <div data-options="iconCls:'icon-save'">全部下载</div> -->
-		<!-- <ul id="tree" class="ztree" style="margin-top:0px;width:210px;height:100%;padding:0px;"></ul> -->
 		<div data-options="iconCls:'icon-print'">打印</div>
-		<!-- <div class="menu-sep"></div> -->
 		<div>取消</div>
 	</div>
-<!-- 	<div id="searchWindow" class="easyui-window" title="Basic Window" data-options="iconCls:'icon-save'" style="width:70%;height:80%;padding:10px;">--> 
-    <div id="searchWindow" class="easyui-window" title="Modal Window" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:70%;height:80%;padding:10px;">
-         <input class="easyui-searchbox" data-options="prompt:'Please Input Value',searcher:doSearch" style="width:100%">
-         <table id="tt" class="easyui-datagrid" style="width:700px;height:250px" url="datagrid8_getdata.php" title="Load Data" iconCls="icon-save"
-            sortName="itemid" sortOrder="asc" rownumbers="true" pagination="true">
-	        <thead>
-	            <tr>
-	                <th field="itemid" width="80" sortable="true">Item ID</th>
-	                <th field="productid" width="100" sortable="true">Product ID</th>
-	                <th field="listprice" width="80" align="right" sortable="true">List Price</th>
-	                <th field="unitcost" width="80" align="right" sortable="true">Unit Cost</th>
-	                <th field="attr1" width="220">Attribute</th>
-	                <th field="status" width="60" align="center">Stauts</th>
-	            </tr>
-	        </thead>
-    	</table>
-    </div>
+<!-- <div id="searchWindow" class="easyui-window" title="Basic Window" data-options="iconCls:'icon-save'" style="width:70%;height:80%;padding:10px;"></div>
+ -->
 </body>
 <!-- 引入Jquery -->  
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/easyui/jquery.min.js" charset="utf-8"></script>  

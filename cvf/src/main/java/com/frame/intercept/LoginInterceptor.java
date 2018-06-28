@@ -1,12 +1,14 @@
 package com.frame.intercept;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.entities.TAdmin;
+
+import contant.Contant;
 
 public class LoginInterceptor implements HandlerInterceptor{
 	
@@ -20,9 +22,12 @@ public class LoginInterceptor implements HandlerInterceptor{
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String  url = uri.substring(contextPath.length());
-		boolean need = needLogin(url);
-		System.out.println("need   "+need);
 		request.setAttribute("CONTEXTPATH", request.getContextPath());
+		TAdmin user = (TAdmin)request.getSession().getAttribute(Contant.USER_KEY);
+		if (null==user) {
+			response.sendRedirect(request.getSession().getServletContext().getContextPath()+"/"+Contant.WELCOME_URL);
+			return false;
+		}
 /*		if (!need) {
 			
 			 * 没权限进行对应的处理
@@ -62,55 +67,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 		
 	}
 	
-	/**
-	 * 是否可用登录
-	 * @param url
-	 * @return
-	 */
-	private boolean needLogin(String url){
-		if (null!=allowSessionUrl&&allowSessionUrl.length>0) {
-			for(String _url : allowSessionUrl){
-				if (_url.equals(url)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
 	
-	private boolean authority(String url,Map<String, Object> map,HttpServletResponse response){
-		if (null!=allowAuthorityUrl&&allowAuthorityUrl.length>0) {
-			for (String  _url: allowAuthorityUrl) {
-				if(_url.equals(url)){
-					return true;
-				}
-			}
-		}
-		if (null==map) {
-			return false;
-		}
-		if (!map.containsKey(url)) {
-			return false;
-		}
-		return true;
-	}
 	
-	/**
-	 * 对应配置文件的 url
-	 */
-	private String[] allowSessionUrl = null;
-	private String[] allowAuthorityUrl = null;
-	
-	public void setAllowAuthorityUrl(String[] allowAuthorityUrl) {
-		this.allowAuthorityUrl = allowAuthorityUrl;
-	}
-	public String[] getAllowAuthorityUrl() {
-		return allowAuthorityUrl;
-	}
-	public void setAllowSessionUrl(String[] allowSessionUrl) {
-		this.allowSessionUrl = allowSessionUrl;
-	}
-	public String[] getAllowSessionUrl() {
-		return allowSessionUrl;
-	}
 }

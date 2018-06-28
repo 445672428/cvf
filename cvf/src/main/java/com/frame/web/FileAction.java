@@ -23,7 +23,7 @@ public class FileAction {
 	 * @param uuid
 	 * @return
 	 */
-	@RequestMapping(value="filecreate.do",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@RequestMapping(value="filecreate",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String filecreate(String userid,String filename,String parentid,Integer level,String uuid) {
 		JSONObject object = new JSONObject();
@@ -44,7 +44,7 @@ public class FileAction {
 	 * @param uuid
 	 * @return
 	 */
-	@RequestMapping(value="queryfiles.do",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@RequestMapping(value="queryfiles",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String querycreate(String userid,String parentid,Integer level) {
 		JSONObject	object = fileService.queryFileByUUid(userid, parentid, level);
@@ -60,7 +60,7 @@ public class FileAction {
 	 * @param uuid
 	 * @return
 	 */
-	@RequestMapping(value="delfiles.do",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@RequestMapping(value="delfiles",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String delCurrentFile(String userid,String parentid,Integer level) {
 		JSONObject	object = fileService.deleteFileByUUid(userid, parentid, level);
@@ -76,7 +76,7 @@ public class FileAction {
 	 * @param uuid
 	 * @return
 	 */
-	@RequestMapping(value="savename.do",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@RequestMapping(value="savename",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String updateFolderName(String id,String name) {
 		boolean flag = true;

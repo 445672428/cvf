@@ -4,17 +4,38 @@ import java.net.URL;
 
 import org.apache.axis.client.Call;
 import org.apache.axis.client.Service;
+import org.apache.cxf.endpoint.Client;
+import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 
 public class CxfClient {
 	public static void main(String[] args) {
-		test();
+		//test();
+		//test1();
+	}
+	public static void test1(){
+		
+        JaxWsDynamicClientFactory dcf = JaxWsDynamicClientFactory.newInstance();  
+        Client client = dcf.createClient(  
+            "http://www.webxml.com.cn/WebServices/ValidateEmailWebService.asmx?wsdl");  
+        Object[] res;
+		try {
+			res = client.invoke("ValidateEmailAddressPro");
+			//System.out.println("Echo response: " + res[0]);  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+        
 	}
 
 	public static void test() {
-		String endpoint = "http://192.168.31.177:8090/ZyPrj/services/demo?wsdl";
-		String nameSpace = "http://services.web.txx.cn.com/";
-		Object obj = callWebserviceBack(endpoint, nameSpace, "test",
-				new Object[] {});
+//		String endpoint = "http://192.168.31.177:8090/ZyPrj/services/demo?wsdl";
+//		String nameSpace = "http://services.web.txx.cn.com/";
+		String endpoint = "http://www.webxml.com.cn/WebServices/RandomFontsWebService.asmx?wsdl";
+		String nameSpace = "http://WebXml.com.cn/";
+		
+		Object obj = callWebserviceBack(endpoint, nameSpace, "ArrayOfString",
+				new Object[] {"1"});
 		System.out.println(obj);
 	}
 
