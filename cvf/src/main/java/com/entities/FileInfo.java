@@ -14,6 +14,28 @@ public class FileInfo implements Serializable{
 	private String MD5;
 	//private Date uploadDate;
 	private Timestamp uploadDate;
+	
+	private String fileId;
+	private long fileSize;
+	private String fileInfo;
+	public String getFileId() {
+		return fileId;
+	}
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
+	}
+	public long getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(long fileSize) {
+		this.fileSize = fileSize;
+	}
+	public String getFileInfo() {
+		return fileInfo;
+	}
+	public void setFileInfo(String fileInfo) {
+		this.fileInfo = fileInfo;
+	}
 	@Override
 	public String toString() {
 		return "File{" +

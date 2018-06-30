@@ -27,6 +27,14 @@ public class ConfigService extends BaseService{
 	@Value("${img.src4}")
 	public String IMG_SRC4;
 	
+	@Value("${websocket.savePath}")
+	public String W_FILE_PATH;
+	@Value("${websocket.blobSize}")
+	public int W_FILE_BLOBSIZE;
+	@Value("${websocket.textSize}")
+	public int W_FILE_TEXTSIZE;
+	
+	
 	
 	@Autowired
 	@Qualifier("mysqlJdbcTemplate")

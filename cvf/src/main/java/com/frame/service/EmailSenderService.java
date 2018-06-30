@@ -32,7 +32,7 @@ public class EmailSenderService {
 	   * @param subject    主题
 	   * @param content    文本内容
 	   */
-	  public static void sendSimpleMessage(String sendFrom, String[] sendTo, String subject, String textcontent) {
+	  public void sendSimpleMessage(String sendFrom, String[] sendTo, String subject, String textcontent) {
 	    SimpleMailMessage mail = new SimpleMailMessage();
 	    mail.setFrom(sendFrom);
 	    mail.setTo(sendTo);
@@ -51,7 +51,7 @@ public class EmailSenderService {
 	   * @param htmlContent    HTML内容
 	   * @throws Exception
 	   */
-	  public static void sendHtmlMessage(String sendFrom, String[] sendTo, String subject, String htmlContent) throws Exception {
+	  public void sendHtmlMessage(String sendFrom, String[] sendTo, String subject, String htmlContent) throws Exception {
 	    MimeMessage mimeMessage = emailSender.javaMailSender.createMimeMessage(); 
 	     
 	    MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);

@@ -15,7 +15,8 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 public class SocketConfig extends WebMvcConfigurerAdapter implements WebSocketConfigurer {
 
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-
+        //允许连接的域,只能以http或https开头，不限制时使用“*”号
+        String[] allowsOrigins = { "*" };
 		// 前台 可以使用websocket环境
 		registry.addHandler(myWebSocketHandler(), "/websocket/socketServer").addInterceptors(new HandshakeInterceptor());
 
@@ -25,6 +26,9 @@ public class SocketConfig extends WebMvcConfigurerAdapter implements WebSocketCo
 		registry.addHandler(myHandler(), "/websocket/log").addInterceptors(new MyHandShake());//相对更稳定
 
 		registry.addHandler(myHandler(), "/ws/sockjs/log").addInterceptors(new MyHandShake()).withSockJS();
+		
+        registry.addHandler(fileChatHandler(), "/websocket/up").setAllowedOrigins(allowsOrigins).addInterceptors(new HandshakeInterceptor());
+        
 	}
 
 	// websocket 处理类
@@ -35,5 +39,10 @@ public class SocketConfig extends WebMvcConfigurerAdapter implements WebSocketCo
 	@Bean
     public WebsocketHandler myHandler() {
         return new WebsocketHandler();
+    }
+	
+	@Bean
+    public WebSocketHandler fileChatHandler() {
+        return new FileChatWebSocketHandlers();
     }
 }

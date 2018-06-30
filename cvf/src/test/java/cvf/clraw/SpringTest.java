@@ -4,10 +4,7 @@ package cvf.clraw;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -21,8 +18,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
 import org.junit.Test;
 
 import redis.clients.jedis.Jedis;
@@ -40,7 +35,7 @@ public class SpringTest {
 //		 System.out.println(managerDataSource);
 //		 SqlSessionTemplate sessionTemplate = (SqlSessionTemplate)classPathXmlApplicationContext.getBean("sqlSession");
 //		 System.out.println(sessionTemplate);
-		File file = new File("C:\\DC案件表数据.txt");
+		File file = new File("C:\\DC_DAY_EAJ.sql");
 		
         InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "GBK"); //或GB2312,GB18030
         BufferedReader read = new BufferedReader(isr);
@@ -57,9 +52,11 @@ public class SpringTest {
 		//String cxt = FileUtils.readTextAllContent(file);
 		String cxt = result.toString();
 		//cxt = cxt.replaceAll("\\s*[上|下]午\\.\\d{1,3}", "");
-		cxt = cxt.replaceAll("\\b[上|下]午\\.\\d{1,3}", "");
-		//System.out.println(cxt);
-		FileUtils.appendFileWriterTxt("C:\\2.txt", cxt);
+		String rg = "\\d{2}:\\d{1,2}:\\d{1,2}.\\d{1,3}";
+		cxt = cxt.replaceAll(rg, "00:00:00");
+		//cxt = cxt.replaceAll("\\b[上|下]午\\.\\d{1,3}", "");
+		System.out.println(cxt);
+		FileUtils.appendFileWriterTxt("C:\\2.sql", cxt);
 	}
 	
 	@Test
@@ -101,22 +98,6 @@ public class SpringTest {
 		
 	}
 	
-	@Test
-	public void name() {
-		// 创建Configuration对象
-        Configuration conf=new Configuration();
-        // 创建FileSystem对象
-        try {
-			FileSystem fs= FileSystem.get(new URI("hdfs://47.106.87.178:9000"),conf,"root");
-			System.out.println(fs);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	
 	
