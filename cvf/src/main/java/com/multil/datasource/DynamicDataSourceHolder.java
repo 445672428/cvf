@@ -29,7 +29,6 @@ public class DynamicDataSourceHolder {
      * @return
      */
     public static String getDataSourceKey() {
-    	System.out.println("当前库:"+holder.get());
         return holder.get();
     }
     

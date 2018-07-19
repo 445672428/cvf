@@ -643,7 +643,7 @@ top: -500px;
 	top: 100px;
 }
 </style>
-<script id="jquery_183" type="text/javascript" class="library" src="${CONTEXTPATH }/resources/lib/jQuery/jquery-1.7.1.min.js"></script>
+<script id="jquery_183" type="text/javascript" class="library" src="${CONTEXTPATH }/resources/lib/jQuery/jquery2.1.js"></script>
 <script> 
    (function() {
      if (! 

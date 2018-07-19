@@ -14,8 +14,8 @@
 <link rel="stylesheet" type="text/css" href="${CONTEXTPATH }/resources/css/ystep.css" />
 <!-- 公共js 引入 -->
 <script type="text/javascript" src="${CONTEXTPATH }/resources/js/common.js" charset="utf-8"></script>
-<script type="text/javascript" src="${CONTEXTPATH }/resources/lib/sockjs.js" charset="utf-8"></script>
-<script type="text/javascript" src="${CONTEXTPATH }/resources/lib/jszip.js" charset="utf-8"></script>
+<script type="text/javascript" src="${CONTEXTPATH }/resources/lib/plugin/sockjs.js" charset="utf-8"></script>
+<script type="text/javascript" src="${CONTEXTPATH }/resources/lib/utils/jszip.js" charset="utf-8"></script>
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/plugin/setStep.js" charset="utf-8"></script>
 <script type="text/javascript" src="${CONTEXTPATH }/resources/js/upload.js" charset="utf-8"></script>
 <style type="text/css">

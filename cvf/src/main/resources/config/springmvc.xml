@@ -135,7 +135,7 @@
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/"></property>
 		<property name="suffix" value=".jsp"></property>
-		<property name="order" value="2"></property>
+		<property name="order" value="1"></property>
 	</bean>
 	<!-- 定义无Controller的path<->view直接映射 -->
 	<!-- <mvc:view-controller path="/" view-name="redirect:${web.view.index}"/> -->
@@ -165,17 +165,7 @@
 		 		<!-- 配置session超时自动跳到登录页面 -->
 		 	</props>
 		 </property>
-	</bean>
-	<!-- 集成websocket 功能 -->
-<!-- 	<bean id="websocket" class="com.push.WebsocketEndPoint"/>  
-	<websocket:handlers allowed-origins="*">  
-	    <websocket:mapping path="/websocket" handler="websocket"/>  
-	    <websocket:handshake-interceptors>  
-	    	<bean class="com.push.HandshakeInterceptor"/>  
-	    </websocket:handshake-interceptors>
-	    <websocket:sockjs />
-	</websocket:handlers>   -->
-	
+	</bean>	
 
 	<!-- 配置权限拦截器 -->
  	<mvc:interceptors>

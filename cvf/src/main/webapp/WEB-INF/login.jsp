@@ -9,7 +9,7 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/main.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/login.css" />
-<script data-main="resources/js/login" type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/require.js" charset="utf-8"></script>
+<script data-main="resources/js/login" type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/plugin/require.js" charset="utf-8"></script>
 </head>
 <script type="text/javascript">
 	var PATH = '${pageContext.request.contextPath}';

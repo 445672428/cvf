@@ -14,7 +14,6 @@
  *
  */
 function changeFrameHeight(){
-	debugger;
 	var $div = $(".tab-pane .active");
 	var $ifm = $(".tab-pane .active iframe");
     var ifm= document.getElementById("iframepage"); 

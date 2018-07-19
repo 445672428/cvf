@@ -2,8 +2,8 @@ require.config({
     paths:{
 	        'jquery': PATH+'/resources/lib/jQuery/jquery2.1',
 	        'qrcode': PATH+'/resources/lib/jQuery/jquery.qrcode.min',
-	        'security': PATH+'/resources/lib/security',
-	        'sockjs': PATH+'/resources/lib/sockjs',
+	        'security': PATH+'/resources/lib/utils/security',
+	        'sockjs': PATH+'/resources/lib/plugin/sockjs',
 	        'common':PATH+'/resources/js/common'
     	},
         shim:{

@@ -1,10 +1,7 @@
 package com.frame.intercept;
 
-import java.util.Enumeration;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,16 +19,7 @@ public class LoginInterceptor implements HandlerInterceptor{
      * 回值为false，当preHandle的返回值为false的时候整个请求就结束了。 
      */  
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
-		String uri = request.getRequestURI();
-		String contextPath = request.getContextPath();
-		String  url = uri.substring(contextPath.length());
 		request.setAttribute("CONTEXTPATH", request.getContextPath());
-		Enumeration en = request.getParameterNames();
-		HttpSession session = request.getSession();
-		System.out.println("session:"+session);
-		while (en.hasMoreElements()) {
-			String name = (String) en.nextElement();
-		}
 		TAdmin user = (TAdmin)request.getSession().getAttribute(Contant.USER_KEY);
 		if (null==user) {
 			response.sendRedirect(request.getSession().getServletContext().getContextPath()+"/");
