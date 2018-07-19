@@ -19,10 +19,12 @@ import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
 
 
-import com.entities.FileInfo;
-import com.entities.FileTarget;
-import com.entities.SlicedInfo.ServerConfigEnum;
-import com.entities.SlicedInfo.UploadCommand;
+
+import com.pojo.FileInfo;
+import com.pojo.FileTarget;
+import com.pojo.SlicedInfo.ServerConfigEnum;
+import com.pojo.SlicedInfo.UploadCommand;
+
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonParser;
 /**
@@ -42,7 +44,7 @@ public class FileChatWebSocketHandlers extends AbstractWebSocketHandler {
      * */
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-	    System.out.println("长度："+message.getPayload().toString());
+	    //长度："+message.getPayload().toString()
         if(message.getPayloadLength() == 0){
             return;
         }
@@ -55,7 +57,7 @@ public class FileChatWebSocketHandlers extends AbstractWebSocketHandler {
      * */
     @Override
     protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) throws Exception {
-	    System.out.println("长度："+message.getPayloadLength());
+	   //长度："+message.getPayloadLength()
         if(message.getPayloadLength() == 0){
             return;
         }
@@ -89,7 +91,7 @@ public class FileChatWebSocketHandlers extends AbstractWebSocketHandler {
      * */
     @Override
     public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
-        System.out.println("socket error...");
+        //socket error...
         if(session.isOpen()){
             session.close();
         }
@@ -100,7 +102,6 @@ public class FileChatWebSocketHandlers extends AbstractWebSocketHandler {
      * */
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        System.out.println("socket closes...");
 	    cancelCommand();
     }
 
@@ -112,7 +113,6 @@ public class FileChatWebSocketHandlers extends AbstractWebSocketHandler {
 	private void dataProcessing(String message){
 		if(!this.isCommandComplete){
 			cancelCommand();
-			System.out.println("command没有完成,已回滚.");
 		}
 		try {
 			JsonParser jp=new JsonFactory().createJsonParser(message);
@@ -128,7 +128,7 @@ public class FileChatWebSocketHandlers extends AbstractWebSocketHandler {
 		response(this.uploadCommand);
 		this.isCommandComplete=false;
 		if(this.uploadCommand.getCompletePercent()==1){
-			System.out.println("文件上完成");
+			//文件上完成
 			fileUloadComplete();
 			this.isCommandComplete=true;
 		}
@@ -136,7 +136,6 @@ public class FileChatWebSocketHandlers extends AbstractWebSocketHandler {
 	private void response(String data){
 		try {
 			this.session.sendMessage(new TextMessage(data));
-			System.out.println("data: "+data);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -155,7 +154,7 @@ public class FileChatWebSocketHandlers extends AbstractWebSocketHandler {
 	private void sendFirstUploadCommand(FileInfo fileInfo){
 		synchronized (fileTargetMap) {
 			if(FileTarget.isFileOK(fileInfo)){
-				System.out.println("已存在，无需再次上传_: "+fileInfo.getFileName());
+				//已存在，无需再次上传_:
 				this.uploadCommand=UploadCommand.getSucccessCommand(fileInfo.getFileId());
 			}else{
 				this.fileTarget=FileChatWebSocketHandlers.fileTargetMap.get(fileInfo.getFileId());
@@ -166,8 +165,7 @@ public class FileChatWebSocketHandlers extends AbstractWebSocketHandler {
 					FileChatWebSocketHandlers.fileTargetMap.put(fileInfo.getFileId(), this.fileTarget);
 				}
 				else{
-					//分两种情况，一种是没有正在上传的客户端，另一种是有正在上传的客户端。
-					System.out.println("断点续传_: "+fileInfo.getFileName());
+					//断点续传_:分两种情况，一种是没有正在上传的客户端，另一种是有正在上传的客户端。
 				}
 				this.uploadCommand=this.fileTarget.getUploadCommand();
 			}
@@ -198,10 +196,10 @@ public class FileChatWebSocketHandlers extends AbstractWebSocketHandler {
 		}//if end
 	}
 	private void fileUloadComplete(){
-		System.out.println("将本FileServer从文件uploader中移除。");
+		///将本FileServer从文件uploader中移除
 		this.fileTarget.removeUploader(this);
 		if(this.fileTarget.getCurrentFileUploaders().isEmpty()){
-			System.out.println("当前文件没有上传客户端，从map中移除该文件的FileTarget。");
+			//当前文件没有上传客户端，从map中移除该文件的FileTarget
 			fileTargetMap.remove(this.fileTarget.getFileInfo().getFileId());
 		}
 	}

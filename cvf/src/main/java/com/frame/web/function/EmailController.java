@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
-import com.entities.ResultMeta;
 import com.frame.service.EmailSenderService;
+import com.pojo.ResultMeta;
 
 @Controller
 @RequestMapping(value="email")

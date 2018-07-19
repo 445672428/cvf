@@ -21,8 +21,6 @@ public class ShuoShuoServlet extends HttpServlet {
 	        HttpSession session = request.getSession();
 	        String accessToken = (String)session.getAttribute("demo_access_token");
 	        String openID = (String)session.getAttribute("demo_openid");
-	        System.out.println(accessToken);
-	        System.out.println(openID);
 	        //请开发者自行校验获取的con值是否有效
 	        if (con != "") {
 	            Topic topic = new Topic(accessToken, openID);
@@ -34,12 +32,9 @@ public class ShuoShuoServlet extends HttpServlet {
 	                    response.getWriter().println("很遗憾的通知您，发表说说失败！原因： " + grb.getMsg());
 	                }
 	            } catch (QQConnectException e) {
-	                System.out.println("抛异常了？");
+	                e.printStackTrace();
 	            }
-	        } else {
-	            System.out.println("获取到的值为空？");
-	        }
-
+	        } 
 	    }
 
 	    @Override

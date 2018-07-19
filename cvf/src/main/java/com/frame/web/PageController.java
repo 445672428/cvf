@@ -12,9 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.base.BaseAction;
-import com.entities.TAdmin;
 import com.frame.service.ConfigService;
-import com.utils.SysDateFormat;
+import com.pojo.TAdmin;
+import com.utils.TimeUtils;
 
 import contant.Contant;
 
@@ -55,8 +55,8 @@ public class PageController extends BaseAction{
 		area = "武汉";
 		ModelAndView view = new ModelAndView("home");
 		try {
-			JSONObject object = configService.httpToWeather(area);
-			 SysDateFormat.getCurrentDateString();
+			 JSONObject object = configService.httpToWeather(area);
+			 TimeUtils.getCurrentDateString();
 			 view.addObject("weather", object.getString("range"));
 			 view.addObject("type", object.getString("brief"));
 			 view.addObject("quality", "100");
@@ -67,7 +67,7 @@ public class PageController extends BaseAction{
 		}
 		return view;
 	}
-	@RequestMapping(value="/login",method=RequestMethod.GET)
+	@RequestMapping(value={"","/","/first","/login"})
 	public String toLogin(){
 		return "login";
 	}

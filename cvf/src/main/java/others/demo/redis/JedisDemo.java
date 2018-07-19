@@ -12,7 +12,6 @@ public class JedisDemo {
         // 从redis中读取数据
         String value = jedis.get("mytest");
 
-        System.out.println(value);
         // 关闭连接
         jedis.close();
 

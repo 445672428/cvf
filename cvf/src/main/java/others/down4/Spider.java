@@ -48,9 +48,7 @@ public class Spider implements Runnable {
             try {
                 Request request = requests.take();
                 Page page = downloader.download(request);
-                //System.out.println("page is "+page);
                 Result result = pageParser.parsePage(page);
-                System.out.println("result is "+result);
                 if(!result.isSkip()){
                     List<Request> requestList = result.getRequests();
                     if(requestList!=null&&!requestList.isEmpty()){
@@ -60,7 +58,6 @@ public class Spider implements Runnable {
                     }
                     storer.store(result);
                 }
-                System.out.println("requests size is "+this.requests.size());
                 Thread.sleep(1000+ new Random().nextInt(500));
             } catch (InterruptedException e) {
                 e.printStackTrace();

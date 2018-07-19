@@ -9,11 +9,9 @@ public class ConcurrentQueue {
 		for(int i = 0; i < 100; i ++){
 			queue.add(i);
 		}
-		System.out.println("all:"+queue.size());
 		Iterator<Integer> t = queue.iterator();
 		while (t.hasNext()) {
 			int s = t.next();
-			System.out.println(s);
 		}
 	}
 }

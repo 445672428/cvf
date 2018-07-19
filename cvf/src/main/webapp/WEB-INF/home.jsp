@@ -145,17 +145,17 @@ ul{
 	                     <li data-link='${CONTEXTPATH }/rest?page=system/adduser'><span class="icon-search"></span>bootrap</li>
 	                     <li data-link='${CONTEXTPATH }/rest?page=views/memory'><span class="icon-search"></span>时光轴</li>
 	                     <li data-link='${CONTEXTPATH }/rest?page=show/uimage'><span class="icon-search"></span>图片墙</li>
-	                     <li data-link='${CONTEXTPATH }/rest?page=show/listimages'><span class="icon-search"></span>图片</li>
+	                     <li data-link='${CONTEXTPATH }/rest?page=show/listimages'><span class="icon-search"></span>搜索</li>
 	                     <li data-link='${CONTEXTPATH }/rest?page=chart/jsplumb'><span class="icon-search"></span>jsplumb</li>
 	                     <li data-link='${CONTEXTPATH }/rest?page=chat/chathome'><span class="icon-search"></span>聊天室</li>
-	                     <li data-link='${CONTEXTPATH }/rest?page=file/bigfile'><span class="icon-search"></span>大文件上传</li>
+ 	                     <li data-link='${CONTEXTPATH }/rest?page=file/bigfile'><span class="icon-search"></span>大文件上传</li>
 	                     <li data-link='${CONTEXTPATH }/rest?page=file/imageUpload'><span class="icon-search"></span>图片上传</li>
 	                     <li data-link='${CONTEXTPATH }/rest?page=file/multiPicker'><span class="icon-search"></span>多文件上传</li>
 	                     <li data-link='${CONTEXTPATH }/rest?page=file/mutlfile'><span class="icon-search"></span>多文件</li>
 	                     <li data-link='${CONTEXTPATH }/rest?page=file/upload'><span class="icon-search"></span>上传</li>
 	                     <li data-link='${CONTEXTPATH }/rest?page=ace/index'><span class="icon-search"></span>ace/index</li>
 	                     <li data-link='${CONTEXTPATH }/rest?page=auth'><span class="icon-search"></span>auth</li>
-	                     <li data-link='${CONTEXTPATH }/rest?page=t'><span class="icon-search"></span>tree</li>
+	                     <li data-link='${CONTEXTPATH }/mysql/host'><span class="icon-search"></span>tree</li>
 	                 </ul>
                  </div>
 			</div>

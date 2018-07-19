@@ -23,7 +23,6 @@ public class DoGET {
             // 判断返回状态是否为200
             if (response.getStatusLine().getStatusCode() == 200) {
                 String content = EntityUtils.toString(response.getEntity(), "UTF-8");
-                System.out.println("内容："+content);
             }
         } finally {
             if (response != null) {

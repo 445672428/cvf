@@ -265,6 +265,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-connector-java.version}</version>
 		</dependency>
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>druid</artifactId>
+		    <version>1.1.10</version>
+		</dependency>
+		
 		<!-- end -->
 		<!-- JSP相关 -->
 		<dependency>
@@ -594,7 +600,7 @@
 	   </dependency>
 
 		<!-- POI jar -->
- 		<dependency>
+ 		<!-- <dependency>
 			<groupId>fr.opensagres.xdocreport</groupId>
 			<artifactId>fr.opensagres.xdocreport.template.freemarker</artifactId>
 			<version>${xdocreport.version}</version>
@@ -609,12 +615,16 @@
 			<artifactId>fr.opensagres.xdocreport.template.velocity</artifactId>
 			<version>${xdocreport.version}</version>
 		</dependency>
-		
+		<dependency>
+		  	<groupId>fr.opensagres.xdocreport</groupId>
+		  	<artifactId>org.springframework.web.servlet.view.xdocreport</artifactId>
+		  	<version>1.0.6</version>
+		</dependency>
   		<dependency>    
 		    <groupId>fr.opensagres.xdocreport</groupId>    
 		    <artifactId>org.apache.poi.xwpf.converter.xhtml</artifactId>    
 		    <version>1.0.5</version>    
-		</dependency>
+		</dependency> -->
 		
 
 		 <!-- Excel解析 -->

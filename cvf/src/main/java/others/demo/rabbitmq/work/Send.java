@@ -21,7 +21,6 @@ public class Send {
             // 消息内容
             String message = "" + i;
             channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
-            System.out.println(" [x] Sent '" + message + "'");
 
             Thread.sleep(i * 10);
         }

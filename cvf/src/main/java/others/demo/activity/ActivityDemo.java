@@ -38,7 +38,6 @@ public class ActivityDemo {
 		ProcessDefinitionQuery processDefinitionQuery = processEngine.getRepositoryService().createProcessDefinitionQuery();
 		List<ProcessDefinition> list = processDefinitionQuery.list();
 		for(ProcessDefinition definition : list){
-			System.out.println(definition.getId());
 		}
 	}
 	
@@ -47,7 +46,6 @@ public class ActivityDemo {
 		//拿到流程定义的id
 		String processDefinitionId = "";
 		ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceById(processDefinitionId);
-		System.out.println(processInstance.getId());
 	}
 	//查询个人任务
 	public void test5() {
@@ -56,7 +54,6 @@ public class ActivityDemo {
 		taskQuery.orderByTaskCreateTime().desc();
 		List<Task> list = taskQuery.listPage(0, 10);
 		for(Task task : list){
-			System.out.println(task.getId());
 		}
 	}
 	
@@ -132,7 +129,6 @@ public class ActivityDemo {
 		public void test12() {
 			String taskId = "";
 			Object variables = processEngine.getTaskService().getVariables(taskId);
-			System.out.println(variables);
 		}
 		
 		//创建一个组
@@ -161,7 +157,6 @@ public class ActivityDemo {
 			taskQuery.taskCandidateUser(candidateUser);
 			List<Task> list = taskQuery.list();
 			for(Task task : list){
-				System.out.println(task.getId());
 			}
 		}
 		
@@ -218,7 +213,6 @@ public class ActivityDemo {
 //			DeploymentBuilder deploymentBuilder = processEngine.getRepositoryService().createDeployment();
 			DeploymentBuilder deploymentBuilder = processEngine.getRepositoryService().createDeployment();
 			ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceByKey(processDefinitionKey, variables);
-			System.out.println(processInstance.getId());
 		}
 		//办理任务时设置流程变量
 		public void test23() {
@@ -236,7 +230,6 @@ public class ActivityDemo {
 			variables.put("qjts", 1);
 			ProcessInstance pi = processEngine.getRuntimeService()
 					.startProcessInstanceByKey(processDefinitionKey, variables);
-			System.out.println(pi.getId());
 		}
 		
 		/**

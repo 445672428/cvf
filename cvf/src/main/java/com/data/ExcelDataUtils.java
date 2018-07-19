@@ -1,15 +1,7 @@
 package com.data;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,61 +15,6 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 public class ExcelDataUtils {
-	private String mavenPath = ExcelDataUtils.class.getClassLoader().getResource("start_list").getFile();
-	
-	public static void test() {
-    	Connection connection = DBUtils.getConnection();
-    	PreparedStatement statement = null;
-    	ResultSet resultSet = null;
-    	PrintStream printStream = null;
-		try {
-			
-			int index = 0;
-			String[] lis2 = {"POST.txt"};
-			for(String s :lis2){
-				printStream = new PrintStream(new FileOutputStream(new File("C:\\TXTMIN5temp\\sql1.sql")));
-				BufferedReader reader = new BufferedReader(new FileReader("D:\\Download\\POST.txt")); // 先FileReader把文件读出来再bufferReader按行读
-				// reader.readLine(); 没有标题用不着了
-				String line = null;
-				while ((line = reader.readLine()) != null) {
-					if (line.indexOf("----------------------")>-1) {
-						
-					}else{
-						String[] values = line.split("|");
-						for(String value :values){
-							System.out.println(value);
-						}
-					}
-					/*if (index!=0) {
-						if (line.split(",").length==33) {
-							String sql = "INSERT INTO hotle (Name,CardNo,Descriot,CtfTp,CtfId,Gender,Birthday,Address,Zip,Dirty,District1,District2,District3,District4,District5,District6,FirstNm,LastNm,Duty,Mobile,Tel,Fax,EMail,Nation,Taste,Education,Company,CTel,CAddress,CZip,Family,Version,id) "
-							+ "VALUES('"+line.split(",")[0]+"','"+line.split(",")[1]+"','"+line.split(",")[2]+"','"+line.split(",")[3]+"','"+line.split(",")[4]+"','"+line.split(",")[5]+"','"+line.split(",")[6]+"','"+line.split(",")[7]+"','"+line.split(",")[8]+"','"+line.split(",")[9]+"',"
-									+ "'"+line.split(",")[10]+"','"+line.split(",")[11]+"','"+line.split(",")[12]+"','"+line.split(",")[13]+"','"+line.split(",")[14]+"','"+line.split(",")[15]+"','"+line.split(",")[16]+"','"+line.split(",")[17]+"','"+line.split(",")[18]+"','"+line.split(",")[19]+"','"+line.split(",")[20]+"'"
-									+ ",'"+line.split(",")[21]+"','"+line.split(",")[22]+"','"+line.split(",")[23]+"','"+line.split(",")[24]+"','"+line.split(",")[25]+"','"+line.split(",")[26]+"','"+line.split(",")[27]+"','"+line.split(",")[28]+"','"+line.split(",")[29]+"'"
-											+ ",'"+line.split(",")[30]+"','"+line.split(",")[31]+"','"+line.split(",")[32]+"');";
-							if (index%500000==0) {
-								printStream = new PrintStream(new FileOutputStream(new File("C:\\TXTMIN5temp\\sql"+(index/500000+1)+".sql")));
-							}
-							printStream.println(sql);
-						}
-					}*/
-					System.out.println(line);
-					index++;
-				}
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();// 在命令行打印异常信息在程序中出错的位置及原因。
-		}finally{
-			DBUtils.closeConnection(connection, statement, resultSet);
-		}
-	}
-
-	public static void main(String[] args) {
-		test();
-    }
-	
-	
 	
 	private POIFSFileSystem fs;
     private HSSFWorkbook wb;
@@ -100,7 +37,6 @@ public class ExcelDataUtils {
         row = sheet.getRow(0);
         // 标题总列数
         int colNum = row.getPhysicalNumberOfCells();
-        System.out.println("colNum:" + colNum);
         String[] title = new String[colNum];
         for (int i = 0; i < colNum; i++) {
             //title[i] = getStringCellValue(row.getCell((short) i));
@@ -202,7 +138,6 @@ public class ExcelDataUtils {
                 result = "";
             }
         } catch (Exception e) {
-            System.out.println("日期格式不正确!");
             e.printStackTrace();
         }
         return result;

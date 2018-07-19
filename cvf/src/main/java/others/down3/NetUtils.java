@@ -114,7 +114,6 @@ public class NetUtils {
 			sb.append(key).append("=").append(map.get(key));
 			sb.append("&");
 		}
-		System.out.println("param:" + sb.substring(0, sb.length() - 1));
 		return sb.substring(0, sb.length() - 1);
 
 	}

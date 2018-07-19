@@ -62,7 +62,6 @@ public class FreeMarkerViewUtil extends FreeMarkerView {
 		String requestHTML = this.getRequestHTML(request);
 		// 静态页面绝对路径
 		String htmlPath = basePath + requestHTML;
-		System.out.println("静态页面绝对路径===========>>:" + htmlPath);
 		File htmlFile = new File(htmlPath);
 		if (!htmlFile.getParentFile().exists()) {
 			htmlFile.getParentFile().mkdirs();

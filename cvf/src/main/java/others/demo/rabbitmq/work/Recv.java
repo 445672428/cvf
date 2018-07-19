@@ -31,7 +31,6 @@ public class Recv {
         while (true) {
             QueueingConsumer.Delivery delivery = consumer.nextDelivery();
             String message = new String(delivery.getBody());
-            System.out.println(" [x] Received '" + message + "'");
             //休眠
             Thread.sleep(10);
             // 返回确认状态

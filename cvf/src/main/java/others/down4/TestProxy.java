@@ -13,12 +13,12 @@ public class TestProxy {
         }
         new Thread(new Runnable() {
             public void run() {
-                System.out.println(proxyPool.getProxy().toJson());
+                proxyPool.getProxy().toJson();
             }
         }).start();
         new Thread(new Runnable() {
             public void run() {
-                System.out.println(proxyPool.getProxy().toJson());
+                proxyPool.getProxy().toJson();
             }
         }).start();
 

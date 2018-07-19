@@ -295,17 +295,4 @@ public class PinYin4jUtils {
 		}
 		return headString;
 	}
-	
-	public static void main(String[] args) {
-		// pin4j 简码 和 城市编码 
-		String s1 = "中华人民共和国"; 
-		String[] headArray = getHeadByString(s1); // 获得每个汉字拼音首字母
-		System.out.println(Arrays.toString(headArray));
-		
-		String s2 ="长城" ; 
-		System.out.println(Arrays.toString(stringToPinyin(s2,true,",")));
-		
-		String s3 ="长";
-		System.out.println(Arrays.toString(stringToPinyin(s3,true,",")));
-	}
 }

@@ -109,7 +109,6 @@ public class HBaseUtils {
 //		scan.setFilter(rowFilter);
 //		ResultScanner scanner = hTable.getScanner(scan);
 //		for (Result result : scanner) {
-//			System.out.println(new String(result.getRow()));
 //		}
 	}
 	/**
@@ -126,10 +125,8 @@ public class HBaseUtils {
 //		ResultScanner scanner = hTable.getScanner(scan);
 //		for (Result result : scanner) {
 //			if (result.raw().length == 0) {
-//				System.out.println(tableName + " 表数据为空！");
 //			} else {
 //				for (KeyValue kv : result.raw()) {
-//					System.out.println(new String(kv.getKey()) + "\t" + new String(kv.getValue()));
 //				}
 //			}
 //		}
@@ -144,7 +141,6 @@ public class HBaseUtils {
 //			if(admin.tableExists(tableName)){
 //				admin.disableTable(tableName);
 //				admin.deleteTable(tableName);
-//				System.out.println(tableName + "表删除成功！");
 //			}
 //		} catch (Exception e) {
 //			// TODO Auto-generated catch block
@@ -162,10 +158,8 @@ public class HBaseUtils {
 //		Delete delete = new Delete(rowKey.getBytes());
 //		try {
 //			table.delete(delete);
-//			System.out.println(rowKey + "记录删除成功！");
 //		} catch (IOException e) {
 //			e.printStackTrace();
-//			System.out.println(rowKey + "记录删除失败！");
 //		}
 	}
 	/**
@@ -180,10 +174,8 @@ public class HBaseUtils {
 //			ResultScanner scanner = hTable.getScanner(scan);
 //			for (Result result : scanner) {
 //				if (result.raw().length == 0) {
-//					System.out.println(tableName + " 表数据为空！");
 //				} else {
 //					for (KeyValue kv : result.raw()) {
-//						System.out.println(new String(kv.getKey()) + "\t" + new String(kv.getValue()));
 //					}
 //				}
 //			}
@@ -207,7 +199,6 @@ public class HBaseUtils {
 //		Put p1 = new Put(Bytes.toBytes(row));
 //		p1.add(Bytes.toBytes(columnFamily), Bytes.toBytes(column), Bytes.toBytes(data));
 //		table.put(p1);
-//		System.out.println("put'" + row + "'," + columnFamily + ":" + column + "','" + data + "'");
 	}
 
 	/**
@@ -223,7 +214,6 @@ public class HBaseUtils {
 //			if (listTables.length > 0) {
 //				for (HTableDescriptor tableDesc : listTables) {
 //					tables.add(tableDesc.getNameAsString());
-//					System.out.println(tableDesc.getNameAsString());
 //				}
 //			}
 //		}
@@ -239,12 +229,10 @@ public class HBaseUtils {
 	 */
 	public void createTable(String tableName, String column) throws Exception {
 //		if (admin.tableExists(tableName)) {
-//			System.out.println(tableName + "表已经存在！");
 //		} else {
 //			HTableDescriptor tableDesc = new HTableDescriptor(tableName);
 //			tableDesc.addFamily(new HColumnDescriptor(column.getBytes()));
 //			admin.createTable(tableDesc);
-//			System.out.println(tableName + "表创建成功！");
 //		}
 	}
 }

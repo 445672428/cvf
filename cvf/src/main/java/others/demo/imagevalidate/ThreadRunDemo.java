@@ -8,7 +8,6 @@ public class ThreadRunDemo implements Runnable{
     public void run() {
         // TODO Auto-generated method stub
         for(int i= 0; i < 100;i++){
-            System.out.println(this.name+"正在运行:"+i);
             try {
                 Thread.sleep((int)Math.random()*10);
             } catch (InterruptedException e) {

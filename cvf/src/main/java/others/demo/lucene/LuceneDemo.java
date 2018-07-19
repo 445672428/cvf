@@ -35,7 +35,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
-import com.data.DBUtils;
+import com.utils.DBUtils;
 
 public class LuceneDemo {
 	public static void main(String[] args) throws Exception {
@@ -109,7 +109,6 @@ public class LuceneDemo {
 		try {
 			IndexSearcher searcher = getSearch();
 			TopDocs tds = searcher.search(query, num);
-			System.out.println("一共查询了:" + tds.totalHits);
 			for (ScoreDoc sd : tds.scoreDocs) {
 				Document doc = searcher.doc(sd.doc);
 			}
@@ -126,17 +125,8 @@ public class LuceneDemo {
 		try {
 			indexSearcher = getSearch();
 			TopDocs docs = indexSearcher.search(query, Integer.MAX_VALUE);
-			System.out.println("count:" + docs.totalHits);
 			for (ScoreDoc sd : docs.scoreDocs) {
 				Document doc = indexSearcher.doc(sd.doc);
-				/*
-				 * System.out.println("name:"+doc.get("name"));
-				 * System.out.println("Address:"+doc.get("Address"));
-				 * System.out.println("nation:"+doc.get("nation"));
-				 * System.out.println("education:"+doc.get("education"));
-				 * System.out.println("company:"+doc.get("company"));
-				 * System.out.println("family:"+doc.get("family"));
-				 */
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -173,7 +163,7 @@ public class LuceneDemo {
 		Directory directory = null;
 		int count = 0;
 		try {
-			connection = DBUtils.getConnection();
+			connection = null;
 			preparedStatement = (PreparedStatement) connection.prepareStatement(sql, ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY);
 			preparedStatement.setFetchSize(Integer.MIN_VALUE);
 			preparedStatement.setFetchDirection(ResultSet.FETCH_REVERSE);
@@ -197,7 +187,6 @@ public class LuceneDemo {
 				count ++;
 			}
 			indexWriter.commit();
-			System.out.println("总数:"+count);
 		} catch (IOException | SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -240,7 +229,7 @@ public class LuceneDemo {
 		long count = 0;
 		String sql = "select name,Address,Dirty,mobile,tel,eMail,nation,education,company,family from hotle";
 		try {
-			con = DBUtils.getConnection();
+			con = null;
 			ps = (PreparedStatement) con.prepareStatement(sql,
 					ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 			ps.setFetchSize(Integer.MIN_VALUE);
@@ -250,11 +239,9 @@ public class LuceneDemo {
 				// 此处处理业务逻辑
 				count++;
 				if (count % 600000 == 0) {
-					System.out.println(" 写入到第  " + (count / 600000) + " 个文件中！");
 					long end = System.currentTimeMillis();
 				}
 			}
-			System.out.println("取回数据量为  " + count + " 行！");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

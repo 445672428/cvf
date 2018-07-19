@@ -18,7 +18,6 @@ public class CuratorTest {
 				.creatingParentsIfNeeded()//如果父节点不存在，则创建
 				.withMode(CreateMode.EPHEMERAL)//指定创建的节点类型，设置为临时节点
 				.forPath("/spider/192.168.57.1");
-		System.out.println(forPath);
 		
 	}
 }

@@ -4,30 +4,38 @@ import java.awt.image.BufferedImage;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.entities.ResultMeta;
+import com.frame.service.SysService;
 import com.mybatis.pojo.SysApp;
 import com.mybatis.pojo.SysElement;
 import com.mybatis.pojo.SysOrganize;
 import com.mybatis.pojo.SysSource;
 import com.mybatis.pojo.SysUser;
 import com.mybatis.service.MSysPermissionService;
+import com.pojo.ResultMeta;
+import com.pojo.TAdmin;
+import com.sql.DB;
 import com.utils.ComUtils;
 import com.utils.TimeUtils;
 
@@ -42,8 +50,8 @@ public class SysPermissionAction {
 	
 	@Autowired
 	private MSysPermissionService msysPermissionService;
-	
-	
+	@Autowired
+	private SysService sysService;
 	/**
 	 * 组织信息录入
 	 * @throws IOException 
@@ -235,4 +243,73 @@ public class SysPermissionAction {
 		return JSONObject.toJSONString(resultMeta);
 	}
 
+	@RequestMapping(value="db",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String applicationDB(@RequestParam(value="db_dbname") String dbname,@RequestParam(value="db_type") String type,
+			@RequestParam(value="db_ip") String ip,@RequestParam(value="db_port") Integer port,
+			@RequestParam(value="db_url") String url,@RequestParam(value="db_username") String username,
+			@RequestParam(value="db_password") String password,@RequestParam(value="db_commont") String commont,@RequestParam(value="db_driver") String driver,HttpServletRequest request){
+		TAdmin tUser = (TAdmin)request.getSession().getAttribute(Contant.USER_KEY);
+		String id = ComUtils.getUniqID();
+		DB db = new DB(id, tUser.getId().toString(), dbname, type, url, username, password);
+		db.setDriver(driver);
+		db.setCommont(commont);
+		ResultMeta resultMeta = new ResultMeta();
+		try {
+			sysService.insertOneDBConnection(db);
+			resultMeta.success("成功");
+		} catch (Exception e) {
+			resultMeta.failure("插入一个数据库链接失败");
+		}
+		return JSONObject.toJSONString(resultMeta);
+	}
+	
+	@RequestMapping(value="db",method=RequestMethod.PUT,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String updateApplicationDB(@RequestParam(value="db_ID") String id,@RequestParam(value="db_dbname") String dbname,@RequestParam(value="db_type") String type,
+			@RequestParam(value="db_ip") String ip,@RequestParam(value="db_port") Integer port,
+			@RequestParam(value="db_url") String url,@RequestParam(value="db_username") String username,
+			@RequestParam(value="db_password") String password,@RequestParam(value="db_commont") String commont,@RequestParam(value="db_driver") String driver,HttpServletRequest request){
+		TAdmin tUser = (TAdmin)request.getSession().getAttribute(Contant.USER_KEY);
+		DB db = new DB(id, tUser.getId().toString(), dbname, type, url, username, password);
+		db.setDriver(driver);
+		db.setCommont(commont);
+		db.setPort(port);
+		db.setIp(ip);
+		ResultMeta resultMeta = new ResultMeta();
+		try {
+			int count = sysService.updateOneDBConnection(db);
+			resultMeta.success("成功");
+			if (count==0) {
+				resultMeta.failure("失败");
+			}
+		} catch (Exception e) {
+			resultMeta.failure("插入一个数据库链接失败");
+		}
+		return JSONObject.toJSONString(resultMeta);
+	}
+	
+	@RequestMapping(value="db",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String applicationDB(HttpServletRequest request){
+		TAdmin tAdmin  =  (TAdmin)request.getSession().getAttribute(Contant.USER_KEY);
+		List<Map<String, Object>> list = sysService.queryAllDbs(tAdmin.getAdmin_name());
+		return JSONArray.toJSONString(list);
+	}
+	@RequestMapping(value="dbcol",method=RequestMethod.PUT,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String updateSingleColumnApplicationDB(String col,String value,String id,HttpServletRequest request) throws UnsupportedEncodingException{
+		ResultMeta resultMeta = new ResultMeta();
+		value  = new String(Base64.decodeBase64(new String(value).getBytes()),"UTF-8");
+		try {
+			int count = sysService.updateOneDBConnection(col,value,id);
+			resultMeta.success("成功");
+			if (count==0) {
+				resultMeta.failure("失败");
+			}
+		} catch (Exception e) {
+			resultMeta.failure("失败");
+		}
+		return JSONObject.toJSONString(resultMeta);
+	}
 }

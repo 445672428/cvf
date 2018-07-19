@@ -12,15 +12,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="${pageContext.request.contextPath }/resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 <link href="${pageContext.request.contextPath }/resources/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
-<%-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/reset.css" charset="utf-8"> --%>
+<link href="${pageContext.request.contextPath }/resources/lib/bootstrap/table/bootstrap-table.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/lib/bootstrap/table/bootstrap-editable.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/lib/bootstrap/extensions/tablefixed/bootstrap-table-fixed-columns.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/lib/bootstrap/extensions/datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/lib/jQuery/jquery.validate.min.css" rel="stylesheet" />
+
 
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/jQuery/jquery2.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/jQuery/jquery.form.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/bootstrap/js/bootstrap-treeview.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/bootstrap/table/bootstrap-table.js" charset="utf-8"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/bootstrap/table/bootstrap-editable.js" charset="utf-8"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/bootstrap/extensions/tablefixed/bootstrap-table-fixed-columns.js" charset="utf-8"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/bootstrap/extensions/editable/bootstrap-table-editable.js" charset="utf-8"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/bootstrap/extensions/datetimepicker/bootstrap-datetimepicker.js" charset="utf-8"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/bootstrap/extensions/datetimepicker/bootstrap-datetimepicker.zh-CN.js" charset="utf-8"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/bootstrap/table/locale/bootstrap-table-zh-CN.js" charset="utf-8"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/jQuery/jquery.validate.min.js" charset="utf-8"></script> 
+
 
 <link rel="stylesheet" type="text/css" href="${CONTEXTPATH }/resources/lib/ztree/css/metroStyle/metroStyle.css" />
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/ztree/jquery.ztree.all-3.5.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="${CONTEXTPATH }/resources/lib/utils/base64.js" charset="utf-8"></script>
+
 
 <style>
 	body{
@@ -198,13 +214,9 @@
 <div class="wrap">
       <!-- 左边内容 -->
       <div id="left" class="left">
-          <div id="logoDiv" class="logoDiv">
-              <p id="logoTitle" class="logoTitle">
-                  <img id="logo" alt="左右布局" src="http://tool.what21.com/page/image/menu/cf.png"
-                          style="height: 28px; padding-right: 5px;vertical-align: middle;">
-                  <span style="font-size:18px;">左右布局</span>
-              </p>
-          </div>
+<!--           <div id="logoDiv" class="logoDiv">
+  
+          </div> -->
           <div class="menu-title">基础信息管理</div>
           <div class="menu-item" href="#one" data-toggle="tab">
                －组织信息录入
@@ -222,14 +234,14 @@
           <div class="menu-item" href="#five" data-toggle="tab">
                －系统资源管理
           </div>
-          <div class="menu-title">权限授予管理</div>
-          <div class="menu-item" href="#six" data-toggle="tab">
-               －用户管理
-          </div>
           <div class="menu-item" href="#seven" data-toggle="tab">
-               －权限管理
+               －数据库管理
           </div>
           <div class="menu-item" href="#eight" data-toggle="tab">
+               －数据表创建
+          </div>
+          <div class="menu-title">权限授予管理</div>
+          <div class="menu-item" href="#six" data-toggle="tab">
                －资源分配
           </div>
       </div>
@@ -269,20 +281,6 @@
 							</li>
            				</ul>
         			</form>
-
-					<div data-role="fieldcontain">
-					    <div id="localImag">
-					        <img id="preview" width="-1" height="-1" style="display: none" />
-					    </div>
-					</div>
-					<button id="stop">guanbi</button>
-					<button id="start" onclick="startMediaStream()">kaiqi</button>
-        			<div class="booth" style="   width:400px;background:#ccc;border: 10px solid #ddd;margin: 0 auto;">
-					    <video id="video" width="400" height="300"></video>
-					    <button id='tack'> snap shot</button>
-					    <canvas id='canvas' width='400' height='300'></canvas>
-					    <img id='img' src=''>
-				    </div>
            </div>
            <div id="two" class="tab-pane management">
            		<form id="stafffrom" action="${pageContext.request.contextPath }/permission/staff" method="POST">
@@ -331,6 +329,19 @@
 						</li>
 					</ul>
 				</form>
+					<div data-role="fieldcontain">
+					    <div id="localImag">
+					        <img id="preview" width="-1" height="-1" style="display: none" />
+					    </div>
+					</div>
+					<button id="stop">guanbi</button>
+					<button id="start" onclick="startMediaStream()">kaiqi</button>
+        			<div class="booth" style="   width:400px;background:#ccc;border: 10px solid #ddd;margin: 0 auto;">
+					    <video id="video" width="400" height="300"></video>
+					    <button id='tack'> snap shot</button>
+					    <canvas id='canvas' width='400' height='300'></canvas>
+					    <img id='img' src=''>
+				    </div>
            </div>
            <div id="three" class="tab-pane management">
            		<form id="sourceform" action="${pageContext.request.contextPath }/permission/source" method="POST">
@@ -464,28 +475,719 @@
            		</table>
            </div>
            <div id="seven" class="tab-pane" style="background: #F5F5F5;background-color: #F5F5F5;">
-           		<ul class="list-group list-unstyled list-inline">
-           			<li class="list-group-item">组织</li>
-				    <li class="list-group-item">部门</li>
-				    <li class="list-group-item">角色</li>
-				    <li class="list-group-item">人员</li>
-				    <li class="list-group-item">菜单</li>
-				    <li class="list-group-item">页面元素</li>
-				    <li class="list-group-item">功能操作</li>
-           		</ul>
-           
-				<div id="menuContent" class="menuContent" style="width:95%;border:1px solid rgb(170,170,170);z-index:10;">
-				  <ul id="treeDemo" class="ztree" style="margin-top:0; width:100%; height:auto;"></ul>
-				 </div>
-
+           		 <div class="panel-body" style="padding-bottom:0px;">
+			        <div class="panel panel-default">
+			            <div class="panel-heading">查询条件</div>
+			            <div class="panel-body">
+			                <form id="formSearch" class="form-horizontal">
+			                    <div class="form-group" style="margin-top:15px">
+			                        <label class="control-label col-sm-1" for="txt_search_departmentname">部门名称</label>
+			                        <div class="col-sm-3">
+			                            <input type="text" class="form-control" id="txt_search_departmentname">
+			                        </div>
+			                        <label class="control-label col-sm-1" for="txt_search_statu">状态</label>
+			                        <div class="col-sm-3">
+			                            <input type="text" class="form-control" id="txt_search_statu">
+			                        </div>
+			                        <div class="col-sm-4" style="text-align:left;">
+			                            <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary">查询</button>
+			                        </div>
+			                    </div>
+			                </form>
+			            </div>
+			        </div>       
+					<div class="input-group date form_datetime col-sm-12" data-link-field="dt_set_order_time_input">
+						<input class="form-control"  id="dt_set_order_time" type="text" value="2015-10-16">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+						<input type="hidden" id="dt_set_order_time_input" value="2015-10-16" name="set_order_time"/>
+					</div>
+			
+			        <div id="toolbar" class="btn-group">
+			            <button id="btn_add" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+			            </button>
+ 			            <button id="btn_edit" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+			            </button>
+			            <button id="btn_delete" type="button" class="btn btn-default">
+			                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+			            </button>
+			        </div>
+			        <table id="tb_departments"></table>
+			    </div>
            </div>
            <div id="eight" class="tab-pane">
-            
-            <div id="procitytree" style="height: 400px;overflow-y :scroll;"></div>
-            </div>
+			   <table id="dbtableDefTb" 
+			   		   data-toggle="table" 
+			   		   data-toolbar="#toolbar"
+			           data-search="true"
+			           data-show-refresh="true"
+			           data-show-toggle="true"
+			           data-show-columns="true"
+			           data-show-export="true"
+			           data-pagination="true"
+			           data-side-pagination="server"
+			           data-page-size="10"
+			           data-page-list="[10, 25, 50, 100, All]"
+			           data-smart-display="false"
+			           data-show-footer="false"
+			           data-content-type="application/json"
+			           data-query-params="dbTablesParams"
+			           >
+			        <thead>
+				        <tr>
+				        	<th data-field="" data-radio="true"></th>
+				            <th data-field="xh">序号</th>
+				            <th data-field="orderDB">所属库</th>
+				            <th data-field="typeDB">库类型</th>
+				            <th data-field="createTable">创建时间</th>
+				            <th data-field="nameTable">表名</th>
+				            <th data-field="commontTable">表描述</th>
+				            <th data-field="countTable">表数据量</th>
+				            <th data-field="chartTable">字符集</th>
+				            <th data-field="enginDB">存储引擎</th>
+				        </tr>
+			        </thead>
+			    </table>
+			   	<table class="table table-bordered">
+	                <tbody>
+	                    <tr>
+	                        <td colspan="2">
+	                            <input value="" style="color: #337ab7;font-weight: bold;" readonly="readonly" class="form-control" id="sourceTableName" />
+	                        </td>
+	                        <td>
+	                            <table>
+	                                <tr>
+	                                    <td>
+	                                    	表名:<input value="" placeholder="表名不能为空" class="form-control" id="destTableName"/>
+	                                    </td>
+	                                    <td>
+	                                    	目标库选择：
+	                                    	<select id ="destDB" name="destDB" class="form-control" title="请选择">
+	                                    		<option value="datas">datas</option>	
+	                                    	</select>
+										</td>
+	                                </tr>
+	                            </table>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td>
+	                            <table class="table" id="table-methods-table-left">
+	                                <thead>
+	                                    <tr>
+	                                        <th data-field="state" data-checkbox="true"></th>
+	                                        <th data-field="xh">序号</th>
+	                                        <th data-field="filed">字段名称</th>
+	                                        <th data-field="datatype">字段类型</th>
+	                                        <th data-field="isnull">是否为空</th>
+	                                        <th data-field="defaultValue">默认值</th>
+	                                        <th data-field="isIndex">是否主键、索引</th>
+	                                        <th data-field="commont">描述 </th>
+	                                    </tr>
+	                                </thead>
+	                            </table>
+	                        </td>
+	                        <td valign="middle">
+	                           	<button class="btn btn-info btn-large btn-block" type="button" id="btn2Right" data-method="append">--></button> 
+	                        </td>
+	                        <td>
+	                            <table data-detail-view="true" data-detail-formatter="detailFormatter" class="table" id="table-methods-table-right">
+	                                <thead>
+	                                    <tr>
+	                                        <th data-field="filed" data-formatter="colformatter">字段名称</th>
+	                                        <th data-field="datatype" data-formatter="colformatter">字段类型</th>
+	                                        <th data-field="isnull" data-formatter="selectIsnullformatter">是否为空</th>
+	                                        <th data-field="isIndex" data-formatter="selectformatter">是否主键、索引</th>
+	                                        <th data-field="defaultValue" data-formatter="coldefaultformatter">默认值</th>
+	                                        <th data-field="commont" data-formatter="colformatter">描述 </th>
+	                                        <th data-formatter="deleteColTr">操作</th>
+	                                    </tr>
+	                                </thead>
+	                            </table>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td colspan="3" align="right">
+	                            <button onclick="submitNewTable()" class="btn btn-primary btn-large btn-block" type="button" id="btnOk" >确定</button>
+	                        </td>
+	                    </tr>
+	                </tbody>
+            	</table>
            </div>
-      
+	</div>
 </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+	    <form id="myModalLabelFrom" action="${pageContext.request.contextPath}/permission/db" method="post">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                <h4 class="modal-title" id="myModalLabel">新增</h4>
+	            </div>
+	            <div class="modal-body">
+	                <div class="form-group">
+	                    <label for="txt_departmentname">数据库名称</label>
+	                    <input type="text" name="db_dbname" class="form-control" id="db_dbname" placeholder="例如:cvf数据库">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_parentdepartment">数据库类型</label>
+	                    <input type="text" name="db_type" class="form-control" id="db_type" placeholder="例如:mysql">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_departmentlevel">IP</label>
+	                    <input type="text" name="db_ip" class="form-control" id="db_ip" placeholder="例如:localhost">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_statu">端口</label>
+	                    <input type="text" name="db_port" class="form-control" id="db_port" placeholder="例如:3306">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_statu">数据库链接</label>
+	                    <input type="text" name="db_url" class="form-control" id="db_url" placeholder="例如:jdbc:mysql://localhost/datas?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_statu">用户</label>
+	                    <input type="text" name="db_username" class="form-control" id="db_username" placeholder="例如:root">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_statu">数据库密码</label>
+	                    <input type="text" name="db_password" class="form-control" id="db_password" placeholder="例如:199345">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_statu">数据库驱动</label>
+	                    <input type="text" name="db_driver" class="form-control" id="db_driver" placeholder="例如:com.mysql.jdbc.Driver">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_statu">描述</label>
+	                    <input type="text" name="db_commont" class="form-control" id="db_commont" placeholder="描述">
+	                </div>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+	                <button type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+	            </div>
+	        </div>
+	    </form>
+    </div>
+</div>
+
+<div class="modal fade" id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="myEditModalLabel">
+    <div class="modal-dialog" role="document">
+    	<form id="myEditModalFrom" action="${pageContext.request.contextPath}/permission/db" method="post">
+    		<input type="hidden" name="_method" value="put" />
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                <h4 class="modal-title" id="myEditModalLabel">编辑</h4>
+	            </div>
+	            <div class="modal-body">
+	                <div class="form-group">
+	                    <label for="txt_departmentname">ID</label>
+	                    <input type="text" name="db_ID" class="form-control" id="db_ID">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_departmentname">所属用户</label>
+	                    <input type="text" name="db_user" class="form-control" id="db_user">
+	                </div>
+	                
+	                <div class="form-group">
+	                    <label for="txt_departmentname">数据库名称</label>
+	                    <input type="text" name="db_dbname" class="form-control" id="db_dbname">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_parentdepartment">数据库类型</label>
+	                    <input type="text" name="db_type" class="form-control" id="db_type">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_departmentlevel">IP</label>
+	                    <input type="text" name="db_ip" class="form-control" id="db_ip">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_statu">端口</label>
+	                    <input type="text" name="db_port" class="form-control" id="db_port">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_statu">数据库链接</label>
+	                    <input type="text" name="db_url" class="form-control" id="db_url">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_statu">用户</label>
+	                    <input type="text" name="db_username" class="form-control" id="db_username">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_statu">数据库密码</label>
+	                    <input type="text" name="db_password" class="form-control" id="db_password">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_statu">数据库驱动</label>
+	                    <input type="text" name="db_driver" class="form-control" id="db_driver">
+	                </div>
+	                <div class="form-group">
+	                    <label for="txt_statu">描述</label>
+	                    <input type="text" name="db_commont" class="form-control" id="db_commont">
+	                </div>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+	                <button type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+	            </div>
+	        </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+//动态绑定change事件
+$(document).on("change","select.isnull-select,select.eq-select",selectChangeVal);
+$(document).on("change","input[name='commont'],input[name='filed'],input[name='datatype'],input[name='defaultValue']",function() {
+	var This = $(this);
+	updateChange(This);
+});
+
+$("#dbtableDefTb").bootstrapTable({
+	url:"${pageContext.request.contextPath}/jsplumb/dbtables",
+	method: 'get', 
+	striped: true,
+	clickToSelect: true,
+    onLoadSuccess:function(data){
+    	$("#dbtableDefTb").bootstrapTable('check',0);
+    },
+    onCheck:selectTableOneRow
+});
+
+
+function dbTablesParams(param){
+	$.extend(param,{dbname:'dbname'});
+	return param;
+}
+/**
+ * 选中第一行 进行表结构查询
+ */
+function selectTableOneRow(row, $element){
+	var tableName = row.nameTable;
+	var schema = row.orderDB;
+	$("#sourceTableName").val(tableName);
+	$('#table-methods-table-left').bootstrapTable('destroy');//直接销毁 其实可以进行刷新
+	$('#table-methods-table-right').bootstrapTable('destroy');
+	$tableLeft = $('#table-methods-table-left').bootstrapTable({
+	    url: '${pageContext.request.contextPath}/jsplumb/tableinfo?dbname=dbname&tableName='+tableName+'&schema='+schema,
+	    method: 'get'
+	});
+	$tableRight = $('#table-methods-table-right').bootstrapTable();
+}
+
+
+$('#btn2Right').click(function () {
+   var selectContent = $tableLeft.bootstrapTable('getSelections');
+   $tableRight.bootstrapTable("append", selectContent);
+   var selects = $tableLeft.bootstrapTable('getSelections');
+   filed = $.map(selects, function (row) {
+       return row.filed;
+   });
+});
+function detailFormatter(index, row, element){
+    var html = [];
+    $.each(row, function (key, value) {
+        html.push('<p><b>' + key + ':</b> ' + value + '</p>');
+    })
+    return html.join('');
+}
+function colformatter(value,row,index){
+	var field = getField(value,row);
+	var input = "<input name='"+field+"' style='width:180px;' class='form-control input_text' value='"+value+"'/>"
+	return input;
+}
+
+function coldefaultformatter(value,row,index){
+	var field = getField(value,row);
+	return "<input name='"+field+"' style='width:80px;' class='form-control input_text' value='"+value+"'/>";
+}
+function deleteColTr(value,row,index){
+	//return '<li onclick='delSelectRow('"+row.filed+"')' class="glyphicon glyphicon-remove"></li>';
+	return "<button type='button' onclick=delSelectRow('"+row.filed+"')  class='btn btn-xs btn-link' >删除</button>";
+}
+function delSelectRow(filed){
+	var fileds = [filed];
+	fileds.push();
+    $tableRight.bootstrapTable('remove', {
+        field: 'filed',
+        values: fileds
+    });
+}
+function selectformatter(value,row,index){
+	var field = getField(value,row); 
+	return "<select name='"+field+"' style='width:68px;' class='form-control eq-select'><option value=''>无</option><option value='PRI'>主键</option><option value='UNI'>唯一</option><option value='MUL'>复合</option></select>";
+}
+//更新数据
+function selectChangeVal(){
+	var This = $(this);
+	updateChange(This);
+}
+function updateChange(This){
+	var val = This.val();
+	var field = This.attr('name');
+	var index = This.parent().parent().attr('data-index');
+	$tableRight.bootstrapTable('updateCell', {
+	    index: index,
+	    field: field,
+	    value: val
+	 });
+}
+
+function selectIsnullformatter(value,row,index){
+	var field = getField(value,row); 
+	return "<select name='"+field+"' style='width:68px;' class='form-control isnull-select'><option value='1'>是</option><option value='0'>否</option></select>";
+}
+$("#table-methods-table-right thead tr th.detail").html("<div class='th-inner'><a class='detail-icon' onclick='insertRow()'><i class='glyphicon glyphicon-plus icon-plus'></i></a></div><div class='fht-cell'></div>");
+function insertRow(){
+    var row = {filed:'',datatype:'',isnull:'',defaultValue:'',isIndex:'',commont:''};
+	$tableRight.bootstrapTable('insertRow', {index: 0, row: row});
+}
+function getField(value,row){
+	var field;
+	for(var key in row){
+		if(value == row[key]){
+			field = key;
+			break;
+		}
+	}
+	return field;
+}
+function submitNewTable(){
+	var datas = $tableRight.bootstrapTable('getData');
+	var tableName = $("#destTableName").val();
+	var dbName = $("#destDB option:selected").val();
+	
+	
+	
+	if(datas.length==0){
+		alert("至少需要有一个字段");
+		return;
+	}else{
+		var flag = false;
+		for(var i = 0; i < datas.length; i++){
+			var count = 0;
+			if(count>=2){
+				flag = true;
+				break;
+			}
+			var filed = datas[i]['filed'];
+			for(var j = 0; j < datas.length; j++){
+				var f = datas[j]['filed'];
+				if(f==filed){
+					count++;
+				}
+				if(count>=2){
+					break;
+				}
+			}
+		}
+		if(flag){
+			alert("字段名不能重复");
+			return;
+		}
+	}
+	
+	//进行表校验
+	
+	
+}
+</script>
+
+<!-- 数据库管理页面start -->
+<script type="text/javascript">
+$(function () {
+    //1.初始化Table
+    var oTable = new TableInit();
+    oTable.Init();
+     $("#myEditModalFrom,#myModalLabelFrom").ajaxForm(function(data){ 
+    	$('#myModal').modal('hide');
+    	$("#myEditModal").modal('hide');
+        $('#tb_departments').bootstrapTable('refresh');
+    });
+    //2.初始化Button的点击事件
+    var oButtonInit = new ButtonInit();
+    oButtonInit.Init();
+    $('.form_datetime').datetimepicker({
+		weekStart: 1,
+		todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+		language:'zh-CN',
+		format: 'yyyy-mm-dd hh:ii:ss',
+		pickerPosition: 'bottom-left',
+		showMeridian: 1
+	 });
+
+});
+
+
+var TableInit = function () {
+    var oTableInit = new Object();
+    //初始化Table
+    oTableInit.Init = function () {
+        $('#tb_departments').bootstrapTable({
+            url: '${pageContext.request.contextPath}/permission/db',         //请求后台的URL（*）
+            method: 'get',                      //请求方式（*）
+            contentType: "application/x-www-form-urlencoded",
+            dataType:'json',
+            toolbar: '#toolbar',                //工具按钮用哪个容器
+            striped: true,                      //是否显示行间隔色
+            cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            sortable: false,                    //是否启用排序
+            sortOrder: "asc",                   //排序方式
+            queryParams: oTableInit.queryParams,//传递参数（*）
+            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            strictSearch: true,
+            showColumns: true,                  //是否显示所有的列
+            showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 2,             //最少允许的列数
+            clickToSelect: true,                //是否启用点击选中行
+           // height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+            cardView: false,                    //是否显示详细视图
+            detailView: false,                   //是否显示父子表
+            uniqueId: "id",                     //每一行的唯一标识，一般为主键列
+            showExport: true,
+            onDblClickRow:function (row, $element) {//双击弹出编辑界面的层
+            	
+            },
+            onClickRow:function (row, $element) {
+            	
+            },
+            exportDataType: 'all',
+            exportTypes:[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf'],  //导出文件类型
+            fixedColumns: true,
+            fixedNumber: 3,
+            height:500,
+            exportTypes:['excel'],  //导出文件类型
+            Icons:'glyphicon-export',
+            exportOptions:{
+                ignoreColumn: [0,1],  //忽略某一列的索引
+                fileName: '总台帐报表',  //文件名称设置
+                worksheetName: 'sheet1',  //表格工作区名称
+                tableName: '总台帐报表',
+                excelstyles: ['background-color', 'color', 'font-size', 'font-weight'],
+                onMsoNumberFormat: DoOnMsoNumberFormat
+            },
+            exportDataType:'all',
+            onLoadSuccess:function(data){   //表格数据加载成功事件
+                rowCount = data.length-1;
+                $("#datatable").bootstrapTable('hideRow', {index:rowCount});
+                $("#datatable td").attr("data-tableexport-msonumberformat","\@");
+                $("#datatable tr").attr("data-tableexport-display","always");
+            },
+            onLoadError: function () {
+            	
+            },
+            onPageChange:function(number,size){  //表格翻页事件
+                $("#datatable").bootstrapTable('hideRow', {index:rowCount});
+                $("#datatable td").attr("data-tableexport-msonumberformat","\@");
+                $("#datatable tr").attr("data-tableexport-display","always");
+     
+            },
+           // editable:true,//开启编辑模式
+            onEditableSave: function (field, row, oldValue, $el) {
+            	var result = Base.encode(row[field]);
+                $.ajax({type: "post",url: '${CONTEXTPATH }/permission/dbcol',
+                	data:{"_method":"put",col:field,value:result,id:row['id']},
+                	dataType:'json',
+                	async:false,
+                    success: function(data){
+                    	if(data.meta.success){
+                    		alert("修改成功");
+                    	}else{
+                    		alert("修改失败");
+                    	}
+                   },
+                   error : function(data){
+                   
+                   }
+               });
+            },
+            columns: [{
+                checkbox: true
+            }, {
+                field: 'id',
+                title: 'ID'
+            }, {
+                field: 'user',
+                title: '所属用户'
+            }, {
+                field: 'dbname',
+                title: '数据库名称',
+                editable: true,
+               	formatter: formatter
+            }, {
+                field: 'type',
+                title: '数据库类型',
+               	editable: true,
+               	formatter: formatter
+            }, {
+                field: 'ip',
+                title: 'IP',
+               	editable: true,
+               	formatter: formatter
+            }, {
+                field: 'port',
+                title: '端口',
+               	editable: true,
+               	formatter: formatter
+            }, {
+                field: 'url',
+                title: '数据库链接',
+               	editable: true,
+               	formatter: formatter
+            }, {
+                field: 'username',
+                title: '用户',
+               	editable: true,
+               	formatter: formatter
+            }, {
+                field: 'password',
+                title: '数据库密码',
+               	editable:{
+               		emptytext: "",
+               		type: 'text'
+               	},
+               	formatter: formatter
+            }, {
+                field: 'driver',
+                title: '数据库驱动',
+               	editable: true,
+               	formatter: formatter
+            },{
+                field: 'commont',
+                title: '描述',
+               	editable: true,
+               	formatter: formatter
+            },{
+                field: 'save',
+                title: '保存',
+                align: 'center',
+                valign: 'middle',
+                formatter: actionFormatter
+            }]
+        });
+    };
+
+    //得到查询的参数
+    oTableInit.queryParams = function (params) {
+    	var temp = {};
+        temp = $.extend(true,temp,params);
+        return temp;
+    };
+    return oTableInit;
+};
+//操作栏的格式化
+function actionFormatter(value, row, index) {
+    var id = value;
+    var result = "";
+    result += "<a href='javascript:;' class='btn btn-xs green' onclick=\"showViewById('" + index + "', view='view')\" title='查看'><span class='glyphicon glyphicon-search'></span></a>";
+    result += "<a href='javascript:;' class='btn btn-xs green' onclick=\"saveViewById('" + index + "', view='save')\" title='保存'><span class='glyphicon glyphicon-ok'></span></a>";
+    //result += "<a href='javascript:;' class='btn btn-xs blue' onclick=\"EditViewById('" + id + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></a>";
+    //result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"DeleteByIds('" + id + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
+	
+    return result;
+}
+function DoOnMsoNumberFormat(cell, row, col) {
+    var result = "";
+    if (row > 0 && col == 0)
+        result = "\\@";
+    return result;
+}
+//查看当前数据库具体信息
+function showViewById(index,view){
+	
+}
+//保存当前行数据
+function saveViewById(index,view){
+	
+}
+var ButtonInit = function () {
+    var oInit = new Object();
+    var postdata = {};
+
+    oInit.Init = function () {
+        //初始化页面上面的按钮事件
+    };
+    return oInit;
+};
+
+function formatter(value, row, index){
+	return  value ;
+}
+
+
+//(2)关键字检索
+$("#btn_query").click(function () {
+    //点击查询是 使用刷新 处理刷新参数
+    var opt = {
+        url: "${pageContext.request.contextPath}/permission/db",
+        silent: true,
+        query: {
+            text1: $("#txt_search_departmentname").val(), //条件1
+            text2: $("#txt_search_statu").val()           //条件2 ....
+        }
+    };
+    $('#tb_departments').bootstrapTable('refresh', opt);
+
+});
+//新增
+$("#btn_add").click(function() {
+    $("#myModalLabel").text("新增");
+    $('#myModal').modal();
+	/*     var params = {index:0, row:{'id':'','user':'','dbname':'','type':'','ip':'','port':'',
+    	'url':'','username':'','password':'','driver':'','driver':'','commont':''}}; 
+    $('#tb_departments').bootstrapTable('insertRow', params); */
+});
+//编辑
+$("#btn_edit").click(function () {
+    var arrselections = $("#tb_departments").bootstrapTable('getSelections');
+    if (arrselections.length > 1) {
+    	alert("每次只能编辑一条！");
+        return;
+    }
+    if (arrselections.length <= 0) {
+    	alert("请选择一条进行编辑！");
+        return;
+    }
+
+    $("#db_ID").val((arrselections[0]['id']));
+    $("#db_user").val((arrselections[0]['user']));
+    $("#myEditModal input[name='db_dbname']").val((arrselections[0]['dbname']));
+    $("#myEditModal input[name='db_type']").val((arrselections[0]['type']));
+    $("#myEditModal input[name='db_ip']").val((arrselections[0]['ip']));
+    $("#myEditModal input[name='db_port']").val((arrselections[0]['port']));
+    $("#myEditModal input[name='db_url']").val((arrselections[0]['url']));
+    $("#myEditModal input[name='db_username']").val((arrselections[0]['username']));
+    $("#myEditModal input[name='db_password']").val((arrselections[0]['password']));
+    $("#myEditModal input[name='db_driver']").val((arrselections[0]['driver']));
+    $("#myEditModal input[name='db_commont']").val((arrselections[0]['commont']));
+        
+    $("#myEditModalLabel").text("编辑");
+    $('#myEditModal').modal();
+
+});
+//(4)删除及批量删除
+
+$("#btn_delete").click(function () {
+    if (confirm("确认要删除吗？")) {
+        var idlist = "";
+        $("input[name='btSelectItem']:checked").each(function () {
+            idlist += $(this).parents("tr").attr("data-uniqueid") + ",";
+        })
+        alert("删除的列表为" + idlist);
+
+    }
+});
+</script>
+<!-- 数据库管理页面end -->
+
 <!-- 个人信息采集 -->
 <script type="text/javascript">
 var mediaStreamTrack;
@@ -517,19 +1219,11 @@ function startMediaStream(){
 			console.log(error);
 		});
 	}
-	
 }
 
 document.getElementById("stop").addEventListener("click", function () {  
     mediaStreamTrack && mediaStreamTrack.stop();  
-});  
-/* document.getElementById("picture").addEventListener("click", function () {  
-    var context = document.getElementById("canvas").getContext("2d");  
-    context.drawImage(video, 0, 0, 320, 320);  
-}); */
-
-
-
+});
 
 snap.addEventListener('click', function(){
 	//绘制canvas图形
@@ -725,71 +1419,17 @@ function changepic() {
         document.getElementById('show').src=this.result;
     };
 }
-$(function () {
-	  var data = 
-	  [
-	    {
-	      text: "系统设置",
-	      href: "#node-1",
-	      selectable: true,
-	      id: '00',
-	      selectable: false,
-	      tags: ['available'],
-	      nodes: 
-	      [
-	        { 
-	          text: "目录设置",
-	          id: '01',
-	          nodeId: '01',
-	          lazyLoad:true,//本节点为懒加载节点
-	        }, 
-	        { 
-	          text: "爬虫设置",
-	          id: '02',
-	          lazyLoad:true,
-	        }, 
-	        { 
-	          text: "项目权限",
-	          id: '03'
-	        }, 
-	        { 
-	          text: "账号管理",
-	          id: '04',
-	          selectable: false,
-	        }
-	      ]
-	    }
-	  ]
+</script>
 
-	$('#procitytree').treeview({
-	    data: data,         // data is not optional
-	    levels: 2,
-	    showTags:true,
-	    loadingIcon:"fa fa-hourglass",//懒加载过程中显示的沙漏字符图标
-	    lazyLoad:loaddata//loaddata为点击懒加载节点目录时，运行的函数名称，把后端的数据添加到这个节点下面
-	  }); 
-	})
 
-	function loaddata(node,func){//这个技巧真高，即能得到节点数据，又能把节点下级的数据通过函数发回去
-	  // alert(node.id);
-	  // alert(func);
-	  var singleNode = {
-	    text: "projcatename2",
-	    id:"08",
-	  };
-	  func(singleNode);//把新的下级节点数据发回到后端，这样明显优雅很多
-	  // $("#tree").treeview("addNode", [singleNode,node]);这一句和上面一句等同
-	}
-
+<script type="text/javascript">
 $(function(){
 	
     $("#stafffrom,#groupform,#sourceform,#elementform,#appform").ajaxForm(function(data){    
     	
      });
 	
-	var parms = {
-	        host : '1',db:'1',user:'1'
-	    };
+	var parms = { host : '1',db:'1',user:'1'};
     $.ajax({type: "POST",url: '${CONTEXTPATH }/auth/add2.do',data:JSON.stringify(parms),dataType:'json',
         contentType:'application/json',success: function(data){
 
@@ -846,6 +1486,163 @@ var data =
 	    	$("#groupid").val(args.id);
 	    }
 	  }); 
+</script>
+
+<script type="text/javascript">
+(function ($) {
+
+    window.Ewin = function () {
+        var html = '<div id="[Id]" class="modal fade" role="dialog" aria-labelledby="modalLabel">' +
+                              '<div class="modal-dialog modal-sm">' +
+                                  '<div class="modal-content">' +
+                                      '<div class="modal-header">' +
+                                          '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' +
+                                          '<h4 class="modal-title" id="modalLabel">[Title]</h4>' +
+                                      '</div>' +
+                                      '<div class="modal-body">' +
+                                      '<p>[Message]</p>' +
+                                      '</div>' +
+                                       '<div class="modal-footer">' +
+        '<button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>' +
+        '<button type="button" class="btn btn-primary ok" data-dismiss="modal">[BtnOk]</button>' +
+    '</div>' +
+                                  '</div>' +
+                              '</div>' +
+                          '</div>';
+
+
+        var dialogdHtml = '<div id="[Id]" class="modal fade" role="dialog" aria-labelledby="modalLabel">' +
+                              '<div class="modal-dialog">' +
+                                  '<div class="modal-content">' +
+                                      '<div class="modal-header">' +
+                                          '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>' +
+                                          '<h4 class="modal-title" id="modalLabel">[Title]</h4>' +
+                                      '</div>' +
+                                      '<div class="modal-body">' +
+                                      '</div>' +
+                                  '</div>' +
+                              '</div>' +
+                          '</div>';
+        var reg = new RegExp("\\[([^\\[\\]]*?)\\]", 'igm');
+        var generateId = function () {
+            var date = new Date();
+            return 'mdl' + date.valueOf();
+        }
+        var init = function (options) {
+            options = $.extend({}, {
+                title: "操作提示",
+                message: "提示内容",
+                btnok: "确定",
+                btncl: "取消",
+                width: 200,
+                auto: false
+            }, options || {});
+            var modalId = generateId();
+            var content = html.replace(reg, function (node, key) {
+                return {
+                    Id: modalId,
+                    Title: options.title,
+                    Message: options.message,
+                    BtnOk: options.btnok,
+                    BtnCancel: options.btncl
+                }[key];
+            });
+            $('body').append(content);
+            $('#' + modalId).modal({
+                width: options.width,
+                backdrop: 'static'
+            });
+            $('#' + modalId).on('hide.bs.modal', function (e) {
+                $('body').find('#' + modalId).remove();
+            });
+            return modalId;
+        }
+
+        return {
+            alert: function (options) {
+                if (typeof options == 'string') {
+                    options = {
+                        message: options
+                    };
+                }
+                var id = init(options);
+                var modal = $('#' + id);
+                modal.find('.ok').removeClass('btn-success').addClass('btn-primary');
+                modal.find('.cancel').hide();
+
+                return {
+                    id: id,
+                    on: function (callback) {
+                        if (callback && callback instanceof Function) {
+                            modal.find('.ok').click(function () { callback(true); });
+                        }
+                    },
+                    hide: function (callback) {
+                        if (callback && callback instanceof Function) {
+                            modal.on('hide.bs.modal', function (e) {
+                                callback(e);
+                            });
+                        }
+                    }
+                };
+            },
+            confirm: function (options) {
+                var id = init(options);
+                var modal = $('#' + id);
+                modal.find('.ok').removeClass('btn-primary').addClass('btn-success');
+                modal.find('.cancel').show();
+                return {
+                    id: id,
+                    on: function (callback) {
+                        if (callback && callback instanceof Function) {
+                            modal.find('.ok').click(function () { callback(true); });
+                            modal.find('.cancel').click(function () { callback(false); });
+                        }
+                    },
+                    hide: function (callback) {
+                        if (callback && callback instanceof Function) {
+                            modal.on('hide.bs.modal', function (e) {
+                                callback(e);
+                            });
+                        }
+                    }
+                };
+            },
+            dialog: function (options) {
+                options = $.extend({}, {
+                    title: 'title',
+                    url: '',
+                    width: 800,
+                    height: 550,
+                    onReady: function () { },
+                    onShown: function (e) { }
+                }, options || {});
+                var modalId = generateId();
+
+                var content = dialogdHtml.replace(reg, function (node, key) {
+                    return {
+                        Id: modalId,
+                        Title: options.title
+                    }[key];
+                });
+                $('body').append(content);
+                var target = $('#' + modalId);
+                target.find('.modal-body').load(options.url);
+                if (options.onReady())
+                    options.onReady.call(target);
+                target.modal();
+                target.on('shown.bs.modal', function (e) {
+                    if (options.onReady(e))
+                        options.onReady.call(target, e);
+                });
+                target.on('hide.bs.modal', function (e) {
+                    $('body').find(target).remove();
+                });
+            }
+        }
+    }();
+})(jQuery);
+
 </script>
 </body>
 </html>

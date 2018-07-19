@@ -9,11 +9,6 @@ public class CustomMessageListener implements MessageListener {
 	public void onMessage(Message message) {
 		// 先将接收到的消息强转为ActiveMQ类型的消息
 		// 因为在消息发送方那边传递的是Text类型的消息对象, 所以需要转成ActiveMQTextMessage
-		try {
-			System.out.println(1);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 }

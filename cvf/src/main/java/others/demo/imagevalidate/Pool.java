@@ -18,14 +18,11 @@ public class Pool {
             try {
                 Thread.sleep(index * 1000);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             cachedThreadPool.execute(new Runnable() {
 
                 public void run() {
-                    // TODO Auto-generated method stub
-                    System.out.println(index);
                 }
             });
         }
@@ -43,12 +40,9 @@ public class Pool {
             fixedThreadPool.execute(new Runnable() {
 
                 public void run() {
-                    // TODO Auto-generated method stub
                     try {
-                        System.out.println(index);
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
 
@@ -64,8 +58,6 @@ public class Pool {
         scheduledThreadPool.schedule(new Runnable() {
 
             public void run() {
-                // TODO Auto-generated method stub
-                System.out.println("delay 3 second");
             }
         }, 3, TimeUnit.SECONDS);
     }
@@ -79,7 +71,6 @@ public class Pool {
             singleThreadExecutor.execute(new Runnable() {
                 public void run() {
                     try {
-                        System.out.println(index);
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();

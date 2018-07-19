@@ -147,7 +147,6 @@ public class RedisCacheUtil<T> {
 	    
 	   for (Map.Entry<String, T> entry : dataMap.entrySet()) { 
 	      
-	    /*System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue()); */
 	    hashOperations.put(key,entry.getKey(),entry.getValue());
 	   } 
 	    
@@ -189,7 +188,6 @@ public class RedisCacheUtil<T> {
 	    
 	   for (Map.Entry<Integer, T> entry : dataMap.entrySet()) { 
 	      
-	    /*System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue()); */
 	    hashOperations.put(key,entry.getKey(),entry.getValue());
 	   } 
 	    

@@ -12,7 +12,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.entities.Post;
+import com.pojo.Post;
 
 public class SAXParserHandle extends DefaultHandler{
 	private Post post; 

@@ -91,7 +91,6 @@ public class LianJiaDocParser {
 			if(!currentPage.equals(totalPage)){
 				String nextPage = String.valueOf((Integer.valueOf(currentPage)+1));
 				String nextURL = LianJiaParams.BaseURL + hrefTemplet.replace("{page}", nextPage);
-//				System.out.println("URL ADD:"+nextURL);
 				URLPool.getInstance().pushURL(nextURL);
 			}
 		}

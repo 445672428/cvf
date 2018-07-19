@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.alibaba.fastjson.JSONObject;
 import com.annotation.SysLogColumn;
 import com.base.BaseService;
-import com.entities.FileInfo;
+import com.pojo.FileInfo;
 import com.utils.ComUtils;
 
 import contant.Contant;
@@ -101,7 +101,6 @@ public class FileService extends BaseService{
 		List<String> list = new ArrayList<String>();
 		list = queryForChilds(parentid,list);
 		list.add(parentid);
-		System.out.println(list.toString());
 		condition = createOrCondition(list,"id");
 		sql = sql + condition;
 		mysqlJdbcTemplate.execute(sql);

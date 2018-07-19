@@ -48,6 +48,8 @@
 	<import resource="application-scheduler.xml"/>
 	<import resource="spring-activity.xml"/>
 	<import resource="spring-mail.xml"/>
+	
+	
   	<bean id="websocketEndPoint" class="com.push.WebsocketEndPoint"></bean>
 	<aop:aspectj-autoproxy proxy-target-class="true"/>  
 	<!-- 配置一个切面点 -->
@@ -71,16 +73,15 @@
         </aop:aspect>
     </aop:config> 
     
-   	<!-- 启用缓存注解功能，这个是必须的，否则注解不会生效，另外，该注解一定要声明在spring主配置文件中才会生效 -->
-    <cache:annotation-driven cache-manager="ehcacheManager"/>
     <!-- cacheManager工厂类，指定ehcache.xml的位置 -->
-    <bean id="ehcacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+    <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
          <property name="configLocation" value="classpath:config/ehcache.xml" />
     </bean>
     <!-- 声明cacheManager -->
-    <bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
-         <property name="cacheManager" ref="ehcacheManagerFactory" />
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+         <property name="cacheManager" ref="ehcache" />
     </bean>
-
-
+   	<!-- 启用缓存注解功能，这个是必须的，否则注解不会生效，另外，该注解一定要声明在spring主配置文件中才会生效 -->
+    <cache:annotation-driven cache-manager="cacheManager"/>
+	<bean class="com.utils.SpringContextUtil" lazy-init="false"></bean>
 </beans>

@@ -21,7 +21,6 @@ public class SocketConfigurator extends Configurator {
         if (obj!=null) {
 			precent = (Float)obj;
 		}
-        System.out.println("SocketConfigurator bobo"+precent);
         //config.getUserProperties().put("ClientIP", httpSession.getAttribute("ClientIPadd"));//把HttpSession中保存的ClientIP放到ServerEndpointConfig中，关键字可以跟之前不同
     }
 }

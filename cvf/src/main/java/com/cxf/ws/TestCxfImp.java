@@ -7,7 +7,7 @@ public class TestCxfImp implements TestCxf{
 
 	@Override
 	public void say() {
-		System.out.println("bobo");
+		
 	}
 
 }

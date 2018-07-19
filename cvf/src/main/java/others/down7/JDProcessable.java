@@ -28,7 +28,6 @@ public class JDProcessable implements Processable {
 		}else{//处理页面的url
 			String next_url = HtmlUtils.getAttributeByAttr(rootNode, "//*[@id=\"J_topPage\"]/a[2]", "href");
 			if(!next_url.equals("javascript:;")){
-				System.out.println("http://list.jd.com"+next_url.replace("&amp;", "&"));
 				String x = "http://list.jd.com"+next_url.replace("&amp;", "&");
 				page.addUrl(x);
 			}
@@ -62,7 +61,6 @@ public class JDProcessable implements Processable {
 			 * evaluateXPath = rootNode.evaluateXPath("//*[@id=\"jd-price\"]");
 			 * if(evaluateXPath!=null && evaluateXPath.length>0){ TagNode
 			 * priceNode = (TagNode)evaluateXPath[0];
-			 * System.out.println("--"+priceNode.getText().toString()+"--"); }
 			 */
 			// 活得商品编号
 			String url = page.getUrl();
@@ -113,10 +111,7 @@ public class JDProcessable implements Processable {
 			 * i < evaluateXPath.length; i++) { TagNode trNode =
 			 * (TagNode)evaluateXPath[i]; TagNode[] allElements =
 			 * trNode.getAllElements(true); for (TagNode tagNode : allElements)
-			 * { System.out.print(tagNode.getText().toString()+":"); }
-			 * System.out.println(); }
 			 * 
-			 * System.out.println(); }
 			 */
 		} catch (XPatherException e) {
 			// TODO Auto-generated catch block

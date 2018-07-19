@@ -4,7 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.ProgressListener;
 
-import com.entities.Progress;
+import com.pojo.Progress;
 
 import contant.Contant;
 

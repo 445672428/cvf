@@ -16,8 +16,15 @@
     <listener>
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
-<!--     <listener>
+    <listener>
     	<listener-class>com.springframe.WebContextInit</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.cache.ApplicationCacheManager</listener-class>
+    </listener>
+    <!-- 加磁盘上面的数据加入的缓存中 -->
+<!--     <listener>
+        <listener-class>net.sf.ehcache.constructs.web.ShutdownListener</listener-class>
     </listener> -->
     
 	<!-- 编码过滤器，以UTF8编码 -->
@@ -51,6 +58,15 @@
 	    <servlet-name>framemvc</servlet-name> 
 	    <url-pattern>/app</url-pattern> 
 	</servlet-mapping>
+	<!-- 配置过滤器 将POST请求转换为PUT和DELETE请求 -->
+   <filter>
+      <filter-name>HiddenHttpMethodFilter</filter-name>
+      <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	      <filter-name>HiddenHttpMethodFilter</filter-name>
+	      <url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<!-- 解决网站跨域访问 -->
 	<filter>  
 	    <filter-name>corsFilter</filter-name>  
@@ -102,20 +118,17 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping> 
  	<!-- 配置静态文件 -->
-   	<!--<servlet-mapping>  
+   	<servlet-mapping>  
         <servlet-name>default</servlet-name>  
         <url-pattern>/resources/*</url-pattern>  
-    </servlet-mapping> -->
+    </servlet-mapping>
 	<!-- 配置接口地址 -->
   	<servlet>
     	<servlet-name>cxfService</servlet-name>
     	<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
     	<load-on-startup>2</load-on-startup> 
   	</servlet>
-  	<servlet-mapping>
-    	<servlet-name>cxfService</servlet-name>
-    	<url-pattern>/webservice/*</url-pattern>
-  	</servlet-mapping>
+
     <!-- 备用  https请求 -->
 <!-- 	<security-constraint>
         <web-resource-collection>
@@ -168,8 +181,19 @@
         <servlet-name>QQshuoshuo</servlet-name>
         <url-pattern>/QQshuoshuo</url-pattern>
     </servlet-mapping>	
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
 	
-	<servlet-mapping>
+	<welcome-file-list>  
+	   <welcome-file>/</welcome-file>  
+	</welcome-file-list>
+  	<servlet-mapping>
+    	<servlet-name>cxfService</servlet-name>
+    	<url-pattern>/webservice/*</url-pattern>
+    	<url-pattern>*.swf</url-pattern>
+  	</servlet-mapping>
+<!-- 	<servlet-mapping>
 	    <servlet-name>default</servlet-name>
 	    <url-pattern>*.html</url-pattern>
 	    <url-pattern>*.json</url-pattern>
@@ -181,9 +205,5 @@
 	    <url-pattern>*.woff</url-pattern>
 	    <url-pattern>*.woff2</url-pattern>
 	    <url-pattern>*.ico</url-pattern>
-	</servlet-mapping>
-	
-    <welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
+	</servlet-mapping> -->
 </web-app>

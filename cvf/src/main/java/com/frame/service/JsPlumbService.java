@@ -1,6 +1,5 @@
 package com.frame.service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.annotation.SysLogColumn;
 import com.base.BaseService;
 import com.utils.BigDecimalUtils;
 
@@ -19,10 +19,8 @@ public class JsPlumbService extends BaseService{
 	@Autowired
 	@Qualifier("mysqlJdbcTemplate")
 	private JdbcTemplate mysqlJdbcTemplate;
-	/**
-	 * 查询所有高铁站
-	 * @return
-	 */
+	
+	@SysLogColumn(operationName="查询所有高铁站")
 	public JSONArray queryWelcomeJsPlumb() {
 		String sql = "select name,code,west,east,south,north from region_station";
 		List<Map<String, Object>> results = mysqlJdbcTemplate.queryForList(sql);

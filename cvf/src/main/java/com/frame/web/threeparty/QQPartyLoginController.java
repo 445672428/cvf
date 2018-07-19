@@ -16,6 +16,7 @@ import com.qq.connect.javabeans.AccessToken;
 import com.qq.connect.oauth.Oauth;
 
 @Controller
+@RequestMapping("/threeparty")
 public class QQPartyLoginController {
 	@RequestMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response, HttpSession session)
@@ -24,7 +25,6 @@ public class QQPartyLoginController {
             AccessToken accessTokenObj = (new Oauth()).getAccessTokenByRequest(request);
             String accessToken = null, openID = null;
             if (accessTokenObj.getAccessToken().equals("")) {
-                System.out.print("没有获取到响应参数");
                 return "error";
             } else {
                 accessToken = accessTokenObj.getAccessToken();

@@ -568,10 +568,8 @@ public class FileUtils {
          String s = null;
          int count = 0;
          while((s = br.readLine())!=null){//使用readLine方法，一次读一行
-             System.out.println(s);
              count++;
          }
          br.close();
-         System.out.println("count:"+count);
 	}
 }

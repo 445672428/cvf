@@ -209,7 +209,6 @@ public class HttpUtils {
                 return sb.toString();  
             }  
             else{   
-                System.out.println("状态码：" + code);  
                 return null;  
             }  
         }  catch(Exception e){  
@@ -282,42 +281,6 @@ public class HttpUtils {
            e.printStackTrace();
        }
        return response;
-    }
-    public static void main(String[] args) {
-    	/*Map<String,Object> params = new HashMap<String, Object>(){
-    		{
-    			put("aaa", "第一");
-    			put("bbb", "测试韩式");
-    			put("ccc", 666);
-    		}
-    	};
-		String result = doPost("http://127.0.0.1:8012/DataMonitor/config/test.do", params);
-		if(result!=null){
-			if(result.startsWith("{")){
-				JSONObject json =  JSONObject.fromObject(result);
-				System.out.println(json.size());
-				System.out.println(json.keySet());
-			}
-			else if(result.startsWith("[")){
-				JSONArray jar = JSONArray.fromObject(result);
-				System.out.println(jar.size());
-			}
-		}
-		System.out.println("请求结果:\n"+result);
-		System.out.println(doGet("https://www.cnblogs.com/mengrennwpu/p/6418114.html"));*/
-    	
-    	String url = "http://dl.2345.com/haozip/haozip_v5.9.7.exe";
-    	byte[] nr  =  downloadHttpFile(url);
-    	if(nr==null){
-    		System.out.println("。。");
-    	}else{
-    		File file = new File("H:/logs/司法鉴定","haoya.exe");
-    		try {
-				FileUtils.writeByteArrayToFile(file, nr);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-    	}
     }
       
 }

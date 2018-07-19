@@ -96,7 +96,6 @@ public class WordToHtml {
         WordExtractor wordExtractor = new WordExtractor(doc);
         String[] paragraph = wordExtractor.getParagraphText();
         for (int i = 0; i < paragraph.length; i++) {
-        	System.out.println(paragraph[i]);
         }
         
         Range rangetbl = doc.getRange();// 得到文档的读取范围  
@@ -111,7 +110,6 @@ public class WordToHtml {
 		         StyleDescription style = style_sheet.getStyleDescription(styleIndex);
 		         String styleName = style.getName();
 		         if (styleName!=null&&styleName.contains("标题")) {
-			        System.out.println(p.text());
 			        String text = p.text();
 			        list2.add(text);
 		        }
@@ -175,8 +173,6 @@ public class WordToHtml {
                 // 第二个字符  
                 CharacterRun cr2 = range2.getCharacterRun(0);  
                 char c = cr.text().charAt(0);  
-                // System.out.println(c);  
-                // /System.out.println(i+"::"+range.getEndOffset()+"::"+range.getStartOffset()+"::"+c);  
   
                 // 判断是否为回车符  
                 if (c == ENTER_ASCII) {  
@@ -218,7 +214,6 @@ public class WordToHtml {
         }  
   
         htmlText += tempString + "</div></div></body></html>";  
-        // System.out.println(htmlText);  
     }  
   
     /** 
@@ -241,7 +236,6 @@ public class WordToHtml {
             beginPosi = tb.getStartOffset();  
             endPosi = tb.getEndOffset();  
   
-            // System.out.println("............"+beginPosi+"...."+endPosi);  
             counter = counter + 1;  
             // 迭代行，默认从0开始  
             beginArray[counter] = beginPosi;  
@@ -273,9 +267,7 @@ public class WordToHtml {
                         if (s == "") {  
                             s = " ";  
                         }  
-                        // System.out.println(s);  
                         htmlTextTbl += "<td width=" + cellWidth + ">" + s + "</td>";  
-                        // System.out.println(i + ":" + j + ":" + cellWidth + ":" + s);  
                     } // end for  
                 } // end for  
             } // end for  
@@ -399,7 +391,6 @@ public class WordToHtml {
             fos = new FileOutputStream(file);  
             bw = new BufferedWriter(new OutputStreamWriter(fos, "utf-8"));  
             bw.write(s);  
-            // System.out.println(filePath + "文件写入成功！");  
         } catch (FileNotFoundException fnfe) {  
             fnfe.printStackTrace();  
         } catch (IOException ioe) {  
@@ -465,8 +456,6 @@ public class WordToHtml {
         String resultPath = null;  
         projectRealPath = projectPath;// 项目路径  
         String filePath = "";  
-        // System.out.println(projectRealPath + tempPath);  
-        // System.out.println(makeDir(projectRealPath, tempPath));  
         try {  
             File file = new File(projectPath + relativeFilePath);  
             if (file.exists()) {  

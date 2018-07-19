@@ -9,10 +9,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.base.BaseService;
-import com.entities.FileInfo;
-import com.entities.PageBean;
 import com.frame.service.RedisService;
 import com.multil.datasource.DynamicDataSource;
+import com.pojo.FileInfo;
+import com.pojo.PageBean;
 
 import contant.Contant;
 

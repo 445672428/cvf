@@ -45,10 +45,9 @@ public abstract class AbstractProxySite implements ProxySite {
                 content = this.download(url);
                 List<Proxy> proxies = this.parseProxys(content);
                 for(Proxy proxy : proxies){
-                    System.out.println("no check proxy:"+proxy.toJson());
-                    if(this.checkProxy(proxy))
-                        //this.proxyPool.addProxy(proxy);
-                        System.out.println(proxy.toJson());
+                    if(this.checkProxy(proxy)){
+                    	 //this.proxyPool.addProxy(proxy);
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();

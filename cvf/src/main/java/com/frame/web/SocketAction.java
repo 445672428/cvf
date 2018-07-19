@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.socket.TextMessage;
 
-import com.entities.Friends;
-import com.entities.TAdmin;
 import com.frame.multil.service.SearchService;
 import com.frame.service.SocketService;
+import com.pojo.Friends;
+import com.pojo.TAdmin;
 import com.push.WebsocketEndPoint;
 
 import contant.Contant;
@@ -44,7 +44,6 @@ public class SocketAction {
     @RequestMapping("/websocket/login")
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String username = request.getParameter("username");
-        System.out.println(username+"登录");
         HttpSession session = request.getSession(false);
         session.setAttribute("SESSION_USERNAME", username);
         return new ModelAndView("forward:websocket");

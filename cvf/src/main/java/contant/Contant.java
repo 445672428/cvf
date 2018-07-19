@@ -13,7 +13,6 @@ public class Contant {
 		String osArch = props.getProperty("os.arch"); //操作系统构架    
 		String osVersion = props.getProperty("os.version"); //操作系统版本 
 		String osUser= System.getProperty("user.name"); 
-		System.err.println(osName+","+osArch+""+osVersion+""+osUser);
 	}
 	
 	/**

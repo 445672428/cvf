@@ -95,7 +95,6 @@ public final class RegexpUtils {
 		Pattern emial_pattern = Pattern
 				.compile(reg);
 		Matcher pricess = emial_pattern.matcher(s);
-		System.out.println(pricess.matches());
 	}
 
 

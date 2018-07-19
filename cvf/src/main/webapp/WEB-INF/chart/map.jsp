@@ -40,7 +40,6 @@
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/d3/d3.js" charset="utf-8"></script>
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/d3/jquery.tipsy.js" charset="utf-8"></script>
 
-<script type="text/javascript" src="${CONTEXTPATH }/resources/lib/jsplumb/dagre-d3.js" charset="utf-8"></script>
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/jsplumb/jsPlumb-2.2.8-min.js" charset="utf-8"></script>
 </head>
 <body>
@@ -226,7 +225,6 @@
 	            html: true, 
 	            title: function() {
 	              var d = this.__data__;
-	              debugger
 	              return 'Hi there! My color is <span style="color:"></span>'; 
 	            }
 	          });

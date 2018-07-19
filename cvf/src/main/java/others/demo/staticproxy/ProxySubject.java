@@ -5,8 +5,6 @@ public class ProxySubject implements ISubject{
         realSubject = new RealSubject();
     }
     public void request() {
-        System.out.println("do something before");
         realSubject.request();
-        System.out.println("do something after");
     }
 }

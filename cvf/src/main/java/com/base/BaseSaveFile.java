@@ -21,9 +21,9 @@ import java.util.zip.ZipOutputStream;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.entities.FileInfo;
-import com.entities.UploadInfo;
 import com.frame.service.FileService;
+import com.pojo.FileInfo;
+import com.pojo.UploadInfo;
 /**
  * 文件处理基类
  * @author bobo

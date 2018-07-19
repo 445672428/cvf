@@ -26,7 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.annotation.ExcelField;
 import com.google.common.collect.Lists;
-import com.utils.Reflections;
+import com.utils.ReflectionUtils;
 
 /**
  * 导入Excel文件（支持“XLS”和“XLSX”格式）
@@ -327,13 +327,13 @@ public class ImportExcel {
 					}
 					// set entity value
 					if (os[1] instanceof Field){
-						Reflections.invokeSetter(e, ((Field) os[1]).getName(), val);
+						ReflectionUtils.invokeSetter(e, ((Field) os[1]).getName(), val);
 					}else if (os[1] instanceof Method){
 						String mthodName = ((Method)os[1]).getName();
 						if ("get".equals(mthodName.substring(0, 3))){
 							mthodName = "set"+StringUtils.substringAfter(mthodName, "get");
 						}
-						Reflections.invokeMethod(e, mthodName, new Class[] {valType}, new Object[] {val});
+						ReflectionUtils.invokeMethod(e, mthodName, new Class[] {valType}, new Object[] {val});
 					}
 				}
 				sb.append(val+", ");
@@ -343,23 +343,5 @@ public class ImportExcel {
 		}
 		return dataList;
 	}
-
-//	/**
-//	 * 导入测试
-//	 */
-//	public static void main(String[] args) throws Throwable {
-//		
-//		ImportExcel ei = new ImportExcel("target/export.xlsx", 1);
-//		
-//		for (int i = ei.getDataRowNum(); i < ei.getLastDataRowNum(); i++) {
-//			Row row = ei.getRow(i);
-//			for (int j = 0; j < ei.getLastCellNum(); j++) {
-//				Object val = ei.getCellValue(row, j);
-//				System.out.print(val+", ");
-//			}
-//			System.out.print("\n");
-//		}
-//		
-//	}
 
 }

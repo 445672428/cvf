@@ -87,7 +87,6 @@ public class FileUploadServlet extends HttpServlet{
     			}
                 //获取文件输入流
                 InputStream instream = item.getInputStream();
-                System.out.println(realPath+id+name);
                 FileOutputStream outstream = new FileOutputStream(realPath+id+name);
                 byte[] buffer = new byte[1024];
                 int r = 0;

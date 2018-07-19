@@ -104,9 +104,9 @@ public class FLogger {
 			//错误信息同时打印到控制台
 			if(Constant.ERROR == level || Constant.FATAL == level){
 				try{
-					System.out.print(new String(sb.toString().getBytes(Constant.CFG_CHARSET_NAME),Constant.CFG_CHARSET_NAME));
+					System.err.print(new String(sb.toString().getBytes(Constant.CFG_CHARSET_NAME),Constant.CFG_CHARSET_NAME));
 				}catch(Exception e){
-					System.out.print(CommUtil.getExpStack(e));
+					System.err.print(CommUtil.getExpStack(e));
 				}
 			}
 		}

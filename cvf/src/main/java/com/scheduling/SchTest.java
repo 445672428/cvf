@@ -5,6 +5,6 @@ public class SchTest {
 		schtest1();
 	}
 	public void schtest1() {
-		System.out.println(1);
+		
 	}
 }

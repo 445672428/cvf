@@ -4,7 +4,6 @@
 <html>
 <head>
 <title>多选择器多文件上传</title>
-<!--支持IE9+ chrome fireFox-->
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/jQuery/jquery2.1.js" charset="utf-8"></script>
 <link href="${CONTEXTPATH }/resources/lib/webuploader/webuploader.css" rel="stylesheet"/>
 <script src="${CONTEXTPATH }/resources/lib/webuploader/webuploader.js"></script>
@@ -12,6 +11,9 @@
 <script src="${CONTEXTPATH }/resources/lib/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(function () {
+    	uploadFiles();
+    });
+    function uploadFiles(){
         var $list = $('#fileList');
         //WebUploader实例
         var uploader = WebUploader.create({
@@ -118,7 +120,7 @@
                 return false;
             }
         });
-    });
+    }
 </script>
 
 </head>

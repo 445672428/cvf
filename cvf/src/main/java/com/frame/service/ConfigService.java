@@ -94,7 +94,7 @@ public class ConfigService extends BaseService{
 		
 		return object;
 	}
-	
+	@SysLogColumn(operationName="全国城市树")
 	public JSONArray queryChinaCode(String parentCode) {
 		if (null==parentCode) {
 			parentCode = "0";

@@ -13,9 +13,7 @@ public class SpiderTest {
 		spider.setProcessable(new JDProcessable());
 		spider.process(page);
 		for (String s : page.getUrls()) {
-			System.out.println(s);
 		}
-//		System.out.println(page.getValues().get("spec"));
 		spider.setStoreable(new ConsoleStoreable());
 		spider.store(page);
 	}

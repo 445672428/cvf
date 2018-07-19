@@ -20,9 +20,7 @@ public class CxfClient {
         Object[] res;
 		try {
 			res = client.invoke("ValidateEmailAddressPro");
-			//System.out.println("Echo response: " + res[0]);  
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
         
@@ -36,7 +34,6 @@ public class CxfClient {
 		
 		Object obj = callWebserviceBack(endpoint, nameSpace, "ArrayOfString",
 				new Object[] {"1"});
-		System.out.println(obj);
 	}
 
 	public static Object callWebserviceBack(String webServiceUrl,

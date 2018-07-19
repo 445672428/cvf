@@ -40,7 +40,6 @@ public class AfterLoginRedirectServlet extends HttpServlet {
 			if (accessTokenObj.getAccessToken().equals("")) {
 				// 我们的网站被CSRF攻击了或者用户取消了授权
 				// 做一些数据统计工作
-				System.out.print("没有获取到响应参数");
 			} else {
 				accessToken = accessTokenObj.getAccessToken();
 				tokenExpireIn = accessTokenObj.getExpireIn();

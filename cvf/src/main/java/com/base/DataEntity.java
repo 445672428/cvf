@@ -55,9 +55,7 @@ public class DataEntity<T> implements Serializable {
 		// Type[] actualTypeArguments =
 		// genericSuperclass.getActualTypeArguments();
 		// t = (T) actualTypeArguments[0];
-		// System.out.println("t"+t.toString());
 		// clazz = (Class<T>) genericSuperclass.getActualTypeArguments()[0];
-		// System.out.println("clazz"+clazz.toString());
 	}
 
 	@Override

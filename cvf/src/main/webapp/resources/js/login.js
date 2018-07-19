@@ -1,6 +1,6 @@
 require.config({
     paths:{
-	        'jquery': PATH+'/resources/lib/jQuery/jquery-1.7.1.min',
+	        'jquery': PATH+'/resources/lib/jQuery/jquery2.1',
 	        'qrcode': PATH+'/resources/lib/jQuery/jquery.qrcode.min',
 	        'security': PATH+'/resources/lib/security',
 	        'sockjs': PATH+'/resources/lib/sockjs',

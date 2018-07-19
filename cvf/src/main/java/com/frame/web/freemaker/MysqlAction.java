@@ -347,7 +347,7 @@ public class MysqlAction extends BaseAction{
 			break;
 		case 41:
 			List<User> list41 = (List<User>) userService.findAll();
-			results = arrayObjectToList(list41);
+			view.addObject("results", list41);
 			break;
 //		case 42:
 //			List<CHARACTER_SETS> list42 = cHARACTER_SETSMapper.selectByExample(null);

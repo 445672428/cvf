@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.base.BaseSaveFile;
-import com.entities.FileInfo;
 import com.frame.service.FileService;
+import com.pojo.FileInfo;
 import com.utils.ComUtils;
 
 @Controller

@@ -98,11 +98,9 @@ public class SingleBeanFactory {
             b.append((char) ch);
           }
           /* 将Response显示于Dialog */
-          System.out.println("上传成功" + b.toString().trim());
           /* 关闭DataOutputStream */
           ds.close();
         } catch (Exception e) {
-         System.out.println("上传失败" + e);
         }
       }
     
@@ -112,7 +110,6 @@ public class SingleBeanFactory {
     	  public void doGet(HttpServletRequest request, HttpServletResponse response)
     	      throws ServletException, IOException {
     	    try {
-    	      System.out.println("IP:" + request.getRemoteAddr());
     	      // 1、创建工厂类：DiskFileItemFactory
     	      DiskFileItemFactory facotry = new DiskFileItemFactory();
     	      String tempDir = getServletContext().getRealPath("/WEB-INF/temp");
@@ -137,7 +134,6 @@ public class SingleBeanFactory {
     	          // 5、判断是否是普通表单：打印看看
     	          String fieldName = item.getFieldName();// 请求参数名
     	          String fieldValue = item.getString("UTF-8");// 请求参数值
-    	          System.out.println(fieldName + "=" + fieldValue);
     	        } else {
     	          // 6、上传表单：得到输入流，处理上传：保存到服务器的某个目录中，保存时的文件名是啥？
     	          String fileName = item.getName();// 得到上传文件的名称 C:\Documents
@@ -151,7 +147,6 @@ public class SingleBeanFactory {
     	          fileName = fileName
     	              .substring(fileName.lastIndexOf("\\") + 1);
     	          String newFileName = "_" + fileName;
-    	          System.out.println("上传的文件名是：" + fileName);
     	          InputStream in = item.getInputStream();
     	          String savePath = makeDir(storePath, fileName) + "\\"
     	              + newFileName;
@@ -191,7 +186,6 @@ public class SingleBeanFactory {
     	    File file = new File(path);
     	    if (!file.exists())
     	      file.mkdirs();
-    	    System.out.println("存储路径是"+path);
     	    return path;
     	  }
 

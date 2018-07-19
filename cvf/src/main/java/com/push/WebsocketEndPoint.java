@@ -24,7 +24,7 @@ public class WebsocketEndPoint extends TextWebSocketHandler{
      */
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         // TODO Auto-generated method stub
-        System.out.println("connect to the websocket success......当前数量:"+users.size());
+        //connect to the websocket success......当前数量:"+users.size()
         users.add(session);
         //这块会实现自己业务，比如，当用户登录后，会把离线消息推送给用户
         //TextMessage returnMessage = new TextMessage("你将收到的离线");
@@ -37,9 +37,8 @@ public class WebsocketEndPoint extends TextWebSocketHandler{
     public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
         logger.debug("websocket connection closed......");
         String username= (String) session.getAttributes().get("WEBSOCKET_USERNAME");
-        System.out.println("用户"+username+"已退出！");
         users.remove(session);
-        System.out.println("剩余在线用户"+users.size());
+        //剩余在线用户"+users.size()
         session.close();
     }
 

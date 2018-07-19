@@ -2,7 +2,7 @@ package com.utils;
 
 import org.apache.http.HttpRequest;
 
-import com.entities.TAdmin;
+import com.pojo.TAdmin;
 
 public class ThreadLocalContainer {
 	private static final ThreadLocal<Object> contexts = new ThreadLocal<Object>();

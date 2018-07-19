@@ -25,7 +25,6 @@ public class SocketServletListener implements ServletRequestListener {
         if (obj!=null) {
 			precent = (Float)obj;
 		}
-        System.out.println("SocketServletListener bobo"+precent);
         //session.setAttribute("ClientIPadd", sre.getServletRequest().getRemoteAddr());//把HttpServletRequest中的IP地址放入HttpSession中，关键字可任取，此处为ClientIP
     }
 }

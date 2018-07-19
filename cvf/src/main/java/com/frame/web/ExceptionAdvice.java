@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.base.BaseAction;
-import com.entities.ResultMeta;
+import com.pojo.ResultMeta;
 /**
  * 异常拦截所以页面通知
  * @author bobo

@@ -17,11 +17,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.base.BaseAction;
-import com.entities.PageBean;
 import com.frame.facets.imp.SearchEtlImp;
 import com.frame.multil.service.HotleService;
 import com.frame.service.SysService;
 import com.hibernate.service.SysLogService;
+import com.pojo.PageBean;
 /**
  * 酒店人员信息
  * @author bobo

@@ -49,11 +49,9 @@ public class MerAccountResourceImpl implements MerAccountResource
 		MessageContext ctx = wsContext.getMessageContext();  
         HttpServletRequest request = (HttpServletRequest)ctx.get(AbstractHTTPDestination.HTTP_REQUEST); 
         
-        System.out.println(request.getRemoteAddr());
         
         Message message = PhaseInterceptorChain.getCurrentMessage();  
         HttpServletRequest httprequest = (HttpServletRequest)message.get(AbstractHTTPDestination.HTTP_REQUEST);  
-        System.out.println(httprequest.getRemoteAddr());
         
 		return team;
 	}
@@ -134,27 +132,14 @@ public class MerAccountResourceImpl implements MerAccountResource
 	@Override
 	public String getPlayers(Integer numbers) 
 	{
-		System.out.println(numbers);
-//		List<Player> result = new LinkedList<Player>();
-//		Player player = null;
-//		player = findById(numbers);
-//		if (player != null)
-//		{
-//			result.add(player);
-//		}
-//		if (numbers != null)
-//		{
-//			Player player = null;
-//			for (int i =0; i< numbers.length;i++)
-//			{
-//				player = findById(numbers[i]);
-//				if (player != null)
-//				{
-//					result.add(player);
-//				}
-//			}
-//		}
-		//logger.info("returning " + result.size() + " players");
+		List<Player> result = new LinkedList<Player>();
+		Player player = null;
+		player = findById(numbers);
+		if (player != null)
+		{
+			result.add(player);
+		}
+		logger.info("returning " + result.size() + " players");
 		
 		return numbers.toString();
 	}

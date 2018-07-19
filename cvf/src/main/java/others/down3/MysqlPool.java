@@ -36,8 +36,6 @@ public class MysqlPool {
             con = MysqlPool.getInstance().getConnection();  
             ResultSet rs = con.createStatement().executeQuery("SELECT * FROM test_table");  
             while (rs.next()) {  
-                System.out.println(rs.getObject(1));  
-                System.out.println(rs.getObject(2));  
                   
             }  
         } catch (Exception e) {

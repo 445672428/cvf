@@ -147,20 +147,15 @@ public class RSA {
         RSAPublicKey publicKey = RSA.getDefaultPublicKey();
 
         //公钥-系数(n)   模   需要将模和公钥指数传给前端
-        System.out.println("public key modulus:"
-                + new String(Hex.encode(publicKey.getModulus().toByteArray())));
+        new String(Hex.encode(publicKey.getModulus().toByteArray()));
 
         //公钥-指数(e1)	公钥指数
-        System.out.println("public key exponent:"
-                + new String(Hex.encode(publicKey.getPublicExponent()
-                        .toByteArray())));
-
+        new String(Hex.encode(publicKey.getPublicExponent().toByteArray()));
         //JS加密后的字符串
         String pppp = "6e269bdf7f7670ffaff669d86d93e63fd91f2d6dd4f7e57ca58c614de65c0828e608bdd0f3e81d3630f8533f5286e0f55caa005ebe6d3faf3b9cc130d9ecff51d1f77eeed48156431cbf5de62cf6899084a4e92890827edbebbf506ecbb022de4a0e3131f2ffefe3368c7b7f929362edb4af419b837456c275f643a5c760a4ff";
         
         //解密后的字符串
         String kkkk = RSA.decryptStringByJs(pppp);
 
-        System.out.println("解密后文字：" + kkkk);
     }
 }

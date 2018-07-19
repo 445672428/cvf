@@ -17,7 +17,7 @@ import com.sun.imageio.plugins.common.ImageUtil;
 
 public class ImageUtils {
 	public static void main(String[] args) throws Exception {
-		miniature("D:\\我的图片\\BOBO.png",10,10);
+		miniature("D:\\mypicture\\BOBO.png",10,10);
 	}
 	private static Log log = LogFactory.getLog(ImageUtil.class);
 	public static void miniature(String src, int w, int h) throws Exception{

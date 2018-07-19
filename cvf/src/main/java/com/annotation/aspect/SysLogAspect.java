@@ -2,8 +2,6 @@ package com.annotation.aspect;
 
 import java.lang.reflect.Method;
 
-import javax.websocket.Session;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.slf4j.Logger;
@@ -11,8 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import com.annotation.SysLogColumn;
 import com.socket.ListenEvent;
-import com.socket.TomcatLogSocket;
-import com.utils.SysDateFormat;
+import com.utils.TimeUtils;
 
 public class SysLogAspect {
 
@@ -92,7 +89,7 @@ public class SysLogAspect {
 			throws Exception {
 		String targetName = joinPoint.getTarget().getClass().getName();
 		String methodName = joinPoint.getSignature().getName();
-		String time = SysDateFormat.getCurrentDateStringAll();
+		String time = TimeUtils.getCurrentDateStringAll();
 		msg = time+"------------>调用:" + methodName + "方法!";
 		Object[] arguments = joinPoint.getArgs(); // 获得参数列表
 		msg += "详情:";

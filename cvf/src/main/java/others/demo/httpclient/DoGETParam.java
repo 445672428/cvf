@@ -20,7 +20,6 @@ public class DoGETParam {
         URI uri = new URIBuilder("http://manage.taotao.com/rest/content").setParameter("categoryId", "12")
                 .setParameter("page", "1").setParameter("rows", "6").build();
 
-        System.out.println(uri);
 
         // 创建http GET请求
         HttpGet httpGet = new HttpGet(uri);
@@ -32,7 +31,6 @@ public class DoGETParam {
             // 判断返回状态是否为200
             if (response.getStatusLine().getStatusCode() == 200) {
                 String content = EntityUtils.toString(response.getEntity(), "UTF-8");
-                System.out.println(content);
             }
         } finally {
             if (response != null) {

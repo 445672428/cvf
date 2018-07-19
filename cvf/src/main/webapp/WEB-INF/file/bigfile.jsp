@@ -4,14 +4,17 @@
 <html>
 <head>
 <title>大文件上传</title>
-<!--支持IE9+ chrome fireFox-->
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/jQuery/jquery2.1.js" charset="utf-8"></script>
 <link href="${CONTEXTPATH }/resources/lib/webuploader/webuploader.css" rel="stylesheet"/>
 <script src="${CONTEXTPATH }/resources/lib/webuploader/webuploader.js"></script>
 <link href="${CONTEXTPATH }/resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 <script src="${CONTEXTPATH }/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/jQuery/jquery.form.js"></script>
 <script type="text/javascript">
     $(function () {
+    	uploadFiles();
+    });
+    function uploadFiles(){
         $list = $('#fileList');
         var uploader = WebUploader.create({
 
@@ -25,7 +28,7 @@
             swf: '${CONTEXTPATH }/resources/lib/webuploader/Uploader.swf',
 
             // 文件接收服务端。
-            server: '${CONTEXTPATH }/file/bigfileup.do',
+            server: '${CONTEXTPATH }/file/bigfileup',
 
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -82,7 +85,7 @@
                             cache: false,
                             type: "post",
                             //dataType: "json",
-                            url: "${CONTEXTPATH }/file/IsMD5Exist.do",//baseUrl +
+                            url: "${CONTEXTPATH }/file/IsMD5Exist",//baseUrl +
                             data: {
                                 fileMd5: fileMd5,
                                 fileName: file.name,
@@ -201,7 +204,8 @@
             }
 
         });
-    });
+    	
+    }
 </script>
 </head>
 <body>
@@ -225,7 +229,34 @@
             <div id="StopBtn" class="webuploader-pick" style="float: left; margin-right: 10px" status="suspend">暂停上传</div>
         </div>
     </div>
+    <form action="${pageContext.request.contextPath}/db/dictionary" method="post">
+    	<input type="text" name="dbname" value="dbname" />
+    	<input type="text" name="dbkey" value="dbkey" />
+    	<input type="submit" value="提交">
+    </form>
+    
+    
+	<form id="stafffrom" action="${pageContext.request.contextPath }/db/import"  enctype="multipart/form-data" method="POST">
+		<ul class="ulp">
+			<li>
+				<input type="file" name="file" id="file" class="inputfile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+				<label for="file" class='btn btn-success'>选择一个log图标</label>
+			</li>
+			<li>
+				<div class="col-xs-6 text-right">
+	              	<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-save"></span> 点击提交</button>
+	            </div>
+			</li>
+		</ul>
+	</form>
+	
 </div>
-
+<script type="text/javascript">
+$(function(){
+    $("#stafffrom").ajaxForm(function(data){    
+    	
+     });
+})
+</script>
 </body>
 </html>

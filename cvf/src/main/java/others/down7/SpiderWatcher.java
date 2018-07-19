@@ -44,7 +44,6 @@ public class SpiderWatcher implements Watcher{
 			List<String> newChildren = client.getChildren().usingWatcher(this).forPath("/spider");
 			for (String node :children) {
 				if(!newChildren.contains(node)){
-					System.out.println(node+"节点消失了~~~");
 					//TODO-- 在这需要给管理员发送邮件或者短信提醒
 					/**
 					 * 发邮件使用javamail
@@ -56,7 +55,6 @@ public class SpiderWatcher implements Watcher{
 			}
 			for (String node : newChildren) {
 				if(!children.contains(node)){
-					System.out.println("新增节点:"+node);
 				}
 			}
 			

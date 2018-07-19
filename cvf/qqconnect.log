@@ -1,0 +1,75 @@
+388  DEBUG [2018-07-01 19:03:59]  End template engine id=Velocity for the entry=word/styles.xml done with 19(ms).
+389  DEBUG [2018-07-01 19:03:59]  Start template engine id=Velocity for the entry=word/_rels/document.xml.rels with template cache=true
+391  DEBUG [2018-07-01 19:03:59]  Result template engine id=Velocity  for the entry=word/_rels/document.xml.rels: 
+392  DEBUG [2018-07-01 19:03:59]  <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+    <Relationship Id="rId8" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme" Target="theme/theme1.xml"/>
+    <Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/settings" Target="settings.xml"/>
+    <Relationship Id="rId7" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/fontTable" Target="fontTable.xml"/>
+    <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+    <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/customXml" Target="../customXml/item1.xml"/>
+    <Relationship Id="rId6" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/endnotes" Target="endnotes.xml"/>
+    <Relationship Id="rId5" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/footnotes" Target="footnotes.xml"/>
+    <Relationship Id="rId4" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/webSettings" Target="webSettings.xml"/>
+</Relationships>
+
+393  DEBUG [2018-07-01 19:03:59]  End template engine id=Velocity for the entry=word/_rels/document.xml.rels done with 2(ms).
+393  DEBUG [2018-07-01 19:03:59]  Start template engine id=Velocity for the entry=word/footnotes.xml with template cache=true
+393  DEBUG [2018-07-01 19:03:59]  Result template engine id=Velocity  for the entry=word/footnotes.xml: 
+395  DEBUG [2018-07-01 19:03:59]  <w:footnotes xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 w15 wp14">
+    <w:footnote w:type="separator" w:id="-1">
+        <w:p w:rsidR="00F420E7" w:rsidRDefault="00F420E7" w:rsidP="00D13A79">
+            <w:pPr>
+                <w:spacing w:after="0" w:line="240" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+                <w:separator/>
+            </w:r>
+        </w:p>
+    </w:footnote>
+    <w:footnote w:type="continuationSeparator" w:id="0">
+        <w:p w:rsidR="00F420E7" w:rsidRDefault="00F420E7" w:rsidP="00D13A79">
+            <w:pPr>
+                <w:spacing w:after="0" w:line="240" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+                <w:continuationSeparator/>
+            </w:r>
+        </w:p>
+    </w:footnote>
+</w:footnotes>
+
+395  DEBUG [2018-07-01 19:03:59]  End template engine id=Velocity for the entry=word/footnotes.xml done with 2(ms).
+395  DEBUG [2018-07-01 19:03:59]  Start template engine id=Velocity for the entry=word/endnotes.xml with template cache=true
+396  DEBUG [2018-07-01 19:03:59]  Result template engine id=Velocity  for the entry=word/endnotes.xml: 
+398  DEBUG [2018-07-01 19:03:59]  <w:endnotes xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 w15 wp14">
+    <w:endnote w:type="separator" w:id="-1">
+        <w:p w:rsidR="00F420E7" w:rsidRDefault="00F420E7" w:rsidP="00D13A79">
+            <w:pPr>
+                <w:spacing w:after="0" w:line="240" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+                <w:separator/>
+            </w:r>
+        </w:p>
+    </w:endnote>
+    <w:endnote w:type="continuationSeparator" w:id="0">
+        <w:p w:rsidR="00F420E7" w:rsidRDefault="00F420E7" w:rsidP="00D13A79">
+            <w:pPr>
+                <w:spacing w:after="0" w:line="240" w:lineRule="auto"/>
+            </w:pPr>
+            <w:r>
+                <w:continuationSeparator/>
+            </w:r>
+        </w:p>
+    </w:endnote>
+</w:endnotes>
+
+398  DEBUG [2018-07-01 19:03:59]  End template engine id=Velocity for the entry=word/endnotes.xml done with 2(ms).
+404  DEBUG [2018-07-01 19:03:59]  End process report done with 352(ms).
+0    INFO  [2018-07-05 17:41:00]  miniature src=D:\我的图片\BOBO.png,w=10,h=10
+31   INFO  [2018-07-05 17:41:00]  miniature src=D:\我的图片\BOBO.png,w=10,h=10
+31   INFO  [2018-07-05 17:41:00]  file.exists()=false
+31   INFO  [2018-07-05 17:41:00]  图片文件不存在
+0    INFO  [2018-07-05 17:42:27]  miniature src=D:\mypicture\BOBO.png,w=10,h=10
+0    INFO  [2018-07-05 17:42:27]  miniature src=D:\mypicture\BOBO.png,w=10,h=10
+0    INFO  [2018-07-05 17:42:27]  file.exists()=true

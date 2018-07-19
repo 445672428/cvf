@@ -95,16 +95,4 @@ public class AESUtil {
 
 		return null;
 	}
-
-	public static void main(String[] args) {
-		String s = "hello,您好";
-
-		System.out.println("s:" + s);
-
-		String s1 = AESUtil.encrypt(s, "1234");
-		System.out.println("s1:" + s1);
-
-		System.out.println("s2:" + AESUtil.decrypt(s1, "1234"));
-
-	}
 }

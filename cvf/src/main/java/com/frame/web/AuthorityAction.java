@@ -21,9 +21,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
-import com.entities.ProgressInfo;
+import com.base.BaseAction;
 import com.hibernate.pojo.Sysuser;
 import com.hibernate.service.SysuserService;
+import com.pojo.ProgressInfo;
 import com.utils.ComUtils;
 
 import contant.Contant;
@@ -34,7 +35,7 @@ import contant.Contant;
  */
 @Controller
 @RequestMapping(value="auth")
-public class AuthorityAction {
+public class AuthorityAction extends BaseAction{
 	@Autowired
 	private SysuserService sysuserService; 
 	
@@ -73,7 +74,6 @@ public class AuthorityAction {
 	public String DbIdaddSysUser(String username,String userid,String pwd,String sex,String addr,
 			String birth,String movephone,String email,String phone,String fax,String contact,String userstate,String remark,String sysid) {
 		String uuid = ComUtils.getUuid();
-		System.err.println(uuid);
 		JSONObject obj = new JSONObject();
 		obj.put("a", 1);
 		return obj.toJSONString();
@@ -94,7 +94,7 @@ public class AuthorityAction {
      */
     @RequestMapping(value="add4",method=RequestMethod.POST)
     public void addUser5(@ModelAttribute("sysuser") Sysuser sysuser) {
-        System.out.println(sysuser);
+        logger.info(sysuser.toString());
     }
     
 	@ResponseBody  

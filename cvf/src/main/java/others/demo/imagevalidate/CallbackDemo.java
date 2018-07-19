@@ -18,7 +18,6 @@ public class CallbackDemo {
             statement.registerOutParameter(2, Types.VARCHAR);//返回值
             statement.execute();
             String result = statement.getString(2);
-            System.out.println(result);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

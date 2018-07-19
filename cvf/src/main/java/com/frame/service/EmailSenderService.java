@@ -8,6 +8,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+
+import com.annotation.SysLogColumn;
 /**
  * 邮件发送
  * @author bobo
@@ -26,12 +28,7 @@ public class EmailSenderService {
 	    emailSender.javaMailSender= this.javaMailSender;
 	}
 	
-	/**
-	   * 发送简单的文本邮件
-	   * @param sendTo    收件人组
-	   * @param subject    主题
-	   * @param content    文本内容
-	   */
+	  @SysLogColumn(operationName="发送简单的文本邮件")
 	  public void sendSimpleMessage(String sendFrom, String[] sendTo, String subject, String textcontent) {
 	    SimpleMailMessage mail = new SimpleMailMessage();
 	    mail.setFrom(sendFrom);
@@ -43,14 +40,7 @@ public class EmailSenderService {
 	  }
 	  
 	  
-	  /**
-	   * 发送HTML内容格式的邮件
-	   * @param sendFrom
-	   * @param sendTo      收件人组
-	   * @param subject      主题
-	   * @param htmlContent    HTML内容
-	   * @throws Exception
-	   */
+	  @SysLogColumn(operationName="发送HTML内容格式的邮件")
 	  public void sendHtmlMessage(String sendFrom, String[] sendTo, String subject, String htmlContent) throws Exception {
 	    MimeMessage mimeMessage = emailSender.javaMailSender.createMimeMessage(); 
 	     

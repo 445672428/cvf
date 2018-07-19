@@ -31,10 +31,7 @@ public class SpringTest {
 		 
 		 
 //		 HibernateTemplate managerData = (HibernateTemplate)classPathXmlApplicationContext.getBean("hibernateTemplate");
-//		 System.out.println(managerData);
-//		 System.out.println(managerDataSource);
 //		 SqlSessionTemplate sessionTemplate = (SqlSessionTemplate)classPathXmlApplicationContext.getBean("sqlSession");
-//		 System.out.println(sessionTemplate);
 		File file = new File("C:\\DC_DAY_EAJ.sql");
 		
         InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "GBK"); //或GB2312,GB18030
@@ -55,7 +52,6 @@ public class SpringTest {
 		String rg = "\\d{2}:\\d{1,2}:\\d{1,2}.\\d{1,3}";
 		cxt = cxt.replaceAll(rg, "00:00:00");
 		//cxt = cxt.replaceAll("\\b[上|下]午\\.\\d{1,3}", "");
-		System.out.println(cxt);
 		FileUtils.appendFileWriterTxt("C:\\2.sql", cxt);
 	}
 	
@@ -81,11 +77,9 @@ public class SpringTest {
 			String d = StringUtils.strip(c1[i]);
 			String v = m2.get(d);
 			if (v==null) {
-//				System.out.println(d);
 				all.add(d);
 			}
 		}
-		System.out.println(all);
 	}
 	
 	@Test
@@ -93,7 +87,6 @@ public class SpringTest {
 		String content = "{0=湖北 武汉, 1=武汉, 2=1582, 3=2018/06/05 08:17:21, 4=今日天气实况：气温：23℃；风向/风力：西南风 1级；湿度：87%, 5=紫外线强度：弱。空气质量：较差。, 6=紫外线指数：弱，辐射较弱，涂擦SPF12-15、PA+护肤品。 健臻·血糖指数：不易波动，天气条件好，血糖不易波动，可适时进行户外锻炼。 穿衣指数：热，适合穿T恤、短薄外套等夏季服装。 洗车指数：较适宜，无雨且风力较小，易保持清洁度。 空气污染指数：较差，气象条件较不利于空气污染物扩散。。 , 7=6月4日 阴转多云, 8=19℃/28℃, 9=西北风转西南风小于3级, 10=2.gif, 11=1.gif, 12=6月5日 阴转多云, 13=19℃/29℃, 14=西南风小于3级, 15=2.gif, 17=6月6日 多云, 16=1.gif, 19=东南风转东风小于3级, 18=20℃/30℃, 21=1.gif, 20=1.gif, 23=22℃/30℃, 22=6月7日 晴转多云, 25=0.gif, 24=东南风小于3级, 27=6月8日 中雨, 26=1.gif, 29=东风小于3级, 28=21℃/29℃, 31=8.gif, 30=8.gif}";
 		String[] aStrings= content.split(", ");
 		for(String a : aStrings){
-			System.out.println(a);
 		}
 		
 	}
@@ -124,9 +117,7 @@ public class SpringTest {
 	@Test
 	public void test(){
 		String[] arg = STATION_NAMES.split("\\|");
-		System.out.println(arg.length);
 		String[][] two = new String[arg.length/5][5];
-		System.out.println(arg.length/5);
 		//13641   2728
 		for(int index =0; index < arg.length; index ++){
 			if (index == (arg.length-1)) {
@@ -142,10 +133,8 @@ public class SpringTest {
 	public static void jedis(){
 //		 ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("classpath:config/spring.xml");  
 //		 DriverManagerDataSource sqlSessionFactory = (DriverManagerDataSource) classPathXmlApplicationContext.getBean("mysqlDataSource");  
-//		 System.out.println(sqlSessionFactory);
 		Jedis jedis = new Jedis("192.168.121.128", 6379);
 		jedis.set("BOBO", "BOBO");
-		System.out.println(jedis.get("BOBO"));
 	}
 	//监听器有属性监听器 上下文监听器  session监听器 对象请求初始化和销毁监听器
 		private static Lock lock = new ReentrantLock();
@@ -153,10 +142,8 @@ public class SpringTest {
 		public static void test1() {
 			lock.lock();
 			// test1();
-			System.out.println(Calendar.getInstance().getTimeInMillis());
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 			Date date = new Date();
-			System.out.println(dateFormat.format(date));
 			lock.unlock();
 //			synchronized (DateDemo.class) {
 //				
@@ -165,20 +152,12 @@ public class SpringTest {
 			Pattern pattern = Pattern.compile(".*?(?=\\()");
 			Matcher matcher = pattern.matcher(string);
 			if (matcher.find()) {
-				System.out.println(matcher.group());
 			}
 			
 		}
 
 		private synchronized static void test2() {
 			Calendar calendar = Calendar.getInstance();
-			System.out.println(calendar.get(Calendar.YEAR));
-			System.out.println(calendar.get(Calendar.MONTH));
-			System.out.println(calendar.get(Calendar.DATE));
-			System.out.println(calendar.get(Calendar.HOUR_OF_DAY));
-			System.out.println(calendar.get(Calendar.MINUTE));
-			System.out.println(calendar.get(Calendar.SECOND));
-			System.out.println(calendar.get(Calendar.HOUR));
 
 		}
 }

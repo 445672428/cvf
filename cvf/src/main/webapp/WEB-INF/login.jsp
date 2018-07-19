@@ -6,10 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登录</title>
-<link rel="shortcut icon" href="${CONTEXTPATH }/resources/images/favicon.ico" type="image/x-icon" />
-<link rel="stylesheet" type="text/css" href="${CONTEXTPATH }/resources/css/main.css" />
-<link rel="stylesheet" type="text/css" href="${CONTEXTPATH }/resources/css/login.css" />
-<script data-main="resources/js/login" type="text/javascript" src="${CONTEXTPATH }/resources/lib/require.js" charset="utf-8"></script>
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/images/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/main.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/login.css" />
+<script data-main="resources/js/login" type="text/javascript" src="${pageContext.request.contextPath }/resources/lib/require.js" charset="utf-8"></script>
 </head>
 <script type="text/javascript">
 	var PATH = '${pageContext.request.contextPath}';
@@ -28,14 +28,14 @@
 					<p style="color:#808080;margin:10px 0 0 0;">扫一扫，直接在手机上打开</p>
 				</div>
 			</li>
-			<li class="logoTop"><a href="${CONTEXTPATH }/templet.jsp"></a></li>
+			<li class="logoTop"><a href="${pageContext.request.contextPath }/templet.jsp"></a></li>
 		</ul>
 	</div>
 </div>
 <div class="login_m">
 	<div class="login_logo"><canvas width="196px" height="49px" id="logo"></canvas></div>
 	<div class="login_boder">
-		<form id="userform" action="${CONTEXTPATH }/dologin" method="POST">
+		<form id="userform" action="${pageContext.request.contextPath }/dologin" method="POST">
 			<div class="login_padding">
 				<h2>用户名:</h2>
 				<label>

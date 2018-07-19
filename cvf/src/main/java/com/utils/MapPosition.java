@@ -5,21 +5,7 @@ import java.util.Map;
 import org.apache.commons.collections.map.HashedMap;
 
 public class MapPosition {
-
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//114.067262,22.554056
-		Map<String,Object> mp=	findNeighPosition(114.067262,22.554056,10);
-		for (Object v : mp.values()) {
-			System.out.println(v.toString());
-			
-		}
-	double km=	distance(113.96988203045626,22.554056,114.067262,22.554056);
-	System.out.println(String.valueOf(km));
-	}
-	
-	 private final static double R = 6371229; // 地球的半径
+	private final static double R = 6371229; // 地球的半径
 	 
 	
 	public static Map<String,Object> findNeighPosition(double longitude,double latitude,double distance){

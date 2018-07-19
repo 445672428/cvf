@@ -34,10 +34,8 @@ public class ShardedJedisPoolDemo {
 //            for (int i = 0; i < 100; i++) {
 //                shardedJedis.set("key_" + i, "value_" + i);
 //            }
-            System.out.println(shardedJedis.get("key_7"));
             // 从redis中获取数据
            // String value = shardedJedis.get("mytest");
-           // System.out.println(value);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

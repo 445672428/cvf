@@ -95,7 +95,7 @@ public class LogManager extends Thread {
             		i = 1;
             	}
 			}catch(Exception e){
-				System.out.println("开启日志服务错误...");
+				System.err.println("开启日志服务错误...");
 	            e.printStackTrace();
 			}
 		}
@@ -107,7 +107,7 @@ public class LogManager extends Thread {
     	try{
     		flush(true);
     	}catch(Exception e){
-    		System.out.println("关闭日志服务错误...");
+    		System.err.println("关闭日志服务错误...");
             e.printStackTrace();
     	}
     }
@@ -164,7 +164,6 @@ public class LogManager extends Thread {
         		String newFileName = Constant.CFG_LOG_PATH + "/" + lfi.lastPCDate + "/" + lfi.logFileName + "_" + TimeUtil.getPCDate() + "_"+ TimeUtil.getCurrTime() + ".log";
     			File newFile = new File(newFileName);
     			boolean flag = oldFile.renameTo(newFile);
-    			System.out.println("日志已自动备份为 " + newFile.getName() + ( flag ? "成功!" : "失败!" ) );
     			lfi.fullLogFileName = "";
     			lfi.currLogSize = 0;
     		}

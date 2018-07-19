@@ -16,7 +16,6 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor {
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
             Map<String, Object> attributes) throws Exception {
         // TODO Auto-generated method stub
-        System.out.println("Before Handshake");
         if (request instanceof ServletServerHttpRequest) {
             ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
             HttpSession session = servletRequest.getServletRequest().getSession(false);
@@ -34,9 +33,7 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor {
     }
     
     @Override
-    public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
-            Exception ex) {
-        // TODO Auto-generated method stub
+    public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Exception ex) {
         super.afterHandshake(request, response, wsHandler, ex);
     }
 }

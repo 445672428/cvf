@@ -11,7 +11,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
 
-import com.entities.DirectoryInfo;
+import com.pojo.DirectoryInfo;
 /**
  * 文件监听器类
  * @author bobo

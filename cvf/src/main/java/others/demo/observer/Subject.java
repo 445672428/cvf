@@ -15,7 +15,6 @@ public abstract class Subject {
     public void attach(Observer observer){
         
         list.add(observer);
-        System.out.println("Attached an observer");
     }
     /**
      * 删除观察者对象

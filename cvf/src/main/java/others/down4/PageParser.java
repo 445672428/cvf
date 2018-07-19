@@ -35,10 +35,8 @@ public class PageParser {
     public static void main(String[] args) throws Exception {
         Request request = new Request("https://www.zhihu.com/question/63870972",HttpMethod.GET);
         Page page = new Downloader().download(request);
-        System.out.println(page);
         Result result = new PageParser().parsePage(page);
         result.setPage(page);
         new Storer().store(result);
-        System.out.println(result);
     }
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.CacheManager;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.base.BaseAction;
-import com.entities.TAdmin;
 import com.frame.service.LoginService;
+import com.pojo.TAdmin;
 import com.utils.HttpUtils;
+import com.utils.SpringContextUtil;
 import com.utils.TimeUtils;
 
 import contant.Contant;

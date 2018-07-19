@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 
 import com.annotation.ExcelField;
 import com.google.common.collect.Lists;
-import com.utils.Reflections;
+import com.utils.ReflectionUtils;
 
 public class ExportExcel {
 	private static Logger log = LoggerFactory.getLogger(ExportExcel.class);
@@ -358,12 +358,12 @@ public class ExportExcel {
 				// Get entity value
 				try{
 					if (StringUtils.isNotBlank(ef.value())){
-						val = Reflections.invokeGetter(e, ef.value());
+						val = ReflectionUtils.invokeGetter(e, ef.value());
 					}else{
 						if (os[1] instanceof Field){
-							val = Reflections.invokeGetter(e, ((Field)os[1]).getName());
+							val = ReflectionUtils.invokeGetter(e, ((Field)os[1]).getName());
 						}else if (os[1] instanceof Method){
-							val = Reflections.invokeMethod(e, ((Method)os[1]).getName(), new Class[] {}, new Object[] {});
+							val = ReflectionUtils.invokeMethod(e, ((Method)os[1]).getName(), new Class[] {}, new Object[] {});
 						}
 					}
 					// If is dict, get dict label

@@ -28,10 +28,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.base.BaseAction;
+
 import contant.Contant;
 @Controller
 @RequestMapping(value="file")
-public class FileUploadHandlerAction {
+public class FileUploadHandlerAction extends BaseAction{
 	/**
 	 * 使用springmvc 进行文件上传
 	 * @param file
@@ -45,7 +47,8 @@ public class FileUploadHandlerAction {
 		FileOutputStream outStream = null;
 		InputStream inStream = null;
 		try {
-			outStream = new FileOutputStream("//savefilepath//"+file.getOriginalFilename());
+			
+			outStream = new FileOutputStream(Contant.TMP_DIR+file.getOriginalFilename());
 			inStream = file.getInputStream();
 			int flag = 0;
 			while((flag=inStream.read())!=-1){
@@ -118,11 +121,10 @@ public class FileUploadHandlerAction {
             BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));  
             String line = null;  
             while ((line = reader.readLine()) != null) {  
-                System.out.println(line);  
+                logger.info(line);
             }  
   
         } catch (Exception e) {  
-            System.out.println("发送POST请求出现异常！" + e);  
             e.printStackTrace();  
         }  
     }  

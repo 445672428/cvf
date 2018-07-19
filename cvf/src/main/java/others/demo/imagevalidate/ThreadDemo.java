@@ -8,11 +8,9 @@ public class ThreadDemo extends Thread{
     }
     public void run() {
         for(int i = 0; i < 1000;i++){
-            System.out.println("第"+i+"在运行叫:"+this.name);
             try {
                 sleep((int)Math.random()*10);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

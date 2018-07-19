@@ -17,7 +17,7 @@
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/sockjs.js" charset="utf-8"></script>
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/jszip.js" charset="utf-8"></script>
 <script type="text/javascript" src="${CONTEXTPATH }/resources/lib/plugin/setStep.js" charset="utf-8"></script>
-<script type="text/javascript" src="${CONTEXTPATH }/resources/js/upload.js?ver=<%=new Date().getTime() %>" charset="utf-8"></script>
+<script type="text/javascript" src="${CONTEXTPATH }/resources/js/upload.js" charset="utf-8"></script>
 <style type="text/css">
 input[type='file']{
 	height: 30px;

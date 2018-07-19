@@ -20,7 +20,6 @@ public class Send {
         // 消息内容
         String message = "id=1001的商品删除了";
         channel.basicPublish(EXCHANGE_NAME, "delete", null, message.getBytes());
-        System.out.println(" [x] Sent '" + message + "'");
 
         channel.close();
         connection.close();

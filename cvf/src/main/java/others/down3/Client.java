@@ -71,11 +71,6 @@ public class Client {
 		while (URLPool.getInstance().hasNext()) {
 			String URL = URLPool.getInstance().popURL();
 			try {
-				System.out
-						.println("--------------URL------------------------------");
-				System.out.println(URL);
-				System.out
-						.println("--------------HouseList--------------------------");
 				String content = NetUtils.httpGet(URL);
 				Document doc = Jsoup.parse(content);
 				List<LianJiaHouse> list = LianJiaDocParser.getHouseList(doc);
@@ -90,7 +85,6 @@ public class Client {
 
 				// dh.batchSaveHouse(list);
 
-				System.out.println("");
 			} catch (Exception e) {
 				URLPool.getInstance().pushURL(URL);
 				e.printStackTrace();
@@ -102,22 +96,18 @@ public class Client {
 	}
 
 	private static void con(String line) {
-		System.out.println(line);
 	}
 
 	private static void line() {
-		System.out.println("--------------------");
 	}
 
 	private static String getStr(String request) {
 		Scanner sc = new Scanner(System.in);
-		System.out.print(request);
 		return sc.nextLine();
 	}
 
 	private static int getInt(String request) {
 		Scanner sc = new Scanner(System.in);
-		System.out.print(request);
 		return sc.nextInt();
 	}
 

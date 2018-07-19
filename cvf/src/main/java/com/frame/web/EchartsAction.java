@@ -24,7 +24,6 @@ public class EchartsAction extends BaseAction{
 	@RequestMapping(value="/upimg",method=RequestMethod.POST)
 	public void solvedUploadImage(String content,HttpServletRequest request,HttpServletResponse response) throws IOException {
 			OutputStream out = response.getOutputStream();
-			System.out.println(content);
 	        try {
 	            String fileName = "";
 	            response.reset();

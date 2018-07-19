@@ -1,39 +1,9 @@
 Ext.Loader.setConfig({enabled: true});
 
 Ext.onReady(function () {
-	init4();
+	init3();
 });
 
-function init4(){
-	 Ext.create('Ext.container.Viewport', {
-		 layout: {
-	            type: 'border',
-	            padding: '5'
-	        },
-	     items:[{
-	            region: 'center',
-	            stateful: true,
-	            stateId: 'stateGridExample',
-	            xtype: 'grid',
-	            store:teststore,
-	            columns: [{
-	                text: 'First Name',
-	                dataIndex: 'firstName'
-	            }, {
-	                text: 'Last Name',
-	                dataIndex: 'lastName'
-	            }]
-	     }]
-	 });
-	var teststore = Ext.create('Ext.data.Store', {
-	     data : [
-	             {firstName: 'Ed',    lastName: 'Spencer'},
-	             {firstName: 'Tommy', lastName: 'Maintz'},
-	             {firstName: 'Aaron', lastName: 'Conran'},
-	             {firstName: 'Jamie', lastName: 'Avins'}
-	         ]
-    });
-}
 
 function init3(){
 	 var searchAction = Ext.create('Ext.Button', {

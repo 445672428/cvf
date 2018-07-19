@@ -795,8 +795,6 @@ public class DateUtils {
 	  }
 
 	  public static void main(String[] args) throws ParseException {
-//	    System.out.println(DateUtils.formatDate("yyyy-MM-dd HH:mm:ss",
-//	        getFallAfterSomeHour(new Date(), 3)));
 	    Date d = new Date();
 	    d.setHours(0);
 	    d.setMinutes(0);
@@ -804,7 +802,6 @@ public class DateUtils {
 	    Date d2 = new Date();
 	   d2. setDate(new Date().getDate() + 5);
 	   List l =  getDatesOf2Date(d,d2);
-	   System.out.println(l);
 	   
 	  }
 

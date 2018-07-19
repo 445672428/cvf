@@ -1,12 +1,15 @@
 package com.frame.intercept;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.entities.TAdmin;
+import com.pojo.TAdmin;
 
 import contant.Contant;
 
@@ -23,31 +26,17 @@ public class LoginInterceptor implements HandlerInterceptor{
 		String contextPath = request.getContextPath();
 		String  url = uri.substring(contextPath.length());
 		request.setAttribute("CONTEXTPATH", request.getContextPath());
+		Enumeration en = request.getParameterNames();
+		HttpSession session = request.getSession();
+		System.out.println("session:"+session);
+		while (en.hasMoreElements()) {
+			String name = (String) en.nextElement();
+		}
 		TAdmin user = (TAdmin)request.getSession().getAttribute(Contant.USER_KEY);
 		if (null==user) {
-			response.sendRedirect(request.getSession().getServletContext().getContextPath()+"/"+Contant.WELCOME_URL);
+			response.sendRedirect(request.getSession().getServletContext().getContextPath()+"/");
 			return false;
 		}
-/*		if (!need) {
-			
-			 * 没权限进行对应的处理
-			 * 
-			User user = (User)request.getSession().getAttribute(Contant.USER_KEY);
-			if (null==user) {
-				String requestType = request.getHeader("X-Requested-With");
-				if (StringUtils.isBlank(requestType)&&requestType.equals("XMLHttpRequest")) {
-					response.getWriter().print("没有权限登录");
-					return false;
-				}else{
-					response.sendRedirect(contextPath+Contant.LOGIN_URL);
-					return false;
-				}
-			}
-			need = authority(url, null, response);
-			if (!need) {
-				
-			}
-		}*/
 		return true;
 	}
 	 /** 

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.ProgressListener;
 import org.springframework.stereotype.Component;
 
-import com.entities.ProgressInfo;
+import com.pojo.ProgressInfo;
 
 import contant.Contant;
 @Component

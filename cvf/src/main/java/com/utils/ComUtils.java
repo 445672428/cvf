@@ -39,7 +39,6 @@ public class ComUtils {
             hostAddr = addr.getHostAddress();  
         }  
         catch (final IOException e) {  
-            System.err.println("[UniqID] Get HostAddr Error"+e);  
             hostAddr = String.valueOf(System.currentTimeMillis());  
         }  
   
@@ -50,7 +49,6 @@ public class ComUtils {
         hostAddr = hostAddr.substring(hostAddr.length()-2).replace(".", "0");  
           
         if(isOutputInfo){  
-            System.out.println("[UniqID]hostAddr is:" + hostAddr + "----length:"+hostAddr.length());  
         }  
     }  
       
@@ -84,7 +82,6 @@ public class ComUtils {
     public static String getUniqTime() {  
         String time = timer.getCurrentTime();  
         if(isOutputInfo){  
-            System.out.println("[UniqID.getUniqTime]" + time +"----length:"+ time.length());  
         }  
         return time;  
     }  
@@ -103,8 +100,6 @@ public class ComUtils {
         sb.append(getUniqThreadCode());  
         sb.append(randomNumber);  
         if (isOutputInfo) {  
-            System.out.println("[UniqID.randomNumber]" + randomNumber+"----length:"+String.valueOf(randomNumber).length());  
-            System.out.println("[UniqID.getUniqID]" + sb.toString()+"----length:"+String.valueOf(sb).length());  
         }  
         return sb.toString();  
     }  
@@ -112,7 +107,6 @@ public class ComUtils {
     public static String getUniqThreadCode(){  
         String threadCode = StringUtils.left(String.valueOf(Thread.currentThread().hashCode()),9);  
         if (isOutputInfo) {  
-            System.out.println("[UniqID.getUniqThreadCode]" +threadCode+"----length:"+threadCode.length());  
         }  
         return StringUtils.leftPad(threadCode, 9, "0");  
     }  

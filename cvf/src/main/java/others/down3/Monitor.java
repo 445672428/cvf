@@ -40,21 +40,14 @@ public class Monitor {
 		while(URLPool.getInstance().hasNext()){
 			String URL = URLPool.getInstance().popURL();
 			try{
-				System.out.println("--------------URL------------------------------");
-				System.out.println(URL);
-				System.out.println("--------------HouseList--------------------------");
 				String content = NetUtils.httpGet(URL);
 				Document doc = Jsoup.parse(content);
 				List<LianJiaHouse> list = LianJiaDocParser.getHouseList(doc);
 				for(LianJiaHouse house : list){
 					String s = house.getHouseTitle() + "\t" + house.getHouseLocation() + "\t" + house.getHousePrice() + "\t" + house.getPricePerSquare() + "\t" + "\t降价:" + house.isDown();
-					System.out.println(s);
 				}
 				
 				dh.batchSaveHouse(list);
-				
-				System.out.println("\t抓取結束");
-				
 				
 			} catch(Exception e){
 				URLPool.getInstance().pushURL(URL);

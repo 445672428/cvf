@@ -32,6 +32,5 @@ public class Client {
 
      proxy.request();  
      //打印出该代理实例的名称  
-     System.out.println(proxy.getClass().getName());  
  }  
 } 

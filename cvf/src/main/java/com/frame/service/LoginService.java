@@ -1,8 +1,6 @@
 package com.frame.service;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -14,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.annotation.SysLogColumn;
 import com.base.BaseService;
-import com.entities.TAdmin;
-import com.utils.SysDateFormat;
+import com.pojo.TAdmin;
+import com.utils.TimeUtils;
 @Service
 public class LoginService extends BaseService{
 	
@@ -43,7 +41,7 @@ public class LoginService extends BaseService{
 		}
 		
 		Map<String, Object> map = list.get(0);
-		String time = SysDateFormat.getCurrentDateStringAll();
+		String time = TimeUtils.getCurrentDateStringAll();
 		Timestamp timestamp = Timestamp.valueOf(time);
 		Integer login_count = map.get("login_count")==null?0:(Integer)map.get("login_count");
 		login_count += 1;
@@ -71,7 +69,7 @@ public class LoginService extends BaseService{
 		return tUser;
 	}
 	
-	
+	@SysLogColumn(operationName="实时检查用户名是否存在")
 	public boolean checkUserName(String name) {
 		String sql = "select count(*) from t_admin where admin_name='"+name+"' limit 1";
 		Integer n = mysqlJdbcTemplate.queryForObject(sql, Integer.class);

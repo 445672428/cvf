@@ -8,8 +8,8 @@
 		
 	<script src="${pageContext.request.contextPath}/resources/lib/jQuery/jquery2.1.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/bootstrap/js/bootstrap.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/awesome/b.tabs.js" ></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/awesome/menu.js" ></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/tabs.js" ></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/menu.js" ></script>
 		
 	<style type="text/css">
 		div.menuSideBar { }

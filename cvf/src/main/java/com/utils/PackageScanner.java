@@ -52,7 +52,6 @@ public class PackageScanner {
 		sb.append('.');
 		sb.append(trimExtension(shortName));
 		// 打印出结果
-		System.out.println(sb.toString());
 		return sb.toString();
 	}
 

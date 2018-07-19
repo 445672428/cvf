@@ -10,18 +10,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import com.entities.Friends;
-import com.entities.TAdmin;
+import com.annotation.SysLogColumn;
+import com.pojo.Friends;
+import com.pojo.TAdmin;
 @Service
 public class SocketService {
 	@Autowired
 	@Qualifier("mysqlJdbcTemplate")
 	private JdbcTemplate mysqlJdbcTemplate;
-	/**
-	 * 查询对应的好友表
-	 * @param user
-	 * @return
-	 */
+	
+	@SysLogColumn(operationName="查询对应的好友表")
 	public Map<String, List<Friends>> findMyAllFriends(TAdmin user) {
 		String sql = "select id,group_name from t_person_friends_group where user_id = 1 ";
 		List<Map<String, Object>> list = mysqlJdbcTemplate.queryForList(sql);
