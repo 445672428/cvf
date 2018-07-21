@@ -28,19 +28,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.annotation.AccessColumn;
 import com.base.BaseAction;
 
 import contant.Contant;
 @Controller
 @RequestMapping(value="file")
 public class FileUploadHandlerAction extends BaseAction{
-	/**
-	 * 使用springmvc 进行文件上传
-	 * @param file
-	 * @param request
-	 * @param response
-	 * @return
-	 */
+
+	@AccessColumn(operationName="使用springmvc 进行文件上传")
 	@RequestMapping(value="upload",method=RequestMethod.POST,produces=MediaType.TEXT_PLAIN_VALUE)
 	@ResponseBody
 	public void serverUpload(@RequestParam("file") MultipartFile file,HttpServletRequest request,HttpServletResponse response){
@@ -62,10 +58,8 @@ public class FileUploadHandlerAction extends BaseAction{
 		}
 		request.setAttribute("fileName", file.getOriginalFilename());
 	}
-	/**
-	 * 文件上传到远程服务器上
-	 * @param files
-	 */
+
+	@AccessColumn(operationName="文件上传到远程服务器上")
 	public void uploadToFarService(HashMap<String, InputStream> files) {
         try {  
             String BOUNDARY = "---------7d4a6d158c9"; // 定义数据分隔线  
@@ -129,12 +123,7 @@ public class FileUploadHandlerAction extends BaseAction{
         }  
     }  
 	
-	/**
-	 * 文件下载
-	 * @param fileNames
-	 * @param request
-	 * @param response
-	 */
+	@AccessColumn(operationName="文件下载")
 	@RequestMapping(value="down")
 	public void downfileUpload(String[] fileNames,HttpServletRequest request,HttpServletResponse response){
 		for(String fileName : fileNames){
@@ -173,14 +162,8 @@ public class FileUploadHandlerAction extends BaseAction{
 			}
 		}
 	}
-	/**
-	 * @description: 通过URL下载
-	 * @param photoUrl
-	 * @param fileName
-	 * @return      
-	 * @author:  zhouzhian
-	 * @date: 2017-6-22
-	 */
+
+	@AccessColumn(operationName="通过URL下载")
 	public boolean downUrlAs(String photoUrl, String fileName) {
 		try {
 			URL url = new URL(photoUrl);

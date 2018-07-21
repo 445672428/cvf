@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.annotation.AccessColumn;
 import com.base.BaseAction;
 import com.frame.multil.service.ImageService;
 import com.utils.TimeUtils;
@@ -22,6 +23,7 @@ public class ImageController extends BaseAction{
 	private ImageService imageService;
 	@RequestMapping(value="images",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody()
+	@AccessColumn(operationName="显示美女图片")
 	public String showImages(int index,int size) {
 		List<Map<String, Object>> list = imageService.queryForPageImages(index,size);
 		JSONObject object = new JSONObject();
@@ -29,10 +31,9 @@ public class ImageController extends BaseAction{
 		return JSONObject.toJSONString(object,SerializerFeature.WriteMapNullValue); 
 	}
 	
-	/**
-	 * 记忆轴
-	 */
+
 	@RequestMapping("/memory")
+	@AccessColumn(operationName="记忆轴")
 	public ModelAndView yourMemoryPage(String year,String user) {
 		if (null==year) {
 			year = TimeUtils.getCurrYear();

@@ -17,8 +17,14 @@ import com.qq.connect.javabeans.qzone.PageFansBean;
 import com.qq.connect.javabeans.qzone.UserInfoBean;
 import com.qq.connect.javabeans.weibo.Company;
 import com.qq.connect.oauth.Oauth;
-
+/**
+ * 授权页面
+ * @author bobo
+ *
+ */
 public class AfterLoginRedirectServlet extends HttpServlet {
+	private static final long serialVersionUID = -688525215894354623L;
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		doPost(request, response);

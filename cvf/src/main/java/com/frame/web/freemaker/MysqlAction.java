@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.annotation.AccessColumn;
 import com.base.BaseAction;
 import com.hibernate.pojo.ColumnsPriv;
 import com.hibernate.pojo.CondInstances;
@@ -180,7 +181,7 @@ public class MysqlAction extends BaseAction{
 		put(76,"USER_PRIVILEGES");
 		put(77,"VIEWS");
 	}};
-	
+	@AccessColumn(operationName="当前mysql库freemaker模板数据获取")
 	@RequestMapping(value="/host",method=RequestMethod.GET)
 	public ModelAndView queryHost(ModelAndView view,@RequestParam(value = "p", required = false, defaultValue = "1")  Integer p){
 		List<Map<String, Object>> results = new ArrayList<Map<String,Object>>();

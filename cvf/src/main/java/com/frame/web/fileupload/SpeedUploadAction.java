@@ -1,7 +1,6 @@
 package com.frame.web.fileupload;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.annotation.AccessColumn;
 import com.base.BaseSaveFile;
 import com.frame.service.FileService;
 import com.pojo.FileInfo;
@@ -27,6 +27,7 @@ public class SpeedUploadAction extends BaseSaveFile{
 	
 	@ResponseBody
     @RequestMapping(value = "/IsMD5Exist", method = RequestMethod.POST)
+	@AccessColumn(operationName="检查文件MD5值")
     public String bigFileUpload(String fileMd5, String fileName, String fileID) {
 
         try {
@@ -41,21 +42,10 @@ public class SpeedUploadAction extends BaseSaveFile{
             return "this file is not exist";
         }
     }
-	 /**
-     * @param guid             临时文件名
-     * @param md5value         客户端生成md5值
-     * @param chunks           分块数
-     * @param chunk            分块序号
-     * @param id               文件id便于区分
-     * @param name             上传文件名
-     * @param type             文件类型
-     * @param lastModifiedDate 上次修改时间
-     * @param size             文件大小
-     * @param file             文件本身
-     * @return
-     */
+
     @ResponseBody
     @RequestMapping(value = "/bigfileup")
+    @AccessColumn(operationName="获取临时文件名 ，客户端生成md5值，分块数，分块序号，文件id便于区分，上传文件名，文件类型，上次修改时间，文件大小，文件本身")
     public String fileUpload(String guid,String md5value,String chunks, String chunk,String id,String name,String type,
     		String lastModifiedDate,int size,MultipartFile file) {
         String fileName;
@@ -87,16 +77,8 @@ public class SpeedUploadAction extends BaseSaveFile{
 
         return "{jsonrpc = \"2.0\",id = id,filePath = \"/Upload/\" + fileFullName}";
     }
-	/**
-	 * 单文件上传
-	 * @param id
-	 * @param name
-	 * @param type
-	 * @param lastModifiedDate
-	 * @param size
-	 * @param file
-	 * @return
-	 */
+
+    @AccessColumn(operationName="单文件上传")
 	@ResponseBody
 	@RequestMapping(value = "/fileup", method = RequestMethod.POST)
 	public String refileUpload(@RequestParam("id") String id,
@@ -122,6 +104,8 @@ public class SpeedUploadAction extends BaseSaveFile{
 
 		return "{jsonrpc = \"2.0\",id = id,filePath = \"/Upload/\" + fileFullName}";
 	}
+    
+    @AccessColumn(operationName="图片上传")
 	@ResponseBody
     @RequestMapping(value = "/imageup", method = RequestMethod.POST)
     public String fileUpload(@RequestParam("id") String id,
@@ -154,14 +138,8 @@ public class SpeedUploadAction extends BaseSaveFile{
 
         return "{jsonrpc = \"2.0\",id = id,filePath = \"/Upload/\" + fileFullName}";
     }
-	/**
-	 * 多个文件选择器上传文件，一个选择器对应一个文件
-	 * @param type
-	 * @param name
-	 * @param file
-	 * @return
-	 * @throws Exception
-	 */
+
+    @AccessColumn(operationName="多个文件选择器上传文件，一个选择器对应一个文件")
 	@ResponseBody
     @RequestMapping(value = "/entityUp", method = RequestMethod.POST)
     public ResponseEntity<Void> fileUpload(@RequestParam("type") String type,

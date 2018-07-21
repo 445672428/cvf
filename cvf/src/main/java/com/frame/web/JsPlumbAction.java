@@ -3,10 +3,13 @@ package com.frame.web;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,10 +18,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.annotation.AccessColumn;
 import com.base.BaseAction;
 import com.frame.service.JsPlumbService;
 import com.frame.service.SysService;
 import com.pojo.ResultMeta;
+import com.pojo.UpTable;
+import com.pojo.UpTable.Data;
 
 @Controller
 @RequestMapping(value="jsplumb")
@@ -30,7 +36,7 @@ public class JsPlumbAction extends BaseAction{
 	@Autowired
 	@Qualifier("mysqlJdbcTemplate")
 	private JdbcTemplate mysqlJdbcTemplate;
-	
+	@AccessColumn(operationName="jsPlumb测试页面")
 	@RequestMapping(value="plumb",method=RequestMethod.GET)
 	public ModelAndView welcomeJsPlumb(){
 		JSONArray results = jsPlumbService.queryWelcomeJsPlumb();
@@ -38,14 +44,14 @@ public class JsPlumbAction extends BaseAction{
 		view.addObject("results", results);
 		return view;
 	}
-	
+	@AccessColumn(operationName="表的字段信息")
 	@RequestMapping(value="tableinfo",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String queryOneTableDetail(@RequestParam String dbname,@RequestParam String tableName,@RequestParam String schema ){
 		JSONArray array = sysService.querySelectOneTable(dbname,tableName,schema);
 		return array.toJSONString();
 	}
-	
+	@AccessColumn(operationName="库里面所有表信息")
 	@RequestMapping(value="dbtables",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String queryDBAllTables(@RequestParam String dbname,@RequestParam Integer limit,@RequestParam Integer offset,
@@ -80,7 +86,9 @@ public class JsPlumbAction extends BaseAction{
         object.put("page", offset);
 		return object.toJSONString();
 	}
-	@RequestMapping(value="tableindb",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
+	
+	@AccessColumn(operationName="表是否存在当前库")
+	@RequestMapping(value="tableindb",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public ResultMeta checkTableInDB(String tableName,String dbName){
 		int cnt = sysService.queryIsInDB(tableName,dbName);
@@ -89,6 +97,16 @@ public class JsPlumbAction extends BaseAction{
 		if(cnt==0){
 			meta.success("ok");
 		}
+		return meta;
+	}
+	@AccessColumn(operationName="在当前库创建表信息")
+	@RequestMapping(value="createtable",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public ResultMeta createTableInDB(HttpServletRequest request,@RequestBody UpTable upTable){
+		List<Data> datas = upTable.getDatas();
+		executeToTable(datas,upTable.getTableName());
+		ResultMeta meta = new ResultMeta();
+		meta.failure("存在同名表");
 		return meta;
 	}
 }

@@ -73,6 +73,16 @@
         </aop:aspect>
     </aop:config> 
     
+    <!-- 配置控制层访问切面 -->
+    <bean id="accessLogAspect" class="com.annotation.aspect.AccessLogAspect" />
+    <aop:config>
+        <aop:pointcut expression="execution(* com.frame.web.*.*(..))" id="accessLogPointcut"/>
+        <aop:aspect id="accessLogInsert"  ref="accessLogAspect" order="1">
+            <aop:before method="beforeAdvice" pointcut-ref="sysLogPointcut"/>
+        </aop:aspect>
+    </aop:config> 
+     
+        
     <!-- cacheManager工厂类，指定ehcache.xml的位置 -->
     <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
          <property name="configLocation" value="classpath:config/ehcache.xml" />

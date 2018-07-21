@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.annotation.AccessColumn;
 import com.base.BaseAction;
 import com.frame.service.ConfigService;
 import com.pojo.TAdmin;
@@ -28,12 +29,13 @@ public class PageController extends BaseAction{
 	@Autowired
 	private ConfigService configService;
 	
-	
+	@AccessColumn(operationName="访问页")
 	@RequestMapping(value="/rest",method=RequestMethod.GET)
 	public String restPage(@RequestParam("page")String page){
 		return page;
 	}
 	
+	@AccessColumn(operationName="个人页")
 	@RequestMapping(value="/personal",method=RequestMethod.GET)
 	public ModelAndView toPersonal(){
 		ModelAndView view = new ModelAndView("/views/personal");
@@ -41,7 +43,7 @@ public class PageController extends BaseAction{
 		return view;
 	}
 	
-	
+	@AccessColumn(operationName="主页访问")
 	@RequestMapping(value="/home",method=RequestMethod.GET)
 	public ModelAndView toHome(HttpServletRequest request,HttpServletResponse response){
 		TAdmin tUser = (TAdmin)request.getSession().getAttribute(Contant.USER_KEY);
@@ -67,10 +69,12 @@ public class PageController extends BaseAction{
 		}
 		return view;
 	}
+	@AccessColumn(operationName="首页访问")
 	@RequestMapping(value={"","/","/first","/login"})
 	public String toLogin(){
 		return "login";
 	}
+	@AccessColumn(operationName="注册页面访问")
 	@RequestMapping(value="/register",method=RequestMethod.GET)
 	public String toRegister(){
 		return "register";
@@ -79,6 +83,7 @@ public class PageController extends BaseAction{
 	public String toIndex(){
 		return "index";
 	}
+	@AccessColumn(operationName="作者信息页访问")
 	@RequestMapping(value="/author",method=RequestMethod.GET)
 	public String toAuthor(){
 		return "author";

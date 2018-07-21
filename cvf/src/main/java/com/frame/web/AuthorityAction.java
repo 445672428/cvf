@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.annotation.AccessColumn;
 import com.base.BaseAction;
 import com.hibernate.pojo.Sysuser;
 import com.hibernate.service.SysuserService;
@@ -39,11 +40,7 @@ public class AuthorityAction extends BaseAction{
 	@Autowired
 	private SysuserService sysuserService; 
 	
-	/**
-	 * 个人信息页面
-	 * @param id
-	 * @return
-	 */
+	@AccessColumn(operationName="个人信息页面")
 	@RequestMapping(value="module",method=RequestMethod.POST)
 	public ModelAndView personalInfo(@RequestParam(value = "id", defaultValue = "basic") String id){
 		ModelAndView v = new ModelAndView("/views/personal");
@@ -54,49 +51,7 @@ public class AuthorityAction extends BaseAction{
 		return v;
 	}
 	
-	
-	/**
-	 * 使用对象接收数据
-	 * @param sysuser
-	 */
-	@RequestMapping(value="add",method=RequestMethod.POST)
-	public void addSysUser(Sysuser sysuser) {
-		String uuid = ComUtils.getUuid();
-		sysuser.setId(uuid);
-		sysuserService.save(sysuser);
-	}
-	/**
-	 * 使用对应参数接收
-	 * @return
-	 */
-	@RequestMapping(value="add2",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-	@ResponseBody
-	public String DbIdaddSysUser(String username,String userid,String pwd,String sex,String addr,
-			String birth,String movephone,String email,String phone,String fax,String contact,String userstate,String remark,String sysid) {
-		String uuid = ComUtils.getUuid();
-		JSONObject obj = new JSONObject();
-		obj.put("a", 1);
-		return obj.toJSONString();
-	}
-	/**
-	 * 使用json对象接收数据
-	 * @param sysuser
-	 */
-	@RequestMapping(value="add3",method=RequestMethod.POST,consumes="application/json")
-	public void addBodySysUser(@RequestBody Sysuser sysuser) {
-		String uuid = ComUtils.getUuid();
-		sysuser.setId(uuid);
-		sysuserService.save(sysuser);
-	}
-    /**
-     * 使用@ModelAttribute注解获取POST请求的FORM表单数据
-     * @return
-     */
-    @RequestMapping(value="add4",method=RequestMethod.POST)
-    public void addUser5(@ModelAttribute("sysuser") Sysuser sysuser) {
-        logger.info(sysuser.toString());
-    }
-    
+	@AccessColumn(operationName="上传进度条")    
 	@ResponseBody  
 	@RequestMapping(value = "admin/common/getProgress", method = RequestMethod.GET)  
 	public String getProgress(HttpServletRequest request, HttpServletResponse response) {  

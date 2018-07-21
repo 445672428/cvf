@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.annotation.AccessColumn;
 import com.qq.connect.QQConnectException;
 import com.qq.connect.api.OpenID;
 import com.qq.connect.javabeans.AccessToken;
@@ -19,6 +20,7 @@ import com.qq.connect.oauth.Oauth;
 @RequestMapping("/threeparty")
 public class QQPartyLoginController {
 	@RequestMapping("/login")
+	@AccessColumn(operationName="qq第三方登录认证授权")
     public String login(HttpServletRequest request, HttpServletResponse response, HttpSession session)
             throws IOException {
         try {
@@ -44,6 +46,7 @@ public class QQPartyLoginController {
     }
 	
     @RequestMapping("/inQQ")
+	@AccessColumn(operationName="进入qq授权页面")
     public void inQQ(Model model, HttpServletResponse response,
             HttpServletRequest request) {
         try {

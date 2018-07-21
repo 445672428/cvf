@@ -27,7 +27,7 @@ public class ConnectionHolderDefault implements ConnectionHolder {
 		try {
 			Class.forName(db.getDriver());
 			connection = DriverManager.getConnection(db.getUrl(),db.getUsername(), db.getPassword());
-
+			logger.info(sql);
 			statement = connection.prepareStatement(sql,ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 			statement.setFetchSize(LIMIT);
 			resultSet = statement.executeQuery();
@@ -63,6 +63,7 @@ public class ConnectionHolderDefault implements ConnectionHolder {
 			Class.forName(db.getDriver());
 			connection = DriverManager.getConnection(db.getUrl(),db.getUsername(), db.getPassword());
 			statement = connection.createStatement();
+			logger.info(sql);
 			cnt = statement.executeUpdate(sql);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -81,6 +82,7 @@ public class ConnectionHolderDefault implements ConnectionHolder {
 			Class.forName(db.getDriver());
 			connection = DriverManager.getConnection(db.getUrl(),db.getUsername(), db.getPassword());
 			statement = connection.createStatement();
+			logger.info(sql);
 			cnt = statement.execute(sql);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -98,6 +100,7 @@ public class ConnectionHolderDefault implements ConnectionHolder {
 			Class.forName(db.getDriver());
 			connection = DriverManager.getConnection(db.getUrl(),db.getUsername(), db.getPassword());
 			statement = connection.createStatement();
+			logger.info(sql);
 			statement.execute(sql);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -115,6 +118,7 @@ public class ConnectionHolderDefault implements ConnectionHolder {
 			Class.forName(db.getDriver());
 			connection = DriverManager.getConnection(db.getUrl(),db.getUsername(), db.getPassword());
 			statement = connection.createStatement();
+			logger.info(sql);
 			cnt = statement.execute(sql);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -134,6 +138,7 @@ public class ConnectionHolderDefault implements ConnectionHolder {
 			Class.forName(db.getDriver());
 			connection = DriverManager.getConnection(db.getUrl(),db.getUsername(), db.getPassword());
 			statement = connection.createStatement();
+			logger.info(sql);
 			resultSet = statement.executeQuery(sql);
 			while(resultSet.next()){
 				cnt = resultSet.getInt(1);
@@ -145,8 +150,7 @@ public class ConnectionHolderDefault implements ConnectionHolder {
 		}
 		return cnt;
 	}
-	private void close(Connection connection, Statement statement,
-			ResultSet resultSet) {
+	private void close(Connection connection, Statement statement,ResultSet resultSet) {
 		try {
 			if (connection != null && !connection.isClosed()) {
 				connection.close();

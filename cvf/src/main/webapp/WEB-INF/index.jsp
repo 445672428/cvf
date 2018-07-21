@@ -517,9 +517,15 @@
 			    </div>
            </div>
            <div id="eight" class="tab-pane">
+          	   <div id="selectBar" class="btn-group">
+          	   	   <span style="margin-left: 18px;">选择库:</span>
+          	       <select class="form-control" style="width: 180px;display: inline;">
+	          	   		<option>1</option>
+	          	   </select>
+		       </div>
 			   <table id="dbtableDefTb" 
 			   		   data-toggle="table" 
-			   		   data-toolbar="#toolbar"
+			   		   data-toolbar="#selectBar"
 			           data-search="true"
 			           data-show-refresh="true"
 			           data-show-toggle="true"
@@ -559,12 +565,12 @@
 	                            <table>
 	                                <tr>
 	                                    <td>
-	                                    	表名:<input value="" placeholder="表名不能为空" class="form-control" id="destTableName"/>
+	                                    	<span>表名:</span><input value="" placeholder="表名不能为空" style="width: 180px;display: inline;" class="form-control" id="destTableName"/>
 	                                    </td>
 	                                    <td>
 	                                    	目标库选择：
-	                                    	<select id ="destDB" name="destDB" class="form-control" title="请选择">
-	                                    		<option value="datas">datas</option>	
+	                                    	<select id ="destDB" name="destDB" style="width: 180px;display: inline;" class="form-control" title="请选择">
+	                                    		<option value="我是波波2">我是波波2</option>	
 	                                    	</select>
 										</td>
 	                                </tr>
@@ -859,11 +865,12 @@ function submitNewTable(){
 	var datas = $tableRight.bootstrapTable('getData');
 	var tableName = $("#destTableName").val();
 	var dbName = $("#destDB option:selected").val();
-	
-	
-	
+	if(''===$.trim(dbName)){
+		alert("填写要创建的表名！");
+		return ;
+	}
 	if(datas.length==0){
-		alert("至少需要有一个字段");
+		alert("至少需要有一个字段！");
 		return;
 	}else{
 		var flag = false;
@@ -885,13 +892,40 @@ function submitNewTable(){
 			}
 		}
 		if(flag){
-			alert("字段名不能重复");
+			alert("字段名不能重复！");
 			return;
 		}
 	}
 	
 	//进行表校验
-	
+    var isIn = false;
+	$.ajax({type: "POST",async:false,url: '${CONTEXTPATH }/jsplumb/tableindb',data:{tableName:tableName,dbName:dbName},dataType:'json',
+        success: function(data){
+        	if(data.meta.success){
+        		isIn = true;
+        	}else{
+        		alert(data.meta.message);
+        	}
+       },
+       error : function(data){
+    	   alert("数据查询失败！");
+       }
+   });
+	if(!isIn){
+		return;
+	}
+	//进行表创建 和数据流程 数据保存
+	var uptable = {tableName:tableName,dbName:dbName,datas:datas};
+	$.ajax({type: "POST",async:false,url: '${CONTEXTPATH }/jsplumb/createtable',data:JSON.stringify(uptable),dataType:'json',
+		contentType:'application/json;charset=utf-8',success: function(data){
+        	if(data.meta.success){
+        		alert(data.meta.message);
+        		flag = true;
+        	}
+       },
+       error : function(data){
+       }
+   });
 	
 }
 </script>
@@ -1424,20 +1458,9 @@ function changepic() {
 
 <script type="text/javascript">
 $(function(){
-	
     $("#stafffrom,#groupform,#sourceform,#elementform,#appform").ajaxForm(function(data){    
     	
      });
-	
-	var parms = { host : '1',db:'1',user:'1'};
-    $.ajax({type: "POST",url: '${CONTEXTPATH }/auth/add2.do',data:JSON.stringify(parms),dataType:'json',
-        contentType:'application/json',success: function(data){
-
-       },
-       error : function(data){
-       
-       }
-   });
 })
 
 </script>

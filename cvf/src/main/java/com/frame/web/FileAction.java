@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.annotation.AccessColumn;
 import com.frame.service.FileService;
 @Controller
 public class FileAction {
@@ -14,15 +15,7 @@ public class FileAction {
 	@Autowired
 	private FileService fileService;
 	
-	/**
-	 * 创建文件夹
-	 * @param userid
-	 * @param filename
-	 * @param parentid
-	 * @param level
-	 * @param uuid
-	 * @return
-	 */
+	@AccessColumn(operationName="创建文件夹")
 	@RequestMapping(value="filecreate",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String filecreate(String userid,String filename,String parentid,Integer level,String uuid) {
@@ -35,15 +28,7 @@ public class FileAction {
 		return object.toString();
 	}
 	
-	/**
-	 * 查询当前用户的文件夹 和文件
-	 * @param userid
-	 * @param filename
-	 * @param parentid
-	 * @param level
-	 * @param uuid
-	 * @return
-	 */
+	@AccessColumn(operationName="查询当前用户的文件夹 和文件")
 	@RequestMapping(value="queryfiles",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String querycreate(String userid,String parentid,Integer level) {
@@ -51,15 +36,7 @@ public class FileAction {
 		return object.toString();
 	}
 	
-	/**
-	 * 查询当前用户的文件夹 和文件
-	 * @param userid
-	 * @param filename
-	 * @param parentid
-	 * @param level
-	 * @param uuid
-	 * @return
-	 */
+	@AccessColumn(operationName="查询当前用户的文件夹 和文件")
 	@RequestMapping(value="delfiles",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String delCurrentFile(String userid,String parentid,Integer level) {
@@ -67,15 +44,7 @@ public class FileAction {
 		return object.toString();
 	}
 	
-	/**
-	 * 查询当前用户的文件夹 和文件
-	 * @param userid
-	 * @param filename
-	 * @param parentid
-	 * @param level
-	 * @param uuid
-	 * @return
-	 */
+	@AccessColumn(operationName="查询当前用户的文件夹 和文件")
 	@RequestMapping(value="savename",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String updateFolderName(String id,String name) {

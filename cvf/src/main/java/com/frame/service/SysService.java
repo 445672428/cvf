@@ -142,6 +142,6 @@ public class SysService extends BaseService{
 	public int queryIsInDB(String tableName, String dbName) {
 		DB db = (DB)CacheUtils.get(dbName);
 		ConnectionHolder holder = new ConnectionHolderDefault();
-		return holder.queryForInt(db, "select count(*) from information_schema.tables");
+		return holder.queryForInt(db, "select count(*) from information_schema.tables where TABLE_NAME ='"+tableName+"'");
 	}
 }

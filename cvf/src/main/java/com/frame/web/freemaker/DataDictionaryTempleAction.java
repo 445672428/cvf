@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSONObject;
+import com.annotation.AccessColumn;
 import com.base.BaseAction;
 import com.frame.service.DataDictionaryService;
 import com.pojo.ResultMeta;
@@ -52,6 +53,7 @@ public class DataDictionaryTempleAction extends BaseAction{
 	
 	@RequestMapping(value = "/dictionary", method = RequestMethod.POST)
 	@ResponseBody
+	@AccessColumn(operationName="当前数据库数据字典生成")
 	public void exportUserForDoc(HttpServletRequest request,HttpServletResponse response) throws IOException{  
        String dbName = request.getParameter("dbname");
        String db =  request.getParameter("dbkey");
@@ -91,11 +93,7 @@ public class DataDictionaryTempleAction extends BaseAction{
        }
 	
 	
-	/**
-     * 导入清单,数据处理
-     *
-     * @return
-     */
+	@AccessColumn(operationName="Excel清单导入")
     @RequestMapping(value = "/import", method = RequestMethod.POST,produces=MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
     public String importDetailedExcel(@RequestParam("file") MultipartFile uploadExcels) {
@@ -117,8 +115,6 @@ public class DataDictionaryTempleAction extends BaseAction{
     		} catch (Exception e) {
     			e.printStackTrace();
     		}
-			
-    		
     		
     	dataDictionaryService.compareSourceDBToDestDB(uploadExcels);
 

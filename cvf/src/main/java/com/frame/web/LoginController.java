@@ -11,18 +11,17 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cache.CacheManager;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.annotation.AccessColumn;
 import com.base.BaseAction;
 import com.frame.service.LoginService;
 import com.pojo.TAdmin;
 import com.utils.HttpUtils;
-import com.utils.SpringContextUtil;
 import com.utils.TimeUtils;
 
 import contant.Contant;
@@ -41,10 +40,9 @@ public class LoginController extends BaseAction{
 	@Qualifier("mysqlJdbcTemplate")
 	@Autowired
 	private JdbcTemplate mysqlJdbcTemplate;
-	/**
-	 * 用户登录
-	 */
+
 	@RequestMapping(value="dologin",method=RequestMethod.POST)
+	@AccessColumn(operationName="用户登录")
 	public String login(HttpServletRequest request){
 		String ip = HttpUtils.getIpAddress(request);
 		String username = request.getParameter("username");
@@ -74,9 +72,7 @@ public class LoginController extends BaseAction{
 	}
 	
 	
-	/**
-	 * 检测用户名是否可以注册
-	 */
+	@AccessColumn(operationName="检测用户名是否可以注册")
 	@RequestMapping(value="check",method=RequestMethod.GET)
 	public void checkRegisterUserName(HttpServletRequest request,HttpServletResponse response){
 		
@@ -110,9 +106,7 @@ public class LoginController extends BaseAction{
 
 	}
 	
-	/**
-	 * 用户注册
-	 */
+	@AccessColumn(operationName="用户注册")
 	@RequestMapping(value="register",method=RequestMethod.POST)
 	public String register(HttpServletRequest request,HttpServletResponse response){
 		String userName = request.getParameter("userName");
@@ -144,11 +138,8 @@ public class LoginController extends BaseAction{
 			return "redirect:register";
 		}
 	}
-	/**
-	 * 主要用于反爬虫 后续处理
-	 * @param request
-	 * @param response
-	 */
+
+	@AccessColumn(operationName="主要用于反爬虫 后续处理")
 	@RequestMapping(value="t",method=RequestMethod.GET)
 	@ResponseBody
 	public void getTime(HttpServletRequest request,HttpServletResponse response) {
@@ -165,10 +156,8 @@ public class LoginController extends BaseAction{
 			e.printStackTrace();
 		}
 	}
-	/**
-	 * 用户注销
-	 * @throws IOException 
-	 */
+
+	@AccessColumn(operationName="用户注销")
 	@RequestMapping(value="quit",method=RequestMethod.GET)
 	public void doQuit(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();

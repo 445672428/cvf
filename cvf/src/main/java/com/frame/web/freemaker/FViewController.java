@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.annotation.AccessColumn;
+
 @Controller
 @RequestMapping(value = "maker")
 public class FViewController {
@@ -23,6 +25,7 @@ public class FViewController {
 		model.addAttribute("name", name);
 		return "test";
 	}
+	@AccessColumn(operationName="当前mysql库freemaker模板")
 	@RequestMapping(value = "mysql", method = RequestMethod.GET)
 	public ModelAndView mysqlTable(String name) {
 		ModelAndView model = new ModelAndView();

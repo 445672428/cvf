@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.annotation.AccessColumn;
 import com.base.BaseAction;
 import com.frame.facets.imp.SearchEtlImp;
 import com.frame.multil.service.HotleService;
@@ -38,10 +39,7 @@ public class HotleController extends BaseAction{
 	@Autowired
 	private SysLogService sysLogService;
 	
-	/**
-		lucene查询
-	 * @throws IOException 
-	 */
+	@AccessColumn(operationName="lucene酒店客户查询")
 	@RequestMapping(value="lucene",method=RequestMethod.GET)
 	public void dasds(HttpServletRequest request,HttpServletResponse response,String search) throws IOException {
 		sysService.name();
@@ -51,6 +49,7 @@ public class HotleController extends BaseAction{
 		lucene查询
 	 * @throws IOException 
 	 */
+	@AccessColumn(operationName="lucene酒店客户查询")
 	@RequestMapping(value="search",method=RequestMethod.GET)
 	public void startLunce(HttpServletRequest request,HttpServletResponse response,String search) throws IOException {
 		search = new String(search.trim().getBytes("ISO-8859-1"),"UTF-8");
@@ -71,6 +70,7 @@ public class HotleController extends BaseAction{
 	 */
 	@RequestMapping(value="guessinfo",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
+	@AccessColumn(operationName="lucene酒店客户分页查询")
 	public String queryHotlePage(int pagesize,int start) {
 		//sysService.groupAdd();
 		PageBean pageBean = hotleService.queryHotleMsg(pagesize,start);

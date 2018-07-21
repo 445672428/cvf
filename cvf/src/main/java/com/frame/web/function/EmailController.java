@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.annotation.AccessColumn;
 import com.frame.service.EmailSenderService;
 import com.pojo.ResultMeta;
 
@@ -15,7 +16,7 @@ import com.pojo.ResultMeta;
 public class EmailController {
 	@Autowired
 	private EmailSenderService emailSenderService;
-	
+	@AccessColumn(operationName="邮件发送")
 	@RequestMapping(value="send",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String sendToDesignatedPerson(String cid,String tid,String subject,String content) {

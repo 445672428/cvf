@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.annotation.AccessColumn;
 import com.pojo.Progress;
 
 import contant.Contant;
@@ -16,6 +17,7 @@ import contant.Contant;
 public class BigMultiHandlerAction {
 	@ResponseBody  
 	@RequestMapping(value = "common/getProgress", method = RequestMethod.GET)  
+	@AccessColumn(operationName="上传进度获取")
 	public String getProgress(HttpServletRequest request, HttpServletResponse response) {
 	   if (request.getSession().getAttribute(Contant.SESSION_KEY_UPLOAD_PROGRESS_INFO) == null) {  
 	        return "";  

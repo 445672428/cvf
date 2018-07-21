@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.annotation.AccessColumn;
 import com.frame.service.SysService;
 import com.mybatis.pojo.SysApp;
 import com.mybatis.pojo.SysElement;
@@ -52,10 +53,8 @@ public class SysPermissionAction {
 	private MSysPermissionService msysPermissionService;
 	@Autowired
 	private SysService sysService;
-	/**
-	 * 组织信息录入
-	 * @throws IOException 
-	 */
+
+	@AccessColumn(operationName="组织信息录入")
 	@RequestMapping(value="group",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String groupInformation(String groupname,String groupbrief,String groupparentid,String groupdetails,HttpServletRequest request,HttpServletResponse response) throws IOException{
@@ -155,10 +154,7 @@ public class SysPermissionAction {
 		
 	}
 	
-	/**
-	 * 人员信息录入
-	 * @throws IOException 
-	 */
+	@AccessColumn(operationName="人员信息录入")
 	@RequestMapping(value="staff",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String sysUserAdd(String txtName,String txtAddress,Integer card_type,String txtIDCard,String txtMob,String txtEmail){
@@ -182,10 +178,7 @@ public class SysPermissionAction {
 		return JSONObject.toJSONString(resultMeta);
 	}
 	
-	/**
-	 * 资源种类录入
-	 * @return
-	 */
+	@AccessColumn(operationName="资源种类录入")
 	@RequestMapping(value="source",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String sourceInformation(String card_type,String sourceName,String sourceType){
@@ -205,10 +198,8 @@ public class SysPermissionAction {
 		}
 		return JSONObject.toJSONString(resultMeta);
 	}
-	/**
-	 * 要素名称录入
-	 * @return
-	 */
+
+	@AccessColumn(operationName="要素名称录入")
 	@RequestMapping(value="element",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String elementInformation(String card_type,String elementName){
@@ -225,10 +216,8 @@ public class SysPermissionAction {
 		}
 		return JSONObject.toJSONString(resultMeta);
 	}
-	/**
-	 * 应用名称录入
-	 * @return
-	 */
+
+	@AccessColumn(operationName="应用名称录入")
 	@RequestMapping(value="app",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String appInformation(String appName,String appAliasName,String urlFunctionName,String urlName){
@@ -243,6 +232,7 @@ public class SysPermissionAction {
 		return JSONObject.toJSONString(resultMeta);
 	}
 
+	@AccessColumn(operationName="插入一个数据库连信息")
 	@RequestMapping(value="db",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String applicationDB(@RequestParam(value="db_dbname") String dbname,@RequestParam(value="db_type") String type,
@@ -263,7 +253,8 @@ public class SysPermissionAction {
 		}
 		return JSONObject.toJSONString(resultMeta);
 	}
-	
+
+	@AccessColumn(operationName="修改数据库连接信息")
 	@RequestMapping(value="db",method=RequestMethod.PUT,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String updateApplicationDB(@RequestParam(value="db_ID") String id,@RequestParam(value="db_dbname") String dbname,@RequestParam(value="db_type") String type,
@@ -289,6 +280,7 @@ public class SysPermissionAction {
 		return JSONObject.toJSONString(resultMeta);
 	}
 	
+	@AccessColumn(operationName="获取当前用户所属库")
 	@RequestMapping(value="db",method=RequestMethod.GET,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String applicationDB(HttpServletRequest request){
@@ -296,6 +288,7 @@ public class SysPermissionAction {
 		List<Map<String, Object>> list = sysService.queryAllDbs(tAdmin.getAdmin_name());
 		return JSONArray.toJSONString(list);
 	}
+	@AccessColumn(operationName="单字段更新数据库连接信息")
 	@RequestMapping(value="dbcol",method=RequestMethod.PUT,produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String updateSingleColumnApplicationDB(String col,String value,String id,HttpServletRequest request) throws UnsupportedEncodingException{
